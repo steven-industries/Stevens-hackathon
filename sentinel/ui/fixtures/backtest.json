@@ -1,0 +1,66 @@
+{
+ "event": "Ebola — Kasai, DRC (Sep 2026)",
+ "summary": "First weak signal T−98h · Sentinel alert T−69h · WHO DON T−4h · Mainstream headline T",
+ "lead_time_hours": 69,
+ "method": "Items replayed in order of original published timestamps from GDELT (sourcelang:fra), ReliefWeb and WHO DON archive; alert = Corroborator reaches ≥2 independent sources.",
+ "caveats": [
+  "Single-event backtest; not a statistical claim.",
+  "GDELT publication timestamps are crawl times and may lag true publication."
+ ],
+ "timeline": [
+  {
+   "ts": "2026-09-20T12:40:00Z",
+   "kind": "weak_signal",
+   "source": "Radio Okapi (GDELT)",
+   "lang": "fr",
+   "title": "Kasaï : des cas suspects d'Ebola signalés à Bulape",
+   "url": "https://www.radiookapi.net/2026/09/20/actualite/sante/kasai-ebola-bulape",
+   "note": "Local French-language report of haemorrhagic fever deaths"
+  },
+  {
+   "ts": "2026-09-21T16:40:00Z",
+   "kind": "weak_signal",
+   "source": "Actualite.cd (GDELT)",
+   "lang": "fr",
+   "title": "Bulape : la riposte s'organise après des décès suspects",
+   "url": "https://actualite.cd/2026/09/21/bulape-riposte",
+   "note": "Second independent French source"
+  },
+  {
+   "ts": "2026-09-21T17:40:00Z",
+   "kind": "sentinel_alert",
+   "source": "Sentinel (replay)",
+   "lang": "en",
+   "title": "AMBER alert: Ebola — Kasai, DRC",
+   "url": "",
+   "note": "Corroborator reached 2 independent sources"
+  },
+  {
+   "ts": "2026-09-24T00:40:00Z",
+   "kind": "authority",
+   "source": "ReliefWeb",
+   "lang": "en",
+   "title": "DR Congo: Ebola Outbreak - Sep 2026",
+   "url": "https://reliefweb.int/disaster/ep-2026-000131-cod",
+   "note": "MoH declaration"
+  },
+  {
+   "ts": "2026-09-24T10:40:00Z",
+   "kind": "authority",
+   "source": "WHO DON",
+   "lang": "en",
+   "title": "Ebola virus disease - Democratic Republic of the Congo (DON617)",
+   "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617",
+   "note": "48 cases, 31 deaths"
+  },
+  {
+   "ts": "2026-09-24T14:40:00Z",
+   "kind": "mainstream",
+   "source": "Reuters",
+   "lang": "en",
+   "title": "Congo battles new Ebola outbreak in Kasai",
+   "url": "https://www.reuters.com/world/africa/congo-ebola-kasai",
+   "note": "First mainstream English headline"
+  }
+ ]
+}

@@ -1,0 +1,1157 @@
+{
+ "generated_at": "2026-09-25T16:37:00Z",
+ "run_id": "c7e41a09",
+ "mode": "claude",
+ "feeds": [
+  {
+   "name": "gdacs",
+   "items": 42,
+   "status": "live",
+   "retrieved": "2026-09-25T16:36:00Z"
+  },
+  {
+   "name": "nhc_atl",
+   "items": 3,
+   "status": "live",
+   "retrieved": "2026-09-25T16:36:00Z"
+  },
+  {
+   "name": "nhc_epac",
+   "items": 2,
+   "status": "live",
+   "retrieved": "2026-09-25T16:36:00Z"
+  },
+  {
+   "name": "usgs",
+   "items": 11,
+   "status": "live",
+   "retrieved": "2026-09-25T16:36:00Z"
+  },
+  {
+   "name": "reliefweb",
+   "items": 30,
+   "status": "cache",
+   "retrieved": "2026-09-25T15:38:00Z"
+  },
+  {
+   "name": "who_don",
+   "items": 8,
+   "status": "live",
+   "retrieved": "2026-09-25T16:36:00Z"
+  },
+  {
+   "name": "gdelt",
+   "items": 96,
+   "status": "live",
+   "retrieved": "2026-09-25T16:36:00Z"
+  }
+ ],
+ "alerts": [
+  {
+   "event_id": "tc-humberto-2026",
+   "name": "Hurricane Humberto",
+   "type": "TC",
+   "status": "alert",
+   "tier": "RED",
+   "risk_score": 91,
+   "score_breakdown": [
+    {
+     "factor": "authority severity",
+     "points": 30,
+     "reason": "NHC Category 4 (SSHWS)",
+     "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT3+shtml/"
+    },
+    {
+     "factor": "portfolio exposure",
+     "points": 25,
+     "reason": "$2.4B TIV within 300 km of track",
+     "source_url": ""
+    },
+    {
+     "factor": "corroboration",
+     "points": 16,
+     "reason": "4 independent sources, 2 languages",
+     "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001187"
+    },
+    {
+     "factor": "time to impact",
+     "points": 12,
+     "reason": "Landfall window 24-48h",
+     "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT3+shtml/"
+    },
+    {
+     "factor": "verification",
+     "points": 8,
+     "reason": "4/5 quotes verified verbatim",
+     "source_url": ""
+    }
+   ],
+   "issued_severity": {
+    "scale": "NHC_SSHWS",
+    "value": "Cat 4",
+    "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT3+shtml/"
+   },
+   "confidence": "high",
+   "confidence_rationale": "NHC advisory and GDACS Red agree; Spanish-language local reporting confirms evacuations in Abaco and Grand Bahama.",
+   "geo": {
+    "lat": 26.4,
+    "lon": -77.6,
+    "countries": [
+     "Bahamas",
+     "United States"
+    ],
+    "regions": [
+     "Abaco",
+     "Grand Bahama",
+     "SE Florida"
+    ],
+    "radius_km": 300
+   },
+   "time_horizon": "24-48h",
+   "first_signal_ts": "2026-09-25T09:20:00Z",
+   "alert_ts": "2026-09-25T14:35:00Z",
+   "languages_seen": [
+    "en",
+    "es"
+   ],
+   "sources": [
+    {
+     "id": "nhc_atl:AL082026",
+     "feed": "nhc_atl",
+     "url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT3+shtml/",
+     "title": "Hurricane Humberto Public Advisory Number 24",
+     "lang": "en",
+     "published": "2026-09-25T14:40:00Z",
+     "quote": "Humberto is a category 4 hurricane on the Saffir-Simpson Hurricane Wind Scale. Some fluctuations in strength are likely during the next day or two.",
+     "verified": true
+    },
+    {
+     "id": "gdacs:TC1001187",
+     "feed": "gdacs",
+     "url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001187",
+     "title": "Red alert for tropical cyclone HUMBERTO-26",
+     "lang": "en",
+     "published": "2026-09-25T13:40:00Z",
+     "quote": "This tropical cyclone can have a high humanitarian impact based on the maximum sustained wind speed, exposed population and vulnerability.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:es-4471",
+     "feed": "gdelt",
+     "url": "https://www.elnuevoherald.com/noticias/huracan-humberto-bahamas",
+     "title": "Huracán Humberto se fortalece a categoría 4 rumbo a las Bahamas",
+     "lang": "es",
+     "published": "2026-09-25T11:40:00Z",
+     "quote": "Las autoridades de las Bahamas ordenaron evacuaciones obligatorias en Ábaco y Gran Bahama ante la llegada del huracán.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:en-9921",
+     "feed": "gdelt",
+     "url": "https://www.reuters.com/business/energy/florida-ports-close-humberto",
+     "title": "Florida ports restrict traffic as Humberto nears",
+     "lang": "en",
+     "published": "2026-09-25T12:40:00Z",
+     "quote": "Port Everglades and PortMiami set port condition Yankee, restricting inbound vessel traffic ahead of the storm.",
+     "verified": true
+    },
+    {
+     "id": "reliefweb:TC-2026-000142-BHS",
+     "feed": "reliefweb",
+     "url": "https://reliefweb.int/disaster/tc-2026-000142-bhs",
+     "title": "Tropical Cyclone Humberto - Sep 2026",
+     "lang": "en",
+     "published": "2026-09-25T10:40:00Z",
+     "quote": "Tropical Cyclone Humberto - Sep 2026",
+     "verified": false
+    }
+   ],
+   "exposure": {
+    "policies": 1843,
+    "tiv_usd": 2410000000,
+    "by_line": [
+     {
+      "line": "Commercial Property",
+      "policies": 212,
+      "tiv_usd": 1320000000
+     },
+     {
+      "line": "Homeowners (HNW)",
+      "policies": 1388,
+      "tiv_usd": 690000000
+     },
+     {
+      "line": "Marine Cargo",
+      "policies": 96,
+      "tiv_usd": 240000000
+     },
+     {
+      "line": "Business Interruption",
+      "policies": 147,
+      "tiv_usd": 160000000
+     }
+    ],
+    "top_locations": [
+     {
+      "name": "Fort Lauderdale logistics park",
+      "lat": 26.09,
+      "lon": -80.15,
+      "tiv_usd": 410000000,
+      "distance_km": 262,
+      "line": "Commercial Property"
+     },
+     {
+      "name": "Freeport container terminal",
+      "lat": 26.52,
+      "lon": -78.77,
+      "tiv_usd": 285000000,
+      "distance_km": 117,
+      "line": "Marine Cargo"
+     },
+     {
+      "name": "Palm Beach HNW cluster",
+      "lat": 26.7,
+      "lon": -80.04,
+      "tiv_usd": 240000000,
+      "distance_km": 245,
+      "line": "Homeowners (HNW)"
+     },
+     {
+      "name": "Marsh Harbour resort",
+      "lat": 26.54,
+      "lon": -77.06,
+      "tiv_usd": 180000000,
+      "distance_km": 56,
+      "line": "Commercial Property"
+     },
+     {
+      "name": "Miami data centre",
+      "lat": 25.78,
+      "lon": -80.19,
+      "tiv_usd": 150000000,
+      "distance_km": 283,
+      "line": "Business Interruption"
+     }
+    ],
+    "insured_travelers": 1240,
+    "method": "Haversine distance of synthetic demo book locations to NHC centre, radius 300 km; synthetic demo book"
+   },
+   "briefs": {
+    "health": {
+     "headline": "Evacuations underway; hospital surge risk in Grand Bahama and SE Florida",
+     "bullets": [
+      {
+       "text": "Mandatory evacuations in Abaco and Grand Bahama imply displaced populations and shelter-based care needs over 72h.",
+       "source_url": "https://www.elnuevoherald.com/noticias/huracan-humberto-bahamas",
+       "quote": "Las autoridades de las Bahamas ordenaron evacuaciones obligatorias en Ábaco y Gran Bahama ante la llegada del huracán.",
+       "verified": true
+      },
+      {
+       "text": "Cat 4 wind field raises trauma and power-dependent patient risk; expect dialysis and oxygen continuity issues.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT3+shtml/",
+       "quote": "Humberto is a category 4 hurricane on the Saffir-Simpson Hurricane Wind Scale. Some fluctuations in strength are likely during the next day or two.",
+       "verified": true
+      },
+      {
+       "text": "GDACS flags high humanitarian impact given exposed population and vulnerability.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001187",
+       "quote": "This tropical cyclone can have a high humanitarian impact based on the maximum sustained wind speed, exposed population and vulnerability.",
+       "verified": true
+      }
+     ],
+     "caveats": [
+      "No official casualty or hospital-capacity figures yet."
+     ]
+    },
+    "wealth": {
+     "headline": "Port disruption and Florida property credit are the near-term market channels",
+     "bullets": [
+      {
+       "text": "PortMiami and Port Everglades at condition Yankee: watch cargo, cruise-line and REIT logistics exposure.",
+       "source_url": "https://www.reuters.com/business/energy/florida-ports-close-humberto",
+       "quote": "Port Everglades and PortMiami set port condition Yankee, restricting inbound vessel traffic ahead of the storm.",
+       "verified": true
+      },
+      {
+       "text": "Cat 4 intensity keeps Florida-concentrated cat bonds and regional P&C carriers under pressure.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT3+shtml/",
+       "quote": "Humberto is a category 4 hurricane on the Saffir-Simpson Hurricane Wind Scale. Some fluctuations in strength are likely during the next day or two.",
+       "verified": true
+      }
+     ],
+     "caveats": [
+      "Not investment advice; market reaction depends on final track."
+     ]
+    },
+    "insurance": {
+     "headline": "Strengthen IBNR on SE Florida commercial property; pre-position Bahamas adjusters",
+     "bullets": [
+      {
+       "text": "Commercial property and BI: Cat 4 wind on $1.3B TIV within 300 km; claims exposure direction UP.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT3+shtml/",
+       "quote": "Humberto is a category 4 hurricane on the Saffir-Simpson Hurricane Wind Scale. Some fluctuations in strength are likely during the next day or two.",
+       "verified": true
+      },
+      {
+       "text": "Marine cargo: port condition Yankee implies delay/demurrage and stock-throughput claims at Freeport and Port Everglades.",
+       "source_url": "https://www.reuters.com/business/energy/florida-ports-close-humberto",
+       "quote": "Port Everglades and PortMiami set port condition Yankee, restricting inbound vessel traffic ahead of the storm.",
+       "verified": true
+      },
+      {
+       "text": "A&H / travel: mandatory evacuations in Abaco trigger trip-interruption and emergency evacuation benefits.",
+       "source_url": "https://www.elnuevoherald.com/noticias/huracan-humberto-bahamas",
+       "quote": "Las autoridades de las Bahamas ordenaron evacuaciones obligatorias en Ábaco y Gran Bahama ante la llegada del huracán.",
+       "verified": true
+      },
+      {
+       "text": "Reinsurance: event likely to attach Florida cat XoL layer if landfall holds; notify treaty team.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001187",
+       "quote": "This tropical cyclone can have a high humanitarian impact based on the maximum sustained wind speed, exposed population and vulnerability.",
+       "verified": true
+      },
+      {
+       "text": "ReliefWeb disaster record opened for Humberto.",
+       "source_url": "https://reliefweb.int/disaster/tc-2026-000142-bhs",
+       "quote": "Tropical Cyclone Humberto - Sep 2026",
+       "verified": false
+      }
+     ],
+     "caveats": [
+      "Loss estimate not generated by Sentinel; use vendor cat model output once available."
+     ],
+     "reserving_posture": "strengthen"
+    }
+   },
+   "unknowns": [
+    "Final landfall point and whether the eyewall stays offshore of SE Florida",
+    "Storm-surge heights for Abaco (NHC surge product pending)",
+    "Port reopening timeline",
+    "Power-grid outage extent"
+   ],
+   "routing": [
+    {
+     "persona": "CUO Property",
+     "brief": "insurance",
+     "channel": "email",
+     "priority": "P1",
+     "caveat_banner": "Severity issued by NHC; Sentinel does not estimate loss.",
+     "message": "P1 Hurricane Humberto (NHC Cat 4). $2.41B TIV / 1,843 policies within 300 km, 24-48h. Posture: STRENGTHEN. Commercial property + BI concentration in Fort Lauderdale/Freeport. 5 sources, 4 verified quotes. Open audit trail in Sentinel."
+    },
+    {
+     "persona": "Head of Claims",
+     "brief": "insurance",
+     "channel": "slack",
+     "priority": "P1",
+     "caveat_banner": "Pre-position only; do not reserve per-claim on forecast.",
+     "message": ":rotating_light: Humberto Cat 4 (NHC) -> pre-position adjusters for Abaco / Grand Bahama and Broward. Marine cargo: port condition Yankee at PortMiami + Port Everglades. 1,240 insured travelers in radius."
+    },
+    {
+     "persona": "CIO",
+     "brief": "wealth",
+     "channel": "email",
+     "priority": "P2",
+     "caveat_banner": "Not investment advice; market channel hypotheses only.",
+     "message": "Humberto Cat 4: watch FL-concentrated cat bonds, regional P&C carriers and port-dependent logistics REITs. Track-dependent; next NHC advisory 15:00 ET."
+    },
+    {
+     "persona": "CMO / A&H",
+     "brief": "health",
+     "channel": "sms",
+     "priority": "P2",
+     "caveat_banner": "No official casualty data yet.",
+     "message": "Humberto Cat 4: evac orders Abaco/Grand Bahama. 1,240 insured travelers in radius. Activate assistance provider for evacuation + dialysis continuity."
+    },
+    {
+     "persona": "Public",
+     "brief": "health",
+     "channel": "public",
+     "priority": "P3",
+     "caveat_banner": "Follow official NHC and local guidance.",
+     "message": "Hurricane Humberto is a Category 4 storm per the US National Hurricane Center. Follow local evacuation orders."
+    }
+   ]
+  },
+  {
+   "event_id": "eq-guerrero-2026",
+   "name": "M7.1 Guerrero, Mexico",
+   "type": "EQ",
+   "status": "alert",
+   "tier": "RED",
+   "risk_score": 78,
+   "score_breakdown": [
+    {
+     "factor": "authority severity",
+     "points": 25,
+     "reason": "USGS PAGER orange",
+     "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q9k2"
+    },
+    {
+     "factor": "portfolio exposure",
+     "points": 20,
+     "reason": "$1.1B TIV within 150 km",
+     "source_url": ""
+    },
+    {
+     "factor": "corroboration",
+     "points": 16,
+     "reason": "4 sources, en + es",
+     "source_url": "https://www.eluniversal.com.mx/estados/sismo-guerrero-acapulco-danos"
+    },
+    {
+     "factor": "time to impact",
+     "points": 10,
+     "reason": "Event occurred; aftershock window 72h",
+     "source_url": ""
+    },
+    {
+     "factor": "verification",
+     "points": 7,
+     "reason": "4/4 quotes verified",
+     "source_url": ""
+    }
+   ],
+   "issued_severity": {
+    "scale": "USGS_PAGER",
+    "value": "orange",
+    "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q9k2"
+   },
+   "confidence": "high",
+   "confidence_rationale": "USGS PAGER orange and GDACS Orange agree; local Spanish reporting confirms structural damage in Acapulco hotels.",
+   "geo": {
+    "lat": 16.72,
+    "lon": -99.82,
+    "countries": [
+     "Mexico"
+    ],
+    "regions": [
+     "Guerrero",
+     "Mexico City"
+    ],
+    "radius_km": 150
+   },
+   "time_horizon": "0-72h (aftershocks)",
+   "first_signal_ts": "2026-09-25T07:40:00Z",
+   "alert_ts": "2026-09-25T08:02:00Z",
+   "languages_seen": [
+    "en",
+    "es"
+   ],
+   "sources": [
+    {
+     "id": "usgs:us7000q9k2",
+     "feed": "usgs",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q9k2",
+     "title": "M 7.1 - 38 km SSW of San Marcos, Mexico",
+     "lang": "en",
+     "published": "2026-09-25T07:40:00Z",
+     "quote": "Orange alert for economic losses. Significant damage is likely and the disaster is potentially widespread.",
+     "verified": true
+    },
+    {
+     "id": "gdacs:EQ1498812",
+     "feed": "gdacs",
+     "url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1498812",
+     "title": "Orange earthquake alert (Magnitude 7.1M, Depth:21km) in Mexico",
+     "lang": "en",
+     "published": "2026-09-25T07:40:00Z",
+     "quote": "Orange earthquake alert (Magnitude 7.1M, Depth:21km) in Mexico 25/09/2026 07:41 UTC, 2.1 million in 100km.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:es-1180",
+     "feed": "gdelt",
+     "url": "https://www.eluniversal.com.mx/estados/sismo-guerrero-acapulco-danos",
+     "title": "Sismo de 7.1 sacude Guerrero; reportan daños en Acapulco",
+     "lang": "es",
+     "published": "2026-09-25T08:40:00Z",
+     "quote": "Protección Civil reportó daños estructurales en hoteles de la zona Diamante de Acapulco y cortes de energía en Chilpancingo.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:en-3301",
+     "feed": "gdelt",
+     "url": "https://apnews.com/article/mexico-earthquake-guerrero",
+     "title": "Strong quake shakes Mexico City, damage reported in Acapulco",
+     "lang": "en",
+     "published": "2026-09-25T08:40:00Z",
+     "quote": "Buildings swayed in Mexico City and the seismic alarm sounded about a minute before the shaking arrived.",
+     "verified": true
+    }
+   ],
+   "exposure": {
+    "policies": 624,
+    "tiv_usd": 1120000000,
+    "by_line": [
+     {
+      "line": "Commercial Property",
+      "policies": 138,
+      "tiv_usd": 710000000
+     },
+     {
+      "line": "Hospitality / BI",
+      "policies": 44,
+      "tiv_usd": 260000000
+     },
+     {
+      "line": "Homeowners",
+      "policies": 442,
+      "tiv_usd": 150000000
+     }
+    ],
+    "top_locations": [
+     {
+      "name": "Acapulco Diamante hotel",
+      "lat": 16.79,
+      "lon": -99.8,
+      "tiv_usd": 220000000,
+      "distance_km": 8,
+      "line": "Hospitality / BI"
+     },
+     {
+      "name": "Chilpancingo plant",
+      "lat": 17.55,
+      "lon": -99.5,
+      "tiv_usd": 140000000,
+      "distance_km": 98,
+      "line": "Commercial Property"
+     },
+     {
+      "name": "Zihuatanejo resort",
+      "lat": 17.64,
+      "lon": -101.55,
+      "tiv_usd": 90000000,
+      "distance_km": 208,
+      "line": "Hospitality / BI"
+     }
+    ],
+    "insured_travelers": 310,
+    "method": "Haversine distance to USGS epicentre, radius 150 km; synthetic demo book"
+   },
+   "briefs": {
+    "health": {
+     "headline": "Structural damage and outages in Guerrero; trauma surge likely",
+     "bullets": [
+      {
+       "text": "Structural damage reported in Acapulco hotel zone; expect injured guests and staff.",
+       "source_url": "https://www.eluniversal.com.mx/estados/sismo-guerrero-acapulco-danos",
+       "quote": "Protección Civil reportó daños estructurales en hoteles de la zona Diamante de Acapulco y cortes de energía en Chilpancingo.",
+       "verified": true
+      },
+      {
+       "text": "2.1 million people within 100 km of epicentre.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1498812",
+       "quote": "Orange earthquake alert (Magnitude 7.1M, Depth:21km) in Mexico 25/09/2026 07:41 UTC, 2.1 million in 100km.",
+       "verified": true
+      }
+     ],
+     "caveats": []
+    },
+    "wealth": {
+     "headline": "Mexican hospitality and FIBRA REITs in focus",
+     "bullets": [
+      {
+       "text": "PAGER orange for economic losses; significant damage likely.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q9k2",
+       "quote": "Orange alert for economic losses. Significant damage is likely and the disaster is potentially widespread.",
+       "verified": true
+      }
+     ],
+     "caveats": [
+      "Not investment advice."
+     ]
+    },
+    "insurance": {
+     "headline": "Commercial property + hospitality BI; aftershock clause review",
+     "bullets": [
+      {
+       "text": "Hospitality BI: hotel damage in Acapulco Diamante zone matches $220M insured location 8 km from epicentre.",
+       "source_url": "https://www.eluniversal.com.mx/estados/sismo-guerrero-acapulco-danos",
+       "quote": "Protección Civil reportó daños estructurales en hoteles de la zona Diamante de Acapulco y cortes de energía en Chilpancingo.",
+       "verified": true
+      },
+      {
+       "text": "Property: PAGER orange signals widespread damage; claims exposure direction UP.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q9k2",
+       "quote": "Orange alert for economic losses. Significant damage is likely and the disaster is potentially widespread.",
+       "verified": true
+      },
+      {
+       "text": "Check 72h clause aggregation for aftershocks under cat treaty.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=1498812",
+       "quote": "Orange earthquake alert (Magnitude 7.1M, Depth:21km) in Mexico 25/09/2026 07:41 UTC, 2.1 million in 100km.",
+       "verified": true
+      }
+     ],
+     "caveats": [],
+     "reserving_posture": "strengthen"
+    }
+   },
+   "unknowns": [
+    "Aftershock sequence",
+    "Extent of damage in Mexico City",
+    "Duration of hotel closures"
+   ],
+   "routing": [
+    {
+     "persona": "CUO Property",
+     "brief": "insurance",
+     "channel": "email",
+     "priority": "P1",
+     "caveat_banner": "Severity issued by USGS PAGER.",
+     "message": "P1 M7.1 Guerrero (USGS PAGER orange). $1.12B TIV within 150 km; hotel damage reported 8 km from our largest location. Posture: STRENGTHEN."
+    },
+    {
+     "persona": "Head of Claims",
+     "brief": "insurance",
+     "channel": "slack",
+     "priority": "P1",
+     "caveat_banner": "Aftershocks may aggregate under 72h clause.",
+     "message": "M7.1 Guerrero: deploy MX adjusters to Acapulco Diamante; 624 policies in radius."
+    }
+   ]
+  },
+  {
+   "event_id": "ob-ebola-kasai-2026",
+   "name": "Ebola — Kasai, DRC",
+   "type": "OUTBREAK",
+   "status": "alert",
+   "tier": "AMBER",
+   "risk_score": 64,
+   "score_breakdown": [
+    {
+     "factor": "authority severity",
+     "points": 22,
+     "reason": "WHO DON published",
+     "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617"
+    },
+    {
+     "factor": "case trajectory",
+     "points": 14,
+     "reason": "48 cases / 31 deaths (CFR 65%)",
+     "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617"
+    },
+    {
+     "factor": "corroboration",
+     "points": 14,
+     "reason": "4 sources, en + fr; French local report 4 days earlier",
+     "source_url": "https://www.radiookapi.net/2026/09/20/actualite/sante/kasai-ebola-bulape"
+    },
+    {
+     "factor": "portfolio exposure",
+     "points": 8,
+     "reason": "86 insured travelers / expats in DRC",
+     "source_url": ""
+    },
+    {
+     "factor": "verification",
+     "points": 6,
+     "reason": "3/4 quotes verified",
+     "source_url": ""
+    }
+   ],
+   "issued_severity": {
+    "scale": "WHO_DON",
+    "value": "DON617",
+    "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617"
+   },
+   "confidence": "med",
+   "confidence_rationale": "WHO DON confirms case counts; spread beyond Bulape not yet reported.",
+   "geo": {
+    "lat": -4.6,
+    "lon": 21.4,
+    "countries": [
+     "DR Congo"
+    ],
+    "regions": [
+     "Kasai",
+     "Bulape"
+    ],
+    "radius_km": 400
+   },
+   "time_horizon": "2-6 weeks",
+   "first_signal_ts": "2026-09-20T12:40:00Z",
+   "alert_ts": "2026-09-24T02:40:00Z",
+   "languages_seen": [
+    "fr",
+    "en"
+   ],
+   "sources": [
+    {
+     "id": "who_don:2026-DON617",
+     "feed": "who_don",
+     "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617",
+     "title": "Ebola virus disease - Democratic Republic of the Congo",
+     "lang": "en",
+     "published": "2026-09-24T10:40:00Z",
+     "quote": "As of 22 September 2026, a total of 48 cases, including 31 deaths, have been reported from Bulape health zone in Kasai Province.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:fr-2210",
+     "feed": "gdelt",
+     "url": "https://www.radiookapi.net/2026/09/20/actualite/sante/kasai-ebola-bulape",
+     "title": "Kasaï : des cas suspects d'Ebola signalés à Bulape",
+     "lang": "fr",
+     "published": "2026-09-20T12:40:00Z",
+     "quote": "Des cas de fièvre hémorragique ont été signalés dans la zone de santé de Bulape, où plusieurs décès sont enregistrés.",
+     "verified": true
+    },
+    {
+     "id": "reliefweb:EP-2026-000131-COD",
+     "feed": "reliefweb",
+     "url": "https://reliefweb.int/disaster/ep-2026-000131-cod",
+     "title": "DR Congo: Ebola Outbreak - Sep 2026",
+     "lang": "en",
+     "published": "2026-09-24T00:40:00Z",
+     "quote": "The Ministry of Health declared an outbreak of Ebola virus disease in Kasai Province.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:en-7781",
+     "feed": "gdelt",
+     "url": "https://www.reuters.com/world/africa/congo-ebola-kasai",
+     "title": "Congo battles new Ebola outbreak in Kasai",
+     "lang": "en",
+     "published": "2026-09-24T14:40:00Z",
+     "quote": "Health workers are among the dead, and vaccination with Ervebo has begun for contacts.",
+     "verified": false
+    }
+   ],
+   "exposure": {
+    "policies": 57,
+    "tiv_usd": 42000000,
+    "by_line": [
+     {
+      "line": "A&H / Expat medical",
+      "policies": 41,
+      "tiv_usd": 18000000
+     },
+     {
+      "line": "Political risk / Mining",
+      "policies": 3,
+      "tiv_usd": 21000000
+     },
+     {
+      "line": "Event cancellation",
+      "policies": 13,
+      "tiv_usd": 3000000
+     }
+    ],
+    "top_locations": [
+     {
+      "name": "Tshikapa mining camp",
+      "lat": -6.42,
+      "lon": 20.8,
+      "tiv_usd": 21000000,
+      "distance_km": 212,
+      "line": "Political risk / Mining"
+     },
+     {
+      "name": "Kananga NGO office",
+      "lat": -5.9,
+      "lon": 22.42,
+      "tiv_usd": 4000000,
+      "distance_km": 184,
+      "line": "A&H / Expat medical"
+     }
+    ],
+    "insured_travelers": 86,
+    "method": "Policy country + declared site within 400 km; synthetic demo book"
+   },
+   "briefs": {
+    "health": {
+     "headline": "High-CFR Ebola cluster in Bulape; health workers infected",
+     "bullets": [
+      {
+       "text": "48 cases including 31 deaths reported from Bulape health zone.",
+       "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617",
+       "quote": "As of 22 September 2026, a total of 48 cases, including 31 deaths, have been reported from Bulape health zone in Kasai Province.",
+       "verified": true
+      },
+      {
+       "text": "Local French-language reporting flagged haemorrhagic fever deaths 4 days before WHO.",
+       "source_url": "https://www.radiookapi.net/2026/09/20/actualite/sante/kasai-ebola-bulape",
+       "quote": "Des cas de fièvre hémorragique ont été signalés dans la zone de santé de Bulape, où plusieurs décès sont enregistrés.",
+       "verified": true
+      },
+      {
+       "text": "Health workers among the dead; ring vaccination started.",
+       "source_url": "https://www.reuters.com/world/africa/congo-ebola-kasai",
+       "quote": "Health workers are among the dead, and vaccination with Ervebo has begun for contacts.",
+       "verified": false
+      }
+     ],
+     "caveats": [
+      "Case counts lag field reality."
+     ]
+    },
+    "wealth": {
+     "headline": "Limited market channel; Kasai mining logistics at risk",
+     "bullets": [
+      {
+       "text": "Outbreak declared in Kasai Province.",
+       "source_url": "https://reliefweb.int/disaster/ep-2026-000131-cod",
+       "quote": "The Ministry of Health declared an outbreak of Ebola virus disease in Kasai Province.",
+       "verified": true
+      }
+     ],
+     "caveats": [
+      "Not investment advice."
+     ]
+    },
+    "insurance": {
+     "headline": "A&H evacuation readiness; event-cancellation watch",
+     "bullets": [
+      {
+       "text": "A&H: 86 insured travelers in DRC; confirm medevac provider capacity for VHF.",
+       "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617",
+       "quote": "As of 22 September 2026, a total of 48 cases, including 31 deaths, have been reported from Bulape health zone in Kasai Province.",
+       "verified": true
+      },
+      {
+       "text": "Event cancellation: monitor regional gatherings if spread to Kinshasa.",
+       "source_url": "https://reliefweb.int/disaster/ep-2026-000131-cod",
+       "quote": "The Ministry of Health declared an outbreak of Ebola virus disease in Kasai Province.",
+       "verified": true
+      }
+     ],
+     "caveats": [],
+     "reserving_posture": "watch"
+    }
+   },
+   "unknowns": [
+    "Whether cases have spread outside Bulape",
+    "Vaccine supply and coverage",
+    "Cross-border movement toward Angola"
+   ],
+   "routing": [
+    {
+     "persona": "CMO / A&H",
+     "brief": "health",
+     "channel": "email",
+     "priority": "P1",
+     "caveat_banner": "WHO case counts lag field reality.",
+     "message": "Ebola, Kasai DRC (WHO DON617): 48 cases / 31 deaths. 86 insured travelers in country. Confirm VHF medevac readiness."
+    },
+    {
+     "persona": "CUO Property",
+     "brief": "insurance",
+     "channel": "slack",
+     "priority": "P3",
+     "caveat_banner": "Low property exposure.",
+     "message": "Ebola Kasai: property exposure minimal; A&H lead."
+    }
+   ]
+  },
+  {
+   "event_id": "fl-emilia-2026",
+   "name": "Emilia-Romagna floods",
+   "type": "FL",
+   "status": "alert",
+   "tier": "AMBER",
+   "risk_score": 57,
+   "score_breakdown": [
+    {
+     "factor": "authority severity",
+     "points": 18,
+     "reason": "GDACS Orange",
+     "source_url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1102934"
+    },
+    {
+     "factor": "portfolio exposure",
+     "points": 18,
+     "reason": "$380M TIV in affected provinces",
+     "source_url": ""
+    },
+    {
+     "factor": "corroboration",
+     "points": 12,
+     "reason": "3 sources, it + en",
+     "source_url": "https://www.ansa.it/emiliaromagna/notizie/2026/09/25/maltempo-esondazioni"
+    },
+    {
+     "factor": "time to impact",
+     "points": 9,
+     "reason": "Ongoing; warnings through Saturday",
+     "source_url": "https://www.euronews.com/2026/09/25/italy-floods-emilia-romagna"
+    }
+   ],
+   "issued_severity": {
+    "scale": "GDACS",
+    "value": "Orange",
+    "source_url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1102934"
+   },
+   "confidence": "med",
+   "confidence_rationale": "GDACS Orange and Italian civil-protection reporting agree; depth and duration unknown.",
+   "geo": {
+    "lat": 44.29,
+    "lon": 11.88,
+    "countries": [
+     "Italy"
+    ],
+    "regions": [
+     "Emilia-Romagna"
+    ],
+    "radius_km": 80
+   },
+   "time_horizon": "24-72h",
+   "first_signal_ts": "2026-09-25T02:40:00Z",
+   "alert_ts": "2026-09-25T05:10:00Z",
+   "languages_seen": [
+    "it",
+    "en"
+   ],
+   "sources": [
+    {
+     "id": "gdacs:FL1102934",
+     "feed": "gdacs",
+     "url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1102934",
+     "title": "Orange flood alert in Italy",
+     "lang": "en",
+     "published": "2026-09-25T02:40:00Z",
+     "quote": "Orange alert for flood in Italy. Potentially affected population: 380 thousand.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:it-5520",
+     "feed": "gdelt",
+     "url": "https://www.ansa.it/emiliaromagna/notizie/2026/09/25/maltempo-esondazioni",
+     "title": "Maltempo, esondano fiumi in Emilia-Romagna: evacuazioni a Faenza",
+     "lang": "it",
+     "published": "2026-09-25T04:40:00Z",
+     "quote": "Il fiume Lamone è esondato a Faenza e la Protezione civile ha disposto l'evacuazione dei piani terra.",
+     "verified": true
+    },
+    {
+     "id": "gdelt:en-6612",
+     "feed": "gdelt",
+     "url": "https://www.euronews.com/2026/09/25/italy-floods-emilia-romagna",
+     "title": "Floods hit Emilia-Romagna again",
+     "lang": "en",
+     "published": "2026-09-25T05:40:00Z",
+     "quote": "Red weather warnings remain in place across Emilia-Romagna through Saturday.",
+     "verified": true
+    }
+   ],
+   "exposure": {
+    "policies": 311,
+    "tiv_usd": 380000000,
+    "by_line": [
+     {
+      "line": "Commercial Property",
+      "policies": 71,
+      "tiv_usd": 260000000
+     },
+     {
+      "line": "Business Interruption",
+      "policies": 40,
+      "tiv_usd": 90000000
+     },
+     {
+      "line": "Homeowners",
+      "policies": 200,
+      "tiv_usd": 30000000
+     }
+    ],
+    "top_locations": [
+     {
+      "name": "Faenza ceramics plant",
+      "lat": 44.28,
+      "lon": 11.88,
+      "tiv_usd": 120000000,
+      "distance_km": 1,
+      "line": "Commercial Property"
+     },
+     {
+      "name": "Ravenna port warehouse",
+      "lat": 44.42,
+      "lon": 12.2,
+      "tiv_usd": 85000000,
+      "distance_km": 29,
+      "line": "Commercial Property"
+     },
+     {
+      "name": "Forlì food processing",
+      "lat": 44.22,
+      "lon": 12.04,
+      "tiv_usd": 60000000,
+      "distance_km": 15,
+      "line": "Business Interruption"
+     }
+    ],
+    "insured_travelers": 22,
+    "method": "Locations in affected provinces within 80 km; synthetic demo book"
+   },
+   "briefs": {
+    "health": {
+     "headline": "Ground-floor evacuations in Faenza",
+     "bullets": [
+      {
+       "text": "Evacuation of ground floors ordered in Faenza after the Lamone overtopped.",
+       "source_url": "https://www.ansa.it/emiliaromagna/notizie/2026/09/25/maltempo-esondazioni",
+       "quote": "Il fiume Lamone è esondato a Faenza e la Protezione civile ha disposto l'evacuazione dei piani terra.",
+       "verified": true
+      }
+     ],
+     "caveats": []
+    },
+    "wealth": {
+     "headline": "Regional manufacturing disruption",
+     "bullets": [
+      {
+       "text": "380k potentially affected population; watch Italian regional manufacturing.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1102934",
+       "quote": "Orange alert for flood in Italy. Potentially affected population: 380 thousand.",
+       "verified": true
+      }
+     ],
+     "caveats": [
+      "Not investment advice."
+     ]
+    },
+    "insurance": {
+     "headline": "Flood sub-limits on Faenza commercial property",
+     "bullets": [
+      {
+       "text": "Commercial property: Faenza plant ($120M TIV) 1 km from overtopped Lamone river.",
+       "source_url": "https://www.ansa.it/emiliaromagna/notizie/2026/09/25/maltempo-esondazioni",
+       "quote": "Il fiume Lamone è esondato a Faenza e la Protezione civile ha disposto l'evacuazione dei piani terra.",
+       "verified": true
+      },
+      {
+       "text": "Warnings through Saturday extend BI waiting-period exposure.",
+       "source_url": "https://www.euronews.com/2026/09/25/italy-floods-emilia-romagna",
+       "quote": "Red weather warnings remain in place across Emilia-Romagna through Saturday.",
+       "verified": true
+      }
+     ],
+     "caveats": [],
+     "reserving_posture": "watch"
+    }
+   },
+   "unknowns": [
+    "Flood depth at insured sites",
+    "Duration of warnings beyond Saturday"
+   ],
+   "routing": [
+    {
+     "persona": "CUO Property",
+     "brief": "insurance",
+     "channel": "email",
+     "priority": "P2",
+     "caveat_banner": "Severity issued by GDACS.",
+     "message": "Emilia-Romagna floods (GDACS Orange): $380M TIV, Faenza plant 1 km from overtopped river. Posture: WATCH."
+    }
+   ]
+  },
+  {
+   "event_id": "vo-reykjanes-2026",
+   "name": "Reykjanes eruption",
+   "type": "VO",
+   "status": "watch",
+   "tier": "WATCH",
+   "risk_score": 23,
+   "score_breakdown": [
+    {
+     "factor": "authority severity",
+     "points": 8,
+     "reason": "GDACS Green",
+     "source_url": "https://www.gdacs.org/report.aspx?eventtype=VO&eventid=1000121"
+    },
+    {
+     "factor": "corroboration",
+     "points": 5,
+     "reason": "1 source only — watch",
+     "source_url": ""
+    },
+    {
+     "factor": "portfolio exposure",
+     "points": 10,
+     "reason": "Aviation / travel exposure",
+     "source_url": ""
+    }
+   ],
+   "issued_severity": {
+    "scale": "GDACS",
+    "value": "Green",
+    "source_url": "https://www.gdacs.org/report.aspx?eventtype=VO&eventid=1000121"
+   },
+   "confidence": "low",
+   "confidence_rationale": "Single authority source; no independent corroboration yet.",
+   "geo": {
+    "lat": 63.88,
+    "lon": -22.45,
+    "countries": [
+     "Iceland"
+    ],
+    "regions": [
+     "Reykjanes"
+    ],
+    "radius_km": 50
+   },
+   "time_horizon": "days",
+   "first_signal_ts": "2026-09-24T20:40:00Z",
+   "alert_ts": "2026-09-24T20:40:00Z",
+   "languages_seen": [
+    "en"
+   ],
+   "sources": [
+    {
+     "id": "gdacs:VO1000121",
+     "feed": "gdacs",
+     "url": "https://www.gdacs.org/report.aspx?eventtype=VO&eventid=1000121",
+     "title": "Green alert for volcanic eruption at Reykjanes",
+     "lang": "en",
+     "published": "2026-09-24T20:40:00Z",
+     "quote": "Green alert for volcanic activity. Low humanitarian impact expected.",
+     "verified": true
+    }
+   ],
+   "exposure": {
+    "policies": 4,
+    "tiv_usd": 12000000,
+    "by_line": [
+     {
+      "line": "Travel",
+      "policies": 4,
+      "tiv_usd": 12000000
+     }
+    ],
+    "top_locations": [],
+    "insured_travelers": 140,
+    "method": "synthetic demo book"
+   },
+   "briefs": {
+    "health": {
+     "headline": "",
+     "bullets": [],
+     "caveats": []
+    },
+    "wealth": {
+     "headline": "",
+     "bullets": [],
+     "caveats": []
+    },
+    "insurance": {
+     "headline": "Travel: watch for aviation disruption",
+     "bullets": [
+      {
+       "text": "GDACS Green: low impact expected.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=VO&eventid=1000121",
+       "quote": "Green alert for volcanic activity. Low humanitarian impact expected.",
+       "verified": true
+      }
+     ],
+     "caveats": [],
+     "reserving_posture": "no action"
+    }
+   },
+   "unknowns": [
+    "Ash plume height",
+    "Keflavík airport status"
+   ],
+   "routing": []
+  }
+ ]
+}

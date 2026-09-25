@@ -1,0 +1,7 @@
+{"ts": "2026-09-25T15:34:00Z", "run_id": "bb2d420f", "items_fetched": 189, "feeds_ok": 7, "events": 4, "alerts": 3, "mode": "claude", "duration_s": 61.3}
+{"ts": "2026-09-25T15:44:00Z", "run_id": "fe3b890b", "items_fetched": 194, "feeds_ok": 7, "events": 4, "alerts": 3, "mode": "claude", "duration_s": 48.2}
+{"ts": "2026-09-25T15:54:00Z", "run_id": "62c33a4f", "items_fetched": 191, "feeds_ok": 6, "events": 5, "alerts": 3, "mode": "deterministic", "duration_s": 38.8}
+{"ts": "2026-09-25T16:04:00Z", "run_id": "7631a992", "items_fetched": 191, "feeds_ok": 7, "events": 5, "alerts": 3, "mode": "claude", "duration_s": 44.0}
+{"ts": "2026-09-25T16:14:00Z", "run_id": "1df9fd78", "items_fetched": 195, "feeds_ok": 7, "events": 5, "alerts": 4, "mode": "claude", "duration_s": 40.1}
+{"ts": "2026-09-25T16:24:00Z", "run_id": "c4aaeac1", "items_fetched": 189, "feeds_ok": 7, "events": 5, "alerts": 4, "mode": "claude", "duration_s": 42.7}
+{"ts": "2026-09-25T16:34:00Z", "run_id": "c7e41a09", "items_fetched": 187, "feeds_ok": 7, "events": 5, "alerts": 4, "mode": "claude", "duration_s": 52.3}
