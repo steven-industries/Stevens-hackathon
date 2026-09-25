@@ -3,7 +3,7 @@
 Rule: answer in two sentences, then stop. Offer to show the proof on screen, because the UI has it.
 
 **1. How do you stop the LLM from hallucinating?**
-We split the work into steps that don't trust each other. Severity is copied from the issuing authority (NHC category, USGS PAGER, GDACS alert level, WHO grade), and the model never generates it. Every claim in a brief has to carry a verbatim quote. The Verifier is plain code, not an LLM: it string-matches each quote against the fetched source text and drops any claim whose quote isn't there. The risk score is a transparent formula with its breakdown shown, and "What we don't know yet" is a required field.
+We split the work into steps that don't trust each other. Severity is copied from the issuing authority (NHC category, USGS PAGER, GDACS alert level, WHO's stated risk assessment), and the model never generates it. Every claim in a brief has to carry a verbatim quote. The Verifier is plain code, not an LLM: it string-matches each quote against the fetched source text and drops any claim whose quote isn't there. The risk score is a transparent formula with its breakdown shown, and "What we don't know yet" is a required field.
 
 **2. What about false positives? Alert fatigue is the real killer.**
 One feed on its own only gets you to "watch." An "alert" needs at least two *independent* sources, and those can be in different languages. The Router sends an alert only when an event touches the book (exposure > 0) or when the authority's severity crosses a threshold. It suppresses duplicates across cycles and escalates only when severity or exposure goes *up*. In practice the CUO gets a handful of messages, not a firehose.
@@ -50,3 +50,15 @@ Land with one desk: a 90-day pilot with the cat/accumulation team, one peril (At
 - WHO EIOS: open-source epidemic intelligence used by 120 countries (public-health audience, not insurers). https://www.who.int/initiatives/eios
 - Everstream: supply-chain risk alerts on a customer's supplier network (shippers, not insurance books). https://www.everstream.ai/platform/global-monitoring/
 - Munich Re: H1 2025 insured nat-cat losses of $80B, 95% above the 10-year average. https://www.artemis.bm/news/munich-re-pegs-h1-global-insured-catastrophe-losses-at-80bn-95-higher-than-10-yr-avg/
+
+---
+## The three hardest questions (from our red-team)
+
+**"Your 'verified' news quotes are just headlines matched against themselves. What does that prove?"**
+It proves provenance, not truth. The Verifier checks that every quoted span really exists in the text we fetched from that URL at that time. That kills the classic LLM failure: a fabricated quote or a number with no source. For authority feeds (NHC advisories, WHO DON, USGS) we fetch the full text, so bullets quote the actual advisory sentences. For news we fetch the headline and snippet from RSS today. Fetching the article body is a config change (it's the same verifier). Truth comes from corroboration: an alert requires independent publishers, counted by domain, so CNN and CNN Español count once.
+
+**"Hurricane-force winds reach maybe 50–60 km. How many of those sites are really inside them?"**
+Right, and we show both. The 350 km band is a *screening buffer* around the NHC forecast track, the accumulation-check universe. We separately report sites and TIV inside the hurricane-force core. The core number is what drives claims staging. The buffer drives binding restrictions. In a pilot we'd swap our buffer for Chubb's own footprint or cat-model event set. Sentinel orchestrates the check and doesn't replace the model.
+
+**"Under the strict rule your backtest alert fires on an English Hong Kong letter. Where's the multilingual edge? And n=1."**
+The multilingual edge is the 51 hours before that letter, when the event existed only in Chinese outlets: Sina, China News, Beijing News. Sentinel had those items on the watch list from the first one. Our strict rule deliberately waits for an authority or a second language before paging a desk, and trades 33 hours of lead time for fewer false alarms. Desks can tune that dial. On n=1: yes. It's one fully sourced replay, not a statistic. The pilot's first deliverable is a backtest across a season of Chubb's own historical events.

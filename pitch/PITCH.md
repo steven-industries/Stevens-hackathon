@@ -13,7 +13,7 @@ The fire was public from the first hour. What didn't exist was an answer to one 
 ## 0:20–0:45 · Problem (slide 2)
 
 "That's not a one-off. Insured nat-cat losses were **$137 billion in 2024**, and in 2025 they topped $100 billion for the sixth year running. Helene and Milton together cost Chubb about **$700 million**.
-The signals are all public: GDACS, the Hurricane Center, USGS, WHO outbreak notices, local news in Spanish, French and Portuguese. But they arrive as noise, in ten formats and five languages. A person still has to stitch them together by hand."
+The signals are all public: GDACS, the Hurricane Center, USGS, WHO outbreak notices, local news in Spanish, French, Portuguese, Hindi, Chinese. They arrive as noise, in ten formats and many languages. A person still has to stitch them together by hand."
 
 ## 0:45–1:05 · Who (slide 3)
 
@@ -25,7 +25,7 @@ The signals are all public: GDACS, the Hurricane Center, USGS, WHO outbreak noti
 
 1. **Alert card.** [Click the top alert.] This is **Hurricane Polo**, live right now in the Eastern Pacific. Sentinel corroborated it across NHC, GDACS, NASA and Spanish-language press: nine independent sources. The severity says *Category 5, 180 mph, per NHC*. We **copy** severity from the issuing authority. The AI never makes it up.
 2. **Exposure.** [Point at the exposure panel.] The Exposure agent lays the NHC forecast track over the book: *80 locations and $1.31 billion of TIV* within 350 km of the forecast track, mostly around Cabo, split into commercial property, business interruption, high-net-worth homeowners, and marine cargo. *(This demo uses a synthetic book. In a pilot, it's Chubb's.)*
-3. **Insurance brief.** [Open the Insurance tab.] It's written for underwriters: which lines, which way claims are heading, how to think about reserves, and a reinsurance note. [Click a citation chip.] Every bullet has a quote, and **code** checks that quote word-for-word against the source. If there's no quote, there's no claim.
+3. **Insurance brief.** [Open the Insurance tab.] It's written for underwriters: which lines, which way claims are heading, and an **accumulation action**. Before landfall that means binding restrictions in the watch area, not reserve changes. There's also a reinsurance note. [Click a citation chip.] Every bullet has a quote, and **code** checks that quote word-for-word against the source. If there's no quote, there's no claim.
 4. **Route.** [Click Route.] The CUO Property gets the Insurance brief. The Head of A&H gets the Health brief, the CIO gets the Wealth brief, and each one carries a caveat banner. Duplicates are suppressed, and an alert only escalates when severity goes up.
 5. **Always on.** [Point at the run-log strip.] Every cycle this afternoon is logged."
 

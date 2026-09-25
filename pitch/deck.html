@@ -150,7 +150,7 @@
     <div class="stat"><div class="n">$137B</div><div class="l">Global insured nat-cat losses in 2024. 2025 was the 6th straight year above $100B.</div></div>
     <div class="stat"><div class="n">$699M</div><div class="l">Chubb losses from Hurricanes Helene ($390M) and Milton ($309M), 2024</div></div>
   </div>
-  <p class="lead" style="font-size:34px;margin-top:48px">The signals are public: GDACS, NHC, USGS, WHO, local news in five languages. They arrive as noise, and <span style="color:var(--ink)">people still stitch them together by hand.</span></p>
+  <p class="lead" style="font-size:34px;margin-top:48px">The signals are public: GDACS, NHC, USGS, WHO, local news in many languages. They arrive as noise, and <span style="color:var(--ink)">people still stitch them together by hand.</span></p>
   <div class="src">Sources: Chubb Q1 2025 results (news.chubb.com, 2025-04-22) · Swiss Re sigma 1/2025 &amp; press release (swissre.com) · Chubb 10-K FY2024 (sec.gov)</div>
   <div class="pager"></div>
 </section>
@@ -299,7 +299,7 @@
   <h2>No quote, no claim.</h2>
   <div class="audit">
     <div>
-      <div class="rule"><span class="amber">Severity comes from the authority.</span><small>NHC category · USGS PAGER · GDACS level · WHO grade. The model never generates it.</small></div>
+      <div class="rule"><span class="amber">Severity comes from the authority.</span><small>NHC category · USGS PAGER · GDACS level · WHO risk assessment. The model never generates it.</small></div>
       <div class="rule"><span class="teal">Every claim is quote-checked by code.</span><small>The Verifier string-matches each quote against the fetched source. Anything that fails is dropped.</small></div>
       <div class="rule">A transparent score.<small>A 0–100 risk score with its breakdown, a confidence level, and a required "what we don't know yet" section.</small></div>
     </div>
@@ -327,7 +327,7 @@
     <div class="mk" style="left:60%"><div class="t">T</div><div class="dot" style="background:var(--ink)"></div><div class="d">First English headline<br><span style="font-size:22px">SCMP · 17 Jul</span></div></div>
     <div class="mk" style="left:92%"><div class="t">T+7 d</div><div class="dot" style="background:var(--dim)"></div><div class="d">Bloomberg<br><span style="font-size:22px">24 Jul</span></div></div>
   </div>
-  <p class="bt-note">Sentinel alerts <b>18–51 h</b> before the first English headline and <b>about a week before Bloomberg</b>. That is a week of A&amp;H/travel advisories, CBI watch on a manufacturing hub, and event-cancellation checks before the market sees it.</p>
+  <p class="bt-note">Sentinel alerts <b>18 h</b> before the first English headline and <b>about a week before Bloomberg</b>. That is a week of A&amp;H/travel advisories, CBI watch on a manufacturing hub, and event-cancellation checks before the market sees it.</p>
   <div class="src">Every timestamp is sourced in sentinel/BACKTEST.md (page metadata; the † items are day-level). Reproduce with <code>python src/backtest.py --strict</code>.</div>
   <div class="pager"></div>
 </section>

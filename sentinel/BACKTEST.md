@@ -1,7 +1,7 @@
 # Backtest: Foshan chikungunya outbreak, July 2025
 
-**Headline:** First weak signal T−51.2 h · Sentinel alert T−51.2 h · Mainstream headline T (SCMP, 2025-07-17 10:00 UTC).
-Sentinel would have alerted **~2 days before the first English mainstream story** and **~9 days (216 h) before the first global newswire** (Bloomberg, 24 Jul). Under a strict replay the alert fires at T−18.0 h (see Caveats).
+**Headline (strict replay, the number we quote):** First weak signal T−51.2 h · **Sentinel alert T−18.0 h** · Mainstream headline T (SCMP, 2025-07-17 10:00 UTC). That's **~8 days (183 h) before the first global newswire** (Bloomberg, 24 Jul).
+The lenient replay also counts the day-precision health-bureau notice, which puts the alert at T−51.2 h, about 9 days before Bloomberg. We treat 51 h as an upper bound and don't headline it (see Caveats).
 Reproduce it with `python3 src/backtest.py` (and `--strict`). The input is `data/backtest_foshan_chikungunya_2025.json` and the output goes to `log/backtest.json` and `ui/data/backtest.json`.
 
 ## The event
