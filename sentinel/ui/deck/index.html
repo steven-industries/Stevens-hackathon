@@ -7,158 +7,146 @@
 <meta name="description" content="Sentinel turns a public early-warning signal into a decision about Chubb's own book, with an audit trail. Stevens Business+AI Hackathon, Chubb challenge.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f4efe6;
-    --paper-2: #ebe4d7;
-    --ink: #1a1714;
-    --ink-2: #4a443c;
-    --muted: #7d7568;
-    --rule: #cfc6b5;
-    --signal: #b3261e;
-    --signal-soft: #f1d9d4;
-    --moss: #3f6b4a;
-    --display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-    --body: 'Inter', system-ui, -apple-system, sans-serif;
-    --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    --bg: #fbfbfa;
+    --ink: #1d1d1f;
+    --ink-2: #6e6e73;
+    --ink-3: #a1a1a6;
+    --line: #e8e8ea;
+    --accent: #d93a2b;
+    --card: #ffffff;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#f4efe6; --ink:#1a1714; } }
-  :root[data-theme="dark"] { --paper:#f4efe6; --ink:#1a1714; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#fbfbfa; --ink:#1d1d1f; } }
+  :root[data-theme="dark"] { --bg:#fbfbfa; --ink:#1d1d1f; }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; background: #0f0d0b; color: var(--ink); font-family: var(--body); overflow: hidden; }
-  ::selection { background: var(--signal); color: var(--paper); }
+  html, body { margin: 0; height: 100%; background: #000; color: var(--ink); font-family: var(--sans); overflow: hidden; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--ink); color: var(--bg); }
 
-  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; transform: translate(-50%,-50%) scale(var(--s, 1)); background: var(--paper); box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; transform: translate(-50%,-50%) scale(var(--s, 1)); background: var(--bg); overflow: hidden; }
 
-  .slide { position: absolute; inset: 0; padding: 96px 120px; opacity: 0; visibility: hidden; transition: opacity .38s cubic-bezier(.2,.7,.2,1); background: var(--paper); }
-  .slide.on { opacity: 1; visibility: visible; }
-  .slide.on .rise { animation: rise .7s cubic-bezier(.16,1,.3,1) both; }
-  .slide.on .rise:nth-child(2) { animation-delay: .08s } .slide.on .rise:nth-child(3) { animation-delay: .16s } .slide.on .rise:nth-child(4) { animation-delay: .24s } .slide.on .rise:nth-child(5) { animation-delay: .32s }
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .slide { position: absolute; inset: 0; padding: 104px 140px 96px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s; background: var(--bg); }
+  .slide:not(.s4):not(.s10) { display: flex; flex-direction: column; justify-content: center; }
+  .slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease, transform .2s ease, visibility 0s; }
 
   /* chrome */
-  .mark { position: absolute; top: 44px; left: 120px; font-family: var(--display); font-weight: 500; font-size: 22px; letter-spacing: -.01em; color: var(--ink); }
-  .mark small { font-family: var(--body); font-weight: 500; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-left: 14px; }
-  .num { position: absolute; top: 44px; right: 120px; font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
-  #bar { position: absolute; left: 0; bottom: 0; height: 5px; background: var(--signal); width: 0; transition: width .4s cubic-bezier(.2,.7,.2,1); z-index: 5; }
-  .foot { position: absolute; left: 120px; right: 120px; bottom: 42px; font-size: 13px; line-height: 1.5; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 12px; }
+  .mark { position: absolute; top: 48px; left: 140px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+  .mark small { display: block; font-weight: 400; color: var(--ink-3); font-size: 12px; margin-top: 2px; letter-spacing: 0; }
+  .num { position: absolute; top: 50px; right: 140px; font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .foot { position: absolute; left: 140px; right: 140px; bottom: 44px; font-size: 11px; line-height: 1.5; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 4px 20px; }
   .foot b { font-weight: 500; color: var(--ink-2); }
-  .foot span + span::before { content: " · "; color: var(--rule); }
+  #bar { position: absolute; left: 0; bottom: 0; height: 2px; background: var(--ink); width: 0; transition: width .2s ease; z-index: 5; }
 
   /* type */
-  .kicker { font-family: var(--body); font-weight: 600; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--signal); margin: 0 0 28px; }
-  h1 { font-family: var(--display); font-weight: 400; font-variation-settings: 'opsz' 144, 'SOFT' 30; letter-spacing: -.035em; line-height: .96; margin: 0; text-wrap: balance; }
-  h1 em { font-style: italic; color: var(--signal); }
-  .huge { font-size: 176px; }
-  .big { font-size: 118px; }
-  .mid { font-size: 76px; }
-  p.lede { font-family: var(--display); font-weight: 300; font-size: 34px; line-height: 1.32; letter-spacing: -.01em; color: var(--ink-2); margin: 0; max-width: 24ch; text-wrap: pretty; }
-  .body { font-size: 22px; line-height: 1.5; color: var(--ink-2); max-width: 60ch; }
-  .n { font-family: var(--display); font-variation-settings: 'opsz' 144; font-weight: 400; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
-  .cap { font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-  .src { font-size: 14px; color: var(--muted); line-height: 1.45; }
-  .rule { height: 1px; background: var(--rule); }
+  .kicker { margin: 0 0 24px; font-size: 15px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; }
+  h1 { margin: 0; font-weight: 600; letter-spacing: -0.03em; line-height: 1.02; color: var(--ink); text-wrap: balance; }
+  .huge { font-size: 112px; }
+  .big { font-size: 84px; }
+  .mid { font-size: 72px; }
+  .lede { font-size: 28px; line-height: 1.35; color: var(--ink-2); font-weight: 400; margin: 0; letter-spacing: -0.01em; }
+  .lede b { font-weight: 600; color: var(--ink); }
+  .hot { color: var(--accent); }
+  .n { font-size: 132px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .cap { font-size: 20px; color: var(--ink-2); margin-top: 14px; line-height: 1.35; }
+  .src { font-size: 12px; color: var(--ink-3); margin-top: 10px; line-height: 1.5; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
 
-  /* slide 1: cold open */
-  .s1 .time { font-family: var(--mono); font-size: 20px; letter-spacing: .08em; color: var(--muted); }
-  .s1 .zh { font-family: var(--display); font-size: 44px; max-width: 30ch; font-weight: 300; color: var(--ink-2); letter-spacing: 0; margin-top: 44px; }
-  .s1 .grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 96px; align-items: end; height: 100%; }
-  .s1 .steps { display: flex; flex-direction: column; gap: 0; border-left: 2px solid var(--rule); }
-  .s1 .step { padding: 22px 0 22px 34px; position: relative; }
-  .s1 .step::before { content: ""; position: absolute; left: -7px; top: 34px; width: 12px; height: 12px; border-radius: 50%; background: var(--rule); }
-  .s1 .step.hot::before { background: var(--signal); }
-  .s1 .step .t { font-family: var(--mono); font-size: 15px; letter-spacing: .06em; color: var(--muted); }
-  .s1 .step .w { font-family: var(--display); font-size: 42px; line-height: 1.05; letter-spacing: -.02em; margin-top: 6px; }
-  .s1 .step .w i { color: var(--signal); font-style: italic; }
+  /* 1 */
+  .s1 .time { font-size: 15px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+  .s1 .zh { font-size: 24px; color: var(--ink-2); line-height: 1.4; max-width: 880px; margin-top: 32px; }
+  .s1 .grid { display: grid; grid-template-columns: 1fr 480px; gap: 80px; align-items: center; margin-top: 8px; }
+  .steps { display: flex; flex-direction: column; }
+  .step { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 22px 0; border-top: 1px solid var(--line); font-size: 18px; line-height: 1.35; color: var(--ink-2); }
+  .step .t { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .step.hot .t { color: var(--accent); }
+  .step.hot .w { color: var(--ink); }
+  .step .w i { font-style: normal; color: var(--ink-3); }
+  .step.hot .w i { color: var(--ink-2); }
 
-  /* slide 2: three numbers */
-  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 64px; }
-  .trio .n { font-size: 132px; }
-  .trio .what { font-family: var(--display); font-size: 26px; line-height: 1.25; margin-top: 18px; color: var(--ink-2); }
-  .trio .co { margin-top: 10px; }
+  /* 2 */
+  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 96px; }
+  .trio .n { font-size: 108px; }
+  .trio .what { font-size: 18px; color: var(--ink-2); line-height: 1.4; margin-top: 18px; }
 
-  /* slide 3: last mile */
-  .chain { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 72px; align-items: start; position: relative; }
-  .chain .c { padding-right: 40px; position: relative; }
-  .chain .c + .c::before { content: "→"; position: absolute; left: -32px; top: 6px; font-family: var(--display); font-size: 40px; color: var(--signal); }
-  .chain .c .h { font-family: var(--display); font-size: 44px; letter-spacing: -.02em; line-height: 1.05; }
-  .chain .c .d { margin-top: 12px; font-size: 18px; color: var(--muted); line-height: 1.45; max-width: 26ch; }
-  .chain .c.solved .h { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--signal); text-decoration-thickness: 3px; }
-  .strike { position: relative; display: inline-block; }
+  /* 3 */
+  .chain { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 80px; }
+  .chain .c { padding: 28px 28px 30px; }
+  .chain .h { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .chain .d { font-size: 16px; color: var(--ink-2); line-height: 1.45; margin-top: 10px; }
+  .chain .c .tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px; }
+  .chain .c.solved .tag { color: var(--ink-3); }
+  .chain .c:not(.solved) .tag { color: var(--accent); }
 
-  /* slide 4: product */
-  .s4 { padding: 0; }
-  .s4 .frame { position: absolute; left: 120px; right: 120px; top: 128px; bottom: 150px; border-radius: 12px; overflow: hidden; box-shadow: 0 24px 60px -20px rgba(26,23,20,.35), 0 0 0 1px var(--rule); background: #fff; }
+  /* 4 */
+  .s4 { padding: 96px 140px; }
+  .s4 .frame { position: absolute; left: 50%; top: 150px; transform: translateX(-50%); width: 1520px; height: 855px; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.06); }
   .s4 .frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-  .s4 .tag { position: absolute; left: 120px; top: 44px; }
-  .s4 .live { position: absolute; right: 120px; top: 40px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink-2); font-weight: 500; }
-  .s4 .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--moss); box-shadow: 0 0 0 4px rgba(63,107,74,.18); }
+  .s4 .live { position: absolute; top: 50px; right: 140px; font-size: 13px; color: var(--ink-2); }
+  .s4 .live i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #34c759; margin-right: 8px; vertical-align: 1px; }
+  .s4 .capt { position: absolute; left: 0; right: 0; top: 1030px; text-align: center; font-size: 15px; color: var(--ink-2); }
 
-  /* slide 5: rules */
-  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; margin-top: 64px; }
-  .rules .r .i { font-family: var(--display); font-style: italic; font-size: 28px; color: var(--signal); }
-  .rules .r .h { font-family: var(--display); font-size: 50px; line-height: 1.02; letter-spacing: -.025em; margin-top: 10px; text-wrap: balance; }
-  .rules .r .d { font-size: 19px; line-height: 1.5; color: var(--ink-2); margin-top: 20px; max-width: 30ch; }
-  .rules .r .d code { font-family: var(--mono); font-size: 16px; background: var(--paper-2); padding: 2px 6px; border-radius: 4px; }
+  /* 5 */
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 80px; }
+  .rules .r { padding: 32px 32px 34px; }
+  .rules .i { font-size: 15px; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .rules .h { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin-top: 12px; }
+  .rules .d { font-size: 17px; color: var(--ink-2); line-height: 1.45; margin-top: 14px; }
+  .rules code { font-family: "SF Mono", ui-monospace, Menlo, monospace; font-size: 15px; background: #f2f2f3; padding: 1px 6px; border-radius: 5px; color: var(--ink); }
 
-  /* slide 6: pipeline */
-  .pipe { margin-top: 56px; width: 100%; height: 560px; }
-  .pipe text { font-family: var(--body); fill: var(--ink); }
-  .pipe .lab { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
-  .pipe .sub { font-size: 14px; fill: var(--muted); font-weight: 400; }
-  .pipe .llm { font-size: 12px; fill: var(--signal); font-weight: 600; letter-spacing: .12em; }
-  .pipe .code { font-size: 12px; fill: var(--moss); font-weight: 600; letter-spacing: .12em; }
-  .pipe .box { fill: #fff; stroke: var(--rule); stroke-width: 1.5; }
-  .pipe .box.hot { stroke: var(--signal); }
-  .pipe .arr { stroke: var(--ink-2); stroke-width: 1.5; fill: none; }
-  .pipe .in { font-family: var(--mono); font-size: 13px; fill: var(--muted); }
+  /* 6 */
+  .pipe { width: 1640px; height: 520px; margin-top: 56px; display: block; }
+  .pipe .box { fill: #fff; stroke: var(--line); stroke-width: 1.5; }
+  .pipe .lab { font-size: 22px; font-weight: 600; fill: var(--ink); letter-spacing: -0.01em; }
+  .pipe .sub { font-size: 14px; fill: var(--ink-2); }
+  .pipe .code, .pipe .llm { font-size: 11px; font-weight: 600; letter-spacing: .08em; fill: var(--ink-3); }
+  .pipe .llm { fill: var(--accent); }
+  .pipe .in { font-size: 14px; fill: var(--ink-2); }
+  .pipe .arr { stroke: var(--ink-3); stroke-width: 1.5; fill: none; }
+  .pipe .note { font-size: 15px; fill: var(--ink-2); }
 
-  /* slide 7: backtest */
-  .bt { margin-top: 24px; }
-  .bt .axis { position: relative; height: 3px; background: var(--rule); margin: 190px 40px 0; }
-  .bt .pt { position: absolute; width: 320px; text-align: center; }
-  .bt .pt.above { bottom: 26px; transform: translateX(-50%); }
-  .bt .pt.below { top: 26px; transform: translateX(-50%); }
-  .bt .pt .dot { position: absolute; left: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); transform: translateX(-50%); }
-  .bt .pt.above .dot { bottom: -33px; }
-  .bt .pt.below .dot { top: -33px; }
-  .bt .pt.sig .dot { background: var(--signal); box-shadow: 0 0 0 6px var(--signal-soft); }
-  .bt .pt.zh .dot { background: var(--muted); }
-  .bt .pt .w { font-family: var(--display); font-size: 26px; line-height: 1.1; letter-spacing: -.02em; }
-  .bt .pt.sig .w { color: var(--signal); }
-  .bt .pt .t { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 6px; letter-spacing: .03em; line-height: 1.4; }
-  .bt .lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 150px; }
-  .bt .lead .n { font-size: 96px; }
-  .bt .lead .n b { font-weight: 400; color: var(--signal); }
-  .bt .lead .cap { margin-top: 10px; }
+  /* 7 */
+  .bt { margin-top: 64px; }
+  .axis { position: relative; height: 240px; }
+  .axis::before { content: ""; position: absolute; left: 0; right: 0; top: 120px; height: 1px; background: var(--line); }
+  .pt { position: absolute; width: 260px; font-size: 14px; line-height: 1.4; color: var(--ink-2); transform: translateX(-50%); }
+  .pt .dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--ink-3); margin: 0 auto; }
+  .pt .w { font-weight: 600; color: var(--ink); font-size: 16px; text-align: center; letter-spacing: -0.01em; }
+  .pt .t { color: var(--ink-3); text-align: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .pt.above { top: 0; display: flex; flex-direction: column; justify-content: flex-end; height: 126px; gap: 4px; }
+  .pt.above .dot { margin-top: 10px; }
+  .pt.below { top: 114px; display: flex; flex-direction: column; gap: 4px; }
+  .pt.below .dot { margin-bottom: 10px; }
+  .pt.sig .dot { background: var(--accent); border-color: var(--accent); }
+  .pt.sig .w { color: var(--accent); }
+  .lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 32px; }
+  .lead .n { font-size: 120px; }
 
-  /* slide 8: why now */
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; margin-top: 56px; }
-  .two .q { font-family: var(--display); font-weight: 300; font-style: italic; font-size: 38px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); }
-  .two .q::before { content: "“"; color: var(--signal); }
-  .two .q::after { content: "”"; color: var(--signal); }
-  .two .who { margin-top: 18px; }
-  .two ul { list-style: none; padding: 0; margin: 12px 0 0; }
-  .two li { font-size: 24px; line-height: 1.4; padding: 18px 0; border-top: 1px solid var(--rule); color: var(--ink-2); }
-  .two li b { font-weight: 600; color: var(--ink); }
+  /* 8 */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; margin-top: 72px; }
+  .two .q { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
+  .two .who { font-size: 14px; color: var(--ink-3); margin-top: 14px; }
+  .two .body { font-size: 20px; color: var(--ink-2); line-height: 1.45; margin: 0; }
+  .two ul { list-style: none; margin: 0; padding: 0; }
+  .two li { padding: 20px 0; border-top: 1px solid var(--line); font-size: 18px; line-height: 1.4; color: var(--ink-2); }
+  .two li b { display: block; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
 
-  /* slide 9: ask */
-  .ask { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; height: 100%; padding-bottom: 60px; }
-  .ask .n { font-size: 260px; color: var(--signal); }
-  .ask dl { margin: 0; display: grid; grid-template-columns: 210px 1fr; row-gap: 22px; column-gap: 24px; font-size: 22px; line-height: 1.35; }
-  .ask dt { color: var(--muted); font-weight: 500; }
-  .ask dd { margin: 0; color: var(--ink); }
+  /* 9 */
+  .ask { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+  .ask .n { font-size: 240px; letter-spacing: -0.05em; }
+  .ask .lede { margin-top: 20px; max-width: 560px; }
+  .ask dl { margin: 12px 0 0; }
+  .ask dt { font-size: 13px; font-weight: 500; color: var(--ink-3); padding-top: 18px; border-top: 1px solid var(--line); }
+  .ask dd { margin: 4px 0 18px; font-size: 18px; line-height: 1.4; color: var(--ink); }
 
-  /* slide 10: close */
-  .s10 { display: flex; flex-direction: column; justify-content: center; }
-  .s10 h1 { font-size: 104px; max-width: 16ch; }
-  .s10 .sig { margin-top: 56px; display: flex; gap: 40px; align-items: baseline; }
-  .s10 .sig .m { font-family: var(--display); font-size: 40px; }
-  .s10 .sig .u { font-family: var(--mono); font-size: 16px; color: var(--muted); letter-spacing: .04em; }
+  /* 10 */
+  .s10 { display: flex; align-items: center; justify-content: center; text-align: center; }
+  .s10 h1 { font-size: 88px; max-width: 1500px; }
+  .s10 h1 span { display: block; }
 
-  #help { position: fixed; right: 16px; bottom: 16px; font: 12px var(--mono); color: #7d7568; opacity: .6; z-index: 9; letter-spacing: .04em; }
+  #help { position: fixed; right: 16px; bottom: 12px; font-size: 11px; color: rgba(255,255,255,.35); font-family: var(--sans); }
 </style>
 </head>
 <body>
@@ -170,11 +158,11 @@
   <div class="num">01 / 10</div>
   <div class="grid">
     <div>
-      <div class="time rise">TUESDAY · 15 JULY 2025 · 2:49 PM · FOSHAN, GUANGDONG</div>
-      <h1 class="huge rise" style="margin-top:32px">A notice goes up.<br><em>In Chinese.</em></h1>
-      <div class="zh rise">478 confirmed cases of chikungunya. The Shunde District Health Bureau posts it. Nobody outside China reads it.</div>
+      <div class="time">Tuesday · 15 July 2025 · 2:49 PM · Foshan, Guangdong</div>
+      <h1 class="huge" style="margin-top:28px">A notice goes up.<br><span class="hot">In Chinese.</span></h1>
+      <div class="zh">478 confirmed cases of chikungunya. The Shunde District Health Bureau posts it. Nobody outside China reads it.</div>
     </div>
-    <div class="steps rise">
+    <div class="steps">
       <div class="step"><div class="t">T + 0 h</div><div class="w">District health bureau notice. <i>Chinese only.</i></div></div>
       <div class="step"><div class="t">T + 51 h</div><div class="w">First English headline.</div></div>
       <div class="step hot"><div class="t">T + 9 days</div><div class="w">Bloomberg. <i>This is when the insurance industry found out.</i></div></div>
@@ -187,12 +175,12 @@
 <section class="slide" data-n="2">
   <div class="mark">Sentinel</div>
   <div class="num">02 / 10</div>
-  <p class="kicker rise">This is always how it goes</p>
-  <h1 class="big rise">The signal is public.<br>The <em>book</em> isn't connected to it.</h1>
-  <div class="trio rise">
-    <div><div class="n">$1.47B</div><div class="what">Chubb, LA wildfires, one quarter. The fire was public from hour one.</div><div class="src co">Chubb Q1 2025 results, pre-tax cat loss from California wildfires</div></div>
-    <div><div class="n">~$700M</div><div class="what">Chubb, Helene and Milton, 2024. Both were in NHC advisories for days.</div><div class="src co">Chubb 10-K FY2024: Helene $390M + Milton $309M</div></div>
-    <div><div class="n">$137B</div><div class="what">Global insured natural-catastrophe losses in 2024. Sixth straight year above $100B in 2025.</div><div class="src co">Swiss Re Institute sigma 1/2025; Swiss Re press release, 2025</div></div>
+  <p class="kicker">This is always how it goes</p>
+  <h1 class="big">The signal is public.<br>The book isn't connected to it.</h1>
+  <div class="trio">
+    <div><div class="n">$1.47B</div><div class="what">Chubb, LA wildfires, one quarter. The fire was public from hour one.</div><div class="src">Chubb Q1 2025 results, pre-tax cat loss from California wildfires</div></div>
+    <div><div class="n">~$700M</div><div class="what">Chubb, Helene and Milton, 2024. Both were in NHC advisories for days.</div><div class="src">Chubb 10-K FY2024: Helene $390M + Milton $309M</div></div>
+    <div><div class="n">$137B</div><div class="what">Global insured natural-catastrophe losses in 2024. Sixth straight year above $100B in 2025.</div><div class="src">Swiss Re Institute sigma 1/2025; Swiss Re press release, 2025</div></div>
   </div>
   <div class="foot"><span><b>Sources</b> news.chubb.com Q1 2025 release</span><span>sec.gov Chubb 10-K FY2024</span><span>swissre.com sigma 2025-01 and press release "2025 marks sixth year…"</span></div>
 </section>
@@ -201,36 +189,36 @@
 <section class="slide" data-n="3">
   <div class="mark">Sentinel</div>
   <div class="num">03 / 10</div>
-  <p class="kicker rise">The insight</p>
-  <h1 class="big rise">Detection is solved.<br>The <em>last mile</em> isn't.</h1>
-  <div class="chain rise">
-    <div class="c solved"><div class="h">Signal</div><div class="d">Dataminr: 1M+ sources, 150+ languages. BlueDot. GDACS. WHO EIOS. Good, and already bought.</div></div>
-    <div class="c"><div class="h">Our exposure</div><div class="d">How many of <em>our</em> sites, how much TIV, how many insured lives, are inside it?</div></div>
-    <div class="c"><div class="h">A decision</div><div class="d">Restrict binding. Pre-stage adjusters. Review evacuation capacity. One line, in underwriter vocabulary.</div></div>
-    <div class="c"><div class="h">The right desk</div><div class="d">Routed to the person who owns it, with a quote behind every sentence so they can trust it.</div></div>
+  <p class="kicker">The insight</p>
+  <h1 class="big">Detection is solved.<br>The last mile isn't.</h1>
+  <div class="chain">
+    <div class="c card solved"><span class="tag">Solved</span><div class="h">Signal</div><div class="d">Dataminr: 1M+ sources, 150+ languages. BlueDot. GDACS. WHO EIOS. Good, and already bought.</div></div>
+    <div class="c card"><span class="tag">Missing</span><div class="h">Our exposure</div><div class="d">How many of our sites, how much TIV, how many insured lives, are inside it?</div></div>
+    <div class="c card"><span class="tag">Missing</span><div class="h">A decision</div><div class="d">Restrict binding. Pre-stage adjusters. Review evacuation capacity. One line, in underwriter vocabulary.</div></div>
+    <div class="c card"><span class="tag">Missing</span><div class="h">The right desk</div><div class="d">Routed to the person who owns it, with a quote behind every sentence so they can trust it.</div></div>
   </div>
-  <p class="lede rise" style="margin-top:80px">Nobody ships that. <em style="color:var(--signal)">We did.</em></p>
+  <p class="lede" style="margin-top:64px">Nobody ships that. <b>We did.</b></p>
   <div class="foot"><span><b>Sources</b> dataminr.com/use-cases/insurance (1M+ sources, 150+ languages)</span><span>who.int/initiatives/eios</span><span>gdacs.org</span><span>Competitive notes: pitch/QA.md Q3</span></div>
 </section>
 
 <!-- 4 · SENTINEL, LIVE -->
 <section class="slide s4" data-n="4">
-  <div class="tag mark">Sentinel<small>Live · today · a real storm</small></div>
+  <div class="mark">Sentinel<small>Live · today · a real storm</small></div>
   <div class="live"><i></i>sentinel-chubb.vercel.app</div>
-  <div class="frame rise"><img src="../screenshots/product.png" alt="Sentinel desk view: $3.48B at stake, 4 decisions; Hurricane Polo, restrict new binding, Baja California Sur"></div>
-  <div class="foot"><span><b>On screen</b> Hurricane Polo, Cat 5, 180 mph, severity issued by NHC and copied, not generated</span><span>62 sites / $1.52B of a <b>synthetic</b> demo book inside the 350 km screening buffer; none in the hurricane-force core</span><span>Action: restrict new binding · Baja California Sur</span></div>
+  <div class="frame"><img src="../screenshots/product.png" alt="Sentinel desk view: $3.48B at stake, 4 decisions; Hurricane Polo, restrict new binding, Baja California Sur"></div>
+  <div class="capt">Hurricane Polo, Cat 5, 180 mph · severity issued by NHC and copied, not generated · 62 sites / $1.52B of a synthetic demo book inside the 350 km screening buffer; none in the hurricane-force core · Action: restrict new binding · Baja California Sur</div>
 </section>
 
 <!-- 5 · TRUST -->
 <section class="slide" data-n="5">
   <div class="mark">Sentinel</div>
   <div class="num">05 / 10</div>
-  <p class="kicker rise">Why an underwriter can trust it</p>
-  <h1 class="big rise">Three rules.<br>The model <em>never</em> gets to break them.</h1>
-  <div class="rules rise">
-    <div class="r"><div class="i">1.</div><div class="h">Severity is copied, never generated.</div><div class="d">Cat 5 comes from NHC. Risk "very high" comes from WHO. PAGER from USGS. The language model reads it; it is not allowed to write it.</div></div>
-    <div class="r"><div class="i">2.</div><div class="h">No quote, no claim.</div><div class="d">Every sentence in a brief carries a verbatim quote. A <code>Verifier</code> written in plain code string-matches it against the fetched source. Not found, dropped.</div></div>
-    <div class="r"><div class="i">3.</div><div class="h">The score shows its math.</div><div class="d">A transparent formula with the breakdown on screen, and a required field called <em>What we don't know yet</em>.</div></div>
+  <p class="kicker">Why an underwriter can trust it</p>
+  <h1 class="big">Three rules.<br>The model never gets to break them.</h1>
+  <div class="rules">
+    <div class="r card"><div class="i">1</div><div class="h">Severity is copied, never generated.</div><div class="d">Cat 5 comes from NHC. Risk "very high" comes from WHO. PAGER from USGS. The language model reads it; it is not allowed to write it.</div></div>
+    <div class="r card"><div class="i">2</div><div class="h">No quote, no claim.</div><div class="d">Every sentence in a brief carries a verbatim quote. A <code>Verifier</code> written in plain code string-matches it against the fetched source. Not found, dropped.</div></div>
+    <div class="r card"><div class="i">3</div><div class="h">The score shows its math.</div><div class="d">A transparent formula with the breakdown on screen, and a required field called "What we don't know yet".</div></div>
   </div>
   <div class="foot"><span><b>Sources</b> README.md design rules 1–2</span><span>sentinel/src/agents.py (Verifier stage)</span><span>pitch/QA.md Q1</span></div>
 </section>
@@ -239,70 +227,70 @@
 <section class="slide" data-n="6">
   <div class="mark">Sentinel</div>
   <div class="num">06 / 10</div>
-  <p class="kicker rise">Nine agents, one cycle every ten minutes</p>
-  <h1 class="mid rise">Stages that don't trust each other.</h1>
-  <svg class="pipe rise" viewBox="0 0 1680 520" xmlns="http://www.w3.org/2000/svg">
-    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a443c"/></marker></defs>
+  <p class="kicker">Nine agents, one cycle every ten minutes</p>
+  <h1 class="mid">Stages that don't trust each other.</h1>
+  <svg class="pipe" viewBox="0 0 1640 520" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a1a1a6"/></marker></defs>
     <!-- inputs -->
     <g>
       <text class="in" x="0" y="52">NHC · GDACS · USGS</text>
       <text class="in" x="0" y="76">WHO DON · ECDC · EONET</text>
       <text class="in" x="0" y="100">Google News en/es/fr/pt/hi/zh</text>
-      <path class="arr" d="M262 72 L 300 72" marker-end="url(#a)"/>
+      <path class="arr" d="M250 72 L 290 72" marker-end="url(#a)"/>
     </g>
-    <!-- row 1 boxes -->
-    <g id="row1">
-      <rect class="box" x="300" y="20" width="190" height="104" rx="8"/>
-      <text class="lab" x="320" y="58">Fetch</text><text class="sub" x="320" y="82">cache-first, offline</text><text class="code" x="320" y="108">CODE</text>
-      <path class="arr" d="M490 72 L 530 72" marker-end="url(#a)"/>
+    <!-- row 1 -->
+    <g>
+      <rect class="box" x="290" y="20" width="190" height="104" rx="14"/>
+      <text class="lab" x="312" y="58">Fetch</text><text class="sub" x="312" y="82">cache-first, offline</text><text class="code" x="312" y="108">CODE</text>
+      <path class="arr" d="M480 72 L 520 72" marker-end="url(#a)"/>
 
-      <rect class="box hot" x="530" y="20" width="190" height="104" rx="8"/>
-      <text class="lab" x="550" y="58">Scout</text><text class="sub" x="550" y="82">cluster signals → events</text><text class="llm" x="550" y="108">CLAUDE</text>
-      <path class="arr" d="M720 72 L 760 72" marker-end="url(#a)"/>
+      <rect class="box" x="520" y="20" width="190" height="104" rx="14"/>
+      <text class="lab" x="542" y="58">Scout</text><text class="sub" x="542" y="82">cluster signals → events</text><text class="llm" x="542" y="108">CLAUDE</text>
+      <path class="arr" d="M710 72 L 750 72" marker-end="url(#a)"/>
 
-      <rect class="box" x="760" y="20" width="230" height="104" rx="8"/>
-      <text class="lab" x="780" y="58">Corroborator</text><text class="sub" x="780" y="82">≥2 independent · any language</text><text class="code" x="780" y="108">CODE</text>
+      <rect class="box" x="750" y="20" width="240" height="104" rx="14"/>
+      <text class="lab" x="772" y="58">Corroborator</text><text class="sub" x="772" y="82">≥2 independent · any language</text><text class="code" x="772" y="108">CODE</text>
       <path class="arr" d="M990 72 L 1030 72" marker-end="url(#a)"/>
 
-      <rect class="box" x="1030" y="20" width="190" height="104" rx="8"/>
-      <text class="lab" x="1050" y="58">Verifier</text><text class="sub" x="1050" y="82">quote found verbatim</text><text class="code" x="1050" y="108">CODE</text>
+      <rect class="box" x="1030" y="20" width="190" height="104" rx="14"/>
+      <text class="lab" x="1052" y="58">Verifier</text><text class="sub" x="1052" y="82">quote found verbatim</text><text class="code" x="1052" y="108">CODE</text>
       <path class="arr" d="M1220 72 L 1260 72" marker-end="url(#a)"/>
 
-      <rect class="box hot" x="1260" y="20" width="200" height="104" rx="8"/>
-      <text class="lab" x="1280" y="58">Assessor</text><text class="sub" x="1280" y="82">severity COPIED · score</text><text class="llm" x="1280" y="108">CLAUDE</text>
+      <rect class="box" x="1260" y="20" width="210" height="104" rx="14"/>
+      <text class="lab" x="1282" y="58">Assessor</text><text class="sub" x="1282" y="82">severity COPIED · score</text><text class="llm" x="1282" y="108">CLAUDE</text>
     </g>
     <!-- turn -->
-    <path class="arr" d="M1360 124 L 1360 200 L 1360 230" marker-end="url(#a)"/>
-    <!-- row 2 boxes, right to left -->
-    <g id="row2">
-      <rect class="box" x="1260" y="230" width="200" height="104" rx="8"/>
-      <text class="lab" x="1280" y="268">Exposure</text><text class="sub" x="1280" y="292">footprint × our book</text><text class="code" x="1280" y="318">CODE · spatial join</text>
+    <path class="arr" d="M1365 124 L 1365 230" marker-end="url(#a)"/>
+    <!-- row 2, right to left -->
+    <g>
+      <rect class="box" x="1260" y="230" width="210" height="104" rx="14"/>
+      <text class="lab" x="1282" y="268">Exposure</text><text class="sub" x="1282" y="292">footprint × our book</text><text class="code" x="1282" y="318">CODE · SPATIAL JOIN</text>
       <path class="arr" d="M1260 282 L 1220 282" marker-end="url(#a)"/>
 
-      <rect class="box hot" x="990" y="230" width="230" height="104" rx="8"/>
-      <text class="lab" x="1010" y="268">Brief × 3</text><text class="sub" x="1010" y="292">Health · Wealth · Insurance</text><text class="llm" x="1010" y="318">CLAUDE · quotes only</text>
-      <path class="arr" d="M990 282 L 950 282" marker-end="url(#a)"/>
+      <rect class="box" x="980" y="230" width="240" height="104" rx="14"/>
+      <text class="lab" x="1002" y="268">Brief × 3</text><text class="sub" x="1002" y="292">Health · Wealth · Insurance</text><text class="llm" x="1002" y="318">CLAUDE · QUOTES ONLY</text>
+      <path class="arr" d="M980 282 L 940 282" marker-end="url(#a)"/>
 
-      <rect class="box" x="760" y="230" width="190" height="104" rx="8"/>
-      <text class="lab" x="780" y="268">Router</text><text class="sub" x="780" y="292">touches book / threshold</text><text class="code" x="780" y="318">CODE · dedup</text>
-      <path class="arr" d="M760 282 L 720 282" marker-end="url(#a)"/>
+      <rect class="box" x="750" y="230" width="190" height="104" rx="14"/>
+      <text class="lab" x="772" y="268">Router</text><text class="sub" x="772" y="292">touches book / threshold</text><text class="code" x="772" y="318">CODE · DEDUP</text>
+      <path class="arr" d="M750 282 L 710 282" marker-end="url(#a)"/>
 
-      <rect class="box" x="530" y="230" width="190" height="104" rx="8"/>
-      <text class="lab" x="550" y="268">Notifier</text><text class="sub" x="550" y="292">Slack / email + caveat</text><text class="code" x="550" y="318">CODE</text>
-      <path class="arr" d="M530 282 L 500 282" marker-end="url(#a)"/>
+      <rect class="box" x="520" y="230" width="190" height="104" rx="14"/>
+      <text class="lab" x="542" y="268">Notifier</text><text class="sub" x="542" y="292">Slack / email + caveat</text><text class="code" x="542" y="318">CODE</text>
+      <path class="arr" d="M520 282 L 480 282" marker-end="url(#a)"/>
     </g>
     <!-- outputs -->
     <g>
-      <text class="in" x="480" y="262" text-anchor="end">CUO Property · Cat desk</text>
-      <text class="in" x="480" y="286" text-anchor="end">Claims · A&amp;H · Travel · CIO</text>
-      <text class="in" x="480" y="310" text-anchor="end">+ run log, every cycle</text>
+      <text class="in" x="460" y="262" text-anchor="end">CUO Property · Cat desk</text>
+      <text class="in" x="460" y="286" text-anchor="end">Claims · A&amp;H · Travel · CIO</text>
+      <text class="in" x="460" y="310" text-anchor="end">+ run log, every cycle</text>
     </g>
     <!-- legend -->
     <g transform="translate(0,420)">
-      <rect x="0" y="-10" width="14" height="14" rx="3" fill="#fff" stroke="#b3261e" stroke-width="1.5"/><text class="sub" x="24" y="2">Language model: reads, clusters, writes prose from verified quotes</text>
-      <rect x="560" y="-10" width="14" height="14" rx="3" fill="#fff" stroke="#cfc6b5" stroke-width="1.5"/><text class="sub" x="584" y="2">Plain code: gates, verification, geometry, routing. Every stage has a deterministic fallback.</text>
+      <text class="llm" x="0" y="0">CLAUDE</text><text class="sub" x="70" y="0">Language model: reads, clusters, writes prose from verified quotes</text>
+      <text class="code" x="600" y="0">CODE</text><text class="sub" x="650" y="0">Plain code: gates, verification, geometry, routing. Every stage has a deterministic fallback.</text>
     </g>
-    <text class="sub" x="0" y="470">One Python orchestrator. Claude calls are cached by evidence hash; a full cycle is under $1. If the API is down, the alert still ships.</text>
+    <text class="note" x="0" y="470">One Python orchestrator. Claude calls are cached by evidence hash; a full cycle is under $1. If the API is down, the alert still ships.</text>
   </svg>
   <div class="foot"><span><b>Sources</b> README.md pipeline and design rule 3</span><span>pitch/QA.md Q5 (cost), Q9 (always-on)</span><span>sentinel/src/run.py, agents.py</span></div>
 </section>
@@ -311,20 +299,20 @@
 <section class="slide" data-n="7">
   <div class="mark">Sentinel</div>
   <div class="num">07 / 10</div>
-  <p class="kicker rise">Proof · replay of Foshan, July 2025, original timestamps</p>
-  <h1 class="mid rise">Back to that Tuesday. <em>Sentinel fires on Wednesday.</em></h1>
-  <div class="bt rise">
+  <p class="kicker">Proof · replay of Foshan, July 2025, original timestamps</p>
+  <h1 class="mid">Back to that Tuesday. Sentinel fires on Wednesday.</h1>
+  <div class="bt">
     <div class="axis">
-      <div class="pt zh above" style="left:9%"><div class="w">Health bureau notice + Sina</div><div class="t">TUE 15 JUL · T−51 h · zh</div><div class="dot"></div></div>
-      <div class="pt zh below" style="left:22%"><div class="dot"></div><div class="w">China News, Nandu, Beijing News</div><div class="t">TUE 15 JUL · zh · on the watch list</div></div>
-      <div class="pt sig above" style="left:38%"><div class="w">Sentinel alert (strict rule)</div><div class="t">WED 16 JUL · T−18 h<br>HK CHP letter + 2 outlets, 2 languages</div><div class="dot"></div></div>
-      <div class="pt below" style="left:54%"><div class="dot"></div><div class="w">First English headline</div><div class="t">THU 17 JUL 10:00 UTC · SCMP · T</div></div>
+      <div class="pt above" style="left:9%"><div class="w">Health bureau notice + Sina</div><div class="t">TUE 15 JUL · T−51 h · zh</div><div class="dot"></div></div>
+      <div class="pt below" style="left:24%"><div class="dot"></div><div class="w">China News, Nandu, Beijing News</div><div class="t">TUE 15 JUL · zh · on the watch list</div></div>
+      <div class="pt sig above" style="left:40%"><div class="w">Sentinel alert (strict rule)</div><div class="t">WED 16 JUL · T−18 h<br>HK CHP letter + 2 outlets, 2 languages</div><div class="dot"></div></div>
+      <div class="pt below" style="left:56%"><div class="dot"></div><div class="w">First English headline</div><div class="t">THU 17 JUL 10:00 UTC · SCMP · T</div></div>
       <div class="pt above" style="left:90%"><div class="w">Bloomberg</div><div class="t">THU 24 JUL · T+165 h</div><div class="dot"></div></div>
     </div>
     <div class="lead">
-      <div><div class="n"><b>18 h</b></div><div class="cap">before the first English headline</div><div class="src" style="margin-top:8px">Strict rule: 2 outlets + an authority or a second language</div></div>
-      <div><div class="n"><b>~8 days</b></div><div class="cap">before Bloomberg</div><div class="src" style="margin-top:8px">183 h before the first global newswire</div></div>
-      <div><div class="n">51 h</div><div class="cap">first Chinese signal on the watch list</div><div class="src" style="margin-top:8px">Upper bound, not headlined. One replay, n = 1, fully sourced. Every URL is in the repo.</div></div>
+      <div><div class="n">18 h</div><div class="cap">before the first English headline</div><div class="src">Strict rule: 2 outlets + an authority or a second language</div></div>
+      <div><div class="n">~8 days</div><div class="cap">before Bloomberg</div><div class="src">183 h before the first global newswire</div></div>
+      <div><div class="n">51 h</div><div class="cap">first Chinese signal on the watch list</div><div class="src">Upper bound, not headlined. One replay, n = 1, fully sourced. Every URL is in the repo.</div></div>
     </div>
   </div>
   <div class="foot"><span><b>Sources</b> sentinel/BACKTEST.md (reproduce: <b>python3 src/backtest.py --strict</b>)</span><span>chp.gov.hk letter to doctors 2025-07-16</span><span>scmp.com 2025-07-17</span><span>bloomberg.com 2025-07-24</span><span>4,824 cases by 26 Jul: China CDC Weekly / PMC12361914</span></div>
@@ -334,12 +322,12 @@
 <section class="slide" data-n="8">
   <div class="mark">Sentinel</div>
   <div class="num">08 / 10</div>
-  <p class="kicker rise">Why now, why Chubb</p>
-  <h1 class="mid rise">It sits on top of feeds Chubb already buys.</h1>
-  <div class="two rise">
+  <p class="kicker">Why now, why Chubb</p>
+  <h1 class="mid">It sits on top of feeds Chubb already buys.</h1>
+  <div class="two">
     <div>
-      <div class="q">Investing in data and AI to be faster in underwriting and claims.</div>
-      <div class="cap who">Chubb, 2025 Letter to Shareholders (paraphrased)</div>
+      <div class="q">"Investing in data and AI to be faster in underwriting and claims."</div>
+      <div class="who">Chubb, 2025 Letter to Shareholders (paraphrased)</div>
       <p class="body" style="margin-top:36px">A language model can now read a Chinese health-bureau bulletin and an NHC advisory in the same pass, for cents. Two years ago that was a research project. Today it is a ten-minute cron job.</p>
     </div>
     <div>
@@ -360,11 +348,11 @@
   <div class="num">09 / 10</div>
   <div class="ask">
     <div>
-      <p class="kicker rise">The ask</p>
-      <div class="n rise">90</div>
-      <p class="lede rise">days with the cat desk. One peril. Chubb's real exposure file.</p>
+      <p class="kicker">The ask</p>
+      <div class="n">90</div>
+      <p class="lede">days with the cat desk. One peril. Chubb's real exposure file.</p>
     </div>
-    <dl class="rise">
+    <dl>
       <dt>Peril</dt><dd>Atlantic hurricane, one region</dd>
       <dt>First deliverable</dt><dd>Swap the synthetic book for Chubb's exposure schema, inside Chubb's VPC</dd>
       <dt>Measured in</dt><dd>Hours of lead time before the binding decision · analyst hours saved on the morning report · precision of alerts that touch the book</dd>
@@ -379,13 +367,8 @@
 <section class="slide s10" data-n="10">
   <div class="mark">Sentinel</div>
   <div class="num">10 / 10</div>
-  <p class="kicker rise">Next time</p>
-  <h1 class="rise">A health bureau posts a notice at 2:49 on a Tuesday.<br><em>Chubb knows by 3.</em></h1>
-  <div class="sig rise">
-    <div class="m">Sentinel</div>
-    <div class="u">sentinel-chubb.vercel.app · every claim traces to a quote · severity from the authority · synthetic book, real everything else</div>
-  </div>
-  <div class="foot"><span><b>Every number in this deck is sourced on its slide.</b></span><span>Full source table: pitch/PITCH.md</span><span>Stevens Business + AI Hackathon · Chubb challenge · 25 Sep 2026</span></div>
+  <h1><span>A health bureau posts a notice at 2:49 on a Tuesday.</span><span>Chubb knows by 3.</span></h1>
+  <div class="foot"><span><b>Every number in this deck is sourced on its slide.</b></span><span>Full source table: pitch/PITCH.md</span><span>sentinel-chubb.vercel.app · every claim traces to a quote · severity from the authority · synthetic book, real everything else</span><span>Stevens Business + AI Hackathon · Chubb challenge · 25 Sep 2026</span></div>
 </section>
 
 <div id="bar"></div>
