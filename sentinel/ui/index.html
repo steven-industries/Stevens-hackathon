@@ -189,7 +189,9 @@ const LENSES = [
   {k:"cio", label:"CIO", brief:"wealth", val:tiv, fmt:money, unit:"of the book in harm's way", sort:(x,y) => tiv(y) - tiv(x)},
 ];
 const params = new URLSearchParams(location.search);
-const S = {data:null, runs:[], events:[], bt:null, sel:null, lens:"property", mon:false, more:false, map:null, hash:""};
+const S = {data:null, runs:[], events:[], bt:null, sel:null, lens:"property", mon:false, more:false, map:null, hash:"", runId:null, nEv:0, tk:true, tkI:0, rp:null};
+const RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+try{ if(localStorage.getItem("sentinel.ticker") === "off") S.tk = false; }catch(e){}
 if(LENSES.find(l => l.k === params.get("lens"))) S.lens = params.get("lens");
 const lens = () => LENSES.find(l => l.k === S.lens);
 
@@ -243,7 +245,7 @@ function renderLens(){
 }
 function renderHero(){
   const d = decisions(); const L = lens(); const total = d.reduce((s,a) => s + L.val(a), 0);
-  $("#heroBig").textContent = L.fmt(total);
+  const hb = $("#heroBig"); const prev = +hb.dataset.v; hb.dataset.v = total; countUp(hb, prev, total, L.fmt);
   $("#heroSub").textContent = L.unit + " · " + d.length + (d.length === 1 ? " decision" : " decisions");
 }
 function renderList(){
@@ -274,6 +276,14 @@ function hav(a,b){ const R = 6371, r = Math.PI/180; const dLa = (b[0]-a[0])*r, d
 function eventPath(a){ const g = obj(a.geo); const p0 = [num(g.lat), num(g.lon)];
   const t = arr(g.track).filter(p => Array.isArray(p) && isFinite(+p[0]) && isFinite(+p[1])).map(p => [+p[0], +p[1]]);
   if(!t.length) return [p0]; return hav(p0, t[0]) > 5 ? [p0, ...t] : t; }
+function drawTrack(pl){
+  if(RM) return;
+  try{ const el = pl._path; if(!el || !el.getTotalLength) return; const len = el.getTotalLength(); if(!(len > 0)) return;
+    el.style.transition = "none"; el.style.strokeDasharray = len + " " + len; el.style.strokeDashoffset = len;
+    requestAnimationFrame(() => { el.style.transition = "stroke-dashoffset 1.2s ease-out"; el.style.strokeDashoffset = 0;
+      setTimeout(() => { el.style.transition = "none"; el.style.strokeDasharray = ""; el.style.strokeDashoffset = ""; }, 1300); });
+  }catch(e){}
+}
 function renderMap(a){
   const el = $("#map"); if(!el) return;
   if(S.map){ try{ S.map.remove(); }catch(e){} S.map = null; }
@@ -291,10 +301,10 @@ function renderMap(a){
     let bounds = L.latLng(lat, lon).toBounds(rkm*2000);
     if(path.length > 1){
       const midLat = path.reduce((s,p) => s + p[0], 0)/path.length;
-      const band = L.polyline(path, {color:tc, opacity:.12, weight:10, lineCap:"round", lineJoin:"round", interactive:false}).addTo(m);
+      const band = L.polyline(path, {color:tc, opacity:.12, weight:10, lineCap:"round", lineJoin:"round", interactive:false, className:"band-in"}).addTo(m);
       const sizeBand = () => { const mpp = 40075016.686*Math.cos(midLat*Math.PI/180)/Math.pow(2, m.getZoom()+8); band.setStyle({weight:Math.max(4, 2*rkm*1000/mpp)}); };
       m.on("zoomend", sizeBand); m.whenReady(sizeBand);
-      L.polyline(path, {color:ink, weight:1.5, opacity:.7, dashArray:"5 5", interactive:false}).addTo(m);
+      const trk = L.polyline(path, {color:ink, weight:1.5, opacity:.7, dashArray:"5 5", interactive:false}).addTo(m); drawTrack(trk);
       path.forEach(p => bounds.extend(p));
     } else if(areas.length){
       areas.forEach(ar => { const r = num(ar.radius_km) || rkm;
@@ -304,6 +314,7 @@ function renderMap(a){
     if(coreKm > 0) L.circle([lat, lon], {radius:coreKm*1000, color:tc, weight:0, fillColor:tc, fillOpacity:.25}).addTo(m);
     locs.forEach(l => L.circleMarker([+l.lat, +l.lon], {radius:4 + 10*Math.sqrt(num(l.tiv_usd)/maxT), color:ink, weight:1, fillColor:ink, fillOpacity:.25}).addTo(m)
       .bindTooltip(`<b>${esc(l.name)}</b><br>${money(l.tiv_usd)}`));
+    if(!RM) L.circleMarker([lat, lon], {radius:7, color:tc, weight:1, fillColor:tc, fillOpacity:.35, interactive:false, className:"mk-pulse"}).addTo(m);
     L.circleMarker([lat, lon], {radius:6, color:"#fff", weight:2, fillColor:tc, fillOpacity:1}).addTo(m);
     locs.slice(0, 8).forEach(l => bounds.extend([+l.lat, +l.lon]));
     m.fitBounds(bounds.pad(0.08), {animate:false}); S.map = m;
@@ -311,9 +322,94 @@ function renderMap(a){
   }catch(err){ console.warn("map", err); }
 }
 
-function ago(ts){ const s = Math.max(0, (Date.now() - Date.parse(ts))/1000); if(!isFinite(s)) return ""; if(s < 90) return "just now"; if(s < 5400) return Math.round(s/60) + " min ago"; if(s < 172800) return Math.round(s/3600) + " h ago"; return Math.round(s/86400) + " d ago"; }
-function renderLive(){ const ts = obj(S.data).generated_at; $("#live").textContent = ts ? "Live · updated " + ago(ts) : "Live"; }
-function renderAll(){ renderLens(); renderHero(); renderList(); renderDetail(); renderLive(); }
+function ago(ts){ const s = Math.max(0, (Date.now() - Date.parse(ts))/1000); if(!isFinite(s)) return ""; if(s < 60) return Math.round(s) + " s ago"; if(s < 5400) return Math.round(s/60) + " min ago"; if(s < 172800) return Math.round(s/3600) + " h ago"; return Math.round(s/86400) + " d ago"; }
+const runsSorted = () => S.runs.filter(r => r && r.ts).slice().sort((x,y) => Date.parse(x.ts) - Date.parse(y.ts));
+function cadence(){ const r = runsSorted(); if(r.length < 2) return 300; const d = (Date.parse(r[r.length-1].ts) - Date.parse(r[r.length-2].ts))/1000; return d > 5 && d < 86400 ? d : 300; }
+const mmss = s => Math.floor(s/60) + ":" + String(Math.floor(s%60)).padStart(2, "0");
+function tickLive(){
+  const r = runsSorted(); const last = r[r.length-1]; const el = $("#cd"); if(!el) return;
+  if(!last){ el.textContent = ""; return; }
+  const left = (Date.parse(last.ts) + cadence()*1000 - Date.now())/1000;
+  el.textContent = left > 0 ? "· next scan in " + mmss(left) : "· last scan " + ago(last.ts);
+}
+function countUp(el, from, to, fmt){
+  if(RM || !isFinite(from) || from === to){ el.textContent = fmt(to); return; }
+  const t0 = performance.now(), d = 700;
+  const step = t => { const k = Math.min(1, (t - t0)/d), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(Math.round(from + (to - from)*e)); if(k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+function renderLive(){
+  const r = runsSorted(); const last = r[r.length-1]; const st = $("#stats");
+  if(last){ const parts = [];
+    parts.push(num(last.feeds_ok) > 0 ? `<span class="n" data-v="${num(last.feeds_ok)}">${num(last.feeds_ok)}</span> feeds` : "cached feeds");
+    parts.push(`<span class="n" data-v="${num(last.items_fetched)}">${fmtN(last.items_fetched)}</span> signals`);
+    parts.push(`<span class="n" data-v="${num(last.events)}">${num(last.events)}</span> events`);
+    const old = [...st.querySelectorAll(".n")].map(x => +x.dataset.v);
+    st.innerHTML = "· " + parts.join(" · ");
+    if(old.length) [...st.querySelectorAll(".n")].forEach((x,i) => countUp(x, old[i], +x.dataset.v, v => fmtN(v)));
+  } else st.textContent = "";
+  tickLive();
+}
+function flashHeader(msg){
+  const el = $("#live"), m = el.querySelector(".msg"); m.textContent = msg; el.classList.add("flash");
+  clearTimeout(S.flashT); S.flashT = setTimeout(() => { m.textContent = "Live"; el.classList.remove("flash"); }, 6000);
+}
+/* ticker */
+const AG = {fetch:"Fetch", scout:"Scout", corroborator:"Corroborator", verifier:"Verifier", exposure:"Exposure", assessor:"Assessor", brief_insurance:"Brief · insurance", brief_health:"Brief · health", brief_wealth:"Brief · wealth", router:"Router", notifier:"Notifier"};
+const agLabel = a => AG[a] || String(a || "");
+const sumText = x => String(x.summary || "").replace(/^[A-Za-z &·]+:\s*/, "").replace(/\s+/g, " ").trim();
+const tkEntries = () => S.events.filter(x => x && x.ts && x.summary).slice().sort((x,y) => Date.parse(y.ts) - Date.parse(x.ts)).slice(0, 60);
+function renderTicker(step){
+  document.body.classList.toggle("tk", S.tk);
+  const ents = tkEntries(); const box = $("#tkEnt"); if(!S.tk || !ents.length){ if(box) box.innerHTML = ""; return; }
+  if(step) S.tkI = (S.tkI + 1) % ents.length; else S.tkI = Math.min(S.tkI, ents.length - 1);
+  const x = ents[S.tkI]; const a = alerts().find(z => z.event_id === x.event_id);
+  const html = `<span class="ag">${esc(agLabel(x.agent))}</span><span class="tx">${esc(sumText(x))}${a ? " · " + esc(shortName(a)) : ""}</span><span class="when" data-ts="${esc(x.ts)}">${esc(ago(x.ts))}</span>`;
+  const red = a && tier(a) === "RED";
+  if(step && !RM){ box.classList.add("out"); setTimeout(() => { box.innerHTML = html; box.classList.toggle("red", !!red); box.classList.remove("out"); }, 350); }
+  else { box.innerHTML = html; box.classList.toggle("red", !!red); }
+}
+function toggleTicker(){ S.tk = !S.tk; try{ localStorage.setItem("sentinel.ticker", S.tk ? "on" : "off"); }catch(e){} renderTicker(false); $("#menu").classList.remove("open"); }
+function refreshTimes(){ document.querySelectorAll("[data-ts]").forEach(el => { el.textContent = ago(el.dataset.ts); }); }
+/* replay */
+const ORDER = ["fetch","scout","corroborator","verifier","assessor","exposure","briefs","router","notifier"];
+const modelLabel = m => /claude|sonnet|opus|haiku/i.test(String(m)) ? "Claude" : "code";
+function replaySteps(a){
+  const mine = S.events.filter(x => x && x.event_id === a.event_id && x.run_id);
+  if(!mine.length) return [];
+  const rid = mine.slice().sort((x,y) => Date.parse(x.ts) - Date.parse(y.ts)).pop().run_id;
+  const run = S.events.filter(x => x && x.run_id === rid && (x.event_id === a.event_id || x.event_id == null));
+  const L = lens(); const steps = [];
+  for(const k of ORDER){
+    if(k === "briefs"){ const bs = run.filter(x => /^brief_/.test(x.agent)); if(!bs.length) continue;
+      const main = bs.find(x => x.agent === "brief_" + L.brief) || bs[0];
+      steps.push({name:"Briefs", sum:sumText(main), ms:bs.reduce((s,x) => s + num(x.latency_ms), 0), model:main.model}); continue; }
+    const x = run.slice().reverse().find(y => y.agent === k); if(!x) continue;
+    steps.push({name:agLabel(k), sum:sumText(x), ms:num(x.latency_ms), model:x.model});
+  }
+  return steps;
+}
+function stopReplay(){ if(S.rp){ S.rp.forEach(clearTimeout); S.rp = null; } $("#replay").classList.remove("on"); $("#replay").innerHTML = ""; }
+function startReplay(){
+  const a = alerts().find(x => x.event_id === S.sel); if(!a) return;
+  stopReplay(); $("#menu").classList.remove("open");
+  const steps = replaySteps(a); const box = $("#replay");
+  if(!steps.length){ box.innerHTML = `<div class="hd"><span>No trace recorded for ${esc(shortName(a))}.</span><button id="rpClose">Done</button></div>`; box.classList.add("on"); return; }
+  const total = steps.reduce((s,x) => s + x.ms, 0) || 1;
+  let dur = steps.map(x => Math.max(250, 8000*x.ms/total)); const sum = dur.reduce((s,x) => s + x, 0); dur = dur.map(d => d*8000/sum);
+  const rs = runsSorted().slice(-1)[0];
+  box.innerHTML = `<div class="hd"><span><b>Replay</b> · last cycle for ${esc(shortName(a))} · ${(total/1000).toFixed(1)} s real time${rs ? " · " + esc(ago(rs.ts)) : ""}</span><button id="rpClose">Done</button></div>
+    <ol>${steps.map(x => `<li><span class="st"><i></i>${esc(x.name)}</span><span class="sm" title="${esc(x.sum)}">${esc(x.sum)}</span><span class="ms">${x.ms >= 1000 ? (x.ms/1000).toFixed(1) + " s" : x.ms + " ms"}</span><span class="md ${modelLabel(x.model) === "Claude" ? "claude" : ""}">${modelLabel(x.model)}</span><span class="bar"></span></li>`).join("")}</ol>`;
+  box.classList.add("on");
+  const lis = [...box.querySelectorAll("li")]; let t = 0; S.rp = [];
+  lis.forEach((li, i) => {
+    S.rp.push(setTimeout(() => { li.classList.add("act"); li.querySelector(".bar").style.transitionDuration = dur[i] + "ms"; }, t));
+    t += RM ? 0 : dur[i];
+    S.rp.push(setTimeout(() => { li.classList.remove("act"); li.classList.add("done"); }, t));
+  });
+  box.scrollIntoView({block:"nearest", behavior:RM ? "auto" : "smooth"});
+}
+function renderAll(){ renderLens(); renderHero(); renderList(); renderDetail(); renderLive(); renderTicker(false); }
 
 async function loadAll(){
   const [a, e, r, b] = await Promise.all([load("alerts.json", pJSON), load("events.jsonl", pJSONL), load("runs.jsonl", pJSONL), load("backtest.json", pJSON)]);
@@ -325,6 +421,11 @@ async function loadAll(){
     if(!S.sel || !decisions().find(x => x.event_id === S.sel)) S.sel = (decisions()[0] || {}).event_id || null;
     if(h !== S.hash){ S.hash = h; renderAll(); } else renderLive();
   }
+  const rs = runsSorted(); const last = rs[rs.length-1]; const rid = last ? last.run_id : null;
+  if(S.runId && rid && rid !== S.runId){ const fresh = Math.max(0, S.events.length - S.nEv);
+    flashHeader("Cycle complete" + (fresh ? " · " + fresh + " new signal" + (fresh === 1 ? "" : "s") : "")); S.tkI = 0; renderTicker(false); }
+  S.runId = rid; S.nEv = S.events.length;
+  if(!$("#tkEnt").innerHTML) renderTicker(false);
 }
 
 /* sheets */
@@ -351,13 +452,14 @@ const closeSheet = () => $("#sheet").classList.remove("on");
 document.addEventListener("click", e => {
   const t = e.target;
   const lb = t.closest("#lens button"); if(lb){ S.lens = lb.dataset.k; S.more = false; renderAll(); return; }
-  const it = t.closest(".item"); if(it){ S.sel = it.dataset.id; S.more = false; renderList(); renderDetail(); return; }
+  const it = t.closest(".item"); if(it){ S.sel = it.dataset.id; S.more = false; stopReplay(); renderList(); renderDetail(); return; }
   if(t.closest("#monBtn")){ S.mon = !S.mon; renderList(); return; }
   if(t.closest("#more")){ S.more = !S.more; renderDetail(); return; }
   const ev = t.closest(".ev"); if(ev){ const q = ev.parentElement.parentElement.querySelector(".quote") || ev.parentElement.querySelector(".quote");
     const host = ev.closest(".fact, li"); const qq = host && host.querySelector(".quote"); if(qq){ qq.classList.toggle("on"); ev.classList.toggle("on"); } return; }
   if(t.closest("#menuBtn")){ $("#menu").classList.toggle("open"); return; }
-  const o = t.closest("[data-open]"); if(o){ openSheet(o.dataset.open); return; }
+  const o = t.closest("[data-open]"); if(o){ if(o.dataset.open === "replay") startReplay(); else if(o.dataset.open === "ticker") toggleTicker(); else openSheet(o.dataset.open); return; }
+  if(t.closest("#rpClose")){ stopReplay(); return; }
   if(t.closest("#close") || t === $("#sheet")){ closeSheet(); return; }
   if(!t.closest("#menu")) $("#menu").classList.remove("open");
 });
@@ -365,7 +467,7 @@ document.addEventListener("keydown", e => {
   if(e.target.closest && e.target.closest("input,textarea")) return;
   if(e.key === "Enter" && e.target.classList && e.target.classList.contains("ev")){ e.target.click(); return; }
   const k = e.key;
-  if(k === "Escape"){ closeSheet(); $("#menu").classList.remove("open"); return; }
+  if(k === "Escape"){ closeSheet(); stopReplay(); $("#menu").classList.remove("open"); return; }
   if(k === "ArrowDown" || k === "ArrowUp"){ const d = decisions(); if(!d.length) return; e.preventDefault();
     let i = d.findIndex(x => x.event_id === S.sel); i = Math.max(0, Math.min(d.length-1, i + (k === "ArrowDown" ? 1 : -1)));
     S.sel = d[i].event_id; S.more = false; renderList(); renderDetail(); return; }
@@ -373,8 +475,10 @@ document.addEventListener("keydown", e => {
   if(k === "r" || k === "R") openSheet("route");
   if(k === "b" || k === "B") openSheet("backtest");
   if(k === "t" || k === "T") openSheet("trace");
+  if(k === "p" || k === "P") startReplay();
+  if(k === "l" || k === "L") toggleTicker();
 });
-loadAll(); setInterval(loadAll, 30000); setInterval(renderLive, 30000);
+loadAll(); setInterval(loadAll, 30000); setInterval(renderLive, 30000); setInterval(tickLive, 1000); setInterval(refreshTimes, 30000); setInterval(() => renderTicker(true), 3200);
 </script>
 </body>
 </html>
