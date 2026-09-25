@@ -50,11 +50,14 @@ So we built that."
 [Click **A&H** in the lens bar.]
 "Same event data, a different desk. The head of A&H sees insured lives: 3,728 in the Ebola provinces, where WHO rates the risk very high."
 
+[Press **P**. The replay panel steps through the nine agents with real timings.]
+"Watch the last cycle. Nine agents. Claude reads and writes the prose; plain code holds every gate: the verifier, the exposure math, the routing. Eighty-five seconds, end to end."
+
 [Click **•••** → **Route**.]
 "And each desk has already been notified on its own channel, with a caveat banner."
 
-[Click **•••** → **Run log**.]
-"It's been running every ten minutes all afternoon."
+[Point at the header pulse and the activity strip.]
+"It's live. Next scan in two minutes. It's been running every ten minutes all afternoon."
 
 [Switch back to the deck, slide 5.]
 

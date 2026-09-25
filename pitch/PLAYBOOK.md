@@ -41,12 +41,13 @@ Pre-state: UI tab open on **Property**, nothing selected, page freshly loaded, z
 2. Click **Hurricane Polo** in the list. Point at Severity "Cat 5 · NHC", then Exposure "$1.52B · 62 sites", then the red action line.
 3. Click **one sentence in the brief** → quote drawer opens. Say "no quote, no claim." Close it (Esc or click away).
 4. Click **A&H** in the lens bar. Point at insured lives (3,728, Ebola, WHO very high).
-5. Click **•••** (top right) → **Route**. Say "already notified, caveat banner." Close.
-6. Click **•••** → **Run log**. Say "every ten minutes all afternoon." Close.
-7. Optional: press **B** for the backtest modal instead of slide 8.
-8. Switch back to the deck tab, slide 5.
+5. Press **P** (Replay). Nine agents light up in sequence with their real one-line output and real timings, Claude vs code labelled. Say: "This is the last cycle, replayed. Claude reads and writes; code holds every gate." It takes 8 seconds; let it run, then Esc.
+6. Click **•••** → **Route**. Say "already notified, caveat banner." Close.
+7. Point at the header: green pulse, "next scan in 2:41", signal and event counts. Say "every ten minutes, all afternoon." The activity strip at the bottom (L toggles it) is the live agent log.
+8. Optional: press **B** for the backtest modal instead of slide 8.
+9. Switch back to the deck tab, slide 5.
 
-Keyboard in the deck: → / space next, ← back, F fullscreen, 1–9 jump to slide, 0 jumps to slide 11. The deck also accepts a click on the right third of the screen to advance.
+Keyboard in the deck: → / space next (reveals the next build on slides 1 and 8 before advancing), ← back, F fullscreen, 1–9 jump to slide, 0 jumps to slide 11. The deck also accepts a click on the right third of the screen to advance.
 
 ## Say it so a non-insurance judge follows (use these the first time each word comes up)
 
