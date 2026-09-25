@@ -1,55 +1,55 @@
 {
- "generated_at": "2026-09-25T17:26:49Z",
- "run_id": "1a52235b",
+ "generated_at": "2026-09-25T17:32:10Z",
+ "run_id": "ed091574",
  "mode": "deterministic",
  "feeds": [
   {
    "name": "gdacs",
    "items": 314,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:23Z"
+   "retrieved": "2026-09-25T17:31:52Z"
   },
   {
    "name": "nhc_at",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:21Z"
+   "retrieved": "2026-09-25T17:31:50Z"
   },
   {
    "name": "nhc_ep",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:21Z"
+   "retrieved": "2026-09-25T17:31:50Z"
   },
   {
    "name": "nhc_cp",
    "items": 1,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:20Z"
+   "retrieved": "2026-09-25T17:31:50Z"
   },
   {
    "name": "usgs",
    "items": 12,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:21Z"
+   "retrieved": "2026-09-25T17:31:51Z"
   },
   {
    "name": "who_don",
    "items": 15,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:21Z"
+   "retrieved": "2026-09-25T17:31:50Z"
   },
   {
    "name": "ecdc",
    "items": 10,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:21Z"
+   "retrieved": "2026-09-25T17:31:50Z"
   },
   {
    "name": "eonet",
    "items": 80,
    "status": "live",
-   "retrieved": "2026-09-25T17:26:45Z"
+   "retrieved": "2026-09-25T17:32:06Z"
   }
  ],
  "alerts": [
@@ -167,7 +167,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T06:39:52Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en",
     "es"
@@ -262,15 +262,15 @@
      "publisher": "elpais.com"
     },
     {
-     "id": "gnews:22779b089493",
-     "feed": "news:nmas.com.mx",
-     "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNS3NBVDNjZ0xmaDhCQXJDOXB6aW05NkpaYnpkVDFZVm1maUFzeFMtb2pQQURUWFdyb3pYU0pKQXUwN1VGaUxiTFhmaGhWbWhLdzVnekZudDhwOWd4N0tGRGxIRXFIT2NObGpkRTlseDRmT0plUndfVjRDQmJmN21KRzI4ZGw5anBfYmY5Y1VmN00wM2lNd3NkaW8tLVdGNUJvajhXTTVLRlNldU5OU0w1U3VYTFJPSVdQZ1RWcmh6bEx4WUtwSjUw?oc=5",
-     "title": "¿Dónde Está el Huracán Polo Hoy? Nueva Trayectoria del Ciclón que se Espera Llegue a Chihuahua - N+",
+     "id": "gnews:5065c9237b63",
+     "feed": "news:informador.mx",
+     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPdjlkUndXRGhxVlR6a3hKX2NBVHI2a1ZHSERaMmpsN3lnS2xSaXlCQlczOXZ3akNoQXFlS2pBQm9pWXByTkIwTTlmSU5lcTB4cDZXTWlzb3NQWW5Qd0IwTDN4RWF1eUdOMnh3WmJ5YmpVTUVIWXp1MEp0eDdEck14MEwtRUJxVnB4WHQ4REl4SS1Vb0tLcjlyQUNuVGZCcUcyMVR5eUE2c1l6eTVGbDJLS05xVThqZkcwYXVJQnpaVlVoX2ZoaHpXd0RUTFR5SlhH0gHWAUFVX3lxTFBneHhfdE95YnIwRWJzMk9CbkROeXBBTi1tbE02b1lzdXlnQ2dmSXB0UXZTSXVfUEl4a1Q5MjB2RDJ2cEpJRkN4cGd0a05jdENaY3JFSHFJbDQtZGJtZWFFWkJkS1RSMTRwWG5CQ0hiQ2puYTRfRTExNnJSVDg0OUlxZjFQREI0aDFhVHYyV0xyZTRBVE9PQU9wSmFTSTZHZ2F2UlVkLTFra25YTEFzbjlNRUZGWHd4a0M4WXZsSFpWaXNiUFB6b0I4WXUxNXFxZjgxb0l4d2c?oc=5",
+     "title": "Huracán \"Polo\" retoma fuerza y alcanza la categoría 5 frente a las costas de Jalisco - El Informador",
      "lang": "es",
-     "published": "2026-09-25T13:56:28Z",
-     "quote": "¿Dónde Está el Huracán Polo Hoy? Nueva Trayectoria del Ciclón que se Espera Llegue a Chihuahua",
+     "published": "2026-09-25T13:44:18Z",
+     "quote": "Huracán \"Polo\" retoma fuerza y alcanza la categoría 5 frente a las costas de Jalisco",
      "verified": true,
-     "publisher": "nmas.com.mx"
+     "publisher": "informador.mx"
     }
    ],
    "exposure": {
@@ -664,7 +664,7 @@
    },
    "time_horizon": "2-6 weeks",
    "first_signal_ts": "2026-09-02T07:00:00Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en",
     "fr",
@@ -1044,7 +1044,7 @@
     {
      "factor": "velocity/recency",
      "points": 2,
-     "reason": "latest authority update 41h ago; 24 matching news items; GDACS event window ended Thu, 24 Sep 2026",
+     "reason": "latest authority update 42h ago; 24 matching news items; GDACS event window ended Thu, 24 Sep 2026",
      "source_url": ""
     },
     {
@@ -1082,7 +1082,7 @@
    },
    "time_horizon": "24-72h (GDACS/JTWC forecast)",
    "first_signal_ts": "2026-09-21T01:12:56Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en",
     "hi"
@@ -1518,7 +1518,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-25T01:45:46Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en",
     "fr",
@@ -2010,7 +2010,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-20T09:08:06Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en",
     "es"
@@ -2108,7 +2108,7 @@
      "id": "gnews:2d5c15ffba66",
      "feed": "news:sociedad-noticias.com",
      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTENOOFlNRDlEYjJQVnp4RTFrRlNzclZ0T1Z4dDBTX3hwa21ydlNRQ3VpVmlTcldwRWdyYnFEWmdXV05DdVRLcmlJdWphdExGQmVrWXJCY1dBWThvSHh4dkU1NnF1V0tnZGV6S2VuczFOSW4yREdmb20wNmpyRGlBMkFVMWljbHJySkcxaG9lMmVUbW5uQ1hrNFZIOXJ5SEl2VzhnNEtEd0FhNmkteHg2U3k5ZlA?oc=5",
-     "title": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h - Sociedad Noticias",
+     "title": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h - sociedad-noticias.com",
      "lang": "es",
      "published": "2026-09-25T03:42:33Z",
      "quote": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h",
@@ -2374,7 +2374,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-13T20:58:31Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en",
     "es"
@@ -2447,6 +2447,17 @@
      "publisher": "telemundo.com"
     },
     {
+     "id": "gnews:bf76443b8d0a",
+     "feed": "news:apnews.com",
+     "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNRUVtVnNQTENPVGtPZU03Y2R5TVZyNEFUZ3lVNlhnQkxZeHlGcmttZHJNQll0b2p1a0IwbjJjSWRpLTZzSlliMnpIVWtKZHdldkJUaXBGczkyLVdpUWxMRG5EMUM4dGc2UnkwVmlSaFZQNnFkVmFhOWxBOU9XTVZEVTBBalE5Q2N1LW5vZUpDTlBTMTVwSDRqVg?oc=5",
+     "title": "Powerful Hurricane Polo drenches Mexico’s coast as Nolo takes aim at Hawaii - AP News",
+     "lang": "en",
+     "published": "2026-09-25T05:04:00Z",
+     "quote": "Powerful Hurricane Polo drenches Mexico’s coast as Nolo takes aim at Hawaii",
+     "verified": true,
+     "publisher": "apnews.com"
+    },
+    {
      "id": "gnews:658c8585e740",
      "feed": "news:aljazeera.com",
      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU3dVNFdtbWJlUGRDTl96RmdKSjlMMWZLa2UyamctMi14WUtaU1dPWXA1QVFFMWdBTG91TDFyT3I1RWpVUWg0WmVFWmpzaUdiRk42dWZtYU9kR3hIZ3FfbllVem9GVWZtWl9Ycjk4cWhZdUY0MVZJdC03WDNiN3FETDU4TENHUVE2RVJwV2xWRl93dEdLWXRBTU4zNkFUV0NaYVc40gGoAUFVX3lxTFB1M1FRY3RMZTJvWlNNdGxmWkZ2ejJ3cjBTZWRKd096X3Z2STNZbXJEWVVPNTB6SjkzZkZLcmNMcFVuYk5FWWZMZFp1SWNWdFd5ejBLZ2VXS0Q2ZlZSaVFKa3dSS3cwYTh2TUc2bEdwRkdwVDlyMHVkSE45aHM1YUl4cG1MMVk5X0ZQYnhndmNpMEFQc2I4SFo4VkUxMFNZRmV3dzlSRHB5ag?oc=5",
@@ -2467,17 +2478,6 @@
      "quote": "September 24, 2026 NOLO UPDATE: Will strengthen into a major hurricane; Jen Robbins",
      "verified": true,
      "publisher": "hawaiinewsnow.com"
-    },
-    {
-     "id": "gnews:8b57708b5d71",
-     "feed": "news:today.com",
-     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPT0tid0V4NGZOX2l2aEE1WHd0TUduLUk2dkU4YjdGSnNYSU44Z0NsUU83b3pvOUNJUFJBbUZLdXozd1Rnbm11QlZqZ3R4dDRaY29BY2puNmpJMy1MM2Y1Mll4Ym5BaVA5WGp3NHphaDJsZ0xxREo5bXNySkduakNneVlJSHc4MWhhN1BQTUxKd2hTOEJkQ0V6ZXpDY2hLU0ZMR21IMWxn?oc=5",
-     "title": "Tracking Nor'easter and Hurricane Nolo: See Al Roker's Forecast - TODAY.com",
-     "lang": "en",
-     "published": "2026-09-25T11:26:23Z",
-     "quote": "Tracking Nor'easter and Hurricane Nolo: See Al Roker's Forecast",
-     "verified": true,
-     "publisher": "today.com"
     }
    ],
    "exposure": {
@@ -2743,7 +2743,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-19T15:06:02Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en"
    ],
@@ -3019,7 +3019,7 @@
    },
    "time_horizon": "0-72h (aftershocks, damage reports)",
    "first_signal_ts": "2026-09-20T09:17:35Z",
-   "alert_ts": "2026-09-25T17:26:20Z",
+   "alert_ts": "2026-09-25T17:31:49Z",
    "languages_seen": [
     "en"
    ],
