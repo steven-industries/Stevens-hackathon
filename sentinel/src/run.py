@@ -24,7 +24,7 @@ def notifier(alerts, tr):
         action = "escalated" if prev else "new"
         files, slack = [], 0
         for r in a["routing"]:
-            p = out / f"{a['event_id']}__{r['persona'].replace('/', '-').replace(' ', '_').replace('&', 'and')}.md"
+            p = out / f"{a['event_id']}__{r['persona'].replace('/', '-').replace(' ', '_').replace('&', 'and')}__{r['channel']}.md"
             p.write_text(f"# [{r['priority']}] {a['name']} — {a['tier']} ({action})\n\nTo: {r['persona']} via {r['channel']}\n\n"
                          f"> {r['caveat_banner']}\n\n{r['message']}\n\nBrief: {r['brief']} · risk {a['risk_score']}/100 · alert_ts {a['alert_ts']}\n")
             files.append(p.name)

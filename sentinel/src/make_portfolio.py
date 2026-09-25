@@ -4,8 +4,9 @@ import csv, math, pathlib, random
 
 SEED = 20260925
 DATA = pathlib.Path("data")
-LINES = ["Commercial Property", "High-Net-Worth Homeowners", "Marine Cargo", "Energy",
-         "Business Interruption", "Accident & Health", "Travel"]
+# Property-type lines only carry TIV. Business Interruption is a time-element coverage on Commercial Property rows
+# (bi_tiv_usd), not a separate line. Travel and A&H are LIVES, held per country in data/travelers.csv.
+LINES = ["Commercial Property", "High-Net-Worth Homeowners", "Marine Cargo", "Energy"]
 # name, lat, lon, country, weight, profile (port/energy/resort/metro)
 HUBS = [
     ("Houston", 29.76, -95.37, "United States", 5, "energy"), ("New Orleans", 29.95, -90.07, "United States", 3, "port"),
@@ -42,11 +43,10 @@ HUBS = [
     ("Dubai", 25.20, 55.27, "United Arab Emirates", 2, "metro"),
 ]
 PROFILE_W = {  # line weights per hub profile
-    "energy": [30, 10, 15, 30, 15, 0, 0], "port": [30, 10, 35, 5, 20, 0, 0],
-    "resort": [25, 45, 5, 0, 15, 5, 5], "metro": [45, 20, 5, 3, 22, 3, 2],
+    "energy": [45, 10, 15, 30], "port": [50, 10, 35, 5],
+    "resort": [45, 50, 5, 0], "metro": [70, 22, 5, 3],
 }
-TIV_MED = {"Commercial Property": 25e6, "High-Net-Worth Homeowners": 4e6, "Marine Cargo": 12e6, "Energy": 150e6,
-           "Business Interruption": 20e6, "Accident & Health": 2e6, "Travel": 0.5e6}
+TIV_MED = {"Commercial Property": 25e6, "High-Net-Worth Homeowners": 4e6, "Marine Cargo": 12e6, "Energy": 150e6}
 
 def main(n=3000):
     rnd = random.Random(SEED); DATA.mkdir(exist_ok=True)
@@ -57,8 +57,9 @@ def main(n=3000):
         d = abs(rnd.gauss(0, 18)); b = rnd.uniform(0, 2 * math.pi)
         lat = h[1] + d / 111 * math.cos(b); lon = h[2] + d / (111 * math.cos(math.radians(h[1]))) * math.sin(b)
         tiv = round(TIV_MED[line] * math.exp(rnd.gauss(0, 0.8)), -3)
+        bi = int(round(tiv * rnd.uniform(0.2, 0.6), -3)) if line == "Commercial Property" else 0
         rows.append({"id": f"LOC{i:05d}", "name": f"{h[0]} {line.split()[0]} #{i:04d}", "lat": round(lat, 4),
-                     "lon": round(lon, 4), "country": h[3], "line": line, "tiv_usd": int(tiv), "hub": h[0]})
+                     "lon": round(lon, 4), "country": h[3], "line": line, "tiv_usd": int(tiv), "bi_tiv_usd": bi, "hub": h[0]})
     with (DATA / "portfolio.csv").open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
     countries = sorted({h[3] for h in HUBS} | {"Rwanda", "Burundi", "South Sudan", "Tanzania", "Angola"})
@@ -67,7 +68,7 @@ def main(n=3000):
         for c in countries:
             wt = sum(h[4] for h in HUBS if h[3] == c) or 0.5
             w.writerow([c, int(wt * rnd.randint(300, 900)), int(wt * rnd.randint(800, 2500))])
-    print(f"SYNTHETIC demo book: {len(rows)} locations, TIV ${sum(r['tiv_usd'] for r in rows)/1e9:.1f}B -> data/portfolio.csv")
+    print(f"SYNTHETIC demo book: {len(rows)} locations, PD TIV ${sum(r['tiv_usd'] for r in rows)/1e9:.1f}B + BI ${sum(r['bi_tiv_usd'] for r in rows)/1e9:.1f}B -> data/portfolio.csv")
 
 if __name__ == "__main__":
     main()

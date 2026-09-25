@@ -93,6 +93,15 @@ def densify(pts, step_km=25):
     return out + pts[-1:]
 
 
+# centroids of provinces named in WHO text (only matched names are used), ~200 km screen each
+PROVINCES = {"Democratic Republic of the Congo": {
+    "Ituri": (1.6, 29.6, [r"Ituri"]), "North Kivu": (-0.8, 29.0, [r"North Kivu", r"Nord-Kivu"]),
+    "South Kivu": (-3.0, 28.3, [r"South Kivu", r"Sud-Kivu"]), "Haut-Uélé": (3.5, 28.5, [r"Haut[- ]U[ée]l[ée]"]),
+    "Bas-Uélé": (3.4, 24.4, [r"Bas[- ]U[ée]l[ée]"]), "Tshopo": (0.6, 25.2, [r"Tshopo"]), "Kinshasa": (-4.44, 15.27, [r"Kinshasa"]),
+    "Équateur": (0.0, 19.0, [r"[ÉE]quateur"]), "Kasai": (-5.0, 21.5, [r"Kasa[iï](?![- ](?:Oriental|Central))"]),
+    "Kasai-Oriental": (-6.1, 23.6, [r"Kasa[iï][- ]Oriental"]), "Kasai-Central": (-5.9, 22.4, [r"Kasa[iï][- ]Central"]),
+    "Maniema": (-3.0, 26.0, [r"Maniema"]), "Tanganyika": (-6.3, 27.5, [r"Tanganyika"]), "Haut-Katanga": (-10.5, 27.5, [r"Haut[- ]Katanga"])},
+    "Uganda": {"Kampala": (0.35, 32.58, [r"Kampala"]), "Kasese": (0.18, 30.08, [r"Kasese"]), "Bundibugyo": (0.71, 30.06, [r"Bundibugyo district"])}}
 COUNTRY_LL = {"Democratic Republic of the Congo": (0.5, 25.0), "Uganda": (1.4, 32.3), "Nigeria": (9.1, 8.7),
               "India": (21.0, 78.0), "China": (35.0, 103.0), "Mexico": (23.6, -102.5), "United States": (39.8, -98.6),
               "Brazil": (-10.0, -52.0), "Indonesia": (-2.5, 118.0), "Philippines": (12.9, 121.8), "Japan": (36.2, 138.3),
@@ -125,7 +134,8 @@ def load_book():
     locs = []
     with open("data/portfolio.csv") as f:
         for r in csv.DictReader(f):
-            r["lat"], r["lon"], r["tiv_usd"] = float(r["lat"]), float(r["lon"]), int(r["tiv_usd"]); locs.append(r)
+            r["lat"], r["lon"], r["tiv_usd"] = float(r["lat"]), float(r["lon"]), int(r["tiv_usd"])
+            r["bi_tiv_usd"] = int(r.get("bi_tiv_usd") or 0); locs.append(r)
     trav = {}
     with open("data/travelers.csv") as f:
         for r in csv.DictReader(f):
@@ -166,7 +176,8 @@ def span(item, keywords, maxlen=260):
     """A verbatim span from the item's fetched text containing any keyword (first match in keyword order)."""
     if not item:
         return None
-    ss = [x for x in sentences(item.get("text", "")) if not re.search(r"KNHC|BULLETIN|\bWT[A-Z]{2}\d|INCHES|Issued at|\bNNNN\b|-{3,}", x)]
+    ss = [x for x in sentences(item.get("text", "")) if not re.search(r"KNHC|BULLETIN|\bWT[A-Z]{2}\d|INCHES|Issued at|\bNNNN\b|-{3,}", x)
+          and not BOILER.search(x) and len(x) >= 25]
     for kw in keywords:
         for s in ss:
             if kw.lower() in s.lower():
@@ -177,6 +188,34 @@ def span(item, keywords, maxlen=260):
                     s = s[:s.rfind(" ")] if len(s) >= maxlen - 5 else s
                 return s.strip()
     return None
+
+
+BOILER = re.compile(r"please see|graphic|available at|hurricanes\.gov|for more information|shtml|https?://", re.I)
+
+
+def good_quote(q, ev):
+    """Reject quotes that are too short or merely the event/storm name (e.g. JTWC title 'Hurricane Polo')."""
+    if not q or len(q.strip()) < 25:
+        return False
+    nq = normtxt(q)
+    return nq not in (normtxt(ev.get("name")), normtxt(ev.get("storm"))) and not re.fullmatch(
+        r"(hurricane|typhoon|tropical (storm|cyclone|depression)|cyclone|super typhoon) [\w-]+( \(\w+\))?", nq)
+
+
+def reg_domain(host):
+    """Publisher = registered domain (cnnespanol.cnn.com -> cnn.com; timesofindia.indiatimes.com -> indiatimes.com)."""
+    host = (host or "").lower().split("://")[-1].split("/")[0].split(":")[0]
+    host = host[4:] if host.startswith("www.") else host
+    p = host.split(".")
+    if len(p) >= 3 and len(p[-1]) == 2 and p[-2] in ("co", "com", "org", "net", "gov", "ac", "edu", "gob", "go", "or", "ne"):
+        return ".".join(p[-3:])
+    return ".".join(p[-2:])
+
+
+def publisher(item):
+    if item["feed"] in ("gnews", "gdelt"):
+        return reg_domain((item.get("extra") or {}).get("domain") or (item.get("extra") or {}).get("outlet") or item.get("url"))
+    return reg_domain(item.get("url")) or AUTH_FEEDS.get(item["feed"], item["feed"])
 
 
 def news_quote(item):
@@ -445,25 +484,26 @@ def corroborate(ev, tr, offline):
             keep.append(n)
         qlog.append({"lang": lang, "query": q, "hits": len(got), "kept": len(keep)})
         news += keep[:12]
-    # independent sources: one per authority feed + one per distinct news domain
+    # independent sources = distinct PUBLISHERS (registered domain of the source URL; for Google-News redirect items the
+    # outlet's own domain). EONET items that point at nhc.noaa.gov collapse into NHC; afro.who.int collapses into WHO.
     srcs, seen = [], set()
     for m in sorted(ev["members"], key=lambda m: m.get("published") or "", reverse=True):
-        fam = AUTH_FEEDS.get(m["feed"], m["feed"])
-        if fam in seen:
+        fam = AUTH_FEEDS.get(m["feed"], m["feed"]); pub = publisher(m)
+        if fam in seen or pub in seen:
             continue
-        seen.add(fam); srcs.append(_src(m, ev))
+        seen.update({fam, pub}); x = _src(m, ev); x["publisher"] = pub; srcs.append(x)
     per_lang = {}
     for n in sorted(news, key=lambda n: n.get("published") or ""):
-        dom = n["extra"].get("domain") or n["extra"].get("outlet")
-        if dom in seen or per_lang.get(n["lang"], 0) >= 3:
+        pub = publisher(n)
+        if pub in seen or per_lang.get(n["lang"], 0) >= 3:
             continue
-        seen.add(dom); per_lang[n["lang"]] = per_lang.get(n["lang"], 0) + 1; srcs.append(_src(n, ev))
+        seen.add(pub); per_lang[n["lang"]] = per_lang.get(n["lang"], 0) + 1; x = _src(n, ev); x["publisher"] = pub; srcs.append(x)
     ev["all_items"] = {m["id"]: m for m in ev["members"] + news}
     ev["sources"] = srcs
-    ev["languages_seen"] = sorted({s["lang"] for s in srcs})
+    ev["languages_seen"] = sorted({s["lang"] for s in srcs})  # re-derived from VERIFIED sources in verify_sources()
     ts = [s["published"] for s in srcs if s.get("published")]
     ev["first_signal_ts"] = min(ts) if ts else None
-    ev["independent"] = len(seen)
+    ev["independent"] = len({s["publisher"] for s in srcs})
     ev["status"] = "alert" if ev["independent"] >= 2 else "watch"
     ev["news_count"] = len(news)
     tr.log("corroborator", ev["event_id"], [s["id"] for s in srcs],
@@ -480,6 +520,8 @@ def _src(item, ev):
         q = news_quote(item)
     else:
         q = span(item, _kw(ev["type"], item["feed"])) or item["title"]
+    if not good_quote(q, ev):
+        q = ""  # too short / just the event name -> no quote, source stays unverified
     return {"id": item["id"], "feed": item["feed"] if item["feed"] != "gnews" else "news:" + (item["extra"].get("domain") or ""),
             "url": item["url"], "title": item["title"], "lang": item.get("lang", "en"),
             "published": item.get("published"), "quote": q, "verified": False, "_item": item["id"]}
@@ -501,9 +543,11 @@ def verify_sources(ev, tr):
     for s in ev["sources"]:
         s["verified"] = verify_quote(s["quote"], ev["all_items"].get(s.pop("_item", s["id"])))
         ok += s["verified"]
+    ev["languages_seen"] = sorted({s["lang"] for s in ev["sources"] if s["verified"]}) or ["en"]
     tr.log("verifier", ev["event_id"], [s["id"] for s in ev["sources"]],
            {"checked": len(ev["sources"]), "verified": ok, "method": "normalized substring match against fetched source text"},
-           f"Verifier: {ok}/{len(ev['sources'])} source quotes found verbatim in fetched text (code check, not LLM)",
+           f"Verifier: {ok}/{len(ev['sources'])} source quotes found verbatim in fetched text (code check, not LLM); "
+           f"languages of verified sources: {', '.join(ev['languages_seen'])}",
            "deterministic", (time.time() - t0) * 1000)
 
 
@@ -545,11 +589,17 @@ def assess(ev, tr):
         sev = {"scale": "USGS_PAGER", "value": us["issued_severity"]["value"], "source_url": us["url"]}
         bd.append({"factor": "authority severity", "points": pts, "reason": f"USGS M{mag}, PAGER {a or 'not issued'}", "source_url": us["url"]})
     elif who:
-        risk = re.search(r"risk[^.]{0,80}?\b(very high|high|moderate|low)\b[^.]{0,40}?(national|regional|global)", who["text"], re.I)
-        val = f"{who['extra']['don']}" + (f" · risk {risk.group(1).lower()} ({risk.group(2).lower()})" if risk else "")
-        pts = 30 if risk and "high" in risk.group(1).lower() else 25
-        sev = {"scale": "WHO_DON", "value": val, "source_url": who["url"]}
-        bd.append({"factor": "authority severity", "points": pts, "reason": f"WHO Disease Outbreak News {val}", "source_url": who["url"]})
+        risk = re.search(r"risk (?:in|for|at) (?:the )?([A-Z][\w' -]{2,60}?|national level|regional level|global level) "
+                         r"(?:was |is |remains )(?:again |still )?(?:assessed |considered )?as (very high|high|moderate|low)", who["text"])
+        if risk:
+            area = risk.group(1).replace("Democratic Republic of the Congo", "DR Congo")
+            val = f"Risk {risk.group(2)} ({'national' if 'level' not in area else area.split()[0]}{'' if 'level' in area else ' — ' + area})"
+        else:
+            val = f"DON published {who['published'][:10]}"
+        pts = 30 if risk and "high" in risk.group(2).lower() else 25
+        sev = {"scale": "WHO_DON", "value": val, "ref": who["extra"].get("don"), "source_url": who["url"]}
+        ev["who_risk_quote"] = risk.group(0) if risk else None
+        bd.append({"factor": "authority severity", "points": pts, "reason": f"WHO Disease Outbreak News {sev['ref']}: {val}", "source_url": who["url"]})
     elif gd:
         v = gd["issued_severity"]["value"]; pts = {"Red": 35, "Orange": 22, "Green": 8}.get(v, 5)
         sev = {"scale": "GDACS", "value": v, "source_url": gd["url"]}
@@ -598,9 +648,32 @@ def assess(ev, tr):
         mag = us["extra"]["mag"] if us else 6
         rad = int(max(50, min(400, 100 * 10 ** (0.5 * (mag - 6)))))
     else:
-        rad = {"OUTBREAK": 500, "FL": 150, "WF": 50, "VO": 30}.get(t, 150)
+        rad = {"OUTBREAK": 200, "FL": 150, "WF": 50, "VO": 30}.get(t, 150)
     track = [(ev["lat"], ev["lon"])] + [(p["lat"], p["lon"]) for p in (nhc["extra"]["track"] if nhc else [])]
     ev["track"] = track
+    areas = []
+    if t == "OUTBREAK":
+        txt = " ".join(x.get("text", "") for x in ev["members"] if x["feed"] == "who_don")
+        if who:
+            txt = who.get("text", "")
+        for c in ev["countries"]:
+            for nm, (la, lo, pats) in PROVINCES.get(c, {}).items():
+                if any(re.search(pt, txt) for pt in pats):
+                    areas.append({"name": nm, "country": c, "lat": la, "lon": lo, "radius_km": 200})
+        if areas:
+            ev["lat"], ev["lon"] = sum(a["lat"] for a in areas) / len(areas), sum(a["lon"] for a in areas) / len(areas)
+        else:
+            rad = 0  # country-level screen
+    ev["areas"] = areas
+    # hurricane-force inner core (NHC advisory text) for TC exposure split
+    core = None
+    if t == "TC":
+        mm = re.search(r"Hurricane-force winds extend outward up to (\d+) miles \((\d+) km\)", (nhc or {}).get("text", ""))
+        if mm:
+            core = {"radius_km": int(mm.group(2)), "basis": f"NHC advisory: hurricane-force winds extend up to {mm.group(1)} miles ({mm.group(2)} km)"}
+        elif (nhc and nhc["extra"]["wind_mph"] >= 74) or (not nhc and gd and gd["issued_severity"]["value"] in ("Orange", "Red")):
+            core = {"radius_km": 60, "basis": "assumed ~60 km hurricane-force core (radius not stated by authority)"}
+    ev["core"] = core
     regions = []
     if nhc:
         regions.append({"nhc_at": "North Atlantic", "nhc_ep": "Eastern North Pacific", "nhc_cp": "Central North Pacific"}[nhc["feed"]])
@@ -608,13 +681,19 @@ def assess(ev, tr):
         regions += [x.title() for x in mh]
     if us and us["extra"].get("place"):
         regions.append(us["extra"]["place"])
-    ev["geo"] = {"lat": round(ev["lat"], 3), "lon": round(ev["lon"], 3), "countries": ev["countries"], "regions": regions, "radius_km": rad}
-    ev["time_horizon"] = {"TC": "24-72h (NHC 5-day track)", "EQ": "0-72h (aftershocks, damage reports)", "OUTBREAK": "2-6 weeks",
+    if t == "OUTBREAK":
+        regions += [f"{a['name']} ({a['country']})" for a in areas]
+    geo_track = [[round(a, 2), round(b, 2)] for a, b in track] if (t == "TC" and len(track) > 1) else []
+    ev["geo"] = {"lat": round(ev["lat"], 3), "lon": round(ev["lon"], 3), "countries": ev["countries"], "regions": regions, "radius_km": rad,
+                 "radius_kind": "screening buffer" if t == "TC" else "affected-province screen" if areas else "country-level screen" if t == "OUTBREAK" else "screening radius",
+                 "track": geo_track, "areas": areas,
+                 "core_radius_km": core["radius_km"] if core else None}
+    ev["time_horizon"] = {"TC": "24-72h (NHC 5-day track)" if nhc else "24-72h (GDACS/JTWC forecast)", "EQ": "0-72h (aftershocks, damage reports)", "OUTBREAK": "2-6 weeks",
                           "FL": "24-96h", "WF": "24-72h", "VO": "days-weeks"}.get(t, "24-72h")
-    un = {"TC": ["Landfall location/timing beyond the NHC cone", "Storm-surge and rainfall damage footprint", "Insured vs economic loss split"],
+    un = {"TC": ["Landfall location/timing beyond the " + ("NHC cone" if nhc else "GDACS/JTWC forecast track"), "Storm-surge and rainfall damage extent", "Insured vs economic loss split"],
           "EQ": ["PAGER loss estimate may be revised in first 24h", "Aftershock sequence", "Tsunami impact if any", "Building-stock damage ratios"],
           "OUTBREAK": ["True case count (under-reporting, testing capacity)", "Cross-border spread and travel restrictions", "Vaccine/therapeutic effectiveness for this strain"],
-          }.get(t, ["Extent of damage footprint", "Duration", "Insured loss share"])
+          }.get(t, ["Extent of damage area", "Duration", "Insured loss share"])
     if t == "TC" and nhc and not nhc["extra"]["track"]:
         un.insert(0, "No NHC forecast track parsed this cycle")
     if not ev["countries"]:
@@ -650,9 +729,10 @@ def finish_assess(ev, tr, model, t0):
     pts = 0 if tiv <= 0 else min(20, int(4 * math.log10(max(1, tiv / 1e6)) + 4))
     if ev["type"] == "OUTBREAK":
         lives = ev["exposure"]["insured_travelers"]; pts = min(20, int(lives / 500))
-        reason = f"{lives:,} insured travelers/A&H lives in affected countries (synthetic book)"
+        reason = f"{lives:,} insured lives (Travel + A&H) in affected countries (synthetic book)"
     else:
-        reason = f"{ev['exposure']['policies']} locations, {money(tiv)} TIV within {ev['geo']['radius_km']} km (synthetic book)"
+        reason = (f"{ev['exposure']['policies']} sites, {money(tiv)} TIV within {ev['geo']['radius_km']} km "
+                  f"{'screening buffer' if ev['type'] == 'TC' else 'radius'} (synthetic book)")
     ev["breakdown"].append({"factor": "exposure concentration", "points": pts, "reason": reason, "source_url": "portfolio://synthetic"})
     score = max(0, min(100, sum(b["points"] for b in ev["breakdown"])))
     tier = "RED" if score >= 70 else "AMBER" if score >= 45 else "WATCH"
@@ -665,47 +745,87 @@ def finish_assess(ev, tr, model, t0):
            {"issued_severity": ev["issued_severity"], "risk_score": score, "tier": tier, "score_breakdown": ev["breakdown"],
             "confidence": ev["confidence"], "geo": ev["geo"], "time_horizon": ev["time_horizon"], "unknowns": ev["unknowns"]},
            f"Assessor: {sname(ev['issued_severity']['scale'])} {ev['issued_severity']['value']} (copied) → risk {score}/100 {tier}, "
-           f"confidence {ev['confidence']}; radius {ev['geo']['radius_km']} km",
+           f"confidence {ev['confidence']}; {ev['geo'].get('radius_kind', 'radius')} {ev['geo']['radius_km']} km",
            model, (time.time() - t0) * 1000)
 
 
 # ======================================================================= 5. EXPOSURE
 def exposure(ev, book, tr):
-    t0 = time.time(); locs, trav = book; rad = ev["geo"]["radius_km"]
-    hits = []
-    if ev["type"] == "OUTBREAK":
-        cs = set(ev["countries"])
-        hits = [(l, hav(l["lat"], l["lon"], ev["lat"], ev["lon"])) for l in locs if l["country"] in cs]
-        method = (f"SYNTHETIC demo book (seeded generator, not real policies): locations in affected countries {sorted(cs)} "
-                  f"+ insured travelers/A&H members from data/travelers.csv")
+    t0 = time.time(); locs, trav = book; rad = ev["geo"]["radius_km"]; t = ev["type"]
+    hits, core_hits = [], []
+    if t == "OUTBREAK":
+        cs = set(ev["countries"]); areas = ev.get("areas") or []
+        if areas:
+            for l in locs:
+                d = min(hav(l["lat"], l["lon"], x["lat"], x["lon"]) for x in areas)
+                if d <= 200:
+                    hits.append((l, d))
+            method = (f"SYNTHETIC demo book (seeded generator, not real policies): property sites within ~200 km of the centroids of "
+                      f"provinces named in the WHO DON ({', '.join(x['name'] for x in areas)}); insured lives (Travel + A&H) from "
+                      f"data/travelers.csv for {', '.join(sorted(cs))} (country-level)")
+        else:
+            hits = [(l, hav(l["lat"], l["lon"], ev["lat"], ev["lon"])) for l in locs if l["country"] in cs]
+            method = (f"SYNTHETIC demo book (seeded generator, not real policies): country-level screen of {sorted(cs)} (no province named "
+                      f"in WHO text); insured lives (Travel + A&H) from data/travelers.csv")
     else:
         pts = densify(ev["track"]) if len(ev["track"]) > 1 else ev["track"]
+        core = ev.get("core")
         for l in locs:
             if abs(l["lat"] - ev["lat"]) > 25:
                 continue
             d = min(hav(l["lat"], l["lon"], a, b) for a, b in pts)
             if d <= rad:
                 hits.append((l, d))
-        method = (f"SYNTHETIC demo book (seeded generator, not real policies): insured locations within {rad} km of "
-                  + ("the NHC current position + forecast track" if len(ev["track"]) > 1 else "the event point") + " (haversine)")
+                if core and d <= core["radius_km"]:
+                    core_hits.append((l, d))
+        if t == "TC":
+            src = "NHC current position + forecast track" if len(ev["track"]) > 1 else "current GDACS/JTWC position (no forecast track parsed)"
+            method = (f"SYNTHETIC demo book (seeded generator, not real policies): property sites within a {rad} km screening buffer of the "
+                      f"{src} polyline (haversine); inner core = sites within the hurricane-force wind radius; TIV = property damage + BI")
+        else:
+            method = (f"SYNTHETIC demo book (seeded generator, not real policies): property sites within {rad} km of the event point "
+                      f"(haversine); TIV = property damage + BI")
     by = {}
     for l, d in hits:
         b = by.setdefault(l["line"], {"line": l["line"], "policies": 0, "tiv_usd": 0}); b["policies"] += 1; b["tiv_usd"] += l["tiv_usd"]
+    bi = [(l, d) for l, d in hits if l.get("bi_tiv_usd")]
+    by_line = sorted(by.values(), key=lambda b: -b["tiv_usd"])
+    if bi:
+        by_line.append({"line": "Commercial Property — BI (time element)", "policies": len(bi), "tiv_usd": sum(l["bi_tiv_usd"] for l, _ in bi)})
+    tiv = lambda hs: sum(l["tiv_usd"] + l.get("bi_tiv_usd", 0) for l, _ in hs)
     top = sorted(hits, key=lambda x: -x[0]["tiv_usd"])[:5]
     countries_hit = sorted({l["country"] for l, _ in hits})
-    tv = sum(sum(trav.get(c, (0, 0))) for c in ev["countries"]) if ev["type"] == "OUTBREAK" else sum(trav.get(c, (0, 0))[0] for c in countries_hit)
-    ev["exposure"] = {"policies": len(hits), "tiv_usd": sum(l["tiv_usd"] for l, _ in hits),
-                      "by_line": sorted(by.values(), key=lambda b: -b["tiv_usd"]),
-                      "top_locations": [{"name": l["name"], "lat": l["lat"], "lon": l["lon"], "tiv_usd": l["tiv_usd"],
+    # insured LIVES (Travel + A&H): outbreaks -> whole affected countries; nat-cat -> country lives pro-rated by the share of
+    # that country's book sites inside the screening buffer (proxy for lives in the affected area)
+    trv = ah = 0
+    if t == "OUTBREAK":
+        for c in ev["countries"]:
+            x = trav.get(c, (0, 0)); trv += x[0]; ah += x[1]
+    else:
+        for c in countries_hit:
+            n_c = sum(1 for l in locs if l["country"] == c) or 1; share = sum(1 for l, _ in hits if l["country"] == c) / n_c
+            x = trav.get(c, (0, 0)); trv += int(x[0] * share); ah += int(x[1] * share)
+    if trv:
+        by_line.append({"line": "Travel", "lives": trv})
+    if ah:
+        by_line.append({"line": "Accident & Health", "lives": ah})
+    ev["exposure"] = {"policies": len(hits), "tiv_usd": tiv(hits), "pd_tiv_usd": sum(l["tiv_usd"] for l, _ in hits),
+                      "bi_tiv_usd": sum(l["bi_tiv_usd"] for l, _ in bi),
+                      "by_line": by_line,
+                      "top_locations": [{"name": l["name"], "lat": l["lat"], "lon": l["lon"], "tiv_usd": l["tiv_usd"] + l.get("bi_tiv_usd", 0),
                                          "distance_km": round(d), "line": l["line"]} for l, d in top],
-                      "insured_travelers": tv, "method": method}
+                      "insured_travelers": trv + ah, "insured_lives": {"travel": trv, "ah": ah, "total": trv + ah},
+                      "screen": ev["geo"].get("radius_kind"), "method": method}
+    if ev.get("core"):
+        ev["exposure"]["inner_core"] = {"policies": len(core_hits), "tiv_usd": tiv(core_hits),
+                                        "radius_km": ev["core"]["radius_km"], "basis": ev["core"]["basis"]}
     if not ev["countries"] and countries_hit:
         ev["countries"] += countries_hit; ev["geo"]["countries"] = ev["countries"]
     e = ev["exposure"]
     tr.log("exposure", ev["event_id"], ["portfolio://synthetic"], e,
-           f"Exposure: {e['policies']} insured locations, {money(e['tiv_usd'])} TIV in footprint"
-           + (f"; top line {e['by_line'][0]['line']} {money(e['by_line'][0]['tiv_usd'])}" if e["by_line"] else "")
-           + (f"; {e['insured_travelers']:,} travelers/A&H lives" if e["insured_travelers"] else "") + " (synthetic book)",
+           f"Exposure: {e['policies']} insured sites, {money(e['tiv_usd'])} TIV in {e['screen']}"
+           + (f"; {e['inner_core']['policies']} sites / {money(e['inner_core']['tiv_usd'])} in ~{e['inner_core']['radius_km']} km core" if e.get("inner_core") else "")
+           + (f"; {e['insured_travelers']:,} insured lives (Travel+A&H)" if e["insured_travelers"] else "") + " (synthetic book)",
            "deterministic", (time.time() - t0) * 1000)
 
 
@@ -731,6 +851,51 @@ def _news_bullets(ev, k=2, prefix="Local-language press"):
     return out
 
 
+ACCUM = {"ELEVATED": "ELEVATED — consider binding restrictions / moratorium for new business in the watch area; run accumulation check",
+         "MONITOR": "MONITOR — run accumulation check against the screening area; no binding restriction yet",
+         "NONE": "NONE — no insured exposure in the screening area"}
+
+
+def posture_accum(ev):
+    """Reserving posture follows occurrence: forecast hazards (TCs pre-landfall) are 'watch' — nobody strengthens reserves
+    before landfall. 'strengthen' only for events that HAVE occurred with exposure (EQ PAGER orange/red; ongoing FL/WF)."""
+    t, tier, e = ev["type"], ev["tier"], ev["exposure"]
+    has = e["tiv_usd"] > 0 or (t == "OUTBREAK" and e["insured_travelers"] > 0)
+    pager = str(ev["issued_severity"].get("value", "")).lower()
+    if t == "EQ" and has and ("orange" in pager or "red" in pager):
+        posture = "strengthen"
+    elif t in ("FL", "WF") and has and not ev.get("stale") and tier != "WATCH":
+        posture = "strengthen"
+    elif t == "TC" or has or tier != "WATCH":
+        posture = "watch"
+    else:
+        posture = "no action"
+    if not has:
+        accum = ACCUM["NONE"]
+    elif tier == "RED":
+        accum = ACCUM["ELEVATED"]
+    else:
+        accum = ACCUM["MONITOR"]
+    if t == "OUTBREAK" and has:
+        accum = ("ELEVATED — consider restricting new Travel/A&H business to affected provinces; review assistance & evacuation capacity"
+                 if tier == "RED" else "MONITOR — track Travel/A&H bookings to affected provinces; no binding restriction yet")
+    return posture, accum
+
+
+def ins_headline(ev, accum):
+    e, t = ev["exposure"], ev["type"]; lvl = accum.split(" — ")[0]
+    if t == "OUTBREAK":
+        lv = e["insured_lives"]
+        return (f"{ev['name']}: {lv['total']:,} insured lives ({lv['travel']:,} Travel + {lv['ah']:,} A&H) in affected area — "
+                f"accumulation {lvl}; property TIV {money(e['tiv_usd'])} (contingent BI only)")
+    if t == "TC":
+        core = e.get("inner_core")
+        return (f"{ev['name']}: {e['policies']} sites / {money(e['tiv_usd'])} within {ev['geo']['radius_km']} km screening buffer"
+                + (f"; {core['policies']} / {money(core['tiv_usd'])} in ~{core['radius_km']} km hurricane-force core" if core else "")
+                + f" — accumulation {lvl}")
+    return f"{ev['name']}: {e['policies']} sites / {money(e['tiv_usd'])} TIV within {ev['geo']['radius_km']} km — accumulation {lvl}"
+
+
 def det_briefs(ev):
     t = ev["type"]; mem = ev["members"]
     nhc = next((x for x in mem if x["feed"].startswith("nhc")), None)
@@ -739,27 +904,32 @@ def det_briefs(ev):
     who = max((x for x in mem if x["feed"] == "who_don"), key=lambda x: x["published"], default=None)
     ecdc = next((x for x in mem if x["feed"] == "ecdc"), None)
     eo = next((x for x in mem if x["feed"] == "eonet"), None)
-    e = ev["exposure"]; tier = ev["tier"]; place = ", ".join(ev["countries"][:3]) or "open ocean / no named country"
+    e = ev["exposure"]; tier = ev["tier"]; place = ", ".join(ev["countries"][:3]) or "no named country (at sea)"
     lines = {b["line"]: b for b in e["by_line"]}
     def L(n):
         b = lines.get(n); return f"{b['policies']} policies / {money(b['tiv_usd'])}" if b else "none"
     H, W, I = [], [], []
-    posture = "strengthen" if tier == "RED" and e["tiv_usd"] > 0 else "watch" if (tier != "WATCH" or e["tiv_usd"] > 0 or e["insured_travelers"]) else "no action"
+    posture, accum = posture_accum(ev)
+    core = e.get("inner_core"); buf = ev["geo"]["radius_km"]
+    track_src = "NHC forecast track" if (nhc and len(ev["track"]) > 1) else "GDACS/JTWC position"
     if t == "TC":
         a = nhc or gd or eo
         H += [_B("Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core.", a, ["maximum sustained winds", "wind speed", "kts"], show=True),
               _B("Heavy rain / flash-flood hazard raises waterborne-disease and access-to-care risk.", nhc, ["rainfall", "flash flooding", "flooding"], show=True),
-              _B("Storm surge / coastal hazard messaging from NHC.", nhc, ["storm surge", "surf", "swells"], show=True),
+              _B("Storm surge / surf hazard (NHC)", nhc, ["storm surge will", "life-threatening storm surge", "life-threatening surf", "swells are likely", "dangerous storm surge"], show=True),
               _B("GDACS population exposure estimate for the wind field.", gd, ["Population affected", "population"], show=True)]
         H += _news_bullets(ev, 2, "Local-language press flags community impact")
         W += [_B(f"Regional market read-through for {place}: tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.", a, ["CATEGORY", "affects these countries", "Hurricane", "Tropical"]),
               _B("Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).", nhc, ["movement", "moving"])]
         W += _news_bullets(ev, 2, "Market-moving coverage")
         I += [_B(f"Authority severity {ev['issued_severity']['value']} ({sname(ev['issued_severity']['scale'])}) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.", a, ["CATEGORY", "maximum sustained winds", "wind speed"]),
-              _P(f"Synthetic book in footprint ({ev['geo']['radius_km']} km of {'NHC forecast track' if len(ev['track']) > 1 else 'current position'}): {e['policies']} locations, {money(e['tiv_usd'])} TIV."),
-              _P(f"By line — Commercial Property {L('Commercial Property')}; HNW Homeowners {L('High-Net-Worth Homeowners')}; Marine Cargo {L('Marine Cargo')}; BI {L('Business Interruption')}."),
+              _P(f"Synthetic book: {e['policies']} sites / {money(e['tiv_usd'])} TIV within {buf} km screening buffer of the {track_src}"
+                 + (f"; {core['policies']} sites / {money(core['tiv_usd'])} within ~{core['radius_km']} km hurricane-force core" if core else "") + "."),
+              _P(f"By line — Commercial Property {L('Commercial Property')} (incl. BI time element {money(e['bi_tiv_usd'])}); HNW Homeowners {L('High-Net-Worth Homeowners')}; Marine Cargo {L('Marine Cargo')}; Energy {L('Energy')}."
+                 + (f" Insured lives in area (pro-rated): {e['insured_travelers']:,} Travel/A&H." if e["insured_travelers"] else "")),
+              _P(f"Accumulation action: {accum}. Reserving posture: {posture} (pre-landfall — reserves are not strengthened before the event occurs)."),
               _B("Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.", nhc, ["Warning is in effect", "Watch is in effect", "should monitor", "SHOULD MONITOR", "warning"]),
-              _B(f"Reserving posture: {posture}. Check cat XoL retention erosion, ILW/parametric cat-bond trigger boxes against the forecast track.", nhc or gd, ["located near", "center of", "Tropical Storm"])]
+              _B("Check cat XoL retention erosion and ILW/parametric cat-bond trigger boxes against the forecast track.", nhc or gd, ["located near", "center of", "Tropical Storm"])]
     elif t == "EQ":
         a = us or gd
         H += [_B("Shaking intensity/population exposure drives casualty and hospital-surge risk.", gd, ["MMI", "potentially affecting"], show=True),
@@ -768,9 +938,10 @@ def det_briefs(ev):
               _B("Felt reports indicate population experiencing shaking.", us, ["felt reports"])] + _news_bullets(ev, 2, "Local-language press")
         W += [_B(f"Infrastructure, ports, mining and manufacturing in {place} may see short-term disruption.", a, ["mag=", "Magnitude", "earthquake"])] + _news_bullets(ev, 2, "Coverage")
         I += [_B(f"Authority severity {ev['issued_severity']['value']} — commercial property & BI claims direction depends on proximity to insured sites.", a, ["PAGER alert", "Magnitude"]),
-              _P(f"Synthetic book within {ev['geo']['radius_km']} km of epicentre: {e['policies']} locations, {money(e['tiv_usd'])} TIV."),
-              _P(f"By line — Commercial Property {L('Commercial Property')}; BI {L('Business Interruption')}; Energy {L('Energy')}."),
-              _B(f"Reserving posture: {posture}. EQ sub-limits/deductibles typically absorb moderate events; confirm aftershock hours clause.", us or gd, ["depth_km", "Depth"])]
+              _P(f"Synthetic book within {ev['geo']['radius_km']} km of epicentre: {e['policies']} sites, {money(e['tiv_usd'])} TIV."),
+              _P(f"By line — Commercial Property {L('Commercial Property')} (incl. BI time element {money(e['bi_tiv_usd'])}); Energy {L('Energy')}."),
+              _P(f"Accumulation action: {accum}. Reserving posture: {posture}."),
+              _B("EQ sub-limits/deductibles typically absorb moderate events; confirm aftershock hours clause.", us or gd, ["depth_km", "Depth"])]
     elif t == "OUTBREAK":
         H += [_B("WHO case/death count", who, ["confirmed cases", "deaths", "cases"], show=True),
               _B("Spread across health zones signals health-system strain", who, ["health zones", "provinces", "spread"], show=True),
@@ -780,31 +951,34 @@ def det_briefs(ev):
         W += [_B(f"Regional economies ({place}): mining, logistics and cross-border trade face disruption risk from containment measures.", who, ["transmission", "outbreak", "spread"]),
               _B("Travel and aviation demand to affected areas likely to soften; watch airlines/hospitality exposure.", who, ["travel", "border", "international"])]
         W += _news_bullets(ev, 1, "Coverage")
-        I += [_B(f"Authority: {ev['issued_severity']['value']} — A&H and Travel medical/evacuation claims direction: UP.", who, ["confirmed cases", "cases", "deaths"]),
-              _P(f"Synthetic book: {e['insured_travelers']:,} insured travelers/A&H members in {place}; {e['policies']} insured locations ({money(e['tiv_usd'])} TIV) in-country."),
-              _P(f"By line in affected countries — Commercial Property {L('Commercial Property')}; BI {L('Business Interruption')}; A&H {L('Accident & Health')}."),
-              _B(f"Reserving posture: {posture}. Review contingent BI (CBI) and event-cancellation communicable-disease exclusions; marine cargo port-delay exposure.", who, ["spread", "health zones", "provinces", "transmission"])]
+        lv = e["insured_lives"]; areas = ev.get("areas") or []
+        I += [_B(f"Authority: WHO {ev['issued_severity']['value']} — A&H and Travel medical/evacuation claims direction: UP.", who, ["was assessed as very high", "assessed as", "confirmed cases", "cases"]),
+              _P(f"Insured lives: {lv['total']:,} ({lv['travel']:,} Travel + {lv['ah']:,} A&H members) in {place} (synthetic book)."),
+              _P(f"Property screen ({'~200 km of ' + ', '.join(a['name'] for a in areas) if areas else 'country-level screen'}): {e['policies']} sites / {money(e['tiv_usd'])} TIV — "
+                 "physical damage not expected; relevant only for contingent BI / supply-chain."),
+              _P(f"Accumulation action: {accum}. Reserving posture: {posture}."),
+              _B("Review contingent BI (CBI) and event-cancellation communicable-disease exclusions; marine cargo port-delay exposure.", who, ["spread", "health zones", "provinces", "transmission"])]
     else:
         a = gd or eo or mem[0]
         H += [_B("Authority alert describes the affected area and displacement.", a, ["displaced", "deaths", "affect", "started"], show=True)] + _news_bullets(ev, 1)
         W += [_B(f"Local infrastructure and agriculture in {place} may be disrupted.", a, ["alert", "started", "affect"])] + _news_bullets(ev, 1, "Coverage")
         I += [_B(f"Authority alert ({ev['issued_severity']['value']}) — property/BI claims direction depends on insured presence.", a, ["alert", "started", "affect"]),
-              _P(f"Synthetic book within {ev['geo']['radius_km']} km: {e['policies']} locations, {money(e['tiv_usd'])} TIV."),
-              _B(f"Reserving posture: {posture}.", a, ["alert", "started", "affect", "flood", "fire"])]
+              _P(f"Synthetic book within {ev['geo']['radius_km']} km: {e['policies']} sites, {money(e['tiv_usd'])} TIV."),
+              _P(f"Accumulation action: {accum}. Reserving posture: {posture}.")]
     hazard = {"TC": "tropical cyclone", "EQ": "earthquake", "OUTBREAK": "outbreak"}.get(t, "hazard")
     cav = ["Exposure figures use a SYNTHETIC demo book, not real policies.", "Severity is copied from the issuing authority; Sentinel does not forecast intensity."]
     return {
         "health": {"headline": f"{ev['name']}: health impact watch ({tier})", "bullets": H, "caveats": cav[1:]},
         "wealth": {"headline": f"{ev['name']}: market/sector read-through for {place}", "bullets": W, "caveats": ["Not investment advice; directional only."]},
-        "insurance": {"headline": f"{ev['name']}: {money(e['tiv_usd'])} TIV / {e['policies']} locations in {hazard} footprint — posture {posture.upper()}",
-                      "bullets": I, "caveats": cav, "reserving_posture": posture},
+        "insurance": {"headline": ins_headline(ev, accum),
+                      "bullets": I, "caveats": cav, "reserving_posture": posture, "accumulation_action": accum},
     }
 
 
 BRIEF_ROLE = {
     "health": "Health brief writer (chief medical officer lens): exposed population, health-system strain, case trajectory.",
     "wealth": "Wealth brief writer (CIO lens): sectors, asset classes, regional markets likely affected; caveated, not advice.",
-    "insurance": "Insurance brief writer (underwriter lens): lines of business (HO, commercial property, BI, marine, event cancellation, A&H, travel), claims-exposure direction, reserving posture (watch|strengthen|no action), reinsurance/cat-bond/ILW notes.",
+    "insurance": "Insurance brief writer (underwriter lens): lines of business (commercial property incl. BI time element, HNW homeowners, marine cargo, energy; A&H and travel are insured LIVES not TIV), claims-exposure direction, accumulation/binding actions, reinsurance/cat-bond/ILW notes. Never recommend strengthening reserves for a forecast (pre-landfall) hazard. Say 'screening buffer', never 'footprint'.",
 }
 
 
@@ -815,7 +989,7 @@ def briefs(ev, tr):
         t0 = time.time(); model = "deterministic"; b = det[k]
         if llm_on():
             facts = {"event": ev["name"], "type": ev["type"], "tier": ev["tier"], "issued_severity": ev["issued_severity"],
-                     "exposure": {x: ev["exposure"][x] for x in ("policies", "tiv_usd", "by_line", "insured_travelers", "method")},
+                     "exposure": {x: ev["exposure"].get(x) for x in ("policies", "tiv_usd", "by_line", "insured_lives", "inner_core", "screen", "method")},
                      "sources": [{"url": s["url"], "title": s["title"], "lang": s["lang"],
                                   "text": (ev["all_items"].get(s["id"]) or {}).get("text", "")[:2500]} for s in ev["sources"][:8]],
                      "portfolio_lines": [x["quote"] for x in det[k]["bullets"] if x and x["source_url"] == "portfolio://synthetic"]}
@@ -823,7 +997,7 @@ def briefs(ev, tr):
                                 "'quote' copied VERBATIM (exact substring, <=250 chars) from that source's text or title; portfolio lines may be "
                                 "cited with source_url 'portfolio://synthetic' and the line itself as quote. Never invent severity numbers. "
                                 'Output {"headline":...,"bullets":[{"text":...,"source_url":...,"quote":...}],"caveats":[...]'
-                                + (',"reserving_posture":"watch|strengthen|no action"' if k == "insurance" else "") + "}", facts, 1500)
+                                + "}", facts, 1500)
             if j and isinstance(j.get("bullets"), list):
                 cand = [{"text": str(x.get("text", ""))[:400], "source_url": x.get("source_url"), "quote": x.get("quote")} for x in j["bullets"]]
                 cand = [c for c in cand if c["source_url"] != "portfolio://synthetic" or c["quote"] in facts["portfolio_lines"]]
@@ -831,16 +1005,23 @@ def briefs(ev, tr):
                 if len(good) >= 2:
                     b = {"headline": str(j.get("headline") or b["headline"])[:160], "bullets": cand,
                          "caveats": (j.get("caveats") or [])[:3] + ["Exposure figures use a SYNTHETIC demo book."]}
-                    if k == "insurance":
-                        b["reserving_posture"] = j.get("reserving_posture") if j.get("reserving_posture") in ("watch", "strengthen", "no action") else det[k]["reserving_posture"]
+                    if k == "insurance":  # posture/accumulation/headline are rule-based, never LLM-chosen
+                        b["reserving_posture"] = det[k]["reserving_posture"]
+                        b["accumulation_action"] = det[k]["accumulation_action"]
+                        b["headline"] = det[k]["headline"]
+                        acc = [x for x in det[k]["bullets"] if x and x["quote"].startswith("Accumulation action")]
+                        b["bullets"] = acc + [c for c in cand if not re.search(r"strengthen", c["text"] or "", re.I)]
                 else:
                     model = "deterministic (llm fallback: <2 verified bullets)"
         raw = [x for x in b["bullets"] if x]
+        for x in raw:
+            x["text"] = re.sub(r"\bfootprint\b", "screening buffer" if ev["type"] == "TC" else "screening area", x["text"] or "")
+        b["headline"] = re.sub(r"\bfootprint\b", "screening buffer", b["headline"])
         b["bullets"], dropped = verify_bullets(ev, raw)
         out[k] = b
         tr.log(f"brief_{k}", ev["event_id"], [x["source_url"] for x in b["bullets"]], b,
                f"Brief {k}: {len(b['bullets'])} cited bullets ({dropped} dropped by verifier)"
-               + (f"; posture {b['reserving_posture'].upper()}" if k == "insurance" else "") + f" — {b['headline'][:70]}",
+               + (f"; posture {b['reserving_posture']}; accumulation {b['accumulation_action'].split(' — ')[0]}" if k == "insurance" else "") + f" — {b['headline'][:70]}",
                model, (time.time() - t0) * 1000)
     return out
 
@@ -852,40 +1033,64 @@ PERSONAS = [("CUO Property", "insurance", "email"), ("Head of Claims", "insuranc
 
 
 def route(ev, tr):
+    """Routing rules (per CUO review): Public only for RED; CIO only with exposure (TIV or lives) at RED/AMBER; A&H/Travel by
+    insured lives (outbreak >=1,000 lives -> P1 SMS+email; nat-cat lives>0 -> P2); nat-cat desks silent on $0-exposure
+    storms except the Cat desk at P3 'monitor'."""
     t0 = time.time(); tier, t, e = ev["tier"], ev["type"], ev["exposure"]
     pr = {"RED": "P1", "AMBER": "P2", "WATCH": "P3"}[tier]
     natcat = t != "OUTBREAK"
+    ins = ev["briefs"]["insurance"]; accum = ins.get("accumulation_action", ""); lvl = accum.split(" — ")[0]
+    lives = e["insured_travelers"]; tiv = e["tiv_usd"]
     cav = f"Early-warning signal ({ev['confidence']} confidence); severity per {sname(ev['issued_severity']['scale'])}; exposure from a synthetic demo book."
-    top = e["top_locations"][0]["name"] if e["top_locations"] else "none in footprint"
-    rules = {
-        "CUO Property": natcat and (e["tiv_usd"] > 0 or tier == "RED"),
-        "Head of Claims": natcat and e["policies"] > 0 and tier != "WATCH",
-        "Cat Modeling/Accumulation desk": natcat and tier in ("RED", "AMBER"),
-        "CIO": tier in ("RED", "AMBER"),
-        "Head of A&H/Travel": t == "OUTBREAK" or (e["insured_travelers"] > 0 and tier != "WATCH"),
-        "Public": ev["status"] == "alert" and tier in ("RED", "AMBER"),
-    }
+    top = e["top_locations"][0]["name"] if e["top_locations"] else "none"
     sev = f"{sname(ev['issued_severity']['scale'])} {ev['issued_severity']['value']}"
-    msgs = {
-        "CUO Property": f"[{tier} {pr}] {ev['name']}: {sev}. {e['policies']} insured locations / {money(e['tiv_usd'])} TIV in footprint. Posture: {ev['briefs']['insurance']['reserving_posture']}. Largest: {top}.",
-        "Head of Claims": f"[{tier} {pr}] {ev['name']}: {e['policies']} locations in footprint ({money(e['tiv_usd'])} TIV). Pre-position adjusters; FNOL surge likely within {ev['time_horizon']}.",
-        "Cat Modeling/Accumulation desk": f"[{tier} {pr}] {ev['name']} ({sev}). Run event footprint vs accumulation zones: {money(e['tiv_usd'])} TIV within {ev['geo']['radius_km']} km. Check XoL retention and ILW/cat-bond triggers.",
-        "CIO": f"[{tier} {pr}] {ev['name']} ({sev}) affecting {', '.join(ev['countries'][:3]) or 'open ocean'}. Review regional equity/credit and insurer-sector exposure. Directional only.",
-        "Head of A&H/Travel": f"[{tier} {pr}] {ev['name']}: {e['insured_travelers']:,} insured travelers/A&H lives in affected area. Check assistance capacity, evacuation triggers and travel advisories.",
-        "Public": f"{ev['name']}: official status {sev}. Follow local authority guidance. (Automated early-warning summary; may change.)",
-    }
+    area = f"{ev['geo']['radius_km']} km screening buffer" if t == "TC" else (ev["geo"].get("radius_kind") or "screening area")
+    core = e.get("inner_core")
+    core_txt = f"; {core['policies']} sites / {money(core['tiv_usd'])} in ~{core['radius_km']} km hurricane-force core" if core else ""
+    where = ", ".join(ev["countries"][:3])
+    R = []  # (persona, brief, channel, priority, message)
+    if natcat:
+        if tiv > 0:
+            if tier in ("RED", "AMBER"):
+                R.append(("CUO Property", "insurance", "email", pr,
+                          f"[{tier} {pr}] {ev['name']}: {sev}. {e['policies']} sites / {money(tiv)} TIV within {area}{core_txt}. Accumulation {lvl}"
+                          + (": consider binding restrictions/moratorium on new business in the watch area" if lvl == "ELEVATED" else ": run accumulation check")
+                          + f". Reserving: {ins['reserving_posture']}. Largest: {top}."))
+            if e["policies"] > 0 and tier != "WATCH":
+                R.append(("Head of Claims", "insurance", "slack", pr,
+                          f"[{tier} {pr}] {ev['name']}: {e['policies']} insured sites in {area} ({money(tiv)} TIV){core_txt}. Pre-position adjusters; FNOL surge possible within {ev['time_horizon']}."))
+            R.append(("Cat Modeling/Accumulation desk", "insurance", "slack", pr,
+                      f"[{tier} {pr}] {ev['name']} ({sev}). Accumulation {lvl}: {money(tiv)} TIV within {area}{core_txt}. Run accumulation check vs zones; check XoL retention and ILW/cat-bond triggers."))
+        else:
+            R.append(("Cat Modeling/Accumulation desk", "insurance", "slack", "P3",
+                      f"[{tier} P3 monitor] {ev['name']} ({sev}). No insured sites in the {area} this cycle; keep monitoring the forecast for track shifts toward insured coast."))
+    if (tiv > 0 or lives > 0) and tier in ("RED", "AMBER"):
+        R.append(("CIO", "wealth", "email", pr,
+                  f"[{tier} {pr}] {ev['name']} ({sev}){' in ' + where if where else ''}. Book exposure: {money(tiv)} TIV, {lives:,} insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."))
+    if t == "OUTBREAK" and lives > 0:
+        p = "P1" if lives >= 1000 else "P2"
+        msg = (f"[{tier} {p}] {ev['name']}: {lives:,} insured lives ({e['insured_lives']['travel']:,} Travel + {e['insured_lives']['ah']:,} A&H) in affected area. "
+               f"Accumulation {lvl}: {accum.split(' — ')[-1]}. Confirm evacuation triggers and travel advisories.")
+        R += [("Head of A&H/Travel", "health", "sms", p, msg), ("Head of A&H/Travel", "health", "email", p, msg)] if p == "P1" else [("Head of A&H/Travel", "health", "email", p, msg)]
+    elif natcat and lives > 0:
+        R.append(("Head of A&H/Travel", "health", "email", "P2",
+                  f"[{tier} P2] {ev['name']}: ~{lives:,} insured Travel/A&H lives in the {area} (pro-rated, synthetic). Check assistance capacity and evacuation readiness."))
+    if tier == "RED" and ev["status"] == "alert":
+        R.append(("Public", "health", "public", pr, f"{ev['name']}: official status {sev}. Follow local authority guidance. (Automated early-warning summary; may change.)"))
     model = "deterministic"
-    if llm_on():
-        j, model = llm_json("You are the Router agent. Rewrite each persona's notification to be crisp and actionable (<=400 chars). Keep all numbers "
-                            'exactly; add none. Output {"messages":{"<persona>":"text"}}', {"event": ev["name"], "tier": tier, "messages": {p: m for p, m in msgs.items() if rules[p]}}, 900)
+    if llm_on() and R:
+        j, model = llm_json("You are the Router agent. Rewrite each numbered notification to be crisp and actionable (<=400 chars). Keep all numbers "
+                            "exactly; add none. Keep the accumulation level word (ELEVATED/MONITOR/NONE) if present. Never write 'footprint', "
+                            "'strengthen' or 'open ocean'. " 'Output {"messages":{"<index>":"text"}}',
+                            {"event": ev["name"], "tier": tier, "messages": {str(i): r[4] for i, r in enumerate(R)}}, 900)
         if j:
-            for p, m in (j.get("messages") or {}).items():
-                if p in msgs and isinstance(m, str) and len(m) <= 400 and numbers_ok(m, msgs[p]):
-                    msgs[p] = m
-    routing = [{"persona": p, "brief": b, "channel": c, "priority": pr, "caveat_banner": cav, "message": msgs[p][:400]}
-               for p, b, c in PERSONAS if rules[p]]
+            for k2, m in (j.get("messages") or {}).items():
+                if k2.isdigit() and int(k2) < len(R) and isinstance(m, str) and len(m) <= 400 and numbers_ok(m, R[int(k2)][4]) \
+                        and not re.search(r"footprint|strengthen|open ocean", m, re.I) and (lvl not in R[int(k2)][4] or lvl in m):
+                    x = R[int(k2)]; R[int(k2)] = (x[0], x[1], x[2], x[3], m)
+    routing = [{"persona": p, "brief": b, "channel": c, "priority": q, "caveat_banner": cav, "message": m[:400]} for p, b, c, q, m in R]
     ev["routing"] = routing
     tr.log("router", ev["event_id"], [ev["event_id"]], {"routing": routing},
-           f"Router: {tier} {pr} → " + (", ".join(r["persona"] for r in routing) or "no persona (below threshold)"),
+           f"Router: {tier} → " + (", ".join(f"{r['persona']} {r['priority']}/{r['channel']}" for r in routing) or "no persona (below threshold)"),
            model, (time.time() - t0) * 1000)
     return routing
