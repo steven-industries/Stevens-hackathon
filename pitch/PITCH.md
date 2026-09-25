@@ -23,8 +23,8 @@ The signals are all public: GDACS, the Hurricane Center, USGS, WHO outbreak noti
 
 "Sentinel is a team of agents that runs every ten minutes. [Show the architecture slide for 5 seconds, then switch to the live UI.]
 
-1. **Alert card.** [Click the top alert.] This hurricane was picked up by NHC, GDACS, and Spanish-language local news, so three independent sources. The severity says *Category X per NHC*. We **copy** severity from the issuing authority. The AI never makes it up.
-2. **Exposure.** [Point at the exposure panel.] The Exposure agent lays the forecast cone over the book: *N policies, $X of TIV*, split into commercial property, Masterpiece homeowners, and marine. *(This demo uses a synthetic book. In a pilot, it's Chubb's.)*
+1. **Alert card.** [Click the top alert.] This is **Hurricane Polo**, live right now in the Eastern Pacific. Sentinel corroborated it across NHC, GDACS, NASA and Spanish-language press: nine independent sources. The severity says *Category 5, 180 mph, per NHC*. We **copy** severity from the issuing authority. The AI never makes it up.
+2. **Exposure.** [Point at the exposure panel.] The Exposure agent lays the NHC forecast track over the book: *80 locations and $1.31 billion of TIV* within 350 km of the forecast track, mostly around Cabo, split into commercial property, business interruption, high-net-worth homeowners, and marine cargo. *(This demo uses a synthetic book. In a pilot, it's Chubb's.)*
 3. **Insurance brief.** [Open the Insurance tab.] It's written for underwriters: which lines, which way claims are heading, how to think about reserves, and a reinsurance note. [Click a citation chip.] Every bullet has a quote, and **code** checks that quote word-for-word against the source. If there's no quote, there's no claim.
 4. **Route.** [Click Route.] The CUO Property gets the Insurance brief. The Head of A&H gets the Health brief, the CIO gets the Wealth brief, and each one carries a caveat banner. Duplicates are suppressed, and an alert only escalates when severity goes up.
 5. **Always on.** [Point at the run-log strip.] Every cycle this afternoon is logged."

@@ -1,49 +1,49 @@
 {
- "generated_at": "2026-09-25T17:14:39Z",
- "run_id": "ff3773f8",
+ "generated_at": "2026-09-25T17:15:47Z",
+ "run_id": "057e3571",
  "mode": "deterministic",
  "feeds": [
   {
    "name": "gdacs",
    "items": 314,
-   "status": "cache",
-   "retrieved": "2026-09-25T17:09:43Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:15:18Z"
   },
   {
    "name": "nhc_at",
    "items": 2,
-   "status": "cache",
-   "retrieved": "2026-09-25T17:09:41Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:15:15Z"
   },
   {
    "name": "nhc_ep",
    "items": 2,
-   "status": "cache",
-   "retrieved": "2026-09-25T17:09:41Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:15:15Z"
   },
   {
    "name": "nhc_cp",
    "items": 1,
-   "status": "cache",
-   "retrieved": "2026-09-25T17:09:41Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:15:15Z"
   },
   {
    "name": "usgs",
    "items": 12,
-   "status": "cache",
-   "retrieved": "2026-09-25T17:09:41Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:15:16Z"
   },
   {
    "name": "who_don",
    "items": 15,
-   "status": "cache",
-   "retrieved": "2026-09-25T17:09:41Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:15:15Z"
   },
   {
    "name": "ecdc",
    "items": 10,
-   "status": "cache",
-   "retrieved": "2026-09-25T17:09:41Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:15:17Z"
   },
   {
    "name": "eonet",
@@ -126,7 +126,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T06:39:52Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en",
     "es"
@@ -163,16 +163,6 @@
      "verified": true
     },
     {
-     "id": "gnews:d2d2f03a531c",
-     "feed": "news:latimes.com",
-     "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOMjVGZ2RBME9qQTVjaUs4VkJwOXhxdjA3OHBuVGZucktaYUJ3VkVWYl9LWC1Yckp0b3NKY0pMMTMxc0ZzSnU2WlBEbWV5TFItckRlTklLMnR3SnNpVUxrb2JMV2swT25BaXNobHpaQ2hRMDJHWnFzWjVmMC0wREtsSTRsS2w4YkVta0ZjSF96NHNVeDNPdGZ2UjRneHhxQkl0ckMzQjY0ejgwZC1ZeV8yS3ZNRExBSUJmZW94c29oTmRmVEtvSFE?oc=5",
-     "title": "Tropical Storm Polo is strengthening. Could it mean more rain for California? - Los Angeles Times",
-     "lang": "en",
-     "published": "2026-09-21T19:35:06Z",
-     "quote": "Tropical Storm Polo is strengthening. Could it mean more rain for California?",
-     "verified": true
-    },
-    {
      "id": "gnews:5567d66ce7c1",
      "feed": "news:yaleclimateconnections.org",
      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNU012Z3lWOW9qeVhnMkR5MHRYejRramRBSnpua1draGFTeDM0Q2lYRDNlaGZtaFlBb0loSmxrVWNmMnB1RWlhWWF5UUQ1Tl9mNjJUOGN2dzZnM21EakdkR1VOVDJEQWZtNlJLUjJWNmdjVkVJbVZIYThVNWZQNVhNOEVEcHAxTlNWbjV2ekw2RUtvVXF1cmFha2NzOFI4VV9fakJYWUdqb0dlTW9iM2NDUDhsamdFdVFNTkE?oc=5",
@@ -193,10 +183,20 @@
      "verified": true
     },
     {
+     "id": "gnews:6c69975d0d05",
+     "feed": "news:nytimes.com",
+     "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1Ia2xNSkhtWm1NcGdtdlh6WW0ya3FGSG9XSGQ4dzI4dFNJc25SMTdaVlJ0a1BLVXA3WGVIYmRSSnhpbDU4Q3BNX1JfSzNFNDJHMEdoQk1zVzJDYWJWemdneXRtQ0RRSUwwZEdUdndsc3RlWnRsUWpraWg0ZHRVbEk?oc=5",
+     "title": "Could Hurricane Polo Bring Rain to Southern California? Probably Not. - The New York Times",
+     "lang": "en",
+     "published": "2026-09-23T21:24:33Z",
+     "quote": "Could Hurricane Polo Bring Rain to Southern California? Probably Not.",
+     "verified": true
+    },
+    {
      "id": "gnews:6ad005f264b0",
      "feed": "news:dw.com",
      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOU2JUZ3o0QXpoSHZ3S21IaGpLX1NhSTlCQlJsSVpGbkdPQjZaRTNRYkRKeUpaTDhvMzI0d3RZOWFyQ1VTTHVyelU3ODRYWnpMMjE4R3pVaHdXMWpHV1ZHTkZlbHpfcXZVem9GTjE0eVZ1ZG9OSDVvdGYzdWFQNDdMYmxvUk1VeUNHaHYxWlNoRFJpSllTanRra01HU29zSmMzWktLV0o5alJJemw2TWfSAa4BQVVfeXFMUERTTzBPZXVWb3VUS3E2RndYU3BzdFpZQUFrZnNUdnVhZVpoYzFXLXJyM2E1R3JmVkFwM1dMMVVKZnFPemdjTGRYbTlHRE9pMlJ2UGVsZEliN0o5b3NkbS0tamxPQjhTcFFZaXJNaWhrbW5NRHpFR1E1SHZMeVhFcGVVb1ZKUnM1WERveWNTYVkxN1VyNzA3MUNRdkdKd1FHNDhkUFpWY3Npb1RtYmVR?oc=5",
-     "title": "Huracán Polo retoma fuerza y pone en alerta al occidente de México - DW.com",
+     "title": "Huracán Polo retoma fuerza y pone en alerta al occidente de México - dw.com",
      "lang": "es",
      "published": "2026-09-24T17:21:16Z",
      "quote": "Huracán Polo retoma fuerza y pone en alerta al occidente de México",
@@ -206,7 +206,7 @@
      "id": "gnews:81cbe3d30f19",
      "feed": "news:cnnespanol.cnn.com",
      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOVFdrX0FiZUNVSDRPNFU0SzlyQjFaOXQtUy1iNGRPMW5LdkxkeXZpSTVqOE5LbThXR0FXdmJTUktvRmdiR2pRblZjOU93b09xUk9CS3d1Q1ZKMFBPVkpRNktNTmdOekwzTU1QVzN1MG9XTkhLRjNEM1VtOHF6OHBRbWJsOU5lWEV4V1J3OGNTWGtITTVadUdr?oc=5",
-     "title": "Imágenes de los daños del huracán Polo en México - CNN en Español",
+     "title": "Imágenes de los daños del huracán Polo en México - cnnespanol.cnn.com",
      "lang": "es",
      "published": "2026-09-24T23:12:44Z",
      "quote": "Imágenes de los daños del huracán Polo en México",
@@ -216,7 +216,7 @@
      "id": "gnews:2447f6f4364a",
      "feed": "news:elpais.com",
      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOSnRjRHNmVlBsYTdwSi1US21SODNDUFp1Qjd1WWNwLTdTRFBtSWtQSDgxdDdDWmNNc0hWenRZc1p6YmwyNTB1R1dySFZUdE5OejZLQl8teFA0c0NuQnJCUVdPLXRGalU1UGoxeS1NeG1tXzE3WnRrdFNJWjlUS1FRMF9oeEhIVVpFWHBjMVRaYWdmT2cwdmlYejZ0MVBSZW05Ri05cmc2b3BRVTZDXzRya1ZFSjY4cW9OTnVOLXZaemNzV3V2ZkEzZGJTRG53eDNva19UcWt1SVRZRUpfbC03S1R4aUlUVEhnV29oV015QzY0Nk44N1pV0gGLAkFVX3lxTFAyT0VZSF9kUnFNQjNlYmNoNmt4aE41MU5LamVGTHpZMjlNcHl1bUZJRW1XNVlIbkM1VW9FTHBKeTlsS2lHbmJKaFRBYVFHTHJwXzgzZ0xTcmpXZnpEWmVMTmxxQkpfcV9oTkJrZnBVdDUydkZnOE9BMGdYVDFxejBwbVNnOEV4MlFQY0Y2UlJGX19ubFZySUR3YUFQaXRqLXhQblFjQVgtQjdBN2VEVkdrX0N0NjJrbWFPd0x3N2Y3azBnOG9Pc0xLbUJNMVRCVjJzSl9JNXFqOEhVOEk3WnZuUVU5endkZ3NsUkFMZmhEVTJ1Ylp0VlpDYk9VMmZSdy1sMFN1NkEzVVZ5RQ?oc=5",
-     "title": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo” - elpais.com",
+     "title": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo” - EL PAÍS",
      "lang": "es",
      "published": "2026-09-25T09:30:00Z",
      "quote": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo”",
@@ -545,7 +545,7 @@
    },
    "time_horizon": "2-6 weeks",
    "first_signal_ts": "2026-09-02T07:00:00Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en",
     "fr",
@@ -566,20 +566,10 @@
      "id": "gnews:c5fad17a5861",
      "feed": "news:lemonde.fr",
      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPY0drYlVDMDVPYUktQ21nZ3RDNTVIcUFBNEFCMHVuaDNqWHZhOTdkM2FFYWhEMVRuWDZydTJ2WHIyc0ZPVlJFbkhIUFJMX3V4ZUdWT3hHZktDY1daWktCYWhKenVmNjMwT05xTkJjV2NYcXJyWVVsNjBySlA3ZGkxTTVGcnNoSWtoNWc3S2U1TmVETHNJVTBlN0cyNW5GV09kcDFHQk96cWtTSEJWdEpkV3NKeTJ2MmZnXzdEeXQ3YjIybzJvX3BxeDhIU2pxd1NSTHhFOTR0VWJKMFpyVU5MZkNMWHFfNS1TT0x6LQ?oc=5",
-     "title": "Ebola en RDC : l’épidémie cause plus de 3 000 morts, sur plus de 6 000 cas confirmés - Le Monde.fr",
+     "title": "Ebola en RDC : l’épidémie cause plus de 3 000 morts, sur plus de 6 000 cas confirmés - lemonde.fr",
      "lang": "fr",
      "published": "2026-09-02T07:00:00Z",
      "quote": "Ebola en RDC : l’épidémie cause plus de 3 000 morts, sur plus de 6 000 cas confirmés",
-     "verified": true
-    },
-    {
-     "id": "gnews:85b606dd7cb5",
-     "feed": "news:oglobo.globo.com",
-     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOLWlmY3pDR0NBWDM4MTBYVmNKbjFJVER0Y3VtcTBaUzBGd25aUzEwaVlTZXBadTdoOUxDNExMRzBmMzZLcUZTM0xYSkZYNGN3WXJFeWt4dGExbW82ZFdRSExzRkNFVGw5emdna1BiZEdLblVKUVpnMG9uU25VeXFMNEtkTVg3eDdhLVVLN1o4MGx2aTFSbVVhYm53Xzc3SE9qNEFmZGpvUWlZVGtFRWFMTGV4Tk1wVDdKS1BXQkxRQUNQY0hVTHk0RWwwNNIB2gFBVV95cUxQRy04QzhJUDhoWmlEU2RNdC1KN3pyamVLdmtSZEFmbzZuNC11YWZJMW9GYVVtXzFQd1ZZcHdmTk1hdDh1NzNwMHpEcUVPcVFPQzhXY1lEN3kxNy1kUGhJX2hTUzNMSDJtSjBrdTRXeE9oMWI3RlNWQlpmVGhXOU9YOFRQY0E0X3c5ZGZBOXI3OERnWGttbHBJT0lGVjhIUXRvMmlReHJXUjItckloQlZtZGJ4M29mV3VuQzdZOWRnU0NiMm16dTNNcmlYM3dUM3g0ZGpGS3EtRXRyUQ?oc=5",
-     "title": "Epidemia de Ebola na República Democrática do Congo ultrapassa 3 mil mortos - O GLOBO",
-     "lang": "pt",
-     "published": "2026-09-02T07:00:00Z",
-     "quote": "Epidemia de Ebola na República Democrática do Congo ultrapassa 3 mil mortos",
      "verified": true
     },
     {
@@ -593,16 +583,6 @@
      "verified": true
     },
     {
-     "id": "gnews:cc5126a9c305",
-     "feed": "news:www1.folha.uol.com.br",
-     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQU1l5V3RfamR3Y1JaU0FBYTlaa2Juck9uQWdIaVNFZVBDd05uUVlscExwSEZ1c0dnTkV6Y3puUVVZMVh1VjJ1c0Q4TF9hTmFxSS1uNFM5MFBqeEIyakFFUVBGMUJoMkZPaHNEWnA4ODAzV1p3TzdaZHVOS2JBaHdjc21QZ3B5MTRLekNXcE1zQ3lPbmg3S1N2d0EzUnRpZ2REdXl0dUFrOUFXVXgtZ1k2OVJ5MGQ4TkNkUzJqaTlXZnY3c2NvdlFreEVwUzBSRXBjZzctQ1NDTV9sbUVBUnJBRHN3?oc=5",
-     "title": "O que pode ser feito para acabar com o surto de ebola na República Democrática do Congo - Folha de S.Paulo",
-     "lang": "pt",
-     "published": "2026-09-09T07:00:00Z",
-     "quote": "O que pode ser feito para acabar com o surto de ebola na República Democrática do Congo",
-     "verified": true
-    },
-    {
      "id": "gnews:e013d2202cf4",
      "feed": "news:news.un.org",
      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE81RmI2UV9VbUItRmFmX1VKcEhaNVFPRi16SDhpRVhEbG9mUGg1YjRVMko5SVp3ZDRHa291NF9OU2pNRm1hRzl3V2RaZllwUkZZenZ2OTdLdw?oc=5",
@@ -613,10 +593,20 @@
      "verified": true
     },
     {
+     "id": "gnews:cdb85da9ca13",
+     "feed": "news:almapreta.com.br",
+     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQS0yOEp5YU1rMVVRaGU2Q0puMW5yMzFpR2dXQTBEYXMwbVJJbUg0aDhlc3ZNZzJwbGFqUlBTM1NIdnhCclB0NnFNaXVpLUlGRFRlYmg1YjRWTld4cDZwbnV5SVlXNnEwWDIzajNFTVc3TDUwaTR2TWxPN0VRcHA0SVR2MUcwT1lfNkVyVFVfbWZHVVF1UC1FLVNjTmN0OGRBY3UzWFdFeU1FTkdhTDhoMnNjN0JxSDdUSG9mTE9wQlo4QWs?oc=5",
+     "title": "Ebola avança na RD Congo e país precisa de mais 5 mil profissionais de saúde - Alma Preta Jornalismo",
+     "lang": "pt",
+     "published": "2026-09-10T07:00:00Z",
+     "quote": "Ebola avança na RD Congo e país precisa de mais 5 mil profissionais de saúde",
+     "verified": true
+    },
+    {
      "id": "gnews:5d890d9916dd",
      "feed": "news:msf.fr",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNYUV5bjU5eG9COWp1V3Z2R190aGRCay1SbWRZT1JCbEZjU3FkUXJ2MmlwMVZNMXZhTGktcXFrcDJaaGdSM2RtNFdZM3BpS3I2ck1JbG5oeFFsdXN0enQ0alNLSzYwSVp2YnMzMC1ObHJQV21WdDUwZEplMDJCbDZxWXk4ZXpyaVFHZWlWYndWOHQxTmRxM1A5Sm8yRQ?oc=5",
-     "title": "RDC : MSF conduit une étude sur la vaccination contre Ebola - msf.fr",
+     "title": "RDC : MSF conduit une étude sur la vaccination contre Ebola - Médecins sans frontières",
      "lang": "fr",
      "published": "2026-09-19T07:20:46Z",
      "quote": "RDC : MSF conduit une étude sur la vaccination contre Ebola",
@@ -640,6 +630,16 @@
      "lang": "fr",
      "published": "2026-09-20T12:01:48Z",
      "quote": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola",
+     "verified": true
+    },
+    {
+     "id": "gnews:afca5fba3df9",
+     "feed": "news:g1.globo.com",
+     "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPR1JrR0h2TjhkTEdIbzhfdkwyVFhNa0RVV1JCOGdCNFBoemFvQjhEQnVGMEtiRHlYRGc3NU1NVm82MTlsVk5lSTl4VVJ2Z1hJbVhVMWM3T2ZYb1diMGZmUkp1ejJlUjRfSFQ2TUU3d0FBMXJEOTNxSUNQMmZXUmxOX2psUmlYTllhQlkwTlg1OGZ3WXpJYTBrMnU3eE9jY242aVVPdmhPSGwwSVVLUThoaF9R0gHAAUFVX3lxTFA4UGl1ZGQ1ZVF5YVJvREQxSV9RNnozdjZuYWVaMldBVlFhM0ticFlKVEZNODV0bXJJcmthcXhmU0s0WC1yT2Nzejh5ZUE2UDBnMy1CZ3FyaWxiN0lkMnlFQUZQN1VaSDJVODNzUWdGLVdhNUZpQ2xRYmRKT2ZwLTlJUU5FaWt4YVhPQUFtWENWMmlhNDNSajFJZlY0UkVUUnlZNDFROG1IWElFYnMyMGlZczhFSW1ZNXRGRHItZWVTeg?oc=5",
+     "title": "Surto de ebola teria começado meses antes de anúncio oficial - G1",
+     "lang": "pt",
+     "published": "2026-09-21T09:51:27Z",
+     "quote": "Surto de ebola teria começado meses antes de anúncio oficial",
      "verified": true
     },
     {
@@ -757,9 +757,9 @@
        "verified": true
       },
       {
-       "text": "Multilingual press (pt, oglobo.globo.com): “Epidemia de Ebola na República Democrática do Congo ultrapassa 3 mil mortos”",
-       "source_url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOLWlmY3pDR0NBWDM4MTBYVmNKbjFJVER0Y3VtcTBaUzBGd25aUzEwaVlTZXBadTdoOUxDNExMRzBmMzZLcUZTM0xYSkZYNGN3WXJFeWt4dGExbW82ZFdRSExzRkNFVGw5emdna1BiZEdLblVKUVpnMG9uU25VeXFMNEtkTVg3eDdhLVVLN1o4MGx2aTFSbVVhYm53Xzc3SE9qNEFmZGpvUWlZVGtFRWFMTGV4Tk1wVDdKS1BXQkxRQUNQY0hVTHk0RWwwNNIB2gFBVV95cUxQRy04QzhJUDhoWmlEU2RNdC1KN3pyamVLdmtSZEFmbzZuNC11YWZJMW9GYVVtXzFQd1ZZcHdmTk1hdDh1NzNwMHpEcUVPcVFPQzhXY1lEN3kxNy1kUGhJX2hTUzNMSDJtSjBrdTRXeE9oMWI3RlNWQlpmVGhXOU9YOFRQY0E0X3c5ZGZBOXI3OERnWGttbHBJT0lGVjhIUXRvMmlReHJXUjItckloQlZtZGJ4M29mV3VuQzdZOWRnU0NiMm16dTNNcmlYM3dUM3g0ZGpGS3EtRXRyUQ?oc=5",
-       "quote": "Epidemia de Ebola na República Democrática do Congo ultrapassa 3 mil mortos",
+       "text": "Multilingual press (pt, news.un.org): “Ebola avança para novas áreas da RD Congo matando quase metade dos infectados”",
+       "source_url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE81RmI2UV9VbUItRmFmX1VKcEhaNVFPRi16SDhpRVhEbG9mUGg1YjRVMko5SVp3ZDRHa291NF9OU2pNRm1hRzl3V2RaZllwUkZZenZ2OTdLdw?oc=5",
+       "quote": "Ebola avança para novas áreas da RD Congo matando quase metade dos infectados",
        "verified": true
       }
      ],
@@ -923,7 +923,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T01:12:56Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en",
     "hi"
@@ -993,7 +993,7 @@
      "id": "gnews:3d3b40bff734",
      "feed": "news:timesofindia.indiatimes.com",
      "url": "https://news.google.com/rss/articles/CBMiswJBVV95cUxNN3RIdk9rd211OVFJbkhRcW1fdVd6QVRtSHkwS0xNYUNJLUJkUXRpc0Jvc2NwbkJNV05uSDZwNmZkMThEUDZlY0M2Y1hHTzg2QVhNeFU3clZDenExd21CMHduUl9YdzQ3S1JMTnBraW8ya3lwMzg1a0JlTHRVWVlPY25ZNzVFMWdvS0t2LVI0YW15MU1EelJ0dkNnZWlkMXRqZFdsS09MakZjM1JWc01wYXV2X09wMTZFdk41WGZzck55eGI5ZERueV95NUQtNlhCdE5fVzNSZ01LSlAxc19rUkZGaEM3b2RmOTg2MzFRTXdCalI4a0JhWXFmOEV2NEMwZVVTbzhHRG1oaEJ3Wmttem56WmVzOVJpMW5mUmppc21mOUNtSTJRVVlacWJiblJEdEtF0gG4AkFVX3lxTE1qMEI5NWFmVmtMbjd2VGNHTkp6TVVaSU1STXIyeXRicnlHQ3ZDRlZGQzRna2RjLXM0SkpvcFh3dktYNkM4dC1OWUhqa2hvRXdBU3BfcUZtYlJZeWk2eGIxam9xRDVzNGFnc3BSYmlzTU5BMGNnOURVeVR5WFJaOElPc1I4TGhYWW1aNjJFX1N0aVdmUmNjY0VXcjZYTncydU42N25KemVBV3VGSXZBX0NnbFdxcDVTd0hoVXhkSGhtRE9pWUEtVk03bWpxa1FrbjdPQmp4Xy12SzJBR1c5ZlA4TklqZVlKcUxpSVNRQ2NvbmNTLW9LVDlibFlGOWc1alZkNTVrSEpZcWZjZW9XSTdJbzVNS3VmV2dYTkpiWUMwYWFjd2ZDTnlVbEZmWUV6UTVMOS1EQkNaSA?oc=5",
-     "title": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11 - The Times of India",
+     "title": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11 - timesofindia.indiatimes.com",
      "lang": "en",
      "published": "2026-09-22T12:27:00Z",
      "quote": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11",
@@ -1283,8 +1283,8 @@
     "radius_km": 150
    },
    "time_horizon": "24-72h (NHC 5-day track)",
-   "first_signal_ts": "2026-09-25T03:13:23Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "first_signal_ts": "2026-09-25T01:45:46Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en",
     "fr",
@@ -1322,6 +1322,26 @@
      "verified": true
     },
     {
+     "id": "gnews:61504127a4ec",
+     "feed": "news:wbrz.com",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPZTNmZ0RubE1FeUVNNkpWSXVBV2R6QmhibldiVV9tLUx0Q2xGU20yWXpWUTh3OVd2MkRVN2hKV2ZEX0tzNHcySjJqUTZMb3RGVmwzWDhsb1BKUXBFUUktbW9qOXltLTQtWjR1ZlVzSWVMYm5sS2trVW1hZjJpMnpQVHZmR0wxUQ?oc=5",
+     "title": "Tropical Storm Gonzalo forms in far eastern Atlantic - wbrz.com",
+     "lang": "en",
+     "published": "2026-09-25T01:45:46Z",
+     "quote": "Tropical Storm Gonzalo forms in far eastern Atlantic",
+     "verified": true
+    },
+    {
+     "id": "gnews:3a380e1f1e7d",
+     "feed": "news:accuweather.com",
+     "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5EbXptdm1NTnNiWFZCbERWeW1TVGNvM3ljaEVSZ1JhV29rNmRad0NjOUszUXZMbXNoTDAtLW5VQ0F5cTFzQmNhQ2EwckZQR1lmRjNhZ0pUNHRFbjhoQUtyVnRTaFJCRmxhcXVPWmNqMA?oc=5",
+     "title": "Tropical Storm Gonzalo 2026 - AccuWeather",
+     "lang": "en",
+     "published": "2026-09-25T02:52:33Z",
+     "quote": "Tropical Storm Gonzalo 2026",
+     "verified": true
+    },
+    {
      "id": "gnews:a8159bf2faa4",
      "feed": "news:wmbfnews.com",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNcXhmRU1qZ0dzYjNtNGh5Sy04MEUxdjhvNlRQUkpuNWpNM3IxN3A1cWxOaGw5dlg1R1FFWXJaY0FGS3lwQW1mTEdSdXhsbGpxNWJzNks3cTJsc2E5SFRqT3V2b25mLUFMZjUwaTVoSk5idExWWWJsVHFnSjZMUkhBeEpVeVNNM29mRU0wczlOVS1GS0ZYWW9TMVdKaw?oc=5",
@@ -1329,26 +1349,6 @@
      "lang": "en",
      "published": "2026-09-25T03:21:00Z",
      "quote": "FIRST ALERT: Tropical Storm Gonzalo forms off African Coast",
-     "verified": true
-    },
-    {
-     "id": "gnews:b3b9763e9e07",
-     "feed": "news:cbs12.com",
-     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5jQXFXaXdUdnBvc3NwX3RHc2FGSVdEcTBhbzFEWUJDMEdUSjJGVkVCY21jMnVRX0cxZ1lDWmF6MW1ydVpiU05ROXhmUVRfdlhMRk5OeWR5N3hhbE5yeTh2aVpTMGhvZnBTU1Q5c0pSU2VxWUtQNlpoTXQyaEpSQQ?oc=5",
-     "title": "Tropical Storm Gonzalo forms in the Atlantic - WPEC",
-     "lang": "en",
-     "published": "2026-09-25T03:38:24Z",
-     "quote": "Tropical Storm Gonzalo forms in the Atlantic",
-     "verified": true
-    },
-    {
-     "id": "gnews:bf283e0430a4",
-     "feed": "news:wuft.org",
-     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNRkJXVHUzZ1YydnJWVEJ6Z1hWYjJhcUkwUTdDSHpyOC1HZFZLOGdEd3gwTjFwOVZ5UGh4RXhMcklES28tNnlHZE4yTjZXUlFQbkQwYm9SRzlXMjlYcmVIQkE1eWJFQU42YlVvZlFWaVF4ZFdBSVdpY2czVnJSUmxqSnlGaTQtY0NHNVRaUzFXcGdPVDdHb0VwV1Yybk1HS3pvRFRlNG9iT0ZGbDR4QXBUanZfTGNnN0RR?oc=5",
-     "title": "Tropical Storm Gonzalo forms as historic Atlantic hurricane drought continues - WUFT",
-     "lang": "en",
-     "published": "2026-09-25T06:13:00Z",
-     "quote": "Tropical Storm Gonzalo forms as historic Atlantic hurricane drought continues",
      "verified": true
     },
     {
@@ -1724,7 +1724,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-20T09:08:06Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en",
     "es"
@@ -1764,7 +1764,7 @@
      "id": "gnews:0626db9d65eb",
      "feed": "news:apnews.com",
      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTmhIcWRYajJUZG81Z3RranAtOHF3ZUFkSHVJbzFXa3JPMVZYTEdHbEpLWGhQMm9WTXJXZEtUWGlrbmc1QkNhakRFcDZ3SUlCQ2xzYm5rZ0dhX2Z3M0FNdmoxbGRBczNNU3B1OWVrelExTjdaM1hONmh1cEJZTjQ3Zm80TWtHYndDNWdDd0Nn?oc=5",
-     "title": "Tropical Storm Fay forms far out in the Atlantic as Odalys strengthens in the Pacific - AP News",
+     "title": "Tropical Storm Fay forms far out in the Atlantic as Odalys strengthens in the Pacific - apnews.com",
      "lang": "en",
      "published": "2026-09-20T21:05:00Z",
      "quote": "Tropical Storm Fay forms far out in the Atlantic as Odalys strengthens in the Pacific",
@@ -1791,33 +1791,33 @@
      "verified": true
     },
     {
-     "id": "gnews:03a66fb2bde0",
+     "id": "gnews:6d95ddf71d6e",
      "feed": "news:nmas.com.mx",
-     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOakdvd2FTY0VqY2NhR0U3d3NMUE5yR01oVTBaZWZCRlh6dm15SV9DdmU2OGlRYjlOTnUyNmtVbTFWenYyQ1FIM2NQb20yR0pLb0xvVXZTLW5nOFhnX1pXR3BrZW9FU1hOdmtoRjlyYU1yMHF5TmtwQTVaV01kY1QxMmZwMGNnSDVxNDVLX3BqbDJWQjdndy0wUFVpS2Zwd1EwZU9EVDQ1bXRFRzBRdDI4Rll6QTkyQnllcWVxYmNpcHRiYTNJ?oc=5",
-     "title": "Trayectoria de los Huracanes Polo y Odalys: ¿Se Pueden Juntar y Tocar Tierra en México? - N+",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPeGRUUFExcUYya1Q3RG9qYm9Jc1NDQjJ3bjBUX1BSNlg5RTE0Y1pEbEhpWFplbERTTkZrMHVYdkVQeW9CQmp6aXVtVlBQeER3MWp1d0xyUXZrTXpCd1Ewc1N1TkFRN1QtN1Q2OG1adGhEaGhWUXFEX29paUYzeGxBY2VwTUZuVFpGc0ExamN5ZnVsRTRTMzA5dGNlQkQzVDhLSzBJblVzRjJ5WXIyb05BdXVLZEllWjVjZDVNQ3JiUkI?oc=5",
+     "title": "Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria - N+",
      "lang": "es",
-     "published": "2026-09-23T13:07:57Z",
-     "quote": "Trayectoria de los Huracanes Polo y Odalys: ¿Se Pueden Juntar y Tocar Tierra en México?",
+     "published": "2026-09-23T10:05:32Z",
+     "quote": "Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria",
      "verified": true
     },
     {
-     "id": "gnews:68e5c4df2ff9",
-     "feed": "news:elfinanciero.com.mx",
-     "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQYklfcjZSR056TXBZX1A2d1E4cDZJZm9HVXNhTEV1UlZoR0U2VEJ2WjRTSTdUMXczdGx3QUZlZm90NTZDQ0JsU1JVSE1kUEVCN2hZS3lSdFVVSzVaeWtjdEtSc2pRaHNPWTFEY2hXTVJuX1k1cjlGWFdhT2ptZTR6ckIwQ3IwZDZPTlBDODNDYWF5RVh2QWFBcTNubEZBYmZBMU82TC0yNDk3OTdtNnNNMkhkZjV2OHhmMU53Y2JIVmRiMjRwTjFOcW1ybkM5eFB2cmg1czVhMU1YVXlyTmc?oc=5",
-     "title": "‘Odalys’ sube a huracán categoría 1 en el Pacífico: ¿Se juntará con ‘Polo’? Esta será su trayectoria - elfinanciero.com.mx",
+     "id": "gnews:2d5c15ffba66",
+     "feed": "news:sociedad-noticias.com",
+     "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTENOOFlNRDlEYjJQVnp4RTFrRlNzclZ0T1Z4dDBTX3hwa21ydlNRQ3VpVmlTcldwRWdyYnFEWmdXV05DdVRLcmlJdWphdExGQmVrWXJCY1dBWThvSHh4dkU1NnF1V0tnZGV6S2VuczFOSW4yREdmb20wNmpyRGlBMkFVMWljbHJySkcxaG9lMmVUbW5uQ1hrNFZIOXJ5SEl2VzhnNEtEd0FhNmkteHg2U3k5ZlA?oc=5",
+     "title": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h - Sociedad Noticias",
      "lang": "es",
-     "published": "2026-09-23T14:05:38Z",
-     "quote": "‘Odalys’ sube a huracán categoría 1 en el Pacífico: ¿Se juntará con ‘Polo’? Esta será su trayectoria",
+     "published": "2026-09-25T03:42:33Z",
+     "quote": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h",
      "verified": true
     },
     {
-     "id": "gnews:043811c4d93b",
-     "feed": "news:milenio.com",
-     "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOUzU0QWFtVGtweldVMWpnX0ZMYzcwcjdvNnJxSWJ3T1AwQjBDbDRmY0MzdTJrWEJGSmloeFdYeWZNMk1neVRVb0xKeEFkUmdoMHFFcjBnR0R1SFU5X0lSTktaT0xHWlp6QzRlaHdxV3Q0bm11aklBNFhIUGJzYVAyV1p2WEtqUTlEZlplUmF6bGVNb3hrSl80LXZvNmNUQdIBngFBVV95cUxQMmNHMVJDcklfb2JaeHdRdjVHZndxZGNGMTFVNk4ydUo3c3h3Sm0tZHVVbUxyMmFYVHZoaDZ5eVBMZGxvdy1KSElIVXc4WmpyODM0WW02TjlQZWVwZG4tOXZ4UC1uM0ZmNXk3M01UeTVLa2FfRzlSOEhTZ2puZWZnT2M1enZVakN6dzJLNk81bXhkWkE3MXpYTGc2aVZMUQ?oc=5",
-     "title": "Atención. Huracán 'Odalys' de categoría 1 avanza en el Pacífico: ¿Dónde se encuentra y qué estados serán afect - Milenio",
+     "id": "gnews:5af54cc13580",
+     "feed": "news:tribunadelabahia.com.mx",
+     "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNVU5UdEw3bEU1cHIzUnRiSjc5T1VicDh2YUVkU2dWMzE3Y1lqWURwc3ZPSWt5Y2lrM0htcTU5OUh3TmxwMlNQeWc4XzVLYks0ZUk1OEFoMHFHaTlXQzFsSW9XVEk4SmVzX1ZqUTROaHo2U1d1Tjl2UUJMbFZ2MVlqQXhuSQ?oc=5",
+     "title": "Huracán \"Odalys\" pasa de categoría 1 a 2 en 24 horas; así se ubica en el Pacífico - Tribuna de la Bahia",
      "lang": "es",
-     "published": "2026-09-23T15:41:00Z",
-     "quote": "Atención. Huracán 'Odalys' de categoría 1 avanza en el Pacífico: ¿Dónde se encuentra y qué estados serán afect",
+     "published": "2026-09-25T04:07:51Z",
+     "quote": "Huracán \"Odalys\" pasa de categoría 1 a 2 en 24 horas; así se ubica en el Pacífico",
      "verified": true
     }
    ],
@@ -1846,15 +1846,15 @@
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (es, nmas.com.mx): “Trayectoria de los Huracanes Polo y Odalys: ¿Se Pueden Juntar y Tocar Tierra en México?”",
-       "source_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOakdvd2FTY0VqY2NhR0U3d3NMUE5yR01oVTBaZWZCRlh6dm15SV9DdmU2OGlRYjlOTnUyNmtVbTFWenYyQ1FIM2NQb20yR0pLb0xvVXZTLW5nOFhnX1pXR3BrZW9FU1hOdmtoRjlyYU1yMHF5TmtwQTVaV01kY1QxMmZwMGNnSDVxNDVLX3BqbDJWQjdndy0wUFVpS2Zwd1EwZU9EVDQ1bXRFRzBRdDI4Rll6QTkyQnllcWVxYmNpcHRiYTNJ?oc=5",
-       "quote": "Trayectoria de los Huracanes Polo y Odalys: ¿Se Pueden Juntar y Tocar Tierra en México?",
+       "text": "Local-language press flags community impact (es, nmas.com.mx): “Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria”",
+       "source_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPeGRUUFExcUYya1Q3RG9qYm9Jc1NDQjJ3bjBUX1BSNlg5RTE0Y1pEbEhpWFplbERTTkZrMHVYdkVQeW9CQmp6aXVtVlBQeER3MWp1d0xyUXZrTXpCd1Ewc1N1TkFRN1QtN1Q2OG1adGhEaGhWUXFEX29paUYzeGxBY2VwTUZuVFpGc0ExamN5ZnVsRTRTMzA5dGNlQkQzVDhLSzBJblVzRjJ5WXIyb05BdXVLZEllWjVjZDVNQ3JiUkI?oc=5",
+       "quote": "Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (es, elfinanciero.com.mx): “‘Odalys’ sube a huracán categoría 1 en el Pacífico: ¿Se juntará con ‘Polo’? Esta será su trayectoria”",
-       "source_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQYklfcjZSR056TXBZX1A2d1E4cDZJZm9HVXNhTEV1UlZoR0U2VEJ2WjRTSTdUMXczdGx3QUZlZm90NTZDQ0JsU1JVSE1kUEVCN2hZS3lSdFVVSzVaeWtjdEtSc2pRaHNPWTFEY2hXTVJuX1k1cjlGWFdhT2ptZTR6ckIwQ3IwZDZPTlBDODNDYWF5RVh2QWFBcTNubEZBYmZBMU82TC0yNDk3OTdtNnNNMkhkZjV2OHhmMU53Y2JIVmRiMjRwTjFOcW1ybkM5eFB2cmg1czVhMU1YVXlyTmc?oc=5",
-       "quote": "‘Odalys’ sube a huracán categoría 1 en el Pacífico: ¿Se juntará con ‘Polo’? Esta será su trayectoria",
+       "text": "Local-language press flags community impact (es, sociedad-noticias.com): “Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h”",
+       "source_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTENOOFlNRDlEYjJQVnp4RTFrRlNzclZ0T1Z4dDBTX3hwa21ydlNRQ3VpVmlTcldwRWdyYnFEWmdXV05DdVRLcmlJdWphdExGQmVrWXJCY1dBWThvSHh4dkU1NnF1V0tnZGV6S2VuczFOSW4yREdmb20wNmpyRGlBMkFVMWljbHJySkcxaG9lMmVUbW5uQ1hrNFZIOXJ5SEl2VzhnNEtEd0FhNmkteHg2U3k5ZlA?oc=5",
+       "quote": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h",
        "verified": true
       }
      ],
@@ -1878,15 +1878,15 @@
        "verified": true
       },
       {
-       "text": "Market-moving coverage (es, nmas.com.mx): “Trayectoria de los Huracanes Polo y Odalys: ¿Se Pueden Juntar y Tocar Tierra en México?”",
-       "source_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOakdvd2FTY0VqY2NhR0U3d3NMUE5yR01oVTBaZWZCRlh6dm15SV9DdmU2OGlRYjlOTnUyNmtVbTFWenYyQ1FIM2NQb20yR0pLb0xvVXZTLW5nOFhnX1pXR3BrZW9FU1hOdmtoRjlyYU1yMHF5TmtwQTVaV01kY1QxMmZwMGNnSDVxNDVLX3BqbDJWQjdndy0wUFVpS2Zwd1EwZU9EVDQ1bXRFRzBRdDI4Rll6QTkyQnllcWVxYmNpcHRiYTNJ?oc=5",
-       "quote": "Trayectoria de los Huracanes Polo y Odalys: ¿Se Pueden Juntar y Tocar Tierra en México?",
+       "text": "Market-moving coverage (es, nmas.com.mx): “Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria”",
+       "source_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPeGRUUFExcUYya1Q3RG9qYm9Jc1NDQjJ3bjBUX1BSNlg5RTE0Y1pEbEhpWFplbERTTkZrMHVYdkVQeW9CQmp6aXVtVlBQeER3MWp1d0xyUXZrTXpCd1Ewc1N1TkFRN1QtN1Q2OG1adGhEaGhWUXFEX29paUYzeGxBY2VwTUZuVFpGc0ExamN5ZnVsRTRTMzA5dGNlQkQzVDhLSzBJblVzRjJ5WXIyb05BdXVLZEllWjVjZDVNQ3JiUkI?oc=5",
+       "quote": "Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (es, elfinanciero.com.mx): “‘Odalys’ sube a huracán categoría 1 en el Pacífico: ¿Se juntará con ‘Polo’? Esta será su trayectoria”",
-       "source_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQYklfcjZSR056TXBZX1A2d1E4cDZJZm9HVXNhTEV1UlZoR0U2VEJ2WjRTSTdUMXczdGx3QUZlZm90NTZDQ0JsU1JVSE1kUEVCN2hZS3lSdFVVSzVaeWtjdEtSc2pRaHNPWTFEY2hXTVJuX1k1cjlGWFdhT2ptZTR6ckIwQ3IwZDZPTlBDODNDYWF5RVh2QWFBcTNubEZBYmZBMU82TC0yNDk3OTdtNnNNMkhkZjV2OHhmMU53Y2JIVmRiMjRwTjFOcW1ybkM5eFB2cmg1czVhMU1YVXlyTmc?oc=5",
-       "quote": "‘Odalys’ sube a huracán categoría 1 en el Pacífico: ¿Se juntará con ‘Polo’? Esta será su trayectoria",
+       "text": "Market-moving coverage (es, sociedad-noticias.com): “Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h”",
+       "source_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTENOOFlNRDlEYjJQVnp4RTFrRlNzclZ0T1Z4dDBTX3hwa21ydlNRQ3VpVmlTcldwRWdyYnFEWmdXV05DdVRLcmlJdWphdExGQmVrWXJCY1dBWThvSHh4dkU1NnF1V0tnZGV6S2VuczFOSW4yREdmb20wNmpyRGlBMkFVMWljbHJySkcxaG9lMmVUbW5uQ1hrNFZIOXJ5SEl2VzhnNEtEd0FhNmkteHg2U3k5ZlA?oc=5",
+       "quote": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h",
        "verified": true
       }
      ],
@@ -2033,7 +2033,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-13T20:58:31Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en",
     "es"
@@ -2083,7 +2083,7 @@
      "id": "gnews:f0921691e54c",
      "feed": "news:cnnespanol.cnn.com",
      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMWJLNVo0bS1NQU5NV3VfcGhnbzNTZnFNQWpzdEx3TENxQWZDWlNUdVdXandxWGZieVRFTWhCdG14SmJOVTBEMnZNVGF0eHRkdzRSUHZnTGRpbmdHcG90QkpTeFZQZlQ2bXhYVUZTUHB4d2JEZm1QQWxKR0drX1RXNk9laWtiUnlzQk5uVzdn?oc=5",
-     "title": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes - cnnespanol.cnn.com",
+     "title": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes - CNN en Español",
      "lang": "es",
      "published": "2026-09-24T16:47:00Z",
      "quote": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes",
@@ -2093,20 +2093,10 @@
      "id": "gnews:db4b577146d2",
      "feed": "news:telemundo.com",
      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQ3ZBaXQ4S3VKVkF4N0QtMHQ1VEU3WUNhSU9hUDF5RGFid0N0M3lySzdGNmk5bkVRMHFxNFRUVlJQMHV1cGFuVVVTMnNjSDhlWDlKUFk1M2FuR2Q0eFJYb2pBTEIwWHVhY3lrT1N3SEY4VGphT25kUXVjUlJneDUtTVYxeG0zS1QwRFJnUE1QVnVPMjRQdFotUkdiVXlwU1gyV1hWTzIzZkRpQVpXWk81dHFmN01KMkNva1p6SkQ2ZFRWQVNRMlY3Y2pabmtlalB1UEttUFZ4NkE?oc=5",
-     "title": "El potente huracán Polo azota la costa de México, mientras Nolo se acerca a Hawaii - Telemundo",
+     "title": "El potente huracán Polo azota la costa de México, mientras Nolo se acerca a Hawaii - telemundo.com",
      "lang": "es",
      "published": "2026-09-24T18:35:38Z",
      "quote": "El potente huracán Polo azota la costa de México, mientras Nolo se acerca a Hawaii",
-     "verified": true
-    },
-    {
-     "id": "gnews:69eb5a85bb21",
-     "feed": "news:kcra.com",
-     "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBRVmFPWVY4dWU3WlJCYUJBcm1aQ3Zrc016NDhISEk2bTRyVDZTS3VRSG1RbTk0RTNleXNDM1NOeUlzZ0ZKQlBWQ1hsLVh0TkpPQUtQN0FDMGZpQmM3ZmpiLXdfa0JUbEN5bjdla3IyR1R6MWVqdjJ1cnE4dW8?oc=5",
-     "title": "Tracking Nolo: Storm becomes a hurricane in the Pacific, Hawaii prepares for heavy flooding - KCRA",
-     "lang": "en",
-     "published": "2026-09-25T05:26:00Z",
-     "quote": "Tracking Nolo: Storm becomes a hurricane in the Pacific, Hawaii prepares for heavy flooding",
      "verified": true
     },
     {
@@ -2127,6 +2117,16 @@
      "lang": "en",
      "published": "2026-09-25T08:42:00Z",
      "quote": "September 24, 2026 NOLO UPDATE: Will strengthen into a major hurricane; Jen Robbins",
+     "verified": true
+    },
+    {
+     "id": "gnews:8b57708b5d71",
+     "feed": "news:today.com",
+     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPT0tid0V4NGZOX2l2aEE1WHd0TUduLUk2dkU4YjdGSnNYSU44Z0NsUU83b3pvOUNJUFJBbUZLdXozd1Rnbm11QlZqZ3R4dDRaY29BY2puNmpJMy1MM2Y1Mll4Ym5BaVA5WGp3NHphaDJsZ0xxREo5bXNySkduakNneVlJSHc4MWhhN1BQTUxKd2hTOEJkQ0V6ZXpDY2hLU0ZMR21IMWxn?oc=5",
+     "title": "Tracking Nor'easter and Hurricane Nolo: See Al Roker's Forecast - TODAY.com",
+     "lang": "en",
+     "published": "2026-09-25T11:26:23Z",
+     "quote": "Tracking Nor'easter and Hurricane Nolo: See Al Roker's Forecast",
      "verified": true
     }
    ],
@@ -2317,7 +2317,7 @@
     {
      "factor": "velocity/recency",
      "points": 10,
-     "reason": "latest authority update 2h ago; 12 matching news items",
+     "reason": "latest authority update 3h ago; 12 matching news items",
      "source_url": ""
     },
     {
@@ -2351,7 +2351,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-19T15:06:02Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en"
    ],
@@ -2387,13 +2387,13 @@
      "verified": true
     },
     {
-     "id": "gnews:f8fabe05def4",
-     "feed": "news:orlandosentinel.com",
-     "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQNUhPcXl5Ni1GcTVnV1FtMUFLcHRObHdFRVE2Y0NrSjl2eV9CMzI2TVRkaXowRXdMaDBsb0RvbV9zVWlfZVZydDJDQVVtcXZNel85WjBkYWZrcmVXbVhRTFRwVTFkazV3R2N0R1dQLXhQSmJpVlFHYmpmVDlWSGxIOHRJaW5UYnRxX1hnc1Rhcjh6SEh4bkhVWm5WMTZEY1RLMHc?oc=5",
-     "title": "Hurricane center tracks reformed Tropical Storm Fay, 2nd Atlantic system with high odds to develop - Orlando Sentinel",
+     "id": "gnews:03fb64cf6a5c",
+     "feed": "news:houstonchronicle.com",
+     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
+     "title": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic - houstonchronicle.com",
      "lang": "en",
-     "published": "2026-09-24T07:00:00Z",
-     "quote": "Hurricane center tracks reformed Tropical Storm Fay, 2nd Atlantic system with high odds to develop",
+     "published": "2026-09-24T14:03:40Z",
+     "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
      "verified": true
     },
     {
@@ -2442,9 +2442,9 @@
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (en, orlandosentinel.com): “Hurricane center tracks reformed Tropical Storm Fay, 2nd Atlantic system with high odds to develop”",
-       "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQNUhPcXl5Ni1GcTVnV1FtMUFLcHRObHdFRVE2Y0NrSjl2eV9CMzI2TVRkaXowRXdMaDBsb0RvbV9zVWlfZVZydDJDQVVtcXZNel85WjBkYWZrcmVXbVhRTFRwVTFkazV3R2N0R1dQLXhQSmJpVlFHYmpmVDlWSGxIOHRJaW5UYnRxX1hnc1Rhcjh6SEh4bkhVWm5WMTZEY1RLMHc?oc=5",
-       "quote": "Hurricane center tracks reformed Tropical Storm Fay, 2nd Atlantic system with high odds to develop",
+       "text": "Local-language press flags community impact (en, houstonchronicle.com): “Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic”",
+       "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
+       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
        "verified": true
       },
       {
@@ -2474,9 +2474,9 @@
        "verified": true
       },
       {
-       "text": "Market-moving coverage (en, orlandosentinel.com): “Hurricane center tracks reformed Tropical Storm Fay, 2nd Atlantic system with high odds to develop”",
-       "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQNUhPcXl5Ni1GcTVnV1FtMUFLcHRObHdFRVE2Y0NrSjl2eV9CMzI2TVRkaXowRXdMaDBsb0RvbV9zVWlfZVZydDJDQVVtcXZNel85WjBkYWZrcmVXbVhRTFRwVTFkazV3R2N0R1dQLXhQSmJpVlFHYmpmVDlWSGxIOHRJaW5UYnRxX1hnc1Rhcjh6SEh4bkhVWm5WMTZEY1RLMHc?oc=5",
-       "quote": "Hurricane center tracks reformed Tropical Storm Fay, 2nd Atlantic system with high odds to develop",
+       "text": "Market-moving coverage (en, houstonchronicle.com): “Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic”",
+       "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
+       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
        "verified": true
       },
       {
@@ -2604,7 +2604,7 @@
    },
    "time_horizon": "0-72h (aftershocks, damage reports)",
    "first_signal_ts": "2026-09-20T09:17:35Z",
-   "alert_ts": "2026-09-25T17:14:37Z",
+   "alert_ts": "2026-09-25T17:15:14Z",
    "languages_seen": [
     "en"
    ],
