@@ -30,8 +30,42 @@ _FAILS = {"n": 0}
 USED = set()
 
 
+# LLM backend: "api" (ANTHROPIC_API_KEY) or "cli" (the local, logged-in Claude Code CLI in headless mode:
+# `claude -p`, which works with a Claude Pro/Max subscription - no API key needed). Auto-detected.
+import shutil, subprocess, tempfile
+CLI_MODEL = os.environ.get("SENTINEL_CLI_MODEL", "sonnet")
+
+
+def backend():
+    b = os.environ.get("SENTINEL_LLM", "").lower()
+    if b in ("off", "none", "deterministic"):
+        return None
+    if b == "cli" or (not b and not os.environ.get("ANTHROPIC_API_KEY") and shutil.which("claude")):
+        return "cli" if shutil.which("claude") else None
+    return "api" if os.environ.get("ANTHROPIC_API_KEY") else None
+
+
+def model_label():
+    return f"claude-code-cli ({CLI_MODEL})" if backend() == "cli" else MODEL
+
+
 def llm_on():
-    return bool(os.environ.get("ANTHROPIC_API_KEY")) and _FAILS["n"] < 3  # circuit breaker per process/cycle
+    return backend() is not None and _FAILS["n"] < 3  # circuit breaker per process/cycle
+
+
+def _call_cli(system, user_text):
+    """One headless Claude Code call: no tools, no MCP, no session saved, run from a temp dir (no CLAUDE.md)."""
+    env = {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}  # use the subscription login
+    cmd = ["claude", "-p", "--output-format", "json", "--model", CLI_MODEL, "--system-prompt", system,
+           "--tools", "", "--strict-mcp-config", "--no-session-persistence"]
+    r = subprocess.run(cmd, input=user_text, capture_output=True, text=True, timeout=180,
+                       cwd=tempfile.gettempdir(), env=env)
+    if r.returncode != 0:
+        raise RuntimeError(f"claude -p exit {r.returncode}: {(r.stderr or r.stdout)[:200]}")
+    out = json.loads(r.stdout)
+    if out.get("is_error"):
+        raise RuntimeError(f"claude -p error: {str(out.get('result'))[:200]}")
+    return out.get("result") or ""
 
 
 _CACHE_P = os.path.join("log", "llm_cache.json")
@@ -48,24 +82,30 @@ def llm_json(system, payload, max_tokens=1800):
     if not llm_on():
         return None, "deterministic"
     import hashlib
-    key = hashlib.sha1((MODEL + system + json.dumps(payload, sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()
+    label = model_label()
+    key = hashlib.sha1((label + system + json.dumps(payload, sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()
     if key in _CACHE:
-        return _CACHE[key], MODEL + " (cached)"
+        return _CACHE[key], label + " (cached)"
     try:
-        import anthropic
-        c = anthropic.Anthropic(timeout=60)
-        m = c.messages.create(model=MODEL, max_tokens=max_tokens, system=system + "\nReply with ONE JSON object only, no prose.",
-                              messages=[{"role": "user", "content": json.dumps(payload, ensure_ascii=False, default=str)[:60000]}])
-        txt = "".join(b.text for b in m.content if getattr(b, "type", "") == "text")
+        sysp = system + "\nReply with ONE JSON object only, no prose, no code fences."
+        user_text = json.dumps(payload, ensure_ascii=False, default=str)[:60000]
+        if backend() == "cli":
+            txt = _call_cli(sysp, user_text)
+        else:
+            import anthropic
+            c = anthropic.Anthropic(timeout=60)
+            m = c.messages.create(model=MODEL, max_tokens=max_tokens, system=sysp,
+                                  messages=[{"role": "user", "content": user_text}])
+            txt = "".join(b.text for b in m.content if getattr(b, "type", "") == "text")
         j = json.loads(txt[txt.index("{"): txt.rindex("}") + 1])
-        _FAILS["n"] = 0; USED.add(MODEL)
+        _FAILS["n"] = 0; USED.add(label)
         with _CACHE_LOCK:
             _CACHE[key] = j
             try:
                 os.makedirs("log", exist_ok=True); json.dump(_CACHE, open(_CACHE_P, "w"))
             except Exception:
                 pass
-        return j, MODEL
+        return j, label
     except Exception as ex:
         _FAILS["n"] += 1
         print(f"    LLM fallback: {type(ex).__name__}: {str(ex)[:100]}")

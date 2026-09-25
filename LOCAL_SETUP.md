@@ -7,15 +7,15 @@ Paste this into your local Claude Code session, run from the repo root:
 ## Steps
 1. `git fetch origin claude/festive-thompson-0dehkl && git checkout claude/festive-thompson-0dehkl && git pull`
 2. `cd sentinel && python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt`
-3. **API key.** Check that `ANTHROPIC_API_KEY` is set in the shell. If it isn't, ask the user to export it. Never print it, and never write it to a tracked file (`.env` is gitignored).
-4. **First live cycle:** `python -m src.run --once`. It should take under 3 minutes.
+3. **LLM backend: no API key needed.** The pipeline auto-detects the logged-in **Claude Code CLI** (`claude -p`, headless) and uses your Pro/Max subscription. Run `claude -p "say ok" --output-format json` once. It must print JSON with `"is_error": false`. If it doesn't, run `claude` and log in first.
+   - Auto-detect order: `SENTINEL_LLM=cli` (forced), then `ANTHROPIC_API_KEY` (API), then `claude` on PATH (CLI). `SENTINEL_LLM=off` forces deterministic.
+   - Optional: `SENTINEL_CLI_MODEL` (default `sonnet`).
+4. **First live cycle:** `python -m src.run --once`. With the CLI backend it takes **~3–4 minutes** (about 40 Claude calls, 4 in parallel).
    - Check: `python3 -c "import json;print(json.load(open('ui/data/alerts.json'))['mode'])"` prints `claude`.
-   - If it prints `deterministic`, look at the `LLM fallback:` lines in the output:
-     - An unknown model error means you should try `export SENTINEL_MODEL=claude-sonnet-4-5` (or another model the key can use) and rerun.
-     - A 401 means the key is wrong.
-   - Also check: `grep -c '"model": "claude' log/events.jsonl` is greater than 0.
-   - Spot-check the top 2 alerts' insurance brief bullets for sense: `python3 -c "import json;[print(a['name'],'\n ', '\n  '.join(b['text'] for b in a['briefs']['insurance']['bullets'])) for a in json.load(open('ui/data/alerts.json'))['alerts'][:2]]"`. Every bullet must still carry a quote. The verifier drops any that don't match.
-5. **Start the always-on loop** in its own terminal and leave it running: `python -m src.run --loop 300`. Claude responses are cached by an evidence hash, so an unchanged event isn't re-billed.
+   - Check: `grep -c '"model": "claude-code-cli' log/events.jsonl` is greater than 0.
+   - If it prints `deterministic`, read the `LLM fallback:` lines in the output. They usually mean the CLI isn't logged in.
+   - Spot-check the top 2 alerts' insurance bullets: `python3 -c "import json;[print(a['name'],'\n ', '\n  '.join(b['text'] for b in a['briefs']['insurance']['bullets'])) for a in json.load(open('ui/data/alerts.json'))['alerts'][:2]]"`.
+5. **Start the always-on loop** in its own terminal and leave it running: `python -m src.run --loop 300`. The first cycle takes ~3.5 min. Later cycles are faster, because unchanged events come from the Claude response cache. Claude responses are cached by an evidence hash, so an unchanged event isn't re-billed.
 6. **Serve the UI:** `python -m http.server 8000` in another terminal, then open http://localhost:8000/ui/
    - Check: the header chip says **Claude agents**, the feeds chip shows about 8 live feeds, and the run-log strip is filling up.
    - Press `B` for the backtest, `R` for route & notify, and `1`–`4` for the tabs.

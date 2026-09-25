@@ -35,7 +35,7 @@ EONET
 ```bash
 cd sentinel
 pip install -r requirements.txt
-export ANTHROPIC_API_KEY=...        # optional; without it the pipeline runs fully deterministic
+# LLM: uses the logged-in `claude` CLI (Pro/Max subscription) or ANTHROPIC_API_KEY; else deterministic
 python -m src.run --once            # one cycle, live feeds
 python -m src.run --loop 300 &      # always-on
 python -m http.server 8000          # open http://localhost:8000/ui/

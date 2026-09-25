@@ -19,3 +19,6 @@
 {"ts": "2026-09-25T17:25:31Z", "run_id": "de780fe4", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 29.4}
 {"ts": "2026-09-25T17:26:20Z", "run_id": "1a52235b", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 29.4}
 {"ts": "2026-09-25T17:31:49Z", "run_id": "ed091574", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 21.3}
+{"ts": "2026-09-25T17:37:10Z", "run_id": "ef12fa1f", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 16.9}
+{"ts": "2026-09-25T17:42:27Z", "run_id": "1ae84228", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 26.0}
+{"ts": "2026-09-25T17:46:37Z", "run_id": "08d5e2f5", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "claude", "duration_s": 211.5}

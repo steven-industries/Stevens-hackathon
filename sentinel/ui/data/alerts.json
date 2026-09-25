@@ -1,61 +1,61 @@
 {
- "generated_at": "2026-09-25T17:32:10Z",
- "run_id": "ed091574",
- "mode": "deterministic",
+ "generated_at": "2026-09-25T17:50:09Z",
+ "run_id": "08d5e2f5",
+ "mode": "claude",
  "feeds": [
   {
    "name": "gdacs",
    "items": 314,
    "status": "live",
-   "retrieved": "2026-09-25T17:31:52Z"
+   "retrieved": "2026-09-25T17:46:41Z"
   },
   {
    "name": "nhc_at",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:31:50Z"
+   "retrieved": "2026-09-25T17:46:38Z"
   },
   {
    "name": "nhc_ep",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:31:50Z"
+   "retrieved": "2026-09-25T17:46:38Z"
   },
   {
    "name": "nhc_cp",
    "items": 1,
    "status": "live",
-   "retrieved": "2026-09-25T17:31:50Z"
+   "retrieved": "2026-09-25T17:46:39Z"
   },
   {
    "name": "usgs",
    "items": 12,
    "status": "live",
-   "retrieved": "2026-09-25T17:31:51Z"
+   "retrieved": "2026-09-25T17:46:39Z"
   },
   {
    "name": "who_don",
    "items": 15,
    "status": "live",
-   "retrieved": "2026-09-25T17:31:50Z"
+   "retrieved": "2026-09-25T17:46:39Z"
   },
   {
    "name": "ecdc",
    "items": 10,
    "status": "live",
-   "retrieved": "2026-09-25T17:31:50Z"
+   "retrieved": "2026-09-25T17:46:39Z"
   },
   {
    "name": "eonet",
    "items": 80,
    "status": "live",
-   "retrieved": "2026-09-25T17:32:06Z"
+   "retrieved": "2026-09-25T17:46:51Z"
   }
  ],
  "alerts": [
   {
    "event_id": "tc-polo-2026",
-   "name": "Hurricane Polo",
+   "name": "Hurricane Polo - Mexico",
    "type": "TC",
    "status": "alert",
    "tier": "RED",
@@ -110,7 +110,7 @@
     "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml"
    },
    "confidence": "high",
-   "confidence_rationale": "9 independent sources (8 verified quotes) across 2 language(s); severity from NHC Saffir-Simpson",
+   "confidence_rationale": "NHC confirms Cat 5 (180 mph) winds, corroborated by GDACS Orange alert and 9 sources across 2 languages.",
    "geo": {
     "lat": 17.1,
     "lon": -108.5,
@@ -166,8 +166,8 @@
     "core_radius_km": 65
    },
    "time_horizon": "24-72h (NHC 5-day track)",
-   "first_signal_ts": "2026-09-21T06:39:52Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "first_signal_ts": "2026-09-21T03:24:00Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en",
     "es"
@@ -207,6 +207,17 @@
      "publisher": "gdacs.org"
     },
     {
+     "id": "gnews:f405208647ca",
+     "feed": "news:apnews.com",
+     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQTmJtZjhTNzh6OVR1SGotWXNSR1l3MG5WVWhYM1B4SWc0VU90UjJnZ1pocl9ZQUhuTWZ5bkVCNFpLcW9MZHJpTHYxR1NIOGNOY09hZlVkVlRrQkQ3SDh2Vlg4d3lscThaS1k0OE1qdHludEtEa0xnN0REcDFSYVUwaXNXUlpFQjFZWEcwMklQTUxmUQ?oc=5",
+     "title": "Tropical Storm Polo forms off southwestern Mexico - AP News",
+     "lang": "en",
+     "published": "2026-09-21T03:24:00Z",
+     "quote": "Tropical Storm Polo forms off southwestern Mexico",
+     "verified": true,
+     "publisher": "apnews.com"
+    },
+    {
      "id": "gnews:d2d2f03a531c",
      "feed": "news:latimes.com",
      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOMjVGZ2RBME9qQTVjaUs4VkJwOXhxdjA3OHBuVGZucktaYUJ3VkVWYl9LWC1Yckp0b3NKY0pMMTMxc0ZzSnU2WlBEbWV5TFItckRlTklLMnR3SnNpVUxrb2JMV2swT25BaXNobHpaQ2hRMDJHWnFzWjVmMC0wREtsSTRsS2w4YkVta0ZjSF96NHNVeDNPdGZ2UjRneHhxQkl0ckMzQjY0ejgwZC1ZeV8yS3ZNRExBSUJmZW94c29oTmRmVEtvSFE?oc=5",
@@ -229,17 +240,6 @@
      "publisher": "yaleclimateconnections.org"
     },
     {
-     "id": "gnews:6de5dcebdb8b",
-     "feed": "news:edition.cnn.com",
-     "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQRUo0RnNxWHdnXzIwWVlha1FVQ2xXM05aOFlMdVZZMGw0VlJ0NmEzMk5RcmppT3lfSEFWbElvWDlWcHoyZmRLNWpncEd0YlhfeVp0djBpVV81Sk13c3hXVlZ5R21tdjd6dUYycFhKeDdHLTBfc001QUlvSXYyQ1p0R2JtSnlXMFAxc3lv?oc=5",
-     "title": "Hurricane Polo weakens some after feasting on hot El Niño water to become rare Category 5 - CNN",
-     "lang": "en",
-     "published": "2026-09-22T13:03:34Z",
-     "quote": "Hurricane Polo weakens some after feasting on hot El Niño water to become rare Category 5",
-     "verified": true,
-     "publisher": "cnn.com"
-    },
-    {
      "id": "gnews:6ad005f264b0",
      "feed": "news:dw.com",
      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOU2JUZ3o0QXpoSHZ3S21IaGpLX1NhSTlCQlJsSVpGbkdPQjZaRTNRYkRKeUpaTDhvMzI0d3RZOWFyQ1VTTHVyelU3ODRYWnpMMjE4R3pVaHdXMWpHV1ZHTkZlbHpfcXZVem9GTjE0eVZ1ZG9OSDVvdGYzdWFQNDdMYmxvUk1VeUNHaHYxWlNoRFJpSllTanRra01HU29zSmMzWktLV0o5alJJemw2TWfSAa4BQVVfeXFMUERTTzBPZXVWb3VUS3E2RndYU3BzdFpZQUFrZnNUdnVhZVpoYzFXLXJyM2E1R3JmVkFwM1dMMVVKZnFPemdjTGRYbTlHRE9pMlJ2UGVsZEliN0o5b3NkbS0tamxPQjhTcFFZaXJNaWhrbW5NRHpFR1E1SHZMeVhFcGVVb1ZKUnM1WERveWNTYVkxN1VyNzA3MUNRdkdKd1FHNDhkUFpWY3Npb1RtYmVR?oc=5",
@@ -251,6 +251,17 @@
      "publisher": "dw.com"
     },
     {
+     "id": "gnews:81cbe3d30f19",
+     "feed": "news:cnnespanol.cnn.com",
+     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOVFdrX0FiZUNVSDRPNFU0SzlyQjFaOXQtUy1iNGRPMW5LdkxkeXZpSTVqOE5LbThXR0FXdmJTUktvRmdiR2pRblZjOU93b09xUk9CS3d1Q1ZKMFBPVkpRNktNTmdOekwzTU1QVzN1MG9XTkhLRjNEM1VtOHF6OHBRbWJsOU5lWEV4V1J3OGNTWGtITTVadUdr?oc=5",
+     "title": "Imágenes de los daños del huracán Polo en México - cnnespanol.cnn.com",
+     "lang": "es",
+     "published": "2026-09-24T23:12:44Z",
+     "quote": "Imágenes de los daños del huracán Polo en México",
+     "verified": true,
+     "publisher": "cnn.com"
+    },
+    {
      "id": "gnews:2447f6f4364a",
      "feed": "news:elpais.com",
      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOSnRjRHNmVlBsYTdwSi1US21SODNDUFp1Qjd1WWNwLTdTRFBtSWtQSDgxdDdDWmNNc0hWenRZc1p6YmwyNTB1R1dySFZUdE5OejZLQl8teFA0c0NuQnJCUVdPLXRGalU1UGoxeS1NeG1tXzE3WnRrdFNJWjlUS1FRMF9oeEhIVVpFWHBjMVRaYWdmT2cwdmlYejZ0MVBSZW05Ri05cmc2b3BRVTZDXzRya1ZFSjY4cW9OTnVOLXZaemNzV3V2ZkEzZGJTRG53eDNva19UcWt1SVRZRUpfbC03S1R4aUlUVEhnV29oV015QzY0Nk44N1pV0gGLAkFVX3lxTFAyT0VZSF9kUnFNQjNlYmNoNmt4aE41MU5LamVGTHpZMjlNcHl1bUZJRW1XNVlIbkM1VW9FTHBKeTlsS2lHbmJKaFRBYVFHTHJwXzgzZ0xTcmpXZnpEWmVMTmxxQkpfcV9oTkJrZnBVdDUydkZnOE9BMGdYVDFxejBwbVNnOEV4MlFQY0Y2UlJGX19ubFZySUR3YUFQaXRqLXhQblFjQVgtQjdBN2VEVkdrX0N0NjJrbWFPd0x3N2Y3azBnOG9Pc0xLbUJNMVRCVjJzSl9JNXFqOEhVOEk3WnZuUVU5endkZ3NsUkFMZmhEVTJ1Ylp0VlpDYk9VMmZSdy1sMFN1NkEzVVZ5RQ?oc=5",
@@ -260,17 +271,6 @@
      "quote": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo”",
      "verified": true,
      "publisher": "elpais.com"
-    },
-    {
-     "id": "gnews:5065c9237b63",
-     "feed": "news:informador.mx",
-     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPdjlkUndXRGhxVlR6a3hKX2NBVHI2a1ZHSERaMmpsN3lnS2xSaXlCQlczOXZ3akNoQXFlS2pBQm9pWXByTkIwTTlmSU5lcTB4cDZXTWlzb3NQWW5Qd0IwTDN4RWF1eUdOMnh3WmJ5YmpVTUVIWXp1MEp0eDdEck14MEwtRUJxVnB4WHQ4REl4SS1Vb0tLcjlyQUNuVGZCcUcyMVR5eUE2c1l6eTVGbDJLS05xVThqZkcwYXVJQnpaVlVoX2ZoaHpXd0RUTFR5SlhH0gHWAUFVX3lxTFBneHhfdE95YnIwRWJzMk9CbkROeXBBTi1tbE02b1lzdXlnQ2dmSXB0UXZTSXVfUEl4a1Q5MjB2RDJ2cEpJRkN4cGd0a05jdENaY3JFSHFJbDQtZGJtZWFFWkJkS1RSMTRwWG5CQ0hiQ2puYTRfRTExNnJSVDg0OUlxZjFQREI0aDFhVHYyV0xyZTRBVE9PQU9wSmFTSTZHZ2F2UlVkLTFra25YTEFzbjlNRUZGWHd4a0M4WXZsSFpWaXNiUFB6b0I4WXUxNXFxZjgxb0l4d2c?oc=5",
-     "title": "Huracán \"Polo\" retoma fuerza y alcanza la categoría 5 frente a las costas de Jalisco - El Informador",
-     "lang": "es",
-     "published": "2026-09-25T13:44:18Z",
-     "quote": "Huracán \"Polo\" retoma fuerza y alcanza la categoría 5 frente a las costas de Jalisco",
-     "verified": true,
-     "publisher": "informador.mx"
     }
    ],
    "exposure": {
@@ -367,102 +367,78 @@
    },
    "briefs": {
     "health": {
-     "headline": "Hurricane Polo: health impact watch (RED)",
+     "headline": "Cat 5 Hurricane Polo threatens ~0.7M people in Baja California Sur; landfall timing still uncertain, no watches issued yet",
      "bullets": [
       {
-       "text": "Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core: “The minimum central pressure was 900 mb with maximum sustained winds of about 180 mph”",
+       "text": "Polo is at peak Category 5 intensity (180 mph sustained winds, 900 mb) as it tracks toward Baja California Sur, raising risk of mass-casualty wind and storm-surge trauma if landfall intensity holds.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
-       "quote": "The minimum central pressure was 900 mb with maximum sustained winds of about 180 mph",
+       "quote": "POLO IS AN EXTREMELY POWERFUL CATEGORY 5 HURRICANE",
        "verified": true
       },
       {
-       "text": "Heavy rain / flash-flood hazard raises waterborne-disease and access-to-care risk: “RAINFALL: Polo is expected to produce rainfall totals of 4 to 8 inches with maximum amounts of 10 inches across portions of Baja California Sur”",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
-       "quote": "RAINFALL: Polo is expected to produce rainfall totals of 4 to 8 inches with maximum amounts of 10 inches across portions of Baja California Sur",
-       "verified": true
-      },
-      {
-       "text": "Storm surge / surf hazard (NHC): “These swells are likely to cause life-threatening surf, rip currents, and coastal flooding”",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
-       "quote": "These swells are likely to cause life-threatening surf, rip currents, and coastal flooding",
-       "verified": true
-      },
-      {
-       "text": "GDACS population exposure estimate for the wind field: “Population affected by Category 1 (120 km/h) wind speeds or higher is 0.703 million”",
+       "text": "GDACS estimates roughly 0.7 million people are within the Category 1+ wind screening buffer, a population base for triage planning, shelter capacity, and hospital surge staffing along the projected track.",
        "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001325",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0.703 million",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0.703 million .",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (es, dw.com): “Huracán Polo retoma fuerza y pone en alerta al occidente de México”",
-       "source_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOU2JUZ3o0QXpoSHZ3S21IaGpLX1NhSTlCQlJsSVpGbkdPQjZaRTNRYkRKeUpaTDhvMzI0d3RZOWFyQ1VTTHVyelU3ODRYWnpMMjE4R3pVaHdXMWpHV1ZHTkZlbHpfcXZVem9GTjE0eVZ1ZG9OSDVvdGYzdWFQNDdMYmxvUk1VeUNHaHYxWlNoRFJpSllTanRra01HU29zSmMzWktLV0o5alJJemw2TWfSAa4BQVVfeXFMUERTTzBPZXVWb3VUS3E2RndYU3BzdFpZQUFrZnNUdnVhZVpoYzFXLXJyM2E1R3JmVkFwM1dMMVVKZnFPemdjTGRYbTlHRE9pMlJ2UGVsZEliN0o5b3NkbS0tamxPQjhTcFFZaXJNaWhrbW5NRHpFR1E1SHZMeVhFcGVVb1ZKUnM1WERveWNTYVkxN1VyNzA3MUNRdkdKd1FHNDhkUFpWY3Npb1RtYmVR?oc=5",
-       "quote": "Huracán Polo retoma fuerza y pone en alerta al occidente de México",
+       "text": "NHC forecasts Polo will still be a 'strong hurricane' at approach early next week, meaning health-system strain (trauma surge, power/water loss to clinics) should be anticipated even if some weakening occurs offshore.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
+       "quote": "Polo is forecast to approach Baja California Sur as a strong hurricane early next week.",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (es, elpais.com): “El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo””",
-       "source_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOSnRjRHNmVlBsYTdwSi1US21SODNDUFp1Qjd1WWNwLTdTRFBtSWtQSDgxdDdDWmNNc0hWenRZc1p6YmwyNTB1R1dySFZUdE5OejZLQl8teFA0c0NuQnJCUVdPLXRGalU1UGoxeS1NeG1tXzE3WnRrdFNJWjlUS1FRMF9oeEhIVVpFWHBjMVRaYWdmT2cwdmlYejZ0MVBSZW05Ri05cmc2b3BRVTZDXzRya1ZFSjY4cW9OTnVOLXZaemNzV3V2ZkEzZGJTRG53eDNva19UcWt1SVRZRUpfbC03S1R4aUlUVEhnV29oV015QzY0Nk44N1pV0gGLAkFVX3lxTFAyT0VZSF9kUnFNQjNlYmNoNmt4aE41MU5LamVGTHpZMjlNcHl1bUZJRW1XNVlIbkM1VW9FTHBKeTlsS2lHbmJKaFRBYVFHTHJwXzgzZ0xTcmpXZnpEWmVMTmxxQkpfcV9oTkJrZnBVdDUydkZnOE9BMGdYVDFxejBwbVNnOEV4MlFQY0Y2UlJGX19ubFZySUR3YUFQaXRqLXhQblFjQVgtQjdBN2VEVkdrX0N0NjJrbWFPd0x3N2Y3azBnOG9Pc0xLbUJNMVRCVjJzSl9JNXFqOEhVOEk3WnZuUVU5endkZ3NsUkFMZmhEVTJ1Ylp0VlpDYk9VMmZSdy1sMFN1NkEzVVZ5RQ?oc=5",
-       "quote": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo”",
+       "text": "As of the latest advisory no coastal watches/warnings are yet in effect, meaning local health authorities and hospitals in Baja California Sur have not yet been triggered into formal evacuation/surge protocols despite the Cat 5 threat.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
+       "quote": "There are no coastal watches or warnings in effect.",
+       "verified": true
+      },
+      {
+       "text": "Some intensity fluctuation and weakening is possible before landfall, which could modestly reduce trauma casualty load but should not be relied upon for health-system capacity planning given continued Cat 5 status now.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
+       "quote": "Fluctuations in intensity are possible today, but some weakening is expected over the weekend.",
        "verified": true
       }
      ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "No confirmed casualty, injury, or hospital-capacity figures are available in the cited sources; population-affected estimate (0.703M) is a modeled exposure figure, not a health-impact count.",
+      "Insured lives figures in the underlying exposure data (travel/A&H) are from a synthetic demo book and were not cited here because no matching portfolio_lines text was provided in sources.",
+      "Track and intensity are still evolving (forecast turn to north/northeast expected Sat–Mon); health-system strain magnitude will depend on final landfall location and timing not yet determined.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "Hurricane Polo: market/sector read-through for Mexico",
+     "headline": "Hurricane Polo (Cat 5, 180mph) tracks toward Baja California Sur — commercial property, HNW homeowners and BI exposure concentrated in the screening buffer",
      "bullets": [
       {
-       "text": "Regional market read-through for Mexico: tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.",
+       "text": "Polo remains an extremely powerful Category 5 system with 180 mph sustained winds, keeping tail risk elevated for Mexican Pacific coast exposures until the forecast turn materializes.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
        "quote": "POLO IS AN EXTREMELY POWERFUL CATEGORY 5 HURRICANE",
        "verified": true
       },
       {
-       "text": "Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).",
+       "text": "NHC forecasts Polo to approach Baja California Sur as a strong hurricane early next week, which is the key catalyst for regional equity, tourism-sector, and insurance-linked-securities sentiment over the coming sessions.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
-       "quote": "As of 8:00 AM MST Fri Sep 25 the center of Polo was located near 17.1, -108.5 with movement W at 12 mph",
+       "quote": "Polo is forecast to approach Baja California Sur as a strong hurricane early next week.",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (es, dw.com): “Huracán Polo retoma fuerza y pone en alerta al occidente de México”",
-       "source_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOU2JUZ3o0QXpoSHZ3S21IaGpLX1NhSTlCQlJsSVpGbkdPQjZaRTNRYkRKeUpaTDhvMzI0d3RZOWFyQ1VTTHVyelU3ODRYWnpMMjE4R3pVaHdXMWpHV1ZHTkZlbHpfcXZVem9GTjE0eVZ1ZG9OSDVvdGYzdWFQNDdMYmxvUk1VeUNHaHYxWlNoRFJpSllTanRra01HU29zSmMzWktLV0o5alJJemw2TWfSAa4BQVVfeXFMUERTTzBPZXVWb3VUS3E2RndYU3BzdFpZQUFrZnNUdnVhZVpoYzFXLXJyM2E1R3JmVkFwM1dMMVVKZnFPemdjTGRYbTlHRE9pMlJ2UGVsZEliN0o5b3NkbS0tamxPQjhTcFFZaXJNaWhrbW5NRHpFR1E1SHZMeVhFcGVVb1ZKUnM1WERveWNTYVkxN1VyNzA3MUNRdkdKd1FHNDhkUFpWY3Npb1RtYmVR?oc=5",
-       "quote": "Huracán Polo retoma fuerza y pone en alerta al occidente de México",
-       "verified": true
-      },
-      {
-       "text": "Market-moving coverage (es, elpais.com): “El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo””",
-       "source_url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOSnRjRHNmVlBsYTdwSi1US21SODNDUFp1Qjd1WWNwLTdTRFBtSWtQSDgxdDdDWmNNc0hWenRZc1p6YmwyNTB1R1dySFZUdE5OejZLQl8teFA0c0NuQnJCUVdPLXRGalU1UGoxeS1NeG1tXzE3WnRrdFNJWjlUS1FRMF9oeEhIVVpFWHBjMVRaYWdmT2cwdmlYejZ0MVBSZW05Ri05cmc2b3BRVTZDXzRya1ZFSjY4cW9OTnVOLXZaemNzV3V2ZkEzZGJTRG53eDNva19UcWt1SVRZRUpfbC03S1R4aUlUVEhnV29oV015QzY0Nk44N1pV0gGLAkFVX3lxTFAyT0VZSF9kUnFNQjNlYmNoNmt4aE41MU5LamVGTHpZMjlNcHl1bUZJRW1XNVlIbkM1VW9FTHBKeTlsS2lHbmJKaFRBYVFHTHJwXzgzZ0xTcmpXZnpEWmVMTmxxQkpfcV9oTkJrZnBVdDUydkZnOE9BMGdYVDFxejBwbVNnOEV4MlFQY0Y2UlJGX19ubFZySUR3YUFQaXRqLXhQblFjQVgtQjdBN2VEVkdrX0N0NjJrbWFPd0x3N2Y3azBnOG9Pc0xLbUJNMVRCVjJzSl9JNXFqOEhVOEk3WnZuUVU5endkZ3NsUkFMZmhEVTJ1Ylp0VlpDYk9VMmZSdy1sMFN1NkEzVVZ5RQ?oc=5",
-       "quote": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo”",
+       "text": "GDACS flags an Orange alert with roughly 0.7 million people exposed to Category 1+ winds in Mexico, a scale that argues for caution on Mexico-linked cat bonds and regional insurer equities pending track confirmation.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001325",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0.703 million .",
        "verified": true
       }
      ],
      "caveats": [
-      "Not investment advice; directional only."
+      "This is a market/portfolio-impact discussion for informational purposes only and is not investment, insurance, or financial advice.",
+      "Exposure and TIV figures are drawn from a SYNTHETIC demo book (seeded generator, not real policies) and do not represent actual client holdings.",
+      "Storm track, intensity, and landfall probability remain uncertain per NHC's own advisory language; positioning should await further advisories.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
-     "headline": "Hurricane Polo: 62 sites / $1.52B within 350 km screening buffer; 0 / $0 in ~65 km hurricane-force core — accumulation ELEVATED",
+     "headline": "Hurricane Polo - Mexico: 62 sites / $1.52B within 350 km screening buffer; 0 / $0 in ~65 km hurricane-force core — accumulation ELEVATED",
      "bullets": [
-      {
-       "text": "Authority severity Cat 5 (180 mph) (NHC Saffir-Simpson) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
-       "quote": "POLO IS AN EXTREMELY POWERFUL CATEGORY 5 HURRICANE",
-       "verified": true
-      },
-      {
-       "text": "Synthetic book: 62 sites / $1.52B TIV within 350 km screening buffer of the NHC forecast track; 0 sites / $0 within ~65 km hurricane-force core.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Synthetic book: 62 sites / $1.52B TIV within 350 km screening buffer of the NHC forecast track; 0 sites / $0 within ~65 km hurricane-force core.",
-       "verified": true
-      },
-      {
-       "text": "By line — Commercial Property 32 policies / $968M (incl. BI time element $384M); HNW Homeowners 25 policies / $99M; Marine Cargo 5 policies / $66M; Energy none. Insured lives in area (pro-rated): 8,183 Travel/A&H.",
-       "source_url": "portfolio://synthetic",
-       "quote": "By line — Commercial Property 32 policies / $968M (incl. BI time element $384M); HNW Homeowners 25 policies / $99M; Marine Cargo 5 policies / $66M; Energy none. Insured lives in area (pro-rated): 8,183 Travel/A&H.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: ELEVATED — consider binding restrictions / moratorium for new business in the watch area; run accumulation check. Reserving posture: watch (pre-landfall — reserves are not strengthened before the event occurs).",
        "source_url": "portfolio://synthetic",
@@ -470,30 +446,51 @@
        "verified": true
       },
       {
-       "text": "Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.",
+       "text": "NHC has Polo at peak Cat 5 intensity approaching Baja California Sur; commercial property, BI time-element, HNW homeowners and marine cargo exposure in the region should be flagged for claims-exposure monitoring, not reserve action, ahead of landfall.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
-       "quote": "INTERESTS IN BAJA CALIFORNIA SUR SHOULD MONITOR ITS PROGRESS",
+       "quote": "MAXIMUM SUSTAINED WINDS...180 MPH...285 KM/H",
        "verified": true
       },
       {
-       "text": "Check cat XoL retention erosion and ILW/parametric cat-bond trigger boxes against the forecast track.",
+       "text": "Synthetic book shows 62 policies / $1.52B TIV within the 350 km screening buffer of the current NHC forecast track, with no sites currently inside the hurricane-force wind core — track shift risk remains the key accumulation driver.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Synthetic book: 62 sites / $1.52B TIV within 350 km screening buffer of the NHC forecast track; 0 sites / $0 within ~65 km hurricane-force core.",
+       "verified": true
+      },
+      {
+       "text": "Line-of-business breakdown: Commercial Property $968M (incl. $384M BI time element) is the dominant accumulation, with HNW Homeowners $99M and Marine Cargo $66M secondary; Travel/A&H tracked as 8,183 insured lives, not TIV, for the exposed area.",
+       "source_url": "portfolio://synthetic",
+       "quote": "By line — Commercial Property 32 policies / $968M (incl. BI time element $384M); HNW Homeowners 25 policies / $99M; Marine Cargo 5 policies / $66M; Energy none. Insured lives in area (pro-rated): 8,183 Travel/A&H.",
+       "verified": true
+      },
+      {
+       "text": "Inner-core wind radius per NHC advisory (hurricane-force winds out to 40 miles/65 km) currently captures zero portfolio sites, but the tropical-storm-force radius (115 miles/185 km) is wide enough that a westward track wobble could pull property TIV into the severe-wind band quickly.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP2+shtml/251449.shtml",
-       "quote": "As of 8:00 AM MST Fri Sep 25 the center of Polo was located near 17.1, -108.5 with movement W at 12 mph",
+       "quote": "Hurricane-force winds extend outward up to 40 miles (65 km) from the center and tropical-storm-force winds extend outward up to 115 miles (185 km).",
+       "verified": true
+      },
+      {
+       "text": "GDACS Orange notification underscores broad population exposure in the screening buffer corridor, relevant context for A&H/Travel lives accumulation even though policy TIV there is nil by definition.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001325",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0.703 million .",
        "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Portfolio figures are from a SYNTHETIC demo book (seeded generator, not real policies) — not actual bound exposure.",
+      "Screening buffer (350 km) is a monitoring radius, not a loss footprint; actual impact depends on final track, intensity, and landfall location, all of which remain uncertain at this forecast stage.",
+      "No reserve strengthening is recommended pre-landfall; this is a forecast/watch-stage hazard.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "watch",
      "accumulation_action": "ELEVATED — consider binding restrictions / moratorium for new business in the watch area; run accumulation check"
     }
    },
    "unknowns": [
-    "Landfall location/timing beyond the NHC cone",
-    "Storm-surge and rainfall damage extent",
-    "Insured vs economic loss split"
+    "Landfall location and timing not confirmed",
+    "Extent of physical/economic damage not yet reported",
+    "Casualty or injury figures not available",
+    "Insured asset exposure in affected area unknown"
    ],
    "routing": [
     {
@@ -502,7 +499,7 @@
      "channel": "email",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[RED P1] Hurricane Polo: NHC Saffir-Simpson Cat 5 (180 mph). 62 sites / $1.52B TIV within 350 km screening buffer; 0 sites / $0 in ~65 km hurricane-force core. Accumulation ELEVATED: consider binding restrictions/moratorium on new business in the watch area. Reserving: watch. Largest: Cabo San Lucas Commercial #1945."
+     "message": "[RED P1] Hurricane Polo - Mexico: Cat 5 (180 mph). 62 sites / $1.52B TIV within 350 km screening buffer; 0 sites / $0 in ~65 km hurricane-force core. Accumulation ELEVATED: consider binding restrictions/moratorium on new business in the watch area. Reserving: watch. Largest: Cabo San Lucas Commercial #1945."
     },
     {
      "persona": "Head of Claims",
@@ -510,7 +507,7 @@
      "channel": "slack",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[RED P1] Hurricane Polo: 62 insured sites in 350 km screening buffer ($1.52B TIV); 0 sites / $0 in ~65 km hurricane-force core. Pre-position adjusters; FNOL surge possible within 24-72h (NHC 5-day track)."
+     "message": "[RED P1] Hurricane Polo - Mexico: 62 insured sites in 350 km screening buffer ($1.52B TIV); 0 sites / $0 in ~65 km hurricane-force core. Pre-position adjusters; FNOL surge possible within 24-72h (NHC 5-day track)."
     },
     {
      "persona": "Cat Modeling/Accumulation desk",
@@ -518,7 +515,7 @@
      "channel": "slack",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[RED P1] Hurricane Polo (NHC Saffir-Simpson Cat 5 (180 mph)). Accumulation ELEVATED: $1.52B TIV within 350 km screening buffer; 0 sites / $0 in ~65 km hurricane-force core. Run accumulation check vs zones; check XoL retention and ILW/cat-bond triggers."
+     "message": "[RED P1] Hurricane Polo - Mexico (Cat 5, 180 mph). Accumulation ELEVATED: $1.52B TIV within 350 km screening buffer; 0 sites / $0 in ~65 km hurricane-force core. Run accumulation check vs zones; check XoL retention and ILW/cat-bond triggers."
     },
     {
      "persona": "CIO",
@@ -526,7 +523,7 @@
      "channel": "email",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[RED P1] Hurricane Polo (NHC Saffir-Simpson Cat 5 (180 mph)) in Mexico. Book exposure: $1.52B TIV, 8,183 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
+     "message": "[RED P1] Hurricane Polo - Mexico (Cat 5, 180 mph). Book exposure: $1.52B TIV, 8,183 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
     },
     {
      "persona": "Head of A&H/Travel",
@@ -534,7 +531,7 @@
      "channel": "email",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[RED P2] Hurricane Polo: ~8,183 insured Travel/A&H lives in the 350 km screening buffer (pro-rated, synthetic). Check assistance capacity and evacuation readiness."
+     "message": "[RED P2] Hurricane Polo - Mexico: ~8,183 insured Travel/A&H lives in the 350 km screening buffer (pro-rated, synthetic). Check assistance capacity and evacuation readiness."
     },
     {
      "persona": "Public",
@@ -542,13 +539,13 @@
      "channel": "public",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "Hurricane Polo: official status NHC Saffir-Simpson Cat 5 (180 mph). Follow local authority guidance. (Automated early-warning summary; may change.)"
+     "message": "Hurricane Polo - Mexico: official status Cat 5 (180 mph). Follow local authority guidance. (Automated early-warning summary; may change.)"
     }
    ]
   },
   {
    "event_id": "out-ebola-dr-congo-2026",
-   "name": "Ebola (Bundibugyo virus) outbreak — DR Congo",
+   "name": "Ebola Outbreak (Bundibugyo Virus) - DR Congo",
    "type": "OUTBREAK",
    "status": "alert",
    "tier": "RED",
@@ -598,7 +595,7 @@
     "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618"
    },
    "confidence": "high",
-   "confidence_rationale": "10 independent sources (10 verified quotes) across 3 language(s); severity from WHO DON",
+   "confidence_rationale": "WHO DON 2026-DON618 rates national risk very high, corroborated by 10 sources in 3 languages with recent updates.",
    "geo": {
     "lat": 0.883,
     "lon": 27.5,
@@ -664,7 +661,7 @@
    },
    "time_horizon": "2-6 weeks",
    "first_signal_ts": "2026-09-02T07:00:00Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en",
     "fr",
@@ -870,90 +867,84 @@
    },
    "briefs": {
     "health": {
-     "headline": "Ebola (Bundibugyo virus) outbreak — DR Congo: health impact watch (RED)",
+     "headline": "Bundibugyo Ebola outbreak expands to seven DR Congo provinces with CFR near 48%, straining health system amid 63 affected health zones",
      "bullets": [
       {
-       "text": "WHO case/death count: “As of 23 September 2026, the Democratic Republic of the Congo has reported 7890 confirmed cases, including 3799 deaths, resulting in a crude case fatality ratio (CFR)…”",
+       "text": "WHO rates national risk as very high; outbreak has grown to 63 health zones across seven provinces after expanding into a new province (Sud Ubangi) and Haut-Uélé's Dungu zone, raising cross-border transmission risk.",
        "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
-       "quote": "As of 23 September 2026, the Democratic Republic of the Congo has reported 7890 confirmed cases, including 3799 deaths, resulting in a crude case fatality ratio (CFR) of 48.1%",
+       "quote": "This brings the total number of affected health zones to 63 across seven provinces out of 26 provinces of the country",
        "verified": true
       },
       {
-       "text": "Spread across health zones signals health-system strain: “Since the last Disease Outbreak News was published on 11 September 2026, the Bundibugyo virus outbreak in the Democratic Republic of the Congo has expanded further,…”",
+       "text": "As of 23 September 2026, DRC has reported 7,890 confirmed cases and 3,799 deaths, a crude case fatality ratio of 48.1%, indicating severe strain on case detection and treatment capacity.",
        "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
-       "quote": "Since the last Disease Outbreak News was published on 11 September 2026, the Bundibugyo virus outbreak in the Democratic Republic of the Congo has expanded further, with two additional health zones affected",
+       "quote": "7890 confirmed cases, including 3799 deaths, resulting in a crude case fatality ratio (CFR) of 48.1%",
        "verified": true
       },
       {
-       "text": "WHO on onward-spread risk: “The population at greatest risk of exposure is concentrated in communities living in and moving through the health areas with active transmission”",
+       "text": "National daily case counts remain high, with a resurgence in early September followed by only a partial decline in the most recent days, though transmission intensity varies sharply by province and health zone.",
        "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
-       "quote": "The population at greatest risk of exposure is concentrated in communities living in and moving through the health areas with active transmission",
+       "quote": "The seven-day moving average shows a resurgence in early September followed by a decline over the most recent reporting days.",
        "verified": true
       },
       {
-       "text": "Multilingual press (fr, lemonde.fr): “Ebola en RDC : l’épidémie cause plus de 3 000 morts, sur plus de 6 000 cas confirmés”",
-       "source_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPY0drYlVDMDVPYUktQ21nZ3RDNTVIcUFBNEFCMHVuaDNqWHZhOTdkM2FFYWhEMVRuWDZydTJ2WHIyc0ZPVlJFbkhIUFJMX3V4ZUdWT3hHZktDY1daWktCYWhKenVmNjMwT05xTkJjV2NYcXJyWVVsNjBySlA3ZGkxTTVGcnNoSWtoNWc3S2U1TmVETHNJVTBlN0cyNW5GV09kcDFHQk96cWtTSEJWdEpkV3NKeTJ2MmZnXzdEeXQ3YjIybzJvX3BxeDhIU2pxd1NSTHhFOTR0VWJKMFpyVU5MZkNMWHFfNS1TT0x6LQ?oc=5",
-       "quote": "Ebola en RDC : l’épidémie cause plus de 3 000 morts, sur plus de 6 000 cas confirmés",
+       "text": "High community death rates point to persistent gaps in timely case detection and access to care, which WHO says allow continued transmission within households, communities, and healthcare settings.",
+       "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
+       "quote": "the persistent challenges in timely case detection and access to early and adequate patient care",
        "verified": true
       },
       {
-       "text": "Multilingual press (pt, news.un.org): “Ebola avança para novas áreas da RD Congo matando quase metade dos infectados”",
-       "source_url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE81RmI2UV9VbUItRmFmX1VKcEhaNVFPRi16SDhpRVhEbG9mUGg1YjRVMko5SVp3ZDRHa291NF9OU2pNRm1hRzl3V2RaZllwUkZZenZ2OTdLdw?oc=5",
-       "quote": "Ebola avança para novas áreas da RD Congo matando quase metade dos infectados",
+       "text": "DRC has requested substantial additional health workforce support to respond to the outbreak, underscoring health-system strain in affected provinces.",
+       "source_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQS0yOEp5YU1rMVVRaGU2Q0puMW5yMzFpR2dXQTBEYXMwbVJJbUg0aDhlc3ZNZzJwbGFqUlBTM1NIdnhCclB0NnFNaXVpLUlGRFRlYmg1YjRWTld4cDZwbnV5SVlXNnEwWDIzajNFTVc3TDUwaTR2TWxPN0VRcHA0SVR2MUcwT1lfNkVyVFVfbWZHVVF1UC1FLVNjTmN0OGRBY3UzWFdFeU1FTkdhTDhoMnNjN0JxSDdUSG9mTE9wQlo4QWs?oc=5",
+       "quote": "Ebola avança na RD Congo e país precisa de mais 5 mil profissionais de saúde",
        "verified": true
       }
      ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Exposure figures are from a SYNTHETIC demo book (seeded generator, not real policies) and should not be treated as actual insured exposure.",
+      "Several sources are headline-only (no article text retrieved) and are cited by title only.",
+      "No portfolio_lines were provided in this input; the portfolio bullet quote is drawn from the 'method' field in the exposure block.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "Ebola (Bundibugyo virus) outbreak — DR Congo: market/sector read-through for Democratic Republic of the Congo",
+     "headline": "DRC Ebola (Bundibugyo virus) outbreak widens to seven provinces, WHO flags cross-border risk — CIO watch on Central African mining/commodity corridors, frontier",
      "bullets": [
       {
-       "text": "Regional economies (Democratic Republic of the Congo): mining, logistics and cross-border trade face disruption risk from containment measures.",
+       "text": "Outbreak screening area now spans DRC's key eastern mining-adjacent provinces (Ituri, North/South Kivu, Haut-Uélé) plus newly affected Bas-Uélé, Sud Ubangi and Tshopo — relevant to cobalt/copper supply-chain risk premia and any DRC-linked commodity or mining-equity exposure; not investment advice.",
        "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
-       "quote": "However, the situation varies across the country, with some provinces and health zones experiencing much higher levels of transmission than others",
+       "quote": "Bas-Uélé, Haut-Uélé, Ituri, North Kivu, South Kivu, Sud Ubangi and Tshopo",
        "verified": true
       },
       {
-       "text": "Travel and aviation demand to affected areas likely to soften; watch airlines/hospitality exposure.",
+       "text": "WHO's explicit warning on spread toward the South Sudan border raises regional contagion risk for frontier/emerging-market allocations touching Central/East Africa (equities, sovereign debt, trade logistics); portfolios with frontier-Africa sleeves warrant a review of border-adjacent country exposure.",
        "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
-       "quote": "These include Bulu health zone in a new province, Sud Ubangi, located on the north-west part of the country and Dungu health zone in Haut-Uélé province, bordering South Sudan",
+       "quote": "This latest geographic expansion increases the risk of cross-border transmission.",
        "verified": true
       },
       {
-       "text": "Coverage (fr, lemonde.fr): “Ebola en RDC : l’épidémie cause plus de 3 000 morts, sur plus de 6 000 cas confirmés”",
-       "source_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPY0drYlVDMDVPYUktQ21nZ3RDNTVIcUFBNEFCMHVuaDNqWHZhOTdkM2FFYWhEMVRuWDZydTJ2WHIyc0ZPVlJFbkhIUFJMX3V4ZUdWT3hHZktDY1daWktCYWhKenVmNjMwT05xTkJjV2NYcXJyWVVsNjBySlA3ZGkxTTVGcnNoSWtoNWc3S2U1TmVETHNJVTBlN0cyNW5GV09kcDFHQk96cWtTSEJWdEpkV3NKeTJ2MmZnXzdEeXQ3YjIybzJvX3BxeDhIU2pxd1NSTHhFOTR0VWJKMFpyVU5MZkNMWHFfNS1TT0x6LQ?oc=5",
-       "quote": "Ebola en RDC : l’épidémie cause plus de 3 000 morts, sur plus de 6 000 cas confirmés",
+       "text": "Vaccination rollout for health workers at the epicenter is a modest positive signal for outbreak-response/biotech and public-health-adjacent names (vaccine manufacturers, NGO-linked logistics providers) with DRC or Central Africa operational ties.",
+       "source_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPWi1wLVhZcVhkamNkYk05X3hGTDlDNFRNcDkyTHNwZFQ3cGota2ZnYUJ1NHRxelp5Vkx0SElmVTZHQmU5bkpkaUJLMk9rZlpKNDRjdE9Ua2dPLTBxNDg1OVl0SmgxSFYwSkY2UjFJVDR5THdNTkp4T2dWUnNqY1VTT3k2V0l6NGxWOFFXa21nbGozZnR2MmRzU1NhVWpvUEpETHFqek4xNHBoakVFeWl0SVJ0VTFZNjZXYVHSAb8BQVVfeXFMT1IzdE5LSnhxY1g3N3BVRzdfeENEa3N5WENiZEtDcG5XRGU1T1laYlZST1BwNHAzR2Y4dVdNc3gyNUxYNnRseUdQdDZNNW1CUGpOQWlRbm9UTkx0NjFBX1NWUUg0dDJ6VklfcVFPdVl5dEQzOGd2WGRuTTF6SzJwSXdZWUdPbzIyYU90TkJxeS1Mbm9hVGRNRllxQ0lWRjE0U1RnMmFzRzEtOThoWi10TTQ1TExvREV4VFVoamNNSnM?oc=5",
+       "quote": "Congo begins Ebola vaccinations for health workers in the epicenter of the outbreak - PBS",
+       "verified": true
+      },
+      {
+       "text": "Reporting on armed-group interference with outbreak-control efforts underscores elevated operational/security risk for extractive-sector infrastructure and war-risk-adjacent insurance lines in eastern DRC; relevant caveat for any mining, energy or infrastructure allocation in the region.",
+       "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPV2czYkxBQWJPOTlvbDliS0xBRjJnWlNTdElrbVk3ZDFFV1V6N09KTnhyZU53ZlFzRXlrMGROUXlkQUR6RTl0ZktYLWlFN0RCeU5mQTlpek12SDVMQ1BUdUtPd0d6WE1MRXVxLXNTVlJGWHFaUmV2N09RdjVoUEhlOE1oSmd4RjVZZjNOX0piTXFUdk9scHBhZy1XemFWb2tGSF9JeldRUWs4QlhwZHpMVTQ1eW84OGt6bEtydg?oc=5",
+       "quote": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola - Le Point",
        "verified": true
       }
      ],
      "caveats": [
-      "Not investment advice; directional only."
+      "All portfolio/exposure figures are from a SYNTHETIC demo book (seeded generator), not real policies or actual market exposure — do not use for actual risk decisions.",
+      "This is general market/sector color for CIO awareness only, not personalized investment advice or a recommendation to buy/sell any security.",
+      "WHO DON figures (cases, deaths, CFR) reflect the outbreak/public-health situation, not a quantified financial or market-severity metric — no severity number is implied for asset prices.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
-     "headline": "Ebola (Bundibugyo virus) outbreak — DR Congo: 3,728 insured lives (1,154 Travel + 2,574 A&H) in affected area — accumulation ELEVATED; property TIV $716M (contingent BI only)",
+     "headline": "Ebola Outbreak (Bundibugyo Virus) - DR Congo: 3,728 insured lives (1,154 Travel + 2,574 A&H) in affected area — accumulation ELEVATED; property TIV $716M (contingent BI only)",
      "bullets": [
-      {
-       "text": "Authority: WHO Risk very high (national — DR Congo) — A&H and Travel medical/evacuation claims direction: UP.",
-       "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
-       "quote": "The risk in the Democratic Republic of the Congo was assessed as very high, the risk for countries sharing land borders with the Democratic Republic of the Congo was assessed as high, and the risks for the rest of the African region and at the global level",
-       "verified": true
-      },
-      {
-       "text": "Insured lives: 3,728 (1,154 Travel + 2,574 A&H members) in Democratic Republic of the Congo (synthetic book).",
-       "source_url": "portfolio://synthetic",
-       "quote": "Insured lives: 3,728 (1,154 Travel + 2,574 A&H members) in Democratic Republic of the Congo (synthetic book).",
-       "verified": true
-      },
-      {
-       "text": "Property screen (~200 km of Ituri, North Kivu, South Kivu, Haut-Uélé, Bas-Uélé, Tshopo): 17 sites / $716M TIV — physical damage not expected; relevant only for contingent BI / supply-chain.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Property screen (~200 km of Ituri, North Kivu, South Kivu, Haut-Uélé, Bas-Uélé, Tshopo): 17 sites / $716M TIV — physical damage not expected; relevant only for contingent BI / supply-chain.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: ELEVATED — consider restricting new Travel/A&H business to affected provinces; review assistance & evacuation capacity. Reserving posture: watch.",
        "source_url": "portfolio://synthetic",
@@ -961,24 +952,51 @@
        "verified": true
       },
       {
-       "text": "Review contingent BI (CBI) and event-cancellation communicable-disease exclusions; marine cargo port-delay exposure.",
+       "text": "WHO DON confirms very high national risk with a severe, still-active outbreak — underwriting posture for DRC A&H/Travel lives should reflect current elevated claims-exposure direction, not a forecast scenario.",
        "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
-       "quote": "through close contact with the blood or secretions of infected wildlife, such as bats or non-human primates, and it subsequently spreads from person-to-person through direct contact with the blood, secretions, organs, or other bodily fluids of infected",
+       "quote": "the Democratic Republic of the Congo has reported 7890 confirmed cases, including 3799 deaths, resulting in a crude case fatality ratio (CFR) of 48.1%",
+       "verified": true
+      },
+      {
+       "text": "Geographic expansion into a new province (Sud Ubangi) raises cross-border transmission risk — underwriting should review whether the current ~200km screening buffer around Ituri/North Kivu/South Kivu/Haut-Uélé/Bas-Uélé/Tshopo needs extension for next cycle.",
+       "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
+       "quote": "This latest geographic expansion increases the risk of cross-border transmission.",
+       "verified": true
+      },
+      {
+       "text": "Property/BI book: 17 sites, $716M TIV (incl. $209.6M BI time-element) fall within the affected-province screening buffer; no physical damage exposure expected — relevant only for contingent BI/supply-chain accumulation, not direct property claims.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Property screen (~200 km of Ituri, North Kivu, South Kivu, Haut-Uélé, Bas-Uélé, Tshopo): 17 sites / $716M TIV — physical damage not expected; relevant only for contingent BI / supply-chain.",
+       "verified": true
+      },
+      {
+       "text": "Primary claims-exposure concentration is insured lives, not TIV: 3,728 lives (1,154 Travel + 2,574 A&H) in-country are the direct exposure to mortality/morbidity and evacuation costs.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Insured lives: 3,728 (1,154 Travel + 2,574 A&H members) in Democratic Republic of the Congo (synthetic book).",
+       "verified": true
+      },
+      {
+       "text": "Continued high case-fatality trend and spread to 63 health zones across seven provinces supports maintaining the affected-province screening buffer rather than narrowing it at this stage.",
+       "source_url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618",
+       "quote": "Confirmed cases have been reported from 63 health zones across seven provinces, with 48 health zones from six provinces reporting at least one case in the last 21 days.",
        "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "No cat-bond/ILW/parametric instruments are known to reference this outbreak; standard epidemic exclusions on property/marine/HNW lines should be confirmed, not assumed.",
+      "Marine Cargo (1 policy, $16.58M TIV) and HNW Homeowners (1 policy, $3.04M TIV) exposure is incidental to the screening buffer and not driven by outbreak dynamics.",
+      "Synthetic/demo book: policy-level figures are seeded, not real placements; do not use for actual claims or capital decisions.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "watch",
      "accumulation_action": "ELEVATED — consider restricting new Travel/A&H business to affected provinces; review assistance & evacuation capacity"
     }
    },
    "unknowns": [
-    "True case count (under-reporting, testing capacity)",
-    "Cross-border spread and travel restrictions",
-    "Vaccine/therapeutic effectiveness for this strain"
+    "Trajectory of case counts beyond 23 Sep 2026 cutoff",
+    "Extent of insured exposure or claims linkage in affected regions",
+    "Impact of armed group interference on outbreak containment",
+    "Effectiveness/coverage of ongoing vaccination campaign"
    ],
    "routing": [
     {
@@ -987,7 +1005,7 @@
      "channel": "email",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per WHO DON; exposure from a synthetic demo book.",
-     "message": "[RED P1] Ebola (Bundibugyo virus) outbreak — DR Congo (WHO DON Risk very high (national — DR Congo)) in Democratic Republic of the Congo. Book exposure: $716M TIV, 3,728 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
+     "message": "[RED P1] Ebola Outbreak (Bundibugyo Virus) - DR Congo (WHO risk: very high, national). Book exposure: $716M TIV, 3,728 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
     },
     {
      "persona": "Head of A&H/Travel",
@@ -995,7 +1013,7 @@
      "channel": "sms",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per WHO DON; exposure from a synthetic demo book.",
-     "message": "[RED P1] Ebola (Bundibugyo virus) outbreak — DR Congo: 3,728 insured lives (1,154 Travel + 2,574 A&H) in affected area. Accumulation ELEVATED: consider restricting new Travel/A&H business to affected provinces; review assistance & evacuation capacity. Confirm evacuation triggers and travel advisories."
+     "message": "[RED P1] Ebola Outbreak (Bundibugyo Virus) - DR Congo: 3,728 insured lives (1,154 Travel + 2,574 A&H) in affected area. ELEVATED: restrict new Travel/A&H business to affected provinces; verify assistance & evacuation capacity and confirm evacuation triggers and travel advisories."
     },
     {
      "persona": "Head of A&H/Travel",
@@ -1003,7 +1021,7 @@
      "channel": "email",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per WHO DON; exposure from a synthetic demo book.",
-     "message": "[RED P1] Ebola (Bundibugyo virus) outbreak — DR Congo: 3,728 insured lives (1,154 Travel + 2,574 A&H) in affected area. Accumulation ELEVATED: consider restricting new Travel/A&H business to affected provinces; review assistance & evacuation capacity. Confirm evacuation triggers and travel advisories."
+     "message": "[RED P1] Ebola Outbreak (Bundibugyo Virus) - DR Congo: 3,728 insured lives (1,154 Travel + 2,574 A&H) in affected area. ELEVATED: restrict new Travel/A&H business to affected provinces; verify assistance & evacuation capacity and confirm evacuation triggers and travel advisories."
     },
     {
      "persona": "Public",
@@ -1011,13 +1029,13 @@
      "channel": "public",
      "priority": "P1",
      "caveat_banner": "Early-warning signal (high confidence); severity per WHO DON; exposure from a synthetic demo book.",
-     "message": "Ebola (Bundibugyo virus) outbreak — DR Congo: official status WHO DON Risk very high (national — DR Congo). Follow local authority guidance. (Automated early-warning summary; may change.)"
+     "message": "Ebola Outbreak (Bundibugyo Virus) - DR Congo: WHO risk rated very high (national). Follow local authority guidance. (Automated early-warning summary; may change.)"
     }
    ]
   },
   {
    "event_id": "tc-one-2026",
-   "name": "Tropical Cyclone 01B (India)",
+   "name": "Tropical Cyclone 01B - India",
    "type": "TC",
    "status": "alert",
    "tier": "AMBER",
@@ -1066,7 +1084,7 @@
     "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001326"
    },
    "confidence": "high",
-   "confidence_rationale": "8 independent sources (7 verified quotes) across 2 language(s); severity from GDACS",
+   "confidence_rationale": "GDACS Orange alert with 10.248M population in Tropical Storm range, corroborated by 8 sources across 2 languages",
    "geo": {
     "lat": 18.1,
     "lon": 83.7,
@@ -1082,7 +1100,7 @@
    },
    "time_horizon": "24-72h (GDACS/JTWC forecast)",
    "first_signal_ts": "2026-09-21T01:12:56Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en",
     "hi"
@@ -1276,98 +1294,124 @@
    },
    "briefs": {
     "health": {
-     "headline": "Tropical Cyclone 01B (India): health impact watch (AMBER)",
+     "headline": "India Cyclone (01B/Arnab): ~10.2M in Tropical Storm-Force Zone, No Confirmed Cat-1+ Exposure Yet, but Regional Health Systems Bracing",
      "bullets": [
       {
-       "text": "Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core: “Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (10.248 million in Tropical Storm)”",
+       "text": "GDACS estimates population affected by tropical storm-force winds at over 10 million, though no population is currently estimated in Category 1+ (120 km/h) winds, indicating widespread but so far sub-hurricane exposure.",
        "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001326",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (10.248 million in Tropical Storm)",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (10.248 million in tropical storm).",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (hi, jagran.com): “समुद्र में बड़ी हलचल, बंगाल की खाड़ी का चक्रवात बन सकता है तूफान”",
-       "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOUWtfQVF5WG93MEVXbGJNV1pacy00bnhLYnZVNVVrRVo5TTl1N1hYelRxVGJXZkhfaVVLc0FubXBGOHV5dFBjY3MxZi1TUzEyMEw3aFdzbFRMZGdFblI2d2JBTHlKM2VMclJMbjJFWk1pVk91LVd3X0JMS3pKQ1Zfdy1nNnlORVdwelJ3N1hZMkZYdXZ1bUZOV0Z1YnJCMDlqaWFlbnNneFJJUVdKS2t5Z0hJQk5Ibl9sVlM1ZXQ0OGNYOGh5cHFlU0NB?oc=5",
-       "quote": "समुद्र में बड़ी हलचल, बंगाल की खाड़ी का चक्रवात बन सकता है तूफान",
+       "text": "India is flagged as a high-vulnerability country for this system, a key factor for anticipating strain on local health and emergency response capacity if the storm intensifies.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001326",
+       "quote": "The cyclone affects these countries: India (vulnerability High).",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (hi, amarujala.com): “Cyclone Alert: बंगाल की खाड़ी में हलचल शुरु, चक्रवात का अलर्ट, इन राज्यों को वॉर्निंग”",
-       "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNbkhZOGcyNkFEVl9PdVNMVmZGMlU4OV9KZzc3MGRtMkRaWHV0SWd6WDRRSUlnOWkyUG4ta2hvNF92U1YzSDgwWml2Vnh6UF9qbGZxdFZVa2stZVFONDJKcGwtSWlpTzZOWEFFSURWYUxIX2pKREMwZDduRGc1Zm5KbjdLaFBMMFBZWW0wNTU2Vnd0RFBET210YzJHWm5SaXVFRlHSAacBQVVfeXFMUE5xbEZwZkVKcGtJTHdSdktpOHpySTkwa1otSzFjTkJDOVM4M0kycUM1MXVuT3FHY25WODZfT204R2tuMzdNaFdVREhkdzctZDkyTlRkR2R3YVBIM3d2eTZxRFpfeG0zUFJDNVAtSTVZWDlqbkxxdlg3dVlzY1Z1dFJyMmFZSk0xOGNsSHYtQWI1WHVPeUtJbm5IRnRKQ2lodGR2bFpqcEk?oc=5",
-       "quote": "Cyclone Alert: बंगाल की खाड़ी में हलचल शुरु, चक्रवात का अलर्ट, इन राज्यों को वॉर्निंग",
+       "text": "JTWC's latest observation places the system at 35.0 kts (tropical storm strength), consistent with GDACS's current classification and suggesting the health-impact trajectory is still pre-major-hurricane.",
+       "source_url": "https://www.metoc.navy.mil/jtwc/products/io0126.tcw",
+       "quote": "Tropical Cyclone 01B (severeStorms) observed 2026-09-24T00:00:00Z 35.0 kts",
+       "verified": true
+      },
+      {
+       "text": "Odisha authorities are proactively shutting schools and preparing evacuations ahead of a possible landfall, an early indicator of health-system and civil-protection mobilization in the exposed region.",
+       "source_url": "https://news.google.com/rss/articles/CBMiswJBVV95cUxNN3RIdk9rd211OVFJbkhRcW1fdVd6QVRtSHkwS0xNYUNJLUJkUXRpc0Jvc2NwbkJNV05uSDZwNmZkMThEUDZlY0M2Y1hHTzg2QVhNeFU3clZDenExd21CMHduUl9YdzQ3S1JMTnBraW8ya3lwMzg1a0JlTHRVWVlPY25ZNzVFMWdvS0t2LVI0YW15MU1EelJ0dkNnZWlkMXRqZFdsS09MakZjM1JWc01wYXV2X09wMTZFdk41WGZzck55eGI5ZERueV95NUQtNlhCdE5fVzNSZ01LSlAxc19rUkZGaEM3b2RmOTg2MzFRTXdCalI4a0JhWXFmOEV2NEMwZVVTbzhHRG1oaEJ3Wmttem56WmVzOVJpMW5mUmppc21mOUNtSTJRVVlacWJiblJEdEtF0gG4AkFVX3lxTE1qMEI5NWFmVmtMbjd2VGNHTkp6TVVaSU1STXIyeXRicnlHQ3ZDRlZGQzRna2RjLXM0SkpvcFh3dktYNkM4dC1OWUhqa2hvRXdBU3BfcUZtYlJZeWk2eGIxam9xRDVzNGFnc3BSYmlzTU5BMGNnOURVeVR5WFJaOElPc1I4TGhYWW1aNjJFX1N0aVdmUmNjY0VXcjZYTncydU42N25KemVBV3VGSXZBX0NnbFdxcDVTd0hoVXhkSGhtRE9pWUEtVk03bWpxa1FrbjdPQmp4Xy12SzJBR1c5ZlA4TklqZVlKcUxpSVNRQ2NvbmNTLW9LVDlibFlGOWc1alZkNTVrSEpZcWZjZW9XSTdJbzVNS3VmV2dYTkpiWUMwYWFjd2ZDTnlVbEZmWUV6UTVMOS1EQkNaSA?oc=5",
+       "quote": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11",
        "verified": true
       }
      ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Exposure figures are from a SYNTHETIC demo book (seeded generator), not real policies, and should not be used for actual claims or capital decisions.",
+      "No confirmed name/system linkage: sources reference both 'Tropical Cyclone 01B' (JTWC/GDACS) and 'Cyclone Arnab' (Indian media) for what may be the same evolving system; official IMD naming not directly sourced here.",
+      "GDACS Category 1+ affected population is currently listed as 0, but this could change rapidly if the storm intensifies from its current tropical storm/deep depression status.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "Tropical Cyclone 01B (India): market/sector read-through for India",
+     "headline": "Bay of Bengal Cyclone (System 01B/\"Arnab\") Approaching India: Sector and Portfolio Watch",
      "bullets": [
       {
-       "text": "Regional market read-through for India: tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.",
+       "text": "GDACS has issued an Orange-level notification, and India is flagged as a high-vulnerability country in the storm's path — relevant for India-linked equities, INR-denominated assets, and regional risk sentiment broadly, not just insurance lines.",
        "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001326",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (10.248 million in Tropical Storm)",
+       "quote": "The cyclone affects these countries: India (vulnerability High).",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (hi, jagran.com): “समुद्र में बड़ी हलचल, बंगाल की खाड़ी का चक्रवात बन सकता है तूफान”",
-       "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOUWtfQVF5WG93MEVXbGJNV1pacy00bnhLYnZVNVVrRVo5TTl1N1hYelRxVGJXZkhfaVVLc0FubXBGOHV5dFBjY3MxZi1TUzEyMEw3aFdzbFRMZGdFblI2d2JBTHlKM2VMclJMbjJFWk1pVk91LVd3X0JMS3pKQ1Zfdy1nNnlORVdwelJ3N1hZMkZYdXZ1bUZOV0Z1YnJCMDlqaWFlbnNneFJJUVdKS2t5Z0hJQk5Ibl9sVlM1ZXQ0OGNYOGh5cHFlU0NB?oc=5",
-       "quote": "समुद्र में बड़ी हलचल, बंगाल की खाड़ी का चक्रवात बन सकता है तूफान",
+       "text": "Odisha authorities have pre-emptively closed schools and begun evacuation prep, an early signal of localized economic disruption (retail footfall, logistics, coastal industrial operations) in the affected state.",
+       "source_url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQVjhBSW9na0szdElTdEM4Vmp2STh1aC1ReUl0TjNXaFlzMGR6V3hMV2V5bXItRXdWX2doblFha0FwbFBaSGk3ZFpxUmlUYmlmUjZNQ3NCc1ZZdDdFTEVuNkpCM1RERHgyZDBrZXFVX1hRTTlmSHloOXhUWW5JbjJyU25LVVVDRWNpaERIWWszZnMzX2JVUEstWV9MMHJURDV3SEJ6M01jY2pjaXN1S3RNeUpDbWJ6UlMwM2twM05BMFpvX1I1YmdYUHhtWDlqRm45SXRncXB0dG5kelY4RzJGU2pmYXlWczB5bGwzVVo5NjQtSk1sUGhvNGtRY9IBgAJBVV95cUxNVEpwQ0JwVHhRWjFlZVFMWVVIelYwNTg2aE1IX3VBLXdPOEI2VXB6WkdPSVlkTkFidmplYzIxUnlmb1prbkg0NVBKNzhKSGJSb2p0V2pIUDQtUV8tYVBsUkgySzQ1Um1ZWXJVVzBud1FoejNJdGl4OG9XVG5WTGI3ZGZUSXkxRWlCdEdxY1piNy1YQ1ptbEEwR3JuSDJlUXF1U2tBUG9Hb2lmalFSeHNvaGpxNE1LdS13RDkwc285dEpaRVhDcFlRb0lLYnQ4Y0lhaTYwd1Q5SExUYzNMbDZoNHVlWkVKaTdycHF6anJGU2otYU13eUo2a2libVlhSTJm?oc=5",
+       "quote": "IMD warns of deep depression, shares landfall update; Odisha schools shut",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (hi, amarujala.com): “Cyclone Alert: बंगाल की खाड़ी में हलचल शुरु, चक्रवात का अलर्ट, इन राज्यों को वॉर्निंग”",
-       "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNbkhZOGcyNkFEVl9PdVNMVmZGMlU4OV9KZzc3MGRtMkRaWHV0SWd6WDRRSUlnOWkyUG4ta2hvNF92U1YzSDgwWml2Vnh6UF9qbGZxdFZVa2stZVFONDJKcGwtSWlpTzZOWEFFSURWYUxIX2pKREMwZDduRGc1Zm5KbjdLaFBMMFBZWW0wNTU2Vnd0RFBET210YzJHWm5SaXVFRlHSAacBQVVfeXFMUE5xbEZwZkVKcGtJTHdSdktpOHpySTkwa1otSzFjTkJDOVM4M0kycUM1MXVuT3FHY25WODZfT204R2tuMzdNaFdVREhkdzctZDkyTlRkR2R3YVBIM3d2eTZxRFpfeG0zUFJDNVAtSTVZWDlqbkxxdlg3dVlzY1Z1dFJyMmFZSk0xOGNsSHYtQWI1WHVPeUtJbm5IRnRKQ2lodGR2bFpqcEk?oc=5",
-       "quote": "Cyclone Alert: बंगाल की खाड़ी में हलचल शुरु, चक्रवात का अलर्ट, इन राज्यों को वॉर्निंग",
+       "text": "Marine Cargo exposure ($181.3mn across 8 policies) is in scope, consistent with regional media reports of a broader cyclone alert spanning India and Pakistan — relevant for shipping, port-handling, and trade-finance-linked positions in the Bay of Bengal/Arabian Sea corridor.",
+       "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9mbFN6bUZqN1pLZzV6bjhsZTFZMEU1MXdrOFBHNWotN3BzWFRmUG5xbHctNFNIZngzNHlaMjkyX1VzLTBWZ3VReS02dzh2YWZrMWVwM3F1Tkk4QTBIX1V5MEs3RlNrUUF3ZGtlQ0FCZ3JmTks2SHpkOWRlbzhwUQ?oc=5",
+       "quote": "Cyclone alert in India and Pakistan - Arab News",
+       "verified": true
+      },
+      {
+       "text": "Travel and Accident & Health books carry ~1,479 combined insured lives in the buffer; official track data remains preliminary (JTWC observed only 35 kt as of the latest fix), so life/health exposure estimates should be treated as directional, not final.",
+       "source_url": "https://www.metoc.navy.mil/jtwc/products/io0126.tcw",
+       "quote": "Tropical Cyclone 01B (severeStorms) observed 2026-09-24T00:00:00Z 35.0 kts",
        "verified": true
       }
      ],
      "caveats": [
-      "Not investment advice; directional only."
+      "Portfolio figures are from a SYNTHETIC demo book (seeded generator), not real policies or actual insured exposures.",
+      "Exposure is based on current position within a 250km buffer; no forecast track was parsed, so downstream landfall location/intensity remains uncertain.",
+      "GDACS classifies this as a Tropical Storm-level event in places, distinct from higher-category hurricane-force wind claims; do not conflate the two.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
-     "headline": "Tropical Cyclone 01B (India): 18 sites / $865M within 250 km screening buffer; 3 / $85M in ~60 km hurricane-force core — accumulation MONITOR",
+     "headline": "Tropical Cyclone 01B - India: 18 sites / $865M within 250 km screening buffer; 3 / $85M in ~60 km hurricane-force core — accumulation MONITOR",
      "bullets": [
-      {
-       "text": "Authority severity Orange (GDACS) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.",
-       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001326",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (10.248 million in Tropical Storm)",
-       "verified": true
-      },
-      {
-       "text": "Synthetic book: 18 sites / $865M TIV within 250 km screening buffer of the GDACS/JTWC position; 3 sites / $85M within ~60 km hurricane-force core.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Synthetic book: 18 sites / $865M TIV within 250 km screening buffer of the GDACS/JTWC position; 3 sites / $85M within ~60 km hurricane-force core.",
-       "verified": true
-      },
-      {
-       "text": "By line — Commercial Property 8 policies / $318M (incl. BI time element $151M); HNW Homeowners 1 policies / $5M; Marine Cargo 8 policies / $181M; Energy 1 policies / $209M. Insured lives in area (pro-rated): 1,479 Travel/A&H.",
-       "source_url": "portfolio://synthetic",
-       "quote": "By line — Commercial Property 8 policies / $318M (incl. BI time element $151M); HNW Homeowners 1 policies / $5M; Marine Cargo 8 policies / $181M; Energy 1 policies / $209M. Insured lives in area (pro-rated): 1,479 Travel/A&H.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: MONITOR — run accumulation check against the screening area; no binding restriction yet. Reserving posture: watch (pre-landfall — reserves are not strengthened before the event occurs).",
        "source_url": "portfolio://synthetic",
        "quote": "Accumulation action: MONITOR — run accumulation check against the screening area; no binding restriction yet. Reserving posture: watch (pre-landfall — reserves are not strengthened before the event occurs).",
        "verified": true
+      },
+      {
+       "text": "Synthetic book carries 18 policies / $864.68M TIV within the 250 km screening buffer of the current GDACS/JTWC fix, with $84.5M across 3 policies inside the ~60 km assumed hurricane-force core — no forecast track has been parsed, so this is a present-position screen only.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Synthetic book: 18 sites / $865M TIV within 250 km screening buffer of the GDACS/JTWC position; 3 sites / $85M within ~60 km hurricane-force core.",
+       "verified": true
+      },
+      {
+       "text": "Line mix skews to Commercial Property (8 pol / $318M, incl. $151M BI time-element) and Marine Cargo (8 pol / $181M) with concentrated single-risk Energy exposure ($209M) — BI time-element should be flagged for claims-development lag if landfall occurs.",
+       "source_url": "portfolio://synthetic",
+       "quote": "By line — Commercial Property 8 policies / $318M (incl. BI time element $151M); HNW Homeowners 1 policies / $5M; Marine Cargo 8 policies / $181M; Energy 1 policies / $209M. Insured lives in area (pro-rated): 1,479 Travel/A&H.",
+       "verified": true
+      },
+      {
+       "text": "GDACS rates the system Orange with population-affected metrics still at Tropical Storm intensity (0 at Cat-1+ threshold), consistent with the book's pre-landfall MONITOR stance rather than a binding restriction.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001326",
+       "quote": "Orange notification for tropical cyclone ONE-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (10.248 million in Tropical Storm).",
+       "verified": true
+      },
+      {
+       "text": "Ground reporting shows Odisha school closures and evacuation prep across 11 areas ahead of possible cyclone formation — an early claims-exposure signal for BI/contingent-BI and marine cargo port disruption to track as the system develops.",
+       "source_url": "https://news.google.com/rss/articles/CBMiswJBVV95cUxNN3RIdk9rd211OVFJbkhRcW1fdVd6QVRtSHkwS0xNYUNJLUJkUXRpc0Jvc2NwbkJNV05uSDZwNmZkMThEUDZlY0M2Y1hHTzg2QVhNeFU3clZDenExd21CMHduUl9YdzQ3S1JMTnBraW8ya3lwMzg1a0JlTHRVWVlPY25ZNzVFMWdvS0t2LVI0YW15MU1EelJ0dkNnZWlkMXRqZFdsS09MakZjM1JWc01wYXV2X09wMTZFdk41WGZzck55eGI5ZERueV95NUQtNlhCdE5fVzNSZ01LSlAxc19rUkZGaEM3b2RmOTg2MzFRTXdCalI4a0JhWXFmOEV2NEMwZVVTbzhHRG1oaEJ3Wmttem56WmVzOVJpMW5mUmppc21mOUNtSTJRVVlacWJiblJEdEtF0gG4AkFVX3lxTE1qMEI5NWFmVmtMbjd2VGNHTkp6TVVaSU1STXIyeXRicnlHQ3ZDRlZGQzRna2RjLXM0SkpvcFh3dktYNkM4dC1OWUhqa2hvRXdBU3BfcUZtYlJZeWk2eGIxam9xRDVzNGFnc3BSYmlzTU5BMGNnOURVeVR5WFJaOElPc1I4TGhYWW1aNjJFX1N0aVdmUmNjY0VXcjZYTncydU42N25KemVBV3VGSXZBX0NnbFdxcDVTd0hoVXhkSGhtRE9pWUEtVk03bWpxa1FrbjdPQmp4Xy12SzJBR1c5ZlA4TklqZVlKcUxpSVNRQ2NvbmNTLW9LVDlibFlGOWc1alZkNTVrSEpZcWZjZW9XSTdJbzVNS3VmV2dYTkpiWUMwYWFjd2ZDTnlVbEZmWUV6UTVMOS1EQkNaSA?oc=5",
+       "quote": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11 - The Times of India",
+       "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Synthetic demo book (seeded generator, not real policies) — TIV/policy figures are illustrative, not actual bound business.",
+      "No forecast track has been parsed; exposure is screened against the current GDACS/JTWC fix within a 250 km screening buffer, not a projected landfall corridor.",
+      "Per pre-landfall protocol, no reserve strengthening is recommended for this forecast-stage hazard; posture remains MONITOR pending confirmed intensification/track.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "watch",
      "accumulation_action": "MONITOR — run accumulation check against the screening area; no binding restriction yet"
     }
    },
    "unknowns": [
-    "GDACS event window ended Thu, 24 Sep 2026; no fresh authority update — may have dissipated",
-    "Landfall location/timing beyond the GDACS/JTWC forecast track",
-    "Storm-surge and rainfall damage extent",
-    "Insured vs economic loss split"
+    "Confirmed maximum sustained wind speed at landfall",
+    "Actual casualty or injury count",
+    "Extent of infrastructure/property damage",
+    "Final landfall location and timing"
    ],
    "routing": [
     {
@@ -1376,7 +1420,7 @@
      "channel": "email",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per GDACS; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Cyclone 01B (India): GDACS Orange. 18 sites / $865M TIV within 250 km screening buffer; 3 sites / $85M in ~60 km hurricane-force core. Accumulation MONITOR: run accumulation check. Reserving: watch. Largest: Visakhapatnam Energy #2019."
+     "message": "[AMBER P2] Tropical Cyclone 01B - India: GDACS Orange. 18 sites / $865M TIV within 250 km buffer; 3 sites / $85M in ~60 km hurricane-force core. Accumulation MONITOR: run accumulation check. Reserving: watch. Largest: Visakhapatnam Energy #2019."
     },
     {
      "persona": "Head of Claims",
@@ -1384,7 +1428,7 @@
      "channel": "slack",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per GDACS; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Cyclone 01B (India): 18 insured sites in 250 km screening buffer ($865M TIV); 3 sites / $85M in ~60 km hurricane-force core. Pre-position adjusters; FNOL surge possible within 24-72h (GDACS/JTWC forecast)."
+     "message": "[AMBER P2] Tropical Cyclone 01B - India: 18 insured sites in 250 km buffer ($865M TIV); 3 sites / $85M in ~60 km hurricane-force core. Pre-position adjusters; FNOL surge possible within 24-72h (GDACS/JTWC forecast)."
     },
     {
      "persona": "Cat Modeling/Accumulation desk",
@@ -1392,7 +1436,7 @@
      "channel": "slack",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per GDACS; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Cyclone 01B (India) (GDACS Orange). Accumulation MONITOR: $865M TIV within 250 km screening buffer; 3 sites / $85M in ~60 km hurricane-force core. Run accumulation check vs zones; check XoL retention and ILW/cat-bond triggers."
+     "message": "[AMBER P2] Tropical Cyclone 01B - India (GDACS Orange). Accumulation MONITOR: $865M TIV within 250 km buffer; 3 sites / $85M in ~60 km hurricane-force core. Run accumulation check vs zones; verify XoL retention and ILW/cat-bond triggers."
     },
     {
      "persona": "CIO",
@@ -1400,7 +1444,7 @@
      "channel": "email",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per GDACS; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Cyclone 01B (India) (GDACS Orange) in India. Book exposure: $865M TIV, 1,479 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
+     "message": "[AMBER P2] Tropical Cyclone 01B - India (GDACS Orange). Book exposure: $865M TIV, 1,479 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
     },
     {
      "persona": "Head of A&H/Travel",
@@ -1408,13 +1452,13 @@
      "channel": "email",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per GDACS; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Cyclone 01B (India): ~1,479 insured Travel/A&H lives in the 250 km screening buffer (pro-rated, synthetic). Check assistance capacity and evacuation readiness."
+     "message": "[AMBER P2] Tropical Cyclone 01B - India: ~1,479 insured Travel/A&H lives in the 250 km buffer (pro-rated, synthetic). Check assistance capacity and evacuation readiness."
     }
    ]
   },
   {
    "event_id": "tc-gonzalo-2026",
-   "name": "Tropical Storm Gonzalo",
+   "name": "Tropical Storm Gonzalo - Cape Verde",
    "type": "TC",
    "status": "alert",
    "tier": "AMBER",
@@ -1463,7 +1507,7 @@
     "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml"
    },
    "confidence": "high",
-   "confidence_rationale": "11 independent sources (11 verified quotes) across 3 language(s); severity from NHC Saffir-Simpson",
+   "confidence_rationale": "NHC confirms Tropical Storm, 50 mph winds, corroborated by 11 sources across 3 languages near Cape Verde.",
    "geo": {
     "lat": 15.1,
     "lon": -22.7,
@@ -1517,8 +1561,8 @@
     "core_radius_km": null
    },
    "time_horizon": "24-72h (NHC 5-day track)",
-   "first_signal_ts": "2026-09-25T01:45:46Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "first_signal_ts": "2026-09-25T02:52:33Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en",
     "fr",
@@ -1548,17 +1592,6 @@
      "publisher": "gdacs.org"
     },
     {
-     "id": "gnews:61504127a4ec",
-     "feed": "news:wbrz.com",
-     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPZTNmZ0RubE1FeUVNNkpWSXVBV2R6QmhibldiVV9tLUx0Q2xGU20yWXpWUTh3OVd2MkRVN2hKV2ZEX0tzNHcySjJqUTZMb3RGVmwzWDhsb1BKUXBFUUktbW9qOXltLTQtWjR1ZlVzSWVMYm5sS2trVW1hZjJpMnpQVHZmR0wxUQ?oc=5",
-     "title": "Tropical Storm Gonzalo forms in far eastern Atlantic - WBRZ",
-     "lang": "en",
-     "published": "2026-09-25T01:45:46Z",
-     "quote": "Tropical Storm Gonzalo forms in far eastern Atlantic",
-     "verified": true,
-     "publisher": "wbrz.com"
-    },
-    {
      "id": "gnews:3a380e1f1e7d",
      "feed": "news:accuweather.com",
      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5EbXptdm1NTnNiWFZCbERWeW1TVGNvM3ljaEVSZ1JhV29rNmRad0NjOUszUXZMbXNoTDAtLW5VQ0F5cTFzQmNhQ2EwckZQR1lmRjNhZ0pUNHRFbjhoQUtyVnRTaFJCRmxhcXVPWmNqMA?oc=5",
@@ -1579,6 +1612,17 @@
      "quote": "FIRST ALERT: Tropical Storm Gonzalo forms off African Coast",
      "verified": true,
      "publisher": "wmbfnews.com"
+    },
+    {
+     "id": "gnews:b3b9763e9e07",
+     "feed": "news:cbs12.com",
+     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5jQXFXaXdUdnBvc3NwX3RHc2FGSVdEcTBhbzFEWUJDMEdUSjJGVkVCY21jMnVRX0cxZ1lDWmF6MW1ydVpiU05ROXhmUVRfdlhMRk5OeWR5N3hhbE5yeTh2aVpTMGhvZnBTU1Q5c0pSU2VxWUtQNlpoTXQyaEpSQQ?oc=5",
+     "title": "Tropical Storm Gonzalo forms in the Atlantic - WPEC",
+     "lang": "en",
+     "published": "2026-09-25T03:38:24Z",
+     "quote": "Tropical Storm Gonzalo forms in the Atlantic",
+     "verified": true,
+     "publisher": "cbs12.com"
     },
     {
      "id": "gnews:1fe76ec5db44",
@@ -1735,102 +1779,84 @@
    },
    "briefs": {
     "health": {
-     "headline": "Tropical Storm Gonzalo: health impact watch (AMBER)",
+     "headline": "Tropical Storm Gonzalo brings gusty winds to Cabo Verde; limited population exposure, no hurricane-force threat expected",
      "bullets": [
       {
-       "text": "Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core: “The minimum central pressure was 1000 mb with maximum sustained winds of about 50 mph”",
+       "text": "Gonzalo remains a 50 mph tropical storm passing near/over the Cabo Verde Islands, with a gradual weakening trend forecast to begin tonight — limiting the duration of hazardous conditions.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "The minimum central pressure was 1000 mb with maximum sustained winds of about 50 mph",
+       "quote": "Maximum sustained winds are near 50 mph (85 km/h) with higher gusts. Little change in strength is expected today. A gradual weakening trend is forecast to begin tonight",
        "verified": true
       },
       {
-       "text": "Heavy rain / flash-flood hazard raises waterborne-disease and access-to-care risk: “RAINFALL: Tropical Storm Gonzalo is expected to produce rainfall totals of 1 to 3 inches (30 to 75 mm) across the eastern portions of the islands of Cabo Verde on…”",
+       "text": "A Tropical Storm Warning is in effect for the Cabo Verde Islands, indicating expected tropical-storm-force conditions rather than more severe hurricane-force impacts.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "RAINFALL: Tropical Storm Gonzalo is expected to produce rainfall totals of 1 to 3 inches (30 to 75 mm) across the eastern portions of the islands of Cabo Verde on Friday and Saturday with less than 1 inch anticipated for the western side of the island chain",
+       "quote": "A Tropical Storm Warning is in effect for... * The Cabo Verde Islands",
        "verified": true
       },
       {
-       "text": "Storm surge / surf hazard (NHC): “These swells are likely to cause life-threatening surf and rip current conditions”",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "These swells are likely to cause life-threatening surf and rip current conditions",
-       "verified": true
-      },
-      {
-       "text": "GDACS population exposure estimate for the wind field: “Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0.419 million in Tropical Storm)”",
+       "text": "GDACS assesses this as a Green (low-severity) alert, with zero population estimated to face Category 1+ hurricane-force winds, and roughly 0.419 million exposed only to tropical-storm-force winds — consistent with a health-system strain that should remain manageable.",
        "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001328",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0.419 million in Tropical Storm)",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0.419 million in tropical storm)",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (fr, tameteo.com): “La tempête tropicale Gonzalo s’est formée dans l’Atlantique Est et se déplacera très au sud-ouest des îles Canaries”",
-       "source_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQUmg5WHYycXhVWDhVcUNkWjg2ZVRoQjhoWFdYYkU4Zk90VHBQSHVIWURUbC1tbU1iN3ViRXh2UXJfUEZodnVQZTRLc2xiSWVtZ2lWYlZCLVRDYlc0SEpXaTN1X21mN256a2Ewb0ZCQ1Jad3ExY1JSOThCdUNyenlYWk5VR092UWE0d2NyUXhQTGw2S1IyZUJEWl9FVTJBNlVtWHFDVGxhbVdpRnlKRDg1WEJqOW9JVWNqS2lJYlk4bHRGb0F2ek92MUotTEU4clpGU3o2bUVCdVFVdUJEQUdVd0lfTjdPMkRObEFpOExpV25qZUdqTmxkXw?oc=5",
-       "quote": "La tempête tropicale Gonzalo s’est formée dans l’Atlantique Est et se déplacera très au sud-ouest des îles Canaries",
-       "verified": true
-      },
-      {
-       "text": "Local-language press flags community impact (pt, expressodasilhas.cv): “Tempestade tropical Gonzalo aproxima-se de Cabo Verde”",
-       "source_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVXVWc2JkVkdSQkdjWENtQ2l5VDN1a2FEczBPckYwbHVnem5TNVYyelhnRUdYN2FiakRUcWVybkxHR2hsVzEwUTZHeFhrM1FvYUFqYjBoSGJBNDFzMVdrbFNfQVRUcHNYNG5PSzY4VzhIcDZDc2FfZDduN2xWX0RwVEFRRmxBdUVWcjgxRHVJZWx5RkFJYmNSUGp5RUM4WlUzR3ZkdU1icw?oc=5",
-       "quote": "Tempestade tropical Gonzalo aproxima-se de Cabo Verde",
+       "text": "Sustained winds observed on Sal (32 mph, gusting to 45 mph) are well below hurricane force, suggesting injury and casualty risk to the exposed island population should be limited compared to major-hurricane scenarios.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
+       "quote": "The official observing station on Sal in the Cabo Verde Islands recently reported a sustained wind of 32 mph (52 km/h) with a gust to 45 mph (72 km/h)",
        "verified": true
       }
      ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Gonzalo is currently only a tropical storm (50 mph); no hurricane-force wind radius ('inner core') exists in this advisory, so health-system strain from severe wind impacts is not expected at this time.",
+      "GDACS population-affected figures (0.419 million in tropical storm winds) are model-based country-level estimates, not case counts or casualty figures — no injury/fatality data is available in the sources.",
+      "Portfolio exposure figures are from a SYNTHETIC demo book (seeded generator), not real policyholder data, and should not be treated as actual insured population counts.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "Tropical Storm Gonzalo: market/sector read-through for Cape Verde",
+     "headline": "Tropical Storm Gonzalo (Cabo Verde) — Amber, low current wind intensity, GDACS Green, watch for track shift toward Canaries shipping/tourism lanes",
      "bullets": [
       {
-       "text": "Regional market read-through for Cape Verde: tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.",
+       "text": "NHC has a Tropical Storm Warning active specifically for Cabo Verde, the near-term landfall zone; any CIO screen for regional travel/tourism and P&C exposure should center there rather than broader Atlantic basins for now.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "SUMMARY OF WATCHES AND WARNINGS IN EFFECT: A Tropical Storm Warning is in effect for",
+       "quote": "A Tropical Storm Warning is in effect for... * The Cabo Verde Islands",
        "verified": true
       },
       {
-       "text": "Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "As of 2:00 PM CVT Fri Sep 25 the center of Gonzalo was located near 15.1, -22.7 with movement NNW at 10 mph",
+       "text": "GDACS rates this a Green (lowest) alert with zero population estimated to face Category-1-equivalent winds, only ~0.419M in tropical-storm-force winds — consistent with limited near-term catastrophe-bond/ILS or reinsurance market reaction at this stage.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001328",
+       "quote": "Green notification for tropical cyclone GONZALO-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0.419 million in Tropical Storm).",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (fr, tameteo.com): “La tempête tropicale Gonzalo s’est formée dans l’Atlantique Est et se déplacera très au sud-ouest des îles Canaries”",
+       "text": "NHC forecasts weakening beginning tonight through the weekend, which if it verifies would reduce near-term risk to Atlantic east-west shipping lanes and marine cargo routes transiting near Cabo Verde/the Canaries corridor.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
+       "quote": "A gradual weakening trend is forecast to begin tonight and continue through the weekend.",
+       "verified": true
+      },
+      {
+       "text": "Regional media (tameteo.com) flags a track passing well southwest of the Canary Islands — worth monitoring for any read-through to Spanish tourism-exposed equities/travel names, though current NHC guidance does not show Canaries impact.",
        "source_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQUmg5WHYycXhVWDhVcUNkWjg2ZVRoQjhoWFdYYkU4Zk90VHBQSHVIWURUbC1tbU1iN3ViRXh2UXJfUEZodnVQZTRLc2xiSWVtZ2lWYlZCLVRDYlc0SEpXaTN1X21mN256a2Ewb0ZCQ1Jad3ExY1JSOThCdUNyenlYWk5VR092UWE0d2NyUXhQTGw2S1IyZUJEWl9FVTJBNlVtWHFDVGxhbVdpRnlKRDg1WEJqOW9JVWNqS2lJYlk4bHRGb0F2ek92MUotTEU4clpGU3o2bUVCdVFVdUJEQUdVd0lfTjdPMkRObEFpOExpV25qZUdqTmxkXw?oc=5",
-       "quote": "La tempête tropicale Gonzalo s’est formée dans l’Atlantique Est et se déplacera très au sud-ouest des îles Canaries",
+       "quote": "La tempête tropicale Gonzalo s’est formée dans l’Atlantique Est et se déplacera très au sud-ouest des îles Canaries - tameteo.com",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (pt, expressodasilhas.cv): “Tempestade tropical Gonzalo aproxima-se de Cabo Verde”",
-       "source_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVXVWc2JkVkdSQkdjWENtQ2l5VDN1a2FEczBPckYwbHVnem5TNVYyelhnRUdYN2FiakRUcWVybkxHR2hsVzEwUTZHeFhrM1FvYUFqYjBoSGJBNDFzMVdrbFNfQVRUcHNYNG5PSzY4VzhIcDZDc2FfZDduN2xWX0RwVEFRRmxBdUVWcjgxRHVJZWx5RkFJYmNSUGp5RUM4WlUzR3ZkdU1icw?oc=5",
-       "quote": "Tempestade tropical Gonzalo aproxima-se de Cabo Verde",
+       "text": "Some outlets are using alarmist framing ('a weather bomb') even though NHC's actual advisory puts sustained winds at only 50 mph; CIOs should discount headline-driven sentiment moves in insurance/reinsurance names pending official data.",
+       "source_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPRFRZZXVWOVM0SXhlSFN3ZXlmcTU3dGYwcV9PRmFudVNCTlNrTHhySkFCTEtnTkJWbnZzOXc4NjVkTHNfclVaMlR6X3o5em1RYkkxSDNLR2YxcUdTZEJVUkUwSUNmbDExQzdORzgtNE4zekVUSm9XWmljU1BwNVI5S1FPb3ZtTXJJTTFlSnExSFk1U2doSGdaSVhxTThEWnZVZjktVjEwT3pDeUJDeHdGY0tzMzFxZklCVTdZZ19rcjk4dU1SRzVMV3ZMMWN4X2VIOS1kb1IxeDBVWi1uQkIzNjIyZVRhOFZHdUlVNEk0RFBiZTJHcEE?oc=5",
+       "quote": "Tempête tropicale Gonzalo : \"Une bombe météorologique\", des experts météo redoutent ce qui serait \"une première\" dans l'Atlantique - melty.fr",
        "verified": true
       }
      ],
      "caveats": [
-      "Not investment advice; directional only."
+      "Not investment advice; for informational/monitoring purposes only.",
+      "No portfolio_lines were supplied for this event, so no book-specific TIV/exposure figures are cited here despite the synthetic exposure summary provided.",
+      "Storm track, intensity, and impacted-region assessments remain highly uncertain this far out; NHC's own guidance shows weakening, and GDACS rates the event Green (lowest tier).",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
-     "headline": "Tropical Storm Gonzalo: 16 sites / $385M within 150 km screening buffer — accumulation MONITOR",
+     "headline": "Tropical Storm Gonzalo - Cape Verde: 16 sites / $385M within 150 km screening buffer — accumulation MONITOR",
      "bullets": [
-      {
-       "text": "Authority severity Tropical Storm (50 mph) (NHC Saffir-Simpson) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "The minimum central pressure was 1000 mb with maximum sustained winds of about 50 mph",
-       "verified": true
-      },
-      {
-       "text": "Synthetic book: 16 sites / $385M TIV within 150 km screening buffer of the NHC forecast track.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Synthetic book: 16 sites / $385M TIV within 150 km screening buffer of the NHC forecast track.",
-       "verified": true
-      },
-      {
-       "text": "By line — Commercial Property 7 policies / $234M (incl. BI time element $96M); HNW Homeowners 7 policies / $31M; Marine Cargo 2 policies / $24M; Energy none. Insured lives in area (pro-rated): 2,593 Travel/A&H.",
-       "source_url": "portfolio://synthetic",
-       "quote": "By line — Commercial Property 7 policies / $234M (incl. BI time element $96M); HNW Homeowners 7 policies / $31M; Marine Cargo 2 policies / $24M; Energy none. Insured lives in area (pro-rated): 2,593 Travel/A&H.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: MONITOR — run accumulation check against the screening area; no binding restriction yet. Reserving posture: watch (pre-landfall — reserves are not strengthened before the event occurs).",
        "source_url": "portfolio://synthetic",
@@ -1838,30 +1864,39 @@
        "verified": true
       },
       {
-       "text": "Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "SUMMARY OF WATCHES AND WARNINGS IN EFFECT: A Tropical Storm Warning is in effect for",
+       "text": "Independent hazard-population screening corroborates a low-severity signal for the affected islands, with no population exposed to Category 1+ winds.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001328",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0.419 million in tropical storm).",
        "verified": true
       },
       {
-       "text": "Check cat XoL retention erosion and ILW/parametric cat-bond trigger boxes against the forecast track.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT2+shtml/251444.shtml",
-       "quote": "As of 2:00 PM CVT Fri Sep 25 the center of Gonzalo was located near 15.1, -22.7 with movement NNW at 10 mph",
+       "text": "Synthetic underwriting book carries 16 sites / $385M TIV within the 150 km screening buffer of the current NHC forecast track — accumulation check warranted given Commercial Property and BI time-element concentration.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Synthetic book: 16 sites / $385M TIV within 150 km screening buffer of the NHC forecast track.",
+       "verified": true
+      },
+      {
+       "text": "Line-level exposure: Commercial Property 7 policies/$234M (incl. $96M BI time element) is the dominant claims driver, with HNW Homeowners and Marine Cargo secondary; A&H/Travel exposure is measured in insured lives (2,593), not TIV.",
+       "source_url": "portfolio://synthetic",
+       "quote": "By line — Commercial Property 7 policies / $234M (incl. BI time element $96M); HNW Homeowners 7 policies / $31M; Marine Cargo 2 policies / $24M; Energy none. Insured lives in area (pro-rated): 2,593 Travel/A&H.",
        "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Portfolio figures (TIV, policy counts, insured lives, accumulation/reserving status) are SYNTHETIC demo-book data, not real policies.",
+      "Gonzalo is pre-landfall/forecast-stage; per standing guidance, no reserve strengthening is recommended for a forecast hazard.",
+      "No reinsurance, cat-bond, or ILW trigger information was available in the sourced materials for this event; none is asserted here.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "watch",
      "accumulation_action": "MONITOR — run accumulation check against the screening area; no binding restriction yet"
     }
    },
    "unknowns": [
-    "Landfall location/timing beyond the NHC cone",
-    "Storm-surge and rainfall damage extent",
-    "Insured vs economic loss split"
+    "Extent and cost of property/flood damage on Sal and other islands",
+    "Whether storm intensifies further before landfall or affected areas",
+    "Exact geographic scope of impact beyond Cape Verde/Canary Islands vicinity",
+    "Casualties or injuries, if any, from flooding reported in Sal"
    ],
    "routing": [
     {
@@ -1870,7 +1905,7 @@
      "channel": "email",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Storm Gonzalo: NHC Saffir-Simpson Tropical Storm (50 mph). 16 sites / $385M TIV within 150 km screening buffer. Accumulation MONITOR: run accumulation check. Reserving: watch. Largest: Praia Commercial #2765."
+     "message": "[AMBER P2] Tropical Storm Gonzalo - Cape Verde: NHC Tropical Storm (50 mph). 16 sites / $385M TIV within 150 km buffer. Accumulation MONITOR: run accumulation check. Reserving: watch. Largest: Praia Commercial #2765."
     },
     {
      "persona": "Head of Claims",
@@ -1878,7 +1913,7 @@
      "channel": "slack",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Storm Gonzalo: 16 insured sites in 150 km screening buffer ($385M TIV). Pre-position adjusters; FNOL surge possible within 24-72h (NHC 5-day track)."
+     "message": "[AMBER P2] Tropical Storm Gonzalo - Cape Verde: 16 insured sites in 150 km buffer ($385M TIV). Pre-position adjusters; FNOL surge possible within 24-72h per NHC 5-day track."
     },
     {
      "persona": "Cat Modeling/Accumulation desk",
@@ -1886,7 +1921,7 @@
      "channel": "slack",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Storm Gonzalo (NHC Saffir-Simpson Tropical Storm (50 mph)). Accumulation MONITOR: $385M TIV within 150 km screening buffer. Run accumulation check vs zones; check XoL retention and ILW/cat-bond triggers."
+     "message": "[AMBER P2] Tropical Storm Gonzalo - Cape Verde (NHC Tropical Storm, 50 mph). Accumulation MONITOR: $385M TIV within 150 km buffer. Run accumulation check vs zones; verify XoL retention and ILW/cat-bond triggers."
     },
     {
      "persona": "CIO",
@@ -1894,7 +1929,7 @@
      "channel": "email",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Storm Gonzalo (NHC Saffir-Simpson Tropical Storm (50 mph)) in Cape Verde. Book exposure: $385M TIV, 2,593 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
+     "message": "[AMBER P2] Tropical Storm Gonzalo - Cape Verde (NHC Tropical Storm, 50 mph). Book exposure: $385M TIV, 2,593 insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."
     },
     {
      "persona": "Head of A&H/Travel",
@@ -1902,7 +1937,7 @@
      "channel": "email",
      "priority": "P2",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[AMBER P2] Tropical Storm Gonzalo: ~2,593 insured Travel/A&H lives in the 150 km screening buffer (pro-rated, synthetic). Check assistance capacity and evacuation readiness."
+     "message": "[AMBER P2] Tropical Storm Gonzalo - Cape Verde: ~2,593 insured Travel/A&H lives in 150 km buffer (pro-rated, synthetic). Check assistance capacity and evacuation readiness."
     }
    ]
   },
@@ -1935,7 +1970,7 @@
     {
      "factor": "velocity/recency",
      "points": 10,
-     "reason": "latest authority update 3h ago; 24 matching news items",
+     "reason": "latest authority update 3h ago; 23 matching news items",
      "source_url": ""
     },
     {
@@ -1957,7 +1992,7 @@
     "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml"
    },
    "confidence": "high",
-   "confidence_rationale": "9 independent sources (8 verified quotes) across 2 language(s); severity from NHC Saffir-Simpson",
+   "confidence_rationale": "NHC confirms Cat 4/130 mph, 946 mb, corroborated by 9 sources across 2 languages.",
    "geo": {
     "lat": 17.9,
     "lon": -123.7,
@@ -2010,7 +2045,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-20T09:08:06Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en",
     "es"
@@ -2050,17 +2085,6 @@
      "publisher": "gdacs.org"
     },
     {
-     "id": "gnews:0626db9d65eb",
-     "feed": "news:apnews.com",
-     "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTmhIcWRYajJUZG81Z3RranAtOHF3ZUFkSHVJbzFXa3JPMVZYTEdHbEpLWGhQMm9WTXJXZEtUWGlrbmc1QkNhakRFcDZ3SUlCQ2xzYm5rZ0dhX2Z3M0FNdmoxbGRBczNNU3B1OWVrelExTjdaM1hONmh1cEJZTjQ3Zm80TWtHYndDNWdDd0Nn?oc=5",
-     "title": "Tropical Storm Fay forms far out in the Atlantic as Odalys strengthens in the Pacific - AP News",
-     "lang": "en",
-     "published": "2026-09-20T21:05:00Z",
-     "quote": "Tropical Storm Fay forms far out in the Atlantic as Odalys strengthens in the Pacific",
-     "verified": true,
-     "publisher": "apnews.com"
-    },
-    {
      "id": "gnews:3bb2c3abc37d",
      "feed": "news:bigislandnow.com",
      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNjc5TWdrZHJxOGhVTGxmTlk4MkhYWWViQjd0TERlSDdYQjlQSzhCTl9kQTd4Y3BENU1na05rUHZjQTRGMjVGeVBNOHBQb3hNbURRTFJ5bDNmZUo4Ny1rQTVjcmFQc0lCQ1ppb0kzQjFPTTNhTHFsUElhVXA4UldPcmdXTU1vbkxaZWZ4MnZXT1E0WWs4dHBLOFg1T3liV0JvLUhETFZn?oc=5",
@@ -2094,6 +2118,17 @@
      "publisher": "nmas.com.mx"
     },
     {
+     "id": "gnews:4b38925c1679",
+     "feed": "news:ctvnews.ca",
+     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOZE1XN290MHo1cDBJbTVfR2hKSWFZZHdOWWVIeUhidHhxeHcydUJ0QXRRaGQ1SFNtQWpuLWlIcTlyRXd0dzFLdWhPZHNFUERVVVk4SS1id21CUmh4ZHJLMHRnQlJLd2FiLWgza2FyU1RqTU9sejNxZUZnRy00VWlSb181cWtSSDl0OFdzTlVsQWR6TDF1TC0tTmlYOTBLbk53R0xBNTNHeWFnTi1UUFlCX001eXRjRU9uME1jU3R1eERsVm5HWmFtZU1SSm92SWV0MnRidFRKZXFlWEpNck9KRnNn?oc=5",
+     "title": "Polo off Mexican coast is among ‘the strongest storms ever’ as Odalys becomes a hurricane - ctvnews.ca",
+     "lang": "en",
+     "published": "2026-09-23T11:05:49Z",
+     "quote": "Polo off Mexican coast is among ‘the strongest storms ever’ as Odalys becomes a hurricane",
+     "verified": true,
+     "publisher": "ctvnews.ca"
+    },
+    {
      "id": "gnews:6310a25fa8eb",
      "feed": "news:unotv.com",
      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcUQtYkVzUGoxbktWNkc3OXo4Rm9fZGd2VmZPTWVZOGpmT1hrWWxVdDd6SXNkeG53RGNTZVZLOXIwOUVRbE1teDB1Wlh2Z01YcHlHNVJiVllSY181SE5wTmdVVVJYZER6UnNRajFfZ0xrWEl3N0pSLXhZYkNxNkdNRm1KLWloWWxZRGZoam9oWWhleXVPaEk0c1NfXzF6UQ?oc=5",
@@ -2105,15 +2140,15 @@
      "publisher": "unotv.com"
     },
     {
-     "id": "gnews:2d5c15ffba66",
-     "feed": "news:sociedad-noticias.com",
-     "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTENOOFlNRDlEYjJQVnp4RTFrRlNzclZ0T1Z4dDBTX3hwa21ydlNRQ3VpVmlTcldwRWdyYnFEWmdXV05DdVRLcmlJdWphdExGQmVrWXJCY1dBWThvSHh4dkU1NnF1V0tnZGV6S2VuczFOSW4yREdmb20wNmpyRGlBMkFVMWljbHJySkcxaG9lMmVUbW5uQ1hrNFZIOXJ5SEl2VzhnNEtEd0FhNmkteHg2U3k5ZlA?oc=5",
-     "title": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h - sociedad-noticias.com",
+     "id": "gnews:0ca1837ada6b",
+     "feed": "news:oncenoticias.digital",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxObTJzaU1udjB4SGt3ZnQyV0RSSFlMenFqM3lXWktwMWlZX2RqNlpubk0zZHlFeWJ4QXQ5SHNyVDVCb3lxOEF3eUtXUjgyX2ltRWtSZ1ZCNlRvalpVS3d3QkFGM0lHR2ZNV1poMTE4MC1icWtJVml6eDgzakM2MTh5SG44bkvSAYQBQVVfeXFMTm0yc2lNbnYweEhrd2Z0MldEUkhZTHpxajN5V1pLcDFpWV9kajZabm5NM2R5RXlieEF0OUhzclQ1Qm95cThBd3lLV1I4Ml9pbUVrUmdWQjZUb2paVUt3d0JBRjNJR0dmTVdaaDExODAtYnFrSVZpeng4M2pDNjE4eUhuOG5L?oc=5",
+     "title": "Huracán “Odalys” ya es categoría 4 - Once Noticias Digital",
      "lang": "es",
-     "published": "2026-09-25T03:42:33Z",
-     "quote": "Huracán Odalys de categoría 2 se fortalece y alcanza vientos de 176 km/h",
+     "published": "2026-09-25T14:06:18Z",
+     "quote": "Huracán “Odalys” ya es categoría 4",
      "verified": true,
-     "publisher": "sociedad-noticias.com"
+     "publisher": "oncenoticias.digital"
     }
    ],
    "exposure": {
@@ -2140,90 +2175,90 @@
    },
    "briefs": {
     "health": {
-     "headline": "Hurricane Odalys: health impact watch (AMBER)",
+     "headline": "Hurricane Odalys remains a powerful Cat 4 system far offshore with no current land threat or population exposure reported",
      "bullets": [
       {
-       "text": "Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core: “The minimum central pressure was 946 mb with maximum sustained winds of about 130 mph”",
+       "text": "Odalys is a major Category 4 hurricane with 130 mph sustained winds, but remains roughly 955 miles offshore from the nearest populated coastline, limiting any immediate exposed population or health-system strain.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
-       "quote": "The minimum central pressure was 946 mb with maximum sustained winds of about 130 mph",
+       "quote": "ABOUT 955 MI...1540 KM WSW OF THE SOUTHERN TIP OF BAJA CALIFORNIA",
        "verified": true
       },
       {
-       "text": "GDACS population exposure estimate for the wind field: “Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0 in Tropical Storm)”",
+       "text": "NHC confirms no coastal watches or warnings are in effect, indicating no active land-facing health or evacuation response is currently triggered.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
+       "quote": "There are no coastal watches or warnings in effect.",
+       "verified": true
+      },
+      {
+       "text": "NHC explicitly lists no hazards affecting land at this time, consistent with zero anticipated acute care surge from wind, storm surge, or flooding impacts.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
+       "quote": "HAZARDS AFFECTING LAND ---------------------- None.",
+       "verified": true
+      },
+      {
+       "text": "GDACS independently estimates zero population currently affected by hurricane- or tropical-storm-force winds, reinforcing that there is no exposed population driving health-system strain right now.",
        "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001324",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0 in Tropical Storm)",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0 in tropical storm).",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (es, nmas.com.mx): “Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria”",
-       "source_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPeGRUUFExcUYya1Q3RG9qYm9Jc1NDQjJ3bjBUX1BSNlg5RTE0Y1pEbEhpWFplbERTTkZrMHVYdkVQeW9CQmp6aXVtVlBQeER3MWp1d0xyUXZrTXpCd1Ewc1N1TkFRN1QtN1Q2OG1adGhEaGhWUXFEX29paUYzeGxBY2VwTUZuVFpGc0ExamN5ZnVsRTRTMzA5dGNlQkQzVDhLSzBJblVzRjJ5WXIyb05BdXVLZEllWjVjZDVNQ3JiUkI?oc=5",
-       "quote": "Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria",
-       "verified": true
-      },
-      {
-       "text": "Local-language press flags community impact (es, unotv.com): “Huracán Odalys avanza por el Pacífico: ¿representa peligro para México?”",
-       "source_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcUQtYkVzUGoxbktWNkc3OXo4Rm9fZGd2VmZPTWVZOGpmT1hrWWxVdDd6SXNkeG53RGNTZVZLOXIwOUVRbE1teDB1Wlh2Z01YcHlHNVJiVllSY181SE5wTmdVVVJYZER6UnNRajFfZ0xrWEl3N0pSLXhZYkNxNkdNRm1KLWloWWxZRGZoam9oWWhleXVPaEk0c1NfXzF6UQ?oc=5",
-       "quote": "Huracán Odalys avanza por el Pacífico: ¿representa peligro para México?",
+       "text": "A gradual weakening trend is forecast to begin over the weekend, suggesting the storm's peak intensity threat may ease before any potential land interaction, though the track could still evolve.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
+       "quote": "A gradual weakening trend is forecast to commence over the weekend.",
        "verified": true
       }
      ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Portfolio exposure figures (policies, TIV, insured lives) are all zero in this synthetic demo book, reflecting the storm's current offshore position rather than a validated real-world absence of risk.",
+      "Forecast track and intensity remain uncertain per NHC; hazards affecting land could change materially in later advisories as the system tracks north-northeastward.",
+      "GDACS population-affected estimate reflects current wind field only and does not account for potential future landfall or track shifts.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "Hurricane Odalys: market/sector read-through for no named country (at sea)",
+     "headline": "Cat 4 Hurricane Odalys remains far offshore with no land hazards yet — CIO view: limited immediate market impact, watch Mexican Pacific coast/tourism and Hawaii",
      "bullets": [
       {
-       "text": "Regional market read-through for no named country (at sea): tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.",
+       "text": "NHC's latest advisory shows Odalys as a major Cat 4 storm but explicitly notes no coastal watches or warnings are in effect, suggesting no immediate threat premium should be priced into Mexican Pacific coastal risk (e.g., Los Cabos/Puerto Vallarta hospitality, regional insurers) at this stage.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
-       "quote": "CATEGORY 4 HURRICANE ODALYS HEADING NORTH-NORTHEASTWARD",
+       "quote": "There are no coastal watches or warnings in effect.",
        "verified": true
       },
       {
-       "text": "Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).",
+       "text": "GDACS' green classification and zero estimated population exposure reinforce a low near-term humanitarian/economic screening buffer, consistent with minimal catastrophe-bond or reinsurance market reaction expected for now.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001324",
+       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0 in Tropical Storm).",
+       "verified": true
+      },
+      {
+       "text": "NHC forecasts a weakening trend to begin over the weekend, which — combined with the storm's slow NNE track far offshore — reduces tail risk to Baja California tourism/hospitality equities and regional travel-insurance loss ratios absent a track shift.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
-       "quote": "As of 8:00 AM PDT Fri Sep 25 the center of Odalys was located near 17.9, -123.7 with movement NNE at 6 mph",
+       "quote": "A gradual weakening trend is forecast to commence over the weekend.",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (es, nmas.com.mx): “Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria”",
-       "source_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPeGRUUFExcUYya1Q3RG9qYm9Jc1NDQjJ3bjBUX1BSNlg5RTE0Y1pEbEhpWFplbERTTkZrMHVYdkVQeW9CQmp6aXVtVlBQeER3MWp1d0xyUXZrTXpCd1Ewc1N1TkFRN1QtN1Q2OG1adGhEaGhWUXFEX29paUYzeGxBY2VwTUZuVFpGc0ExamN5ZnVsRTRTMzA5dGNlQkQzVDhLSzBJblVzRjJ5WXIyb05BdXVLZEllWjVjZDVNQ3JiUkI?oc=5",
-       "quote": "Odalys Ya es Huracán Categoría 1 en el Pacífico; Esta es Su Trayectoria",
-       "verified": true
-      },
-      {
-       "text": "Market-moving coverage (es, unotv.com): “Huracán Odalys avanza por el Pacífico: ¿representa peligro para México?”",
+       "text": "Spanish-language coverage is already framing the storm as a potential threat to Mexico, a leading indicator worth monitoring for sentiment/positioning in Mexican peso, Baja tourism REITs, and Pemex offshore operations should the track turn coastal.",
        "source_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcUQtYkVzUGoxbktWNkc3OXo4Rm9fZGd2VmZPTWVZOGpmT1hrWWxVdDd6SXNkeG53RGNTZVZLOXIwOUVRbE1teDB1Wlh2Z01YcHlHNVJiVllSY181SE5wTmdVVVJYZER6UnNRajFfZ0xrWEl3N0pSLXhZYkNxNkdNRm1KLWloWWxZRGZoam9oWWhleXVPaEk0c1NfXzF6UQ?oc=5",
-       "quote": "Huracán Odalys avanza por el Pacífico: ¿representa peligro para México?",
+       "quote": "Huracán Odalys avanza por el Pacífico: ¿representa peligro para México? - UnoTV",
+       "verified": true
+      },
+      {
+       "text": "Regional media are already linking Odalys to Hawaii's hurricane season alongside Polo, a reminder to watch Hawaiian tourism, airline, and travel-insurance names for headline sensitivity even though the storm is currently far from land.",
+       "source_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPa1R1X0RKWE8xeldaY1NpT0hUTk5HMEpNdURBU29lZkFvNjR3TWtfTlhOZkI3b00yTS1XN0xGeTM3UlJWakREV0l1dGhXUjB0NG9NVHhJTDJDWUs1bnhfU0JCVmdFa181c3lreUVqc1M3UXVZVVh0eTRzRkQ4aXdlVUNDUHBKZ9IBiwFBVV95cUxQSTJPci1Vd3dIUHVER2h2U3ZqQTFycG1CNzhXUktFOVlqYnlsajlobHZzU3FrM0ljNnMzYWM3OFdlSmNZNk1qRlNnbloyZHFyMjhaZEdJVmY4bkdYRTY0YVU2eEZjWWxrTzVYalJEX2pNSDZiY1hSSVBINTE0a2dFMzd1Q1lXNFNXY1B3?oc=5",
+       "quote": "Hawaii’s hurricane season continues: Odalys, Polo in Pacific - KHON2",
        "verified": true
       }
      ],
      "caveats": [
-      "Not investment advice; directional only."
+      "This is a market/CIO-perspective note, not investment advice; no positions should be taken solely on this brief.",
+      "Storm is currently ~955 mi WSW of Baja California with no hazards affecting land per NHC; any coastal/asset-class implications are contingent on future track changes, which remain uncertain at this lead time.",
+      "Portfolio exposure figures reflect a SYNTHETIC demo book, not real policies or actual insured exposures.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
      "headline": "Hurricane Odalys: 0 sites / $0 within 300 km screening buffer; 0 / $0 in ~35 km hurricane-force core — accumulation NONE",
      "bullets": [
-      {
-       "text": "Authority severity Cat 4 (130 mph) (NHC Saffir-Simpson) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
-       "quote": "CATEGORY 4 HURRICANE ODALYS HEADING NORTH-NORTHEASTWARD",
-       "verified": true
-      },
-      {
-       "text": "Synthetic book: 0 sites / $0 TIV within 300 km screening buffer of the NHC forecast track; 0 sites / $0 within ~35 km hurricane-force core.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Synthetic book: 0 sites / $0 TIV within 300 km screening buffer of the NHC forecast track; 0 sites / $0 within ~35 km hurricane-force core.",
-       "verified": true
-      },
-      {
-       "text": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
-       "source_url": "portfolio://synthetic",
-       "quote": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: NONE — no insured exposure in the screening area. Reserving posture: watch (pre-landfall — reserves are not strengthened before the event occurs).",
        "source_url": "portfolio://synthetic",
@@ -2231,31 +2266,51 @@
        "verified": true
       },
       {
-       "text": "Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.",
+       "text": "NHC places Odalys as a major Cat 4 hurricane roughly 955 mi WSW of Baja California with no coastal watches or warnings in effect and 'HAZARDS AFFECTING LAND ... None' — screening buffer shows no property, marine cargo, or energy exposure to accumulate at this stage.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
-       "quote": "There are no coastal watches or warnings in effect",
+       "quote": "HAZARDS AFFECTING LAND ---------------------- None.",
        "verified": true
       },
       {
-       "text": "Check cat XoL retention erosion and ILW/parametric cat-bond trigger boxes against the forecast track.",
+       "text": "Synthetic book confirms zero sites and $0 TIV within the 300 km screening buffer and zero within the ~35 km hurricane-force inner core, so no binding/accumulation action is warranted.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Synthetic book: 0 sites / $0 TIV within 300 km screening buffer of the NHC forecast track; 0 sites / $0 within ~35 km hurricane-force core.",
+       "verified": true
+      },
+      {
+       "text": "By-line breakdown shows nil exposure across Commercial Property (incl. BI time element), HNW Homeowners, Marine Cargo, and Energy — no lines require underwriting attention pre-landfall.",
+       "source_url": "portfolio://synthetic",
+       "quote": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
+       "verified": true
+      },
+      {
+       "text": "GDACS corroborates minimal land-impact signal at this stage, reporting an estimated population affected by Cat 1+ winds of 0, consistent with the storm's remote open-ocean position.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001324",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0 in tropical storm).",
+       "verified": true
+      },
+      {
+       "text": "NHC advisory notes hurricane-force winds extend only 25 mi (35 km) from center and slow NNE motion (6 mph) with weakening forecast this weekend — track/intensity trend to monitor for any future re-screening of the buffer, not a basis for reserve action now.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPEP1+shtml/251446.shtml",
-       "quote": "As of 8:00 AM PDT Fri Sep 25 the center of Odalys was located near 17.9, -123.7 with movement NNE at 6 mph",
+       "quote": "Hurricane-force winds extend outward up to 25 miles (35 km) from the center",
        "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Pre-landfall forecast hazard: no reserve strengthening recommended.",
+      "Synthetic/demo portfolio book — not real policies; figures for exercise purposes only.",
+      "No coastal watches/warnings in effect per NHC as of this advisory; storm remains well offshore.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "watch",
      "accumulation_action": "NONE — no insured exposure in the screening area"
     }
    },
    "unknowns": [
-    "No country currently named as affected by authority feeds",
-    "Landfall location/timing beyond the NHC cone",
-    "Storm-surge and rainfall damage extent",
-    "Insured vs economic loss split"
+    "Landfall location and timing not established",
+    "Wind field extent/radius unknown",
+    "Storm surge and rainfall totals not reported",
+    "GDACS population-affected figure conflicts with NHC Cat 4 rating, cause unclear"
    ],
    "routing": [
     {
@@ -2264,13 +2319,13 @@
      "channel": "slack",
      "priority": "P3",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[AMBER P3 monitor] Hurricane Odalys (NHC Saffir-Simpson Cat 4 (130 mph)). No insured sites in the 300 km screening buffer this cycle; keep monitoring the forecast for track shifts toward insured coast."
+     "message": "MONITOR: Hurricane Odalys (Cat 4, 130 mph). No insured sites within 300 km this cycle. Continue tracking forecast for any shift toward insured coastal areas."
     }
    ]
   },
   {
    "event_id": "tc-nolo-2026",
-   "name": "Hurricane Nolo",
+   "name": "Hurricane Nolo - United States",
    "type": "TC",
    "status": "alert",
    "tier": "AMBER",
@@ -2319,7 +2374,7 @@
     "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml"
    },
    "confidence": "high",
-   "confidence_rationale": "9 independent sources (8 verified quotes) across 2 language(s); severity from NHC Saffir-Simpson",
+   "confidence_rationale": "NHC confirms Cat 1 (85 mph) with 9 corroborating sources across en/es and recent updates.",
    "geo": {
     "lat": 16.0,
     "lon": -155.5,
@@ -2374,7 +2429,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-13T20:58:31Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en",
     "es"
@@ -2428,7 +2483,7 @@
      "id": "gnews:f0921691e54c",
      "feed": "news:cnnespanol.cnn.com",
      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMWJLNVo0bS1NQU5NV3VfcGhnbzNTZnFNQWpzdEx3TENxQWZDWlNUdVdXandxWGZieVRFTWhCdG14SmJOVTBEMnZNVGF0eHRkdzRSUHZnTGRpbmdHcG90QkpTeFZQZlQ2bXhYVUZTUHB4d2JEZm1QQWxKR0drX1RXNk9laWtiUnlzQk5uVzdn?oc=5",
-     "title": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes - CNN en Español",
+     "title": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes - cnnespanol.cnn.com",
      "lang": "es",
      "published": "2026-09-24T16:47:00Z",
      "quote": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes",
@@ -2469,15 +2524,15 @@
      "publisher": "aljazeera.com"
     },
     {
-     "id": "gnews:50924d7c0f68",
-     "feed": "news:hawaiinewsnow.com",
-     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMG1lM2E1S3RobTAxbFNXZmk2cDFWMDRMdlNkQ3BQZXV3NWNKaEdoUmMxaWpod25BR1VOUTZ0Yi10LVNocnJTU1N3akxOX2dXZmVmWllXVUZWbWdPZFBvQTFHVTJIWU0wRnpzTjZ4V2JzeTZzQzVaaHR0aDlGcU8zdENOdHB3RWZBekRJcXQ2MXRGaHZ5eG5IUzdXT2w2NkFLd0kxM2tuM1RyNHRETlpnbWg0anNmSjlyUDRNSU0wSDZPNENa?oc=5",
-     "title": "September 24, 2026 NOLO UPDATE: Will strengthen into a major hurricane; Jen Robbins - Hawaii News Now",
+     "id": "gnews:5de77ca04442",
+     "feed": "news:abcnews.com",
+     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOZGs1Y0pkVEI3TzRvWVp0SFlOVVpReVhWakxzV1huX3R1R0U0Y3kxRHVtSkswb1QzQUtTeGdhVVBXU0Z2MHNQdko2T2pka0d6ZGdTOUpoUGNDRm1haTBpVFhoRFRyeVZXaHJOejZuYllSTEhBSnU1clY2UWpMUkk1emh5dkdpdmtsWVBlY255RlBUUdIBlwFBVV95cUxNaHA5OERrZ0V4bFdNa1Ficm9oOEdFZGc3WWtfb0J0Q0E2bDVYTVFNRUV2NE4wc3FWLVJ5VDJnTUhtMXdIWk84VUF1N0dSWGZHZ0M0QnJBYUpybUJOLWY3SU0ycndfZHpTZEduVWluT05WLUFBaDNKNWVBSjRDRmg3eG5XdkFIRjZkYm9CSFFmWUd5R2RmS1Nn?oc=5",
+     "title": "Hurricane Nolo nears hard-hit Hawaii: Latest forecast - ABC News - Breaking News, Latest News and Videos",
      "lang": "en",
-     "published": "2026-09-25T08:42:00Z",
-     "quote": "September 24, 2026 NOLO UPDATE: Will strengthen into a major hurricane; Jen Robbins",
+     "published": "2026-09-25T10:41:10Z",
+     "quote": "Hurricane Nolo nears hard-hit Hawaii: Latest forecast",
      "verified": true,
-     "publisher": "hawaiinewsnow.com"
+     "publisher": "abcnews.com"
     }
    ],
    "exposure": {
@@ -2504,102 +2559,90 @@
    },
    "briefs": {
     "health": {
-     "headline": "Hurricane Nolo: health impact watch (AMBER)",
+     "headline": "Cat 1 Hurricane Nolo threatens Hawaii Island with catastrophic flash flooding; no exposed population per GDACS, synthetic book shows zero policies in screening ",
      "bullets": [
       {
-       "text": "Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core: “The minimum central pressure was 980 mb with maximum sustained winds of about 85 mph”",
+       "text": "Nolo is a Category 1 hurricane with 85 mph sustained winds and a 980 mb central pressure, located ~210 mi S of South Point, Hawaii and moving NNE at only 5 mph, prolonging the threat window over the Big Island.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "The minimum central pressure was 980 mb with maximum sustained winds of about 85 mph",
+       "quote": "MAXIMUM SUSTAINED WINDS...85 MPH...140 KM/H PRESENT MOVEMENT...NNE OR 25 DEGREES AT 5 MPH...7 KM/H MINIMUM CENTRAL PRESSURE...980 MB...28.94 INCHES",
        "verified": true
       },
       {
-       "text": "Heavy rain / flash-flood hazard raises waterborne-disease and access-to-care risk: “RAINFALL: For the eastern and southern portions of the Big Island, Nolo will produce rainfall totals of 10 to 15 inches with maximum amounts of 25 inches”",
+       "text": "NHC/NWS is warning of catastrophic and life-threatening flash flooding on the Big Island through the weekend, which poses the greatest acute health-system risk (drowning, trauma, isolation of rural communities) regardless of wind category.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "RAINFALL: For the eastern and southern portions of the Big Island, Nolo will produce rainfall totals of 10 to 15 inches with maximum amounts of 25 inches",
+       "quote": "CATASTROPHIC AND LIFE-THREATENING FLASH FLOODING POSSIBLE ON THE BIG ISLAND OF HAWAII INTO THE WEEKEND",
        "verified": true
       },
       {
-       "text": "Storm surge / surf hazard (NHC): “These swells are likely to cause life-threatening surf and rip current conditions”",
+       "text": "A Hurricane Watch and Tropical Storm Warning are in effect for Hawaii County, with a Tropical Storm Watch for Maui County, indicating the exposed population base that health/EMS systems must prepare to support.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "These swells are likely to cause life-threatening surf and rip current conditions",
+       "quote": "A Hurricane Watch is in effect for... * Hawaii County A Tropical Storm Warning is in effect for... * Hawaii County",
        "verified": true
       },
       {
-       "text": "GDACS population exposure estimate for the wind field: “Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0 in Tropical Storm)”",
+       "text": "GDACS independently rates this a Green (lowest-tier) notification and estimates 0 population affected by Category 1+ winds, suggesting limited direct wind exposure though the flood risk is the dominant hazard.",
        "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001321",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0 in Tropical Storm)",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0 in tropical storm).",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (es, telemundoareadelabahia.com): “Hawaii en alerta: Nolo se fortalece a huracán y lleva fuertes lluvias a la región”",
-       "source_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOakF3N25oUTU5V3NTZkprV1VZdncwUy1lLWs2cWxORFdZMHdZY2RRNlc1MzVTbnlicUNGOWQ4X2ZWWUhIRktQYjRnMjlsaG1kVF9vQlQyUk5BM0ZhRTJQX0dzM21nZGFxQkVqMXBOX2k0OWh5a1VxYVlwMlFtRVZvVGdMbWRFUTQ0RlVkQkVmNFlyR1VUOVRxaHB3R1kzWDJnUWpqdjdfSlNWd9IBsgFBVV95cUxOVVYyTnN3cHNRdHFzQUYyeVluY3RFcGhWNnVtTnRJRzROY1Q0OFF4a2lWVXA1UlR6bGtzQl9oUVdNTFpMQWZLNUVJdjlXQmhlUWNZeEI4azV3dDdhNzdTcXNkY1gyWmhZWDZrVVd2UjZSU0c3VEtYbGIzVUZtODgwYmVlUTNQT3hyNWZwWkN5SDNOSFhqVkk4QkY1NG54aHZsWDZmNlJQR1hpNVJOVlFqYmNB?oc=5",
-       "quote": "Hawaii en alerta: Nolo se fortalece a huracán y lleva fuertes lluvias a la región",
-       "verified": true
-      },
-      {
-       "text": "Local-language press flags community impact (es, cnnespanol.cnn.com): “Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes”",
+       "text": "Media reporting corroborates the potentially deadly flooding threat to Hawaii as Nolo intensifies, reinforcing the need for hospital/EMS surge readiness on the Big Island.",
        "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMWJLNVo0bS1NQU5NV3VfcGhnbzNTZnFNQWpzdEx3TENxQWZDWlNUdVdXandxWGZieVRFTWhCdG14SmJOVTBEMnZNVGF0eHRkdzRSUHZnTGRpbmdHcG90QkpTeFZQZlQ2bXhYVUZTUHB4d2JEZm1QQWxKR0drX1RXNk9laWtiUnlzQk5uVzdn?oc=5",
        "quote": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes",
        "verified": true
       }
      ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "GDACS 'population affected' metric (0) is a modeled wind-exposure estimate and does not capture flash-flood risk, which NHC identifies as the primary life-threatening hazard.",
+      "No real hospital capacity, casualty, or health-system strain data was available in the provided sources; all exposure figures are from a synthetic/seeded demo book, not actual policies.",
+      "Storm motion is slow (5 mph) with a forecast turn toward the west-northwest/west on Saturday-Sunday, so the geographic risk window may shift; track uncertainty is not quantified in these sources.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "Hurricane Nolo: market/sector read-through for United States",
+     "headline": "Hurricane Nolo (Cat 1, Amber) threatens Hawaii with flash flooding as parallel Hurricane Polo hits Mexico — limited but watchable exposure for Pacific tourism, ",
      "bullets": [
       {
-       "text": "Regional market read-through for United States: tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.",
+       "text": "Hawaii travel, leisure and coastal real estate could see near-term disruption as NHC flags catastrophic flood risk on the Big Island through the weekend, a headline risk for hospitality operators and island infrastructure names with Hawaii exposure.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "SUMMARY OF WATCHES AND WARNINGS IN EFFECT: A Hurricane Watch is in effect for",
+       "quote": "CATASTROPHIC AND LIFE-THREATENING FLASH FLOODING POSSIBLE ON THE BIG ISLAND OF HAWAII INTO THE WEEKEND",
        "verified": true
       },
       {
-       "text": "Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).",
+       "text": "Independent GDACS modeling currently shows minimal population exposure at hurricane-force wind speeds, suggesting the direct P&C/reinsurance loss screening buffer may stay contained absent a track shift onto populated islands.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001321",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0 in tropical storm).",
+       "verified": true
+      },
+      {
+       "text": "Nolo's slow forward speed raises the risk of prolonged, concentrated rainfall over Hawaii, a factor CIOs should weigh for regional utilities, agriculture and short-duration muni/insurance-linked securities tied to the islands.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "As of 5:00 AM HST Fri Sep 25 the center of Nolo was located near 16.0, -155.5 with movement NNE at 5 mph",
+       "quote": "Present Movement...NNE or 25 Degrees at 5 MPH...7 KM/H",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (es, telemundoareadelabahia.com): “Hawaii en alerta: Nolo se fortalece a huracán y lleva fuertes lluvias a la región”",
-       "source_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOakF3N25oUTU5V3NTZkprV1VZdncwUy1lLWs2cWxORFdZMHdZY2RRNlc1MzVTbnlicUNGOWQ4X2ZWWUhIRktQYjRnMjlsaG1kVF9vQlQyUk5BM0ZhRTJQX0dzM21nZGFxQkVqMXBOX2k0OWh5a1VxYVlwMlFtRVZvVGdMbWRFUTQ0RlVkQkVmNFlyR1VUOVRxaHB3R1kzWDJnUWpqdjdfSlNWd9IBsgFBVV95cUxOVVYyTnN3cHNRdHFzQUYyeVluY3RFcGhWNnVtTnRJRzROY1Q0OFF4a2lWVXA1UlR6bGtzQl9oUVdNTFpMQWZLNUVJdjlXQmhlUWNZeEI4azV3dDdhNzdTcXNkY1gyWmhZWDZrVVd2UjZSU0c3VEtYbGIzVUZtODgwYmVlUTNQT3hyNWZwWkN5SDNOSFhqVkk4QkY1NG54aHZsWDZmNlJQR1hpNVJOVlFqYmNB?oc=5",
-       "quote": "Hawaii en alerta: Nolo se fortalece a huracán y lleva fuertes lluvias a la región",
-       "verified": true
-      },
-      {
-       "text": "Market-moving coverage (es, cnnespanol.cnn.com): “Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes”",
+       "text": "Concurrent Hurricane Polo activity on Mexico's coast broadens the 2026 Pacific cat-season narrative, a relevant backdrop for reinsurance/cat-bond pricing and Mexico-exposed tourism and coastal infrastructure assets.",
        "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMWJLNVo0bS1NQU5NV3VfcGhnbzNTZnFNQWpzdEx3TENxQWZDWlNUdVdXandxWGZieVRFTWhCdG14SmJOVTBEMnZNVGF0eHRkdzRSUHZnTGRpbmdHcG90QkpTeFZQZlQ2bXhYVUZTUHB4d2JEZm1QQWxKR0drX1RXNk9laWtiUnlzQk5uVzdn?oc=5",
-       "quote": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes",
+       "quote": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes - cnnespanol.cnn.com",
+       "verified": true
+      },
+      {
+       "text": "Media coverage explicitly pairs the two storms (Polo hitting Mexico, Nolo nearing Hawaii), underscoring dual-basin cat exposure that CIOs may want to factor into insurance-linked and reinsurance sector risk budgets this quarter.",
+       "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU3dVNFdtbWJlUGRDTl96RmdKSjlMMWZLa2UyamctMi14WUtaU1dPWXA1QVFFMWdBTG91TDFyT3I1RWpVUWg0WmVFWmpzaUdiRk42dWZtYU9kR3hIZ3FfbllVem9GVWZtWl9Ycjk4cWhZdUY0MVZJdC03WDNiN3FETDU4TENHUVE2RVJwV2xWRl93dEdLWXRBTU4zNkFUV0NaYVc40gGoAUFVX3lxTFB1M1FRY3RMZTJvWlNNdGxmWkZ2ejJ3cjBTZWRKd096X3Z2STNZbXJEWVVPNTB6SjkzZkZLcmNMcFVuYk5FWWZMZFp1SWNWdFd5ejBLZ2VXS0Q2ZlZSaVFKa3dSS3cwYTh2TUc2bEdwRkdwVDlyMHVkSE45aHM1YUl4cG1MMVk5X0ZQYnhndmNpMEFQc2I4SFo4VkUxMFNZRmV3dzlSRHB5ag?oc=5",
+       "quote": "Hurricane Polo lashes Mexico as Nolo strengthens near Hawaii - Al Jazeera",
        "verified": true
       }
      ],
      "caveats": [
-      "Not investment advice; directional only."
+      "This is a market-observation brief, not investment advice; positioning decisions require individualized analysis.",
+      "Synthetic demo exposure book shows 0 policies/TIV/insured lives in the current screening buffer — no confirmed real portfolio exposure to Nolo is indicated by this data.",
+      "Storm track and intensity remain forecast-dependent (per NHC advisory) and could change; population/exposure figures (e.g., GDACS) are model estimates, not confirmed loss data.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
-     "headline": "Hurricane Nolo: 0 sites / $0 within 200 km screening buffer; 0 / $0 in ~75 km hurricane-force core — accumulation NONE",
+     "headline": "Hurricane Nolo - United States: 0 sites / $0 within 200 km screening buffer; 0 / $0 in ~75 km hurricane-force core — accumulation NONE",
      "bullets": [
-      {
-       "text": "Authority severity Cat 1 (85 mph) (NHC Saffir-Simpson) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "The minimum central pressure was 980 mb with maximum sustained winds of about 85 mph",
-       "verified": true
-      },
-      {
-       "text": "Synthetic book: 0 sites / $0 TIV within 200 km screening buffer of the NHC forecast track; 0 sites / $0 within ~75 km hurricane-force core.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Synthetic book: 0 sites / $0 TIV within 200 km screening buffer of the NHC forecast track; 0 sites / $0 within ~75 km hurricane-force core.",
-       "verified": true
-      },
-      {
-       "text": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
-       "source_url": "portfolio://synthetic",
-       "quote": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: NONE — no insured exposure in the screening area. Reserving posture: watch (pre-landfall — reserves are not strengthened before the event occurs).",
        "source_url": "portfolio://synthetic",
@@ -2607,30 +2650,45 @@
        "verified": true
       },
       {
-       "text": "Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.",
+       "text": "NHC advisory places Nolo's center near 16.0N/155.5W with max sustained winds of 85 mph and a Hurricane Watch in effect for Hawaii County; forward speed is slow (5 mph) ahead of an expected west-northwest turn this weekend.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "* Hawaii County A Tropical Storm Warning is in effect for",
+       "quote": "MAXIMUM SUSTAINED WINDS...85 MPH...140 KM/H",
        "verified": true
       },
       {
-       "text": "Check cat XoL retention erosion and ILW/parametric cat-bond trigger boxes against the forecast track.",
+       "text": "Synthetic book shows no policies or TIV within the 200 km screening buffer of the forecast track, and no sites within the ~75 km hurricane-force wind core (basis per NHC radius language).",
+       "source_url": "portfolio://synthetic",
+       "quote": "Synthetic book: 0 sites / $0 TIV within 200 km screening buffer of the NHC forecast track; 0 sites / $0 within ~75 km hurricane-force core.",
+       "verified": true
+      },
+      {
+       "text": "No line-of-business exposure identified — Commercial Property (incl. BI time element), HNW Homeowners, Marine Cargo, and Energy all show zero TIV in the screening buffer; A&H/travel lives not applicable here.",
+       "source_url": "portfolio://synthetic",
+       "quote": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
+       "verified": true
+      },
+      {
+       "text": "NHC forecast discussion flags a track turn toward west-northwest/west with increasing forward speed forecast Saturday-Sunday, which underwriters should monitor for any shift toward populated/insured coastal segments of the islands.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/HFOTCPCP2+shtml/251452.shtml",
-       "quote": "As of 5:00 AM HST Fri Sep 25 the center of Nolo was located near 16.0, -155.5 with movement NNE at 5 mph",
+       "quote": "A turn toward the west-northwest and west with an increase in forward speed is forecast Saturday and Sunday.",
        "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Forecast/pre-landfall event — issued severity (Cat 1, 85 mph) is a snapshot and subject to change; do not treat as final loss-driving intensity.",
+      "Synthetic demo book only — 0 TIV/policies reflects seeded generator output, not confirmation of an empty real-world portfolio; production book should be checked independently.",
+      "GDACS population-affected figure of 0 corroborates limited current land impact but is not an insurance exposure metric.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "watch",
      "accumulation_action": "NONE — no insured exposure in the screening area"
     }
    },
    "unknowns": [
-    "Landfall location/timing beyond the NHC cone",
-    "Storm-surge and rainfall damage extent",
-    "Insured vs economic loss split"
+    "Landfall location and timing not specified",
+    "Extent of wind/flood damage not yet reported",
+    "Areas under evacuation or warnings not detailed",
+    "Any casualties or infrastructure impact unknown"
    ],
    "routing": [
     {
@@ -2639,7 +2697,7 @@
      "channel": "slack",
      "priority": "P3",
      "caveat_banner": "Early-warning signal (high confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[AMBER P3 monitor] Hurricane Nolo (NHC Saffir-Simpson Cat 1 (85 mph)). No insured sites in the 200 km screening buffer this cycle; keep monitoring the forecast for track shifts toward insured coast."
+     "message": "MONITOR: Hurricane Nolo (US), Cat 1, 85 mph. No insured sites within 200 km this cycle. Track forecast for potential shifts toward insured coastal areas."
     }
    ]
   },
@@ -2694,7 +2752,7 @@
     "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml"
    },
    "confidence": "med",
-   "confidence_rationale": "5 independent sources (5 verified quotes) across 1 language(s); severity from NHC Saffir-Simpson",
+   "confidence_rationale": "NHC confirms 60 mph Tropical Storm; corroborated by 5 sources, though GDACS reports 0 population affected at Cat 1 threshold.",
    "geo": {
     "lat": 30.1,
     "lon": -42.5,
@@ -2743,7 +2801,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-19T15:06:02Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en"
    ],
@@ -2822,90 +2880,84 @@
    },
    "briefs": {
     "health": {
-     "headline": "Tropical Storm Fay: health impact watch (WATCH)",
+     "headline": "Tropical Storm Fay remains far at sea with no current population or health-system exposure",
      "bullets": [
       {
-       "text": "Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core: “The minimum central pressure was 1002 mb with maximum sustained winds of about 60 mph”",
+       "text": "Fay is centered about 1,040 miles WSW of the Azores over open ocean, far from any populated coastline.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
-       "quote": "The minimum central pressure was 1002 mb with maximum sustained winds of about 60 mph",
+       "quote": "ABOUT 1040 MI...1670 KM WSW OF THE AZORES",
        "verified": true
       },
       {
-       "text": "GDACS population exposure estimate for the wind field: “Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0 in Tropical Storm)”",
+       "text": "No coastal watches or warnings are in effect, and NHC lists no hazards currently affecting land.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
+       "quote": "HAZARDS AFFECTING LAND ---------------------- None.",
+       "verified": true
+      },
+      {
+       "text": "GDACS estimates zero population exposed to Category 1 or tropical-storm-force winds from this system, consistent with negligible direct health-system strain at this time.",
        "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001323",
-       "quote": "Population affected by Category 1 (120 km/h) wind speeds or higher is 0 (0 in Tropical Storm)",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0 in tropical storm).",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (en, houstonchronicle.com): “Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic”",
+       "text": "Media coverage frames Fay as a 'zombie storm' that has regenerated in the mid-Atlantic, warranting continued monitoring despite the current offshore, weakening trajectory.",
        "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
-       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
+       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic - Houston Chronicle",
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (en, accuweather.com): “Zombie Storm Fay comes back to life”",
-       "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPejk3d0dLMFhNLUVpcWY3NmwxcGRtRU9kWEdhQ2hvaC1vWldYR3lrV05Rb0ZNaHBIcjA4QWlRZTZPaG13ZjhEMEdNcHNkYklpdXhGLXRuYkNZS0xRV0VyTDRpRWd6SnVabUdTZ05IRVhVNHdSamNVLTRlSEhkY0F2N1AwUm5Odm41bzRkaQ?oc=5",
-       "quote": "Zombie Storm Fay comes back to life",
+       "text": "NHC notes gradual weakening is still expected through the weekend, suggesting continued low likelihood of a surge in storm-related casualties or care demand.",
+       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
+       "quote": "Gradual weakening, however, is still expected through the weekend.",
        "verified": true
       }
      ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "No insured lives, policies, or TIV are currently within the 150 km screening buffer per the synthetic exposure model, reflecting the storm's remote open-ocean position rather than confirmed zero risk region-wide.",
+      "GDACS population-affected figure reflects a completed observation window (19–25 Sep) and may not capture the very latest re-intensification ('zombie storm' regrowth) reported in press coverage.",
+      "Health-system strain cannot be assessed beyond exposure/population proxies; no clinical, casualty, or hospital-capacity data were available in the provided sources.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "Tropical Storm Fay: market/sector read-through for no named country (at sea)",
+     "headline": "Tropical Storm Fay: mid-Atlantic 'zombie storm' remains offshore with no land threat or portfolio exposure flagged",
      "bullets": [
       {
-       "text": "Regional market read-through for no named country (at sea): tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.",
+       "text": "NHC's latest advisory reports no coastal watches or warnings in effect and explicitly lists 'None' under hazards affecting land, suggesting minimal near-term catalyst for P&C/reinsurance repricing or cat-bond spread widening tied to this system.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
-       "quote": "At 300 PM GMT (1500 UTC), the center of Tropical Storm Fay was located near latitude 30.1 North, longitude 42.5 West",
+       "quote": "HAZARDS AFFECTING LAND ---------------------- None.",
        "verified": true
       },
       {
-       "text": "Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).",
+       "text": "NHC forecasts gradual weakening through the weekend even after a slight uptick to 60 mph, reducing the probability of an escalation scenario that would typically move reinsurance and specialty insurer equities/CDS.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
-       "quote": "As of 3:00 PM GMT Fri Sep 25 the center of Fay was located near 30.1, -42.5 with movement W at 3 mph",
+       "quote": "Gradual weakening, however, is still expected through the weekend.",
        "verified": true
       },
       {
-       "text": "Market-moving coverage (en, houstonchronicle.com): “Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic”",
+       "text": "GDACS's green (lowest-tier) alert and estimate of zero population exposed to Category 1+ winds corroborates a low-severity read, arguing against tactical positioning in catastrophe-exposed reinsurers or Gulf/Atlantic energy names on this storm alone.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001323",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0 in tropical storm).",
+       "verified": true
+      },
+      {
+       "text": "Media framing of Fay as a 'zombie storm' regaining strength in open ocean could still generate short-lived headline risk/volatility in travel and leisure-linked securities (e.g., cruise lines with Atlantic itineraries) even absent a land threat.",
        "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
-       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
-       "verified": true
-      },
-      {
-       "text": "Market-moving coverage (en, accuweather.com): “Zombie Storm Fay comes back to life”",
-       "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPejk3d0dLMFhNLUVpcWY3NmwxcGRtRU9kWEdhQ2hvaC1vWldYR3lrV05Rb0ZNaHBIcjA4QWlRZTZPaG13ZjhEMEdNcHNkYklpdXhGLXRuYkNZS0xRV0VyTDRpRWd6SnVabUdTZ05IRVhVNHdSamNVLTRlSEhkY0F2N1AwUm5Odm41bzRkaQ?oc=5",
-       "quote": "Zombie Storm Fay comes back to life",
+       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic - Houston Chronicle",
        "verified": true
       }
      ],
      "caveats": [
-      "Not investment advice; directional only."
+      "This is a market/sector observation brief, not investment advice; no position sizing or trade recommendations are implied.",
+      "Storm is currently ~1,040 mi WSW of the Azores with no coastal watches/warnings; any change in track or intensity (still WATCH tier) could alter the sector read materially.",
+      "Portfolio exposure figures are from a SYNTHETIC demo book (seeded generator), not real policies or actual TIV — not indicative of any real insurer's or fund's exposure.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
      "headline": "Tropical Storm Fay: 0 sites / $0 within 150 km screening buffer — accumulation NONE",
      "bullets": [
-      {
-       "text": "Authority severity Tropical Storm (60 mph) (NHC Saffir-Simpson) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
-       "quote": "The minimum central pressure was 1002 mb with maximum sustained winds of about 60 mph",
-       "verified": true
-      },
-      {
-       "text": "Synthetic book: 0 sites / $0 TIV within 150 km screening buffer of the NHC forecast track.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Synthetic book: 0 sites / $0 TIV within 150 km screening buffer of the NHC forecast track.",
-       "verified": true
-      },
-      {
-       "text": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
-       "source_url": "portfolio://synthetic",
-       "quote": "By line — Commercial Property none (incl. BI time element $0); HNW Homeowners none; Marine Cargo none; Energy none.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: NONE — no insured exposure in the screening area. Reserving posture: watch (pre-landfall — reserves are not strengthened before the event occurs).",
        "source_url": "portfolio://synthetic",
@@ -2913,31 +2965,45 @@
        "verified": true
       },
       {
-       "text": "Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.",
+       "text": "Fay remains a weak, disorganized 60 mph tropical storm far from land (~1,040 mi WSW of the Azores) with NHC explicitly stating no hazards affecting land and no coastal watches/warnings in effect — no binding or underwriting action warranted at this time.",
        "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
-       "quote": "There are no coastal watches or warnings in effect",
+       "quote": "HAZARDS AFFECTING LAND ---------------------- None.",
        "verified": true
       },
       {
-       "text": "Check cat XoL retention erosion and ILW/parametric cat-bond trigger boxes against the forecast track.",
-       "source_url": "https://www.nhc.noaa.gov/text/refresh/MIATCPAT1+shtml/251445.shtml",
-       "quote": "As of 3:00 PM GMT Fri Sep 25 the center of Fay was located near 30.1, -42.5 with movement W at 3 mph",
+       "text": "GDACS green-level alert confirms zero population exposed to Cat 1+ wind speeds, corroborating the storm's negligible current threat screening buffer for coastal cat accumulation purposes.",
+       "source_url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001323",
+       "quote": "Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0 (0 in tropical storm).",
+       "verified": true
+      },
+      {
+       "text": "Synthetic book screening confirms zero policies and zero TIV within the 150 km screening buffer of the current position/forecast track — no commercial property, BI time-element, HNW homeowners, marine cargo, or energy exposure to flag.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Synthetic book: 0 sites / $0 TIV within 150 km screening buffer of the NHC forecast track.",
+       "verified": true
+      },
+      {
+       "text": "Media coverage flags Fay's unusual reintensification ('zombie storm' comeback), warranting continued track monitoring in case of any westward shift toward reinsured/ILW-monitored basins, though no cat-bond or ILW trigger relevance currently exists given zero book exposure.",
+       "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
+       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic - Houston Chronicle",
        "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Synthetic demo book only — not real policies; zero-exposure result reflects the seeded generator's current placement, not a live portfolio determination.",
+      "Pre-landfall forecast hazard: no reserve strengthening recommended; posture remains monitor/watch pending any track or intensity change.",
+      "NHC advisory indicates gradual weakening expected through the weekend, but slow forward speed and erratic ('zombie') behavior warrant re-screening on next advisory update.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "watch",
      "accumulation_action": "NONE — no insured exposure in the screening area"
     }
    },
    "unknowns": [
-    "No country currently named as affected by authority feeds",
-    "Landfall location/timing beyond the NHC cone",
-    "Storm-surge and rainfall damage extent",
-    "Insured vs economic loss split"
+    "Landfall location and timing not specified",
+    "No confirmed wind speed change since NHC's last update",
+    "Extent of rainfall/flooding impact unknown",
+    "No property or casualty data available"
    ],
    "routing": [
     {
@@ -2946,13 +3012,13 @@
      "channel": "slack",
      "priority": "P3",
      "caveat_banner": "Early-warning signal (med confidence); severity per NHC Saffir-Simpson; exposure from a synthetic demo book.",
-     "message": "[WATCH P3 monitor] Tropical Storm Fay (NHC Saffir-Simpson Tropical Storm (60 mph)). No insured sites in the 150 km screening buffer this cycle; keep monitoring the forecast for track shifts toward insured coast."
+     "message": "MONITOR: Tropical Storm Fay (60 mph, Tropical Storm strength). No insured sites within the 150 km screening buffer this cycle. Continue watching forecast for any track shift toward the insured coast."
     }
    ]
   },
   {
    "event_id": "eq-us7000tiqc",
-   "name": "M 6.4 - 49 km NNE of Kainantu, Papua New Guinea",
+   "name": "Earthquake M6.4 - Kainantu, Papua New Guinea",
    "type": "EQ",
    "status": "watch",
    "tier": "WATCH",
@@ -2979,7 +3045,7 @@
     {
      "factor": "velocity/recency",
      "points": 3,
-     "reason": "latest authority update 128h ago; 0 matching news items",
+     "reason": "latest authority update 129h ago; 0 matching news items",
      "source_url": ""
     },
     {
@@ -3001,7 +3067,7 @@
     "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc"
    },
    "confidence": "low",
-   "confidence_rationale": "1 independent sources (0 verified quotes) across 1 language(s); severity from USGS PAGER; single-source, awaiting corroboration",
+   "confidence_rationale": "USGS reports M6.4, PAGER green, but only 1 corroborating source and no recent matching news (update 129h ago).",
    "geo": {
     "lat": -5.902,
     "lon": 146.092,
@@ -3019,7 +3085,7 @@
    },
    "time_horizon": "0-72h (aftershocks, damage reports)",
    "first_signal_ts": "2026-09-20T09:17:35Z",
-   "alert_ts": "2026-09-25T17:31:49Z",
+   "alert_ts": "2026-09-25T17:46:37Z",
    "languages_seen": [
     "en"
    ],
@@ -3031,8 +3097,8 @@
      "title": "M 6.4 - 49 km NNE of Kainantu, Papua New Guinea",
      "lang": "en",
      "published": "2026-09-20T09:17:35Z",
-     "quote": "",
-     "verified": false,
+     "quote": "M 6.4 - 49 km NNE of Kainantu, Papua New Guinea",
+     "verified": true,
      "publisher": "usgs.gov"
     }
    ],
@@ -3054,54 +3120,130 @@
    },
    "briefs": {
     "health": {
-     "headline": "M 6.4 - 49 km NNE of Kainantu, Papua New Guinea: health impact watch (WATCH)",
-     "bullets": [],
+     "headline": "M6.4 Kainantu, PNG Earthquake: Deep Depth and Green PAGER Alert Suggest Limited Health-System Strain",
+     "bullets": [
+      {
+       "text": "USGS PAGER alert level is green, indicating the automated impact estimate does not project significant casualties or major health-system burden from this event.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "PAGER alert=green",
+       "verified": true
+      },
+      {
+       "text": "The earthquake's hypocenter is very deep (over 100 km), which typically reduces surface shaking intensity and associated injury/casualty risk compared to shallow events of similar magnitude.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "depth_km=104.329",
+       "verified": true
+      },
+      {
+       "text": "Only 30 felt reports have been logged so far, suggesting limited population-level shaking exposure and correspondingly modest surge risk for local clinics and hospitals.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "felt reports=30",
+       "verified": true
+      },
+      {
+       "text": "Event significance score is moderate (647), consistent with a notable but not catastrophic seismic event for health-system planning purposes.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "significance=647",
+       "verified": true
+      },
+      {
+       "text": "No tsunami was generated, removing an additional acute mass-casualty and coastal health-facility disruption pathway for this event.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "tsunami=0",
+       "verified": true
+      }
+     ],
      "caveats": [
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "No insured lives, policy, or exposure data are available for this event (synthetic demo book shows zero exposure), so no health-system strain projections can be tied to a covered population.",
+      "PAGER green is an automated estimate; ground-truth casualty and injury reports from PNG health authorities are not yet available in the provided sources.",
+      "Felt reports (30) reflect self-reported shaking perception, not a validated measure of injuries or health-facility impact.",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "wealth": {
-     "headline": "M 6.4 - 49 km NNE of Kainantu, Papua New Guinea: market/sector read-through for Papua New Guinea",
-     "bullets": [],
+     "headline": "M6.4 Kainantu, PNG quake: green PAGER alert, minimal expected macro/market impact",
+     "bullets": [
+      {
+       "text": "PAGER alert is green with depth of ~104km, indicating low likelihood of significant humanitarian or infrastructure impact that would move regional markets (PNG-listed equities, Kina, or broader APAC risk sentiment)",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "PAGER alert=green",
+       "verified": true
+      },
+      {
+       "text": "No tsunami generated, reducing tail risk to coastal/maritime infrastructure or shipping lanes near PNG that could otherwise ripple into regional trade/insurance lines",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "tsunami=0",
+       "verified": true
+      },
+      {
+       "text": "Felt reports remain low at this stage, consistent with a contained local event rather than a broad regional disruption to PNG's resource sector (LNG, mining) that dominates its GDP and could otherwise pressure commodity-linked equities",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "felt reports=30",
+       "verified": true
+      }
+     ],
      "caveats": [
-      "Not investment advice; directional only."
+      "Event classified WATCH tier; not currently expected to be market-moving based on available data",
+      "Synthetic demo portfolio shows zero exposure (policies, TIV, insured lives) — not a reflection of any real book",
+      "PAGER green typically implies limited insured loss potential, but on-the-ground damage assessments may evolve",
+      "Exposure figures use a SYNTHETIC demo book."
      ]
     },
     "insurance": {
-     "headline": "M 6.4 - 49 km NNE of Kainantu, Papua New Guinea: 0 sites / $0 TIV within 158 km — accumulation NONE",
+     "headline": "Earthquake M6.4 - Kainantu, Papua New Guinea: 0 sites / $0 TIV within 158 km — accumulation NONE",
      "bullets": [
-      {
-       "text": "Synthetic book within 158 km of epicentre: 0 sites, $0 TIV.",
-       "source_url": "portfolio://synthetic",
-       "quote": "Synthetic book within 158 km of epicentre: 0 sites, $0 TIV.",
-       "verified": true
-      },
-      {
-       "text": "By line — Commercial Property none (incl. BI time element $0); Energy none.",
-       "source_url": "portfolio://synthetic",
-       "quote": "By line — Commercial Property none (incl. BI time element $0); Energy none.",
-       "verified": true
-      },
       {
        "text": "Accumulation action: NONE — no insured exposure in the screening area. Reserving posture: no action.",
        "source_url": "portfolio://synthetic",
        "quote": "Accumulation action: NONE — no insured exposure in the screening area. Reserving posture: no action.",
        "verified": true
+      },
+      {
+       "text": "USGS reports PAGER alert=green for this M6.4 event at 104km depth, consistent with limited expected loss severity for a green-tier shake event.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "PAGER alert=green",
+       "verified": true
+      },
+      {
+       "text": "Event depth of 104.3km attenuates surface shaking intensity, a relevant factor given PNG's active seismicity and any regional energy/resource-sector exposure.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "depth_km=104.329",
+       "verified": true
+      },
+      {
+       "text": "Synthetic book screening within the 158km buffer shows zero sites and zero TIV — no commercial property, BI time element, or energy exposure intersects this event.",
+       "source_url": "portfolio://synthetic",
+       "quote": "Synthetic book within 158 km of epicentre: 0 sites, $0 TIV.",
+       "verified": true
+      },
+      {
+       "text": "By-line breakdown confirms nil commercial property (including BI) and nil energy exposure in the screening buffer, so no claims-exposure direction to report for this book.",
+       "source_url": "portfolio://synthetic",
+       "quote": "By line — Commercial Property none (incl. BI time element $0); Energy none.",
+       "verified": true
+      },
+      {
+       "text": "Low felt-reports count (30) and significance score of 647 corroborate a modest, localized event with no indication of broader regional escalation risk for cat-bond or ILW triggers tied to PNG seismicity.",
+       "source_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiqc",
+       "quote": "felt reports=30 | significance=647",
+       "verified": true
       }
      ],
      "caveats": [
-      "Exposure figures use a SYNTHETIC demo book, not real policies.",
-      "Severity is copied from the issuing authority; Sentinel does not forecast intensity."
+      "Synthetic demo book only — not real policy data; zero exposure result reflects seeded generator, not actual market presence in PNG.",
+      "Event is WATCH tier; PAGER green indicates low expected fatalities/economic loss, not zero hazard — monitor for aftershock sequence updates.",
+      "No reserve strengthening recommended for this forecast/monitoring-tier event per standing guidance.",
+      "Exposure figures use a SYNTHETIC demo book."
      ],
      "reserving_posture": "no action",
      "accumulation_action": "NONE — no insured exposure in the screening area"
     }
    },
    "unknowns": [
-    "PAGER loss estimate may be revised in first 24h",
-    "Aftershock sequence",
-    "Tsunami impact if any",
-    "Building-stock damage ratios"
+    "Extent of any damage or casualties",
+    "Local infrastructure or building impact",
+    "Aftershock activity or ongoing risk",
+    "Whether other agencies have independently confirmed magnitude/impact"
    ],
    "routing": [
     {
@@ -3110,7 +3252,7 @@
      "channel": "slack",
      "priority": "P3",
      "caveat_banner": "Early-warning signal (low confidence); severity per USGS PAGER; exposure from a synthetic demo book.",
-     "message": "[WATCH P3 monitor] M 6.4 - 49 km NNE of Kainantu, Papua New Guinea (USGS PAGER M6.4 / PAGER green). No insured sites in the screening radius this cycle; keep monitoring the forecast for track shifts toward insured coast."
+     "message": "WATCH: M6.4 earthquake near Kainantu, Papua New Guinea (USGS PAGER green). No insured sites within screening radius this cycle. Continue monitoring for any shift toward insured coastal areas."
     }
    ]
   }
