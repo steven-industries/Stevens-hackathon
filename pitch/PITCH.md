@@ -23,11 +23,11 @@ The signals are all public: GDACS, the Hurricane Center, USGS, WHO outbreak noti
 
 "Sentinel is a team of agents that runs every ten minutes. [Show the architecture slide for 5 seconds, then switch to the live UI.]
 
-1. **Morning brief.** [UI open on the Accumulation / CUO view.] "This is what the cat desk sees at 6 a.m. Not a news feed: *four decisions for our book*, $3.5 billion exposed, ranked by what's at stake."
+1. **Morning brief.** [UI open on Property.] "This is the cat desk at 6 a.m. Not a news feed: *$3.5 billion at stake, four decisions.*"
 2. **Top decision: Hurricane Polo.** "Category 5, 180 mph. That's *issued by NHC*: we copy severity, the AI never makes it up. Nine independent publishers in two languages. *62 of our sites and $1.52 billion* are inside the 350 km screening buffer, and nothing is in the hurricane-force core yet. So the recommended action is *restrict new binding in the watch area*, not *touch reserves*." [Point at the map: track, buffer, our sites.]
-3. **Trust.** [Click a citation number in the brief.] "Every sentence carries a verbatim quote, and **code** checks it against the source. No quote, no claim."
-4. **Switch lens.** [Press 3, A&H & Travel.] "Same data, different desk. The head of A&H sees *insured lives*: 3,728 in the Ebola provinces, where WHO rates the risk very high." [Press R.] "And each desk has already been notified on its own channel, with a caveat banner."
-5. **Always on.** [Press T.] Every cycle this afternoon is logged."
+3. **Trust.** [Click a sentence in the brief to reveal its quote.] "Every sentence carries a verbatim quote, and **code** checks it against the source. No quote, no claim."
+4. **Switch lens.** [Click A&H at the top.] "Same data, different desk. The head of A&H sees *insured lives*: 3,728 in the Ebola provinces, where WHO rates the risk very high." [••• → Route.] "And each desk has already been notified on its own channel, with a caveat banner."
+5. **Always on.** [••• → Run log.] Every cycle this afternoon is logged."
 
 ## 2:10–2:30 · Backtest (slide 7)
 
