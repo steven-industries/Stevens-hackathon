@@ -1,55 +1,55 @@
 {
- "generated_at": "2026-09-25T17:26:00Z",
- "run_id": "de780fe4",
+ "generated_at": "2026-09-25T17:26:49Z",
+ "run_id": "1a52235b",
  "mode": "deterministic",
  "feeds": [
   {
    "name": "gdacs",
    "items": 314,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:34Z"
+   "retrieved": "2026-09-25T17:26:23Z"
   },
   {
    "name": "nhc_at",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:32Z"
+   "retrieved": "2026-09-25T17:26:21Z"
   },
   {
    "name": "nhc_ep",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:31Z"
+   "retrieved": "2026-09-25T17:26:21Z"
   },
   {
    "name": "nhc_cp",
    "items": 1,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:32Z"
+   "retrieved": "2026-09-25T17:26:20Z"
   },
   {
    "name": "usgs",
    "items": 12,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:32Z"
+   "retrieved": "2026-09-25T17:26:21Z"
   },
   {
    "name": "who_don",
    "items": 15,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:31Z"
+   "retrieved": "2026-09-25T17:26:21Z"
   },
   {
    "name": "ecdc",
    "items": 10,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:32Z"
+   "retrieved": "2026-09-25T17:26:21Z"
   },
   {
    "name": "eonet",
    "items": 80,
    "status": "live",
-   "retrieved": "2026-09-25T17:25:56Z"
+   "retrieved": "2026-09-25T17:26:45Z"
   }
  ],
  "alerts": [
@@ -167,7 +167,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T06:39:52Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en",
     "es"
@@ -664,7 +664,7 @@
    },
    "time_horizon": "2-6 weeks",
    "first_signal_ts": "2026-09-02T07:00:00Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en",
     "fr",
@@ -1082,7 +1082,7 @@
    },
    "time_horizon": "24-72h (GDACS/JTWC forecast)",
    "first_signal_ts": "2026-09-21T01:12:56Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en",
     "hi"
@@ -1518,7 +1518,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-25T01:45:46Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en",
     "fr",
@@ -1595,7 +1595,7 @@
      "id": "gnews:fd031b3e9f13",
      "feed": "news:expressodasilhas.cv",
      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVXVWc2JkVkdSQkdjWENtQ2l5VDN1a2FEczBPckYwbHVnem5TNVYyelhnRUdYN2FiakRUcWVybkxHR2hsVzEwUTZHeFhrM1FvYUFqYjBoSGJBNDFzMVdrbFNfQVRUcHNYNG5PSzY4VzhIcDZDc2FfZDduN2xWX0RwVEFRRmxBdUVWcjgxRHVJZWx5RkFJYmNSUGp5RUM4WlUzR3ZkdU1icw?oc=5",
-     "title": "Tempestade tropical Gonzalo aproxima-se de Cabo Verde - Expresso das Ilhas",
+     "title": "Tempestade tropical Gonzalo aproxima-se de Cabo Verde - expressodasilhas.cv",
      "lang": "pt",
      "published": "2026-09-25T09:01:00Z",
      "quote": "Tempestade tropical Gonzalo aproxima-se de Cabo Verde",
@@ -2010,7 +2010,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-20T09:08:06Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en",
     "es"
@@ -2374,7 +2374,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-13T20:58:31Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en",
     "es"
@@ -2743,7 +2743,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-19T15:06:02Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en"
    ],
@@ -2774,7 +2774,7 @@
      "id": "gnews:03fb64cf6a5c",
      "feed": "news:houstonchronicle.com",
      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
-     "title": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic - houstonchronicle.com",
+     "title": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic - Houston Chronicle",
      "lang": "en",
      "published": "2026-09-24T14:03:40Z",
      "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
@@ -3019,7 +3019,7 @@
    },
    "time_horizon": "0-72h (aftershocks, damage reports)",
    "first_signal_ts": "2026-09-20T09:17:35Z",
-   "alert_ts": "2026-09-25T17:25:31Z",
+   "alert_ts": "2026-09-25T17:26:20Z",
    "languages_seen": [
     "en"
    ],

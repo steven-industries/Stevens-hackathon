@@ -555,7 +555,7 @@ function renderCentre(){
   </div>
 
   <div class="grid2">
-    <div class="card mapcard"><div class="panel-h"><span>Map</span><span class="maplegend"><span><i style="background:var(--tc);opacity:.35;border:1px dashed var(--tc);${tvars(a)}"></i>screening buffer (${num(g.radius_km) || 100} km${g.radius_kind && !/track|position/i.test(g.radius_kind) ? " · " + esc(str(g.radius_kind).replace(/ screen$/,"")) : ""})</span>${validTrack(g).length ? `<span><i style="background:none;border-radius:0;height:2px;width:.9rem;border-top:2px dashed #e8edf4;vertical-align:2px"></i>forecast track</span>` : ""}${num(obj(ex.inner_core).radius_km) ? `<span><i style="background:var(--red);opacity:.55"></i>hurricane-force core</span>` : ""}<span><i style="background:#35d0b5"></i>insured site</span></span></div><div id="map"></div></div>
+    <div class="card mapcard"><div class="panel-h"><span>Map</span><span class="maplegend"><span><i style="background:var(--tc);opacity:.35;border:1px dashed var(--tc);${tvars(a)}"></i>screening buffer (${num(g.radius_km) || 100} km${g.radius_kind && !/track|position|screening buffer/i.test(g.radius_kind) ? " · " + esc(str(g.radius_kind).replace(/ screen$/,"")) : ""})</span>${validTrack(g).length ? `<span><i style="background:none;border-radius:0;height:2px;width:.9rem;border-top:2px dashed #e8edf4;vertical-align:2px"></i>forecast track</span>` : ""}${num(obj(ex.inner_core).radius_km) ? `<span><i style="background:var(--red);opacity:.55"></i>hurricane-force core</span>` : ""}<span><i style="background:#35d0b5"></i>insured site</span></span></div><div id="map"></div></div>
     <div class="card"><div class="panel-h"><span>Portfolio exposure</span><span class="synth">synthetic demo book</span></div>
       <div class="panel-b">
         ${ob ? `<div class="tivbig">${fmtN(lives)}<small>insured lives in screening buffer</small></div>
@@ -665,8 +665,8 @@ function renderMap(a){
         .addTo(m).bindTooltip(`<b>${esc(l.name)}</b><br>${l.lives !== undefined && !(num(l.tiv_usd) > 0) ? fmtN(l.lives) + " lives" : money(l.tiv_usd)} · ${esc(l.line||"")}<br>${num(l.distance_km)} km from event${hasTrack ? " / track" : ""}`));
       // fit event + track + the top exposed sites (so sites are visibly inside the buffer)
       locs.slice(0, 8).forEach(l => bounds.extend([+l.lat, +l.lon]));
-      m.fitBounds(bounds.pad(0.06), {animate:false}); S.map = m;
-      setTimeout(() => { if(S.map !== m) return; m.invalidateSize(); m.fitBounds(bounds.pad(0.06), {animate:false}); }, 60);
+      m.fitBounds(bounds.pad(0.1), {animate:false}); S.map = m;
+      setTimeout(() => { if(S.map !== m) return; m.invalidateSize(); m.fitBounds(bounds.pad(0.1), {animate:false}); }, 60);
       return;
     }catch(e){ console.warn("leaflet failed, svg fallback", e); }
   }
