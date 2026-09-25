@@ -21,7 +21,55 @@ header{display:flex;align-items:center;justify-content:space-between;height:72px
 .seg button{padding:5px 16px;border-radius:7px;color:var(--ink-2);font-size:13px;transition:background .15s,color .15s}
 .seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
 .right{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--ink-2)}
-.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#34c759;margin-right:8px;vertical-align:1px}
+.live{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-variant-numeric:tabular-nums;transition:color .3s}
+.live .dot{position:relative;width:6px;height:6px;border-radius:50%;background:#34c759;flex:none}
+.live .dot::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid #34c759;animation:ping 2.4s ease-out infinite}
+.live .cd,.live .stats{color:var(--ink-3)}
+.live.flash{color:var(--ink)}
+.live.flash .msg{color:#1f8f3a}
+@keyframes ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+.n{display:inline-block;font-variant-numeric:tabular-nums}
+/* ticker */
+.ticker{position:fixed;left:0;right:0;bottom:0;height:34px;background:rgba(251,251,250,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-2);z-index:900;display:none;overflow:hidden}
+body.tk .ticker{display:block}
+body.tk .wrap{padding-bottom:34px}
+.ticker .row{max-width:1360px;margin:0 auto;padding:0 48px;height:34px;display:flex;align-items:center;gap:14px;white-space:nowrap}
+.ticker .lbl{color:var(--ink-3);letter-spacing:.06em;font-size:11px;text-transform:uppercase;flex:none}
+.ticker .ent{display:flex;align-items:center;gap:10px;min-width:0;flex:1;transition:opacity .35s,transform .35s}
+.ticker .ent.out{opacity:0;transform:translateY(-6px)}
+.ticker .ag{font-weight:600;color:var(--ink);flex:none}
+.ticker .ent.red .ag{color:var(--accent)}
+.ticker .tx{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ticker .when{color:var(--ink-3);flex:none;margin-left:auto}
+@media (max-width:640px){.ticker .row{padding:0 16px}}
+/* replay */
+.replay{border:1px solid var(--line);border-radius:14px;padding:18px 22px 10px;margin-bottom:28px;background:#fff;display:none}
+.replay.on{display:block}
+.replay .hd{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--ink-2);margin-bottom:10px}
+.replay .hd b{color:var(--ink);font-weight:600}
+.replay .hd button{color:var(--ink-3)}
+.replay ol{list-style:none}
+.replay li{display:grid;grid-template-columns:118px 1fr 64px 52px;gap:14px;align-items:baseline;padding:7px 0;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);opacity:.35;transition:opacity .3s,color .3s;position:relative}
+.replay li.act,.replay li.done{opacity:1;color:var(--ink-2)}
+.replay li .st{font-weight:600;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+.replay li.act .st,.replay li.done .st{color:var(--ink)}
+.replay li .st i{width:6px;height:6px;border-radius:50%;background:var(--line);flex:none;transition:background .3s}
+.replay li.act .st i{background:var(--accent);animation:ping2 1s ease-out infinite}
+.replay li.done .st i{background:#34c759}
+.replay li .sm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.replay li .ms{text-align:right;font-variant-numeric:tabular-nums}
+.replay li .md{text-align:right;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.replay li .md.claude{color:var(--accent)}
+.replay li .bar{position:absolute;left:0;bottom:-1px;height:1px;background:var(--accent);width:0}
+.replay li.act .bar{transition:width linear;width:100%}
+.replay li.done .bar{width:0;transition:none}
+@keyframes ping2{0%{box-shadow:0 0 0 0 rgba(217,58,43,.45)}100%{box-shadow:0 0 0 7px rgba(217,58,43,0)}}
+/* map motion */
+.mk-pulse{transform-box:fill-box;transform-origin:center;animation:mkp 2.4s ease-out infinite}
+@keyframes mkp{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.6);opacity:0}}
+.band-in{animation:fadein 1.2s ease-out}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.live .dot::after,.mk-pulse,.replay li.act .st i{animation:none}.band-in{animation:none}.ticker .ent{transition:none}}
 .menu{position:relative}
 .menu>button{padding:4px 8px;border-radius:6px;letter-spacing:2px;color:var(--ink-2)}
 .menu>button:hover{background:var(--hover)}
@@ -93,7 +141,7 @@ footer{padding:24px 0 40px;color:var(--ink-3);font-size:13px}
     <div class="brand">Sentinel</div>
     <div class="seg" id="lens" role="group" aria-label="Lens"></div>
     <div class="right">
-      <span class="live" id="live">Live</span>
+      <span class="live" id="live"><span class="dot"></span><span class="msg">Live</span><span class="cd" id="cd"></span><span class="stats" id="stats"></span></span>
       <div class="menu" id="menu">
         <button aria-label="More" aria-haspopup="true" id="menuBtn">•••</button>
         <ul>
@@ -101,6 +149,8 @@ footer{padding:24px 0 40px;color:var(--ink-3);font-size:13px}
           <li><button data-open="trace">Trace <kbd>T</kbd></button></li>
           <li><button data-open="runs">Run log</button></li>
           <li><button data-open="backtest">Backtest <kbd>B</kbd></button></li>
+          <li><button data-open="replay">Replay this cycle <kbd>P</kbd></button></li>
+          <li><button data-open="ticker">Activity strip <kbd>L</kbd></button></li>
         </ul>
       </div>
     </div>
@@ -108,10 +158,11 @@ footer{padding:24px 0 40px;color:var(--ink-3);font-size:13px}
   <section class="hero"><div class="big" id="heroBig">&nbsp;</div><div class="sub" id="heroSub">&nbsp;</div></section>
   <section class="stage">
     <div><ul class="list" id="list"></ul><div class="quiet" id="quiet"></div></div>
-    <div class="detail" id="detail"></div>
+    <div><div class="replay" id="replay"></div><div class="detail" id="detail"></div></div>
   </section>
   <footer id="foot">Synthetic demo book · not real policies</footer>
 </div>
+<div class="ticker" id="ticker" aria-live="off"><div class="row"><span class="lbl">Activity</span><div class="ent" id="tkEnt"></div></div></div>
 <div class="sheet" id="sheet"><div class="panel" id="panel"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>

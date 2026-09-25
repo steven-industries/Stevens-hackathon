@@ -70,11 +70,19 @@ So we built that."
 [Point, don't read.]
 "Seven public feeds, all free, the ones the professionals watch: the National Hurricane Center, the UN's disaster alert system, the US Geological Survey, the World Health Organization, plus local news in six languages. One Python program runs nine agents every ten minutes. It works offline, and everything on screen today is real data."
 
-## 2:25 – 2:40 · Slide 8 · Proof
+## 2:25 – 2:40 · Slide 8 · Proof (the dramatic beat)
 
-"Does it beat the headlines? We replayed Foshan with the original timestamps. Under our strict rule, two independent outlets plus an authority or a second language, Sentinel fires 18 hours before the first English headline and about eight days before Bloomberg. The first Chinese signal was on the watch list 51 hours out. One replay, fully sourced, reproducible from the repo."
+[The slide opens with only the headline. Each → adds one point on the timeline. Slow down. Let each one land.]
 
-[If time is short, press **B** in the UI instead of narrating this slide: the backtest modal shows the same timeline.]
+"Let's go back to that Tuesday and replay it, with the original timestamps, through Sentinel."
+
+[→] "Tuesday, 2:49. The notice goes up. Chinese only. Sentinel puts it on the watch list. No alert yet: one source is never enough."
+[→] "Tuesday evening. Three Chinese outlets pick it up. Still one language. Still watching."
+[→] "Wednesday afternoon. Hong Kong's health authority writes to its doctors. In English. Second language, and an authority." [Beat.] "The rule fires. Sentinel alerts."
+[→ the red line draws] "That red line is the head start."
+[→] "Thursday: the first English headline."
+[→] "And the following Thursday: Bloomberg. That is when the industry found out."
+[→ → → the three numbers] "Eighteen hours before the first English word. Eight days before Bloomberg. Fifty-one hours on the watch list before anyone in English knew. Every URL is in the repo. One command reproduces it."
 
 ## 2:40 – 2:50 · Slide 9 · Why now, why Chubb
 
