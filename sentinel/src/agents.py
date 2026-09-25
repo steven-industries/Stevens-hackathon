@@ -891,9 +891,9 @@ def _news_bullets(ev, k=2, prefix="Local-language press"):
     return out
 
 
-ACCUM = {"ELEVATED": "ELEVATED — consider binding restrictions / moratorium for new business in the watch area; run accumulation check",
-         "MONITOR": "MONITOR — run accumulation check against the screening area; no binding restriction yet",
-         "NONE": "NONE — no insured exposure in the screening area"}
+ACCUM = {"ELEVATED": "ELEVATED. Restrict new binding in the watch area and run an accumulation check.",
+         "MONITOR": "MONITOR. Run an accumulation check. No binding restriction yet.",
+         "NONE": "NONE. No insured exposure in the area."}
 
 
 def posture_accum(ev):
@@ -917,13 +917,13 @@ def posture_accum(ev):
     else:
         accum = ACCUM["MONITOR"]
     if t == "OUTBREAK" and has:
-        accum = ("ELEVATED — consider restricting new Travel/A&H business to affected provinces; review assistance & evacuation capacity"
-                 if tier == "RED" else "MONITOR — track Travel/A&H bookings to affected provinces; no binding restriction yet")
+        accum = ("ELEVATED. Restrict new Travel and A&H business in the affected provinces. Check evacuation and assistance capacity."
+                 if tier == "RED" else "MONITOR. Watch Travel and A&H bookings to the affected provinces. No binding restriction yet.")
     return posture, accum
 
 
 def ins_headline(ev, accum):
-    e, t = ev["exposure"], ev["type"]; lvl = accum.split(" — ")[0]
+    e, t = ev["exposure"], ev["type"]; lvl = re.split(r"[.—-]", accum)[0].strip()
     if t == "OUTBREAK":
         lv = e["insured_lives"]
         return (f"{ev['name']}: {lv['total']:,} insured lives ({lv['travel']:,} Travel + {lv['ah']:,} A&H) in affected area — "
@@ -944,81 +944,129 @@ def det_briefs(ev):
     who = max((x for x in mem if x["feed"] == "who_don"), key=lambda x: x["published"], default=None)
     ecdc = next((x for x in mem if x["feed"] == "ecdc"), None)
     eo = next((x for x in mem if x["feed"] == "eonet"), None)
-    e = ev["exposure"]; tier = ev["tier"]; place = ", ".join(ev["countries"][:3]) or "no named country (at sea)"
+    e = ev["exposure"]; tier = ev["tier"]; place = ", ".join(ev["countries"][:3]) or "the affected area"
+    name = ev["name"]
+    def M(x):  # rounded money for a phone screen: $1.5B, $865M, $120K
+        x = float(x or 0)
+        if x >= 1e9: return f"${x/1e9:.1f}B".replace(".0B", "B")
+        if x >= 1e6: return f"${x/1e6:.0f}M"
+        if x >= 1e3: return f"${x/1e3:.0f}K"
+        return f"${x:,.0f}"
     lines = {b["line"]: b for b in e["by_line"]}
-    def L(n):
-        b = lines.get(n); return f"{b['policies']} policies / {money(b['tiv_usd'])}" if b else "none"
     H, W, I = [], [], []
     posture, accum = posture_accum(ev)
+    lvl = re.split(r"[.—-]", accum)[0].strip()
+    has = e["tiv_usd"] > 0 or (t == "OUTBREAK" and e["insured_travelers"] > 0)
     core = e.get("inner_core"); buf = ev["geo"]["radius_km"]
-    track_src = "NHC forecast track" if (nhc and len(ev["track"]) > 1) else "GDACS/JTWC position"
+    # 1) the action, one plain sentence
+    if t == "OUTBREAK":
+        action = ("Restrict new Travel and A&H binding to the affected provinces." if lvl == "ELEVATED"
+                  else "Track Travel and A&H bookings to the affected provinces; no binding restriction yet." if has
+                  else "No insured lives or sites in the affected area. Monitor only.")
+    else:
+        action = (f"Restrict new binding in {place}." if lvl == "ELEVATED"
+                  else "Run an accumulation check; no binding restriction yet." if has
+                  else "No exposure. Monitor only.")
+    # 4) biggest line, one sentence
+    top_line = next((b for b in e["by_line"] if b.get("tiv_usd") and not b["line"].startswith("Commercial Property —")), None)
+    if top_line:
+        big = f"Most of it is {top_line['line']}: {M(top_line['tiv_usd'])}"
+        if top_line["line"] == "Commercial Property" and e["bi_tiv_usd"]:
+            big += f", including {M(e['bi_tiv_usd'])} of BI"
+        big += "."
+    else:
+        big = None
     if t == "TC":
         a = nhc or gd or eo
-        H += [_B("Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core.", a, ["maximum sustained winds", "wind speed", "kts"], show=True),
-              _B("Heavy rain / flash-flood hazard raises waterborne-disease and access-to-care risk.", nhc, ["rainfall", "flash flooding", "flooding"], show=True),
-              _B("Storm surge / surf hazard (NHC)", nhc, ["storm surge will", "life-threatening storm surge", "life-threatening surf", "swells are likely", "dangerous storm surge"], show=True),
-              _B("GDACS population exposure estimate for the wind field.", gd, ["Population affected", "population"], show=True)]
-        H += _news_bullets(ev, 2, "Local-language press flags community impact")
-        W += [_B(f"Regional market read-through for {place}: tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.", a, ["CATEGORY", "affects these countries", "Hurricane", "Tropical"]),
-              _B("Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).", nhc, ["movement", "moving"])]
+        H += [_B("Wind is the life-safety threat. " + ("NHC puts sustained winds at" if a is nhc else "The authority reports on wind"), a, ["maximum sustained winds", "wind speed", "kts"], show=True),
+              _B("Heavy rain raises flood, disease and access-to-care risk. The authority says", nhc, ["rainfall", "flash flooding", "flooding"], show=True),
+              _B("Storm surge and surf warning from NHC", nhc, ["storm surge will", "life-threatening storm surge", "life-threatening surf", "swells are likely", "dangerous storm surge"], show=True),
+              _B("GDACS estimates the population in the wind field at", gd, ["Population affected", "population"], show=True)]
+        H += _news_bullets(ev, 2, "Local press on community impact")
+        W += [_B(f"Tourism, ports and infrastructure in {place} are in the path. Watch local equities, FX and regional credit.", a, ["CATEGORY", "affects these countries", "Hurricane", "Tropical"]),
+              _B("Storm speed sets the window for port and shipping disruption.", nhc, ["movement", "moving"])]
         W += _news_bullets(ev, 2, "Market-moving coverage")
-        I += [_B(f"Authority severity {ev['issued_severity']['value']} ({sname(ev['issued_severity']['scale'])}) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.", a, ["CATEGORY", "maximum sustained winds", "wind speed"]),
-              _P(f"Synthetic book: {e['policies']} sites / {money(e['tiv_usd'])} TIV within {buf} km screening buffer of the {track_src}"
-                 + (f"; {core['policies']} sites / {money(core['tiv_usd'])} within ~{core['radius_km']} km hurricane-force core" if core else "") + "."),
-              _P(f"By line — Commercial Property {L('Commercial Property')} (incl. BI time element {money(e['bi_tiv_usd'])}); HNW Homeowners {L('High-Net-Worth Homeowners')}; Marine Cargo {L('Marine Cargo')}; Energy {L('Energy')}."
-                 + (f" Insured lives in area (pro-rated): {e['insured_travelers']:,} Travel/A&H." if e["insured_travelers"] else "")),
-              _P(f"Accumulation action: {accum}. Reserving posture: {posture} (pre-landfall — reserves are not strengthened before the event occurs)."),
-              _B("Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.", nhc, ["Warning is in effect", "Watch is in effect", "should monitor", "SHOULD MONITOR", "warning"]),
-              _B("Check cat XoL retention erosion and ILW/parametric cat-bond trigger boxes against the forecast track.", nhc or gd, ["located near", "center of", "Tropical Storm"])]
+        I += [_P(action),
+              _P(f"{e['policies']} sites, {M(e['tiv_usd'])} insured value, within {buf} km of {name}." if has
+                 else f"No insured sites within {buf} km of {name}."),
+              _P(f"{core['policies']} sites, {M(core['tiv_usd'])} TIV, inside the {core['radius_km']} km hurricane-force core."
+                 if core and core["policies"] else "Nothing is inside the hurricane-force core yet."),
+              _P(big) if big else None,
+              _P(f"{e['insured_travelers']:,} insured Travel and A&H lives are in the area.") if e["insured_travelers"] else None,
+              _B(f"Official strength is {sname(ev['issued_severity']['scale'])} {ev['issued_severity']['value']}. Property claims rise if the core reaches insured coast.", a, ["CATEGORY", "maximum sustained winds", "wind speed"]),
+              _B("Watch item: warnings set claims timing. Get adjusters and the CAT team in place.", nhc, ["Warning is in effect", "Watch is in effect", "should monitor", "SHOULD MONITOR", "warning"]),
+              _B("Watch item: check cat XoL retention and cat bond triggers against the track.", nhc or gd, ["located near", "center of", "Tropical Storm"])]
     elif t == "EQ":
         a = us or gd
-        H += [_B("Shaking intensity/population exposure drives casualty and hospital-surge risk.", gd, ["MMI", "potentially affecting"], show=True),
-              _B("USGS PAGER alert level indicates the expected fatality/loss band.", us, ["PAGER alert"], show=True),
+        H += [_B("Shaking drives casualties and hospital surge. GDACS reports", gd, ["MMI", "potentially affecting"], show=True),
+              _B("USGS PAGER level sets the expected loss band", us, ["PAGER alert"], show=True),
               _B("USGS tsunami flag for coastal health planning.", us, ["tsunami="]),
-              _B("Felt reports indicate population experiencing shaking.", us, ["felt reports"])] + _news_bullets(ev, 2, "Local-language press")
-        W += [_B(f"Infrastructure, ports, mining and manufacturing in {place} may see short-term disruption.", a, ["mag=", "Magnitude", "earthquake"])] + _news_bullets(ev, 2, "Coverage")
-        I += [_B(f"Authority severity {ev['issued_severity']['value']} — commercial property & BI claims direction depends on proximity to insured sites.", a, ["PAGER alert", "Magnitude"]),
-              _P(f"Synthetic book within {ev['geo']['radius_km']} km of epicentre: {e['policies']} sites, {money(e['tiv_usd'])} TIV."),
-              _P(f"By line — Commercial Property {L('Commercial Property')} (incl. BI time element {money(e['bi_tiv_usd'])}); Energy {L('Energy')}."),
-              _P(f"Accumulation action: {accum}. Reserving posture: {posture}."),
-              _B("EQ sub-limits/deductibles typically absorb moderate events; confirm aftershock hours clause.", us or gd, ["depth_km", "Depth"])]
+              _B("Felt reports show how many people felt the shaking.", us, ["felt reports"])] + _news_bullets(ev, 2, "Local press")
+        W += [_B(f"Ports, mining and factories in {place} may stop for a short time.", a, ["mag=", "Magnitude", "earthquake"])] + _news_bullets(ev, 2, "Coverage")
+        I += [_P(action),
+              _P(f"{e['policies']} sites, {M(e['tiv_usd'])} insured value, within {buf} km of the epicentre." if has
+                 else f"No insured sites within {buf} km of the epicentre."),
+              _P(big) if big else None,
+              _B(f"Official severity is {ev['issued_severity']['value']}. Claims depend on how close insured sites sit.", a, ["PAGER alert", "Magnitude"]),
+              _B("Watch item: EQ sub-limits usually absorb moderate shaking. Confirm the aftershock hours clause.", us or gd, ["depth_km", "Depth"])]
     elif t == "OUTBREAK":
-        H += [_B("WHO case/death count", who, ["confirmed cases", "deaths", "cases"], show=True),
-              _B("Spread across health zones signals health-system strain", who, ["health zones", "provinces", "spread"], show=True),
-              _B("WHO on onward-spread risk", who, ["assesses the risk", "risk is", "risk of further spread", "risk"], show=True),
-              _B("ECDC situational reporting relevant to EU travellers.", ecdc, ["Ebola", ev.get("disease_kw", "")] if ecdc else [])]
-        H += _news_bullets(ev, 2, "Multilingual press")
-        W += [_B(f"Regional economies ({place}): mining, logistics and cross-border trade face disruption risk from containment measures.", who, ["transmission", "outbreak", "spread"]),
-              _B("Travel and aviation demand to affected areas likely to soften; watch airlines/hospitality exposure.", who, ["travel", "border", "international"])]
+        H += [_B("WHO case and death count", who, ["confirmed cases", "deaths", "cases"], show=True),
+              _B("Spread across health zones means health-system strain. WHO says", who, ["health zones", "provinces", "spread"], show=True),
+              _B("WHO rates the risk of onward spread as", who, ["assesses the risk", "risk is", "risk of further spread", "risk"], show=True),
+              _B("ECDC is reporting on the outbreak for EU travellers.", ecdc, ["Ebola", ev.get("disease_kw", "")] if ecdc else [])]
+        H += _news_bullets(ev, 2, "Local press")
+        W += [_B(f"Mining, logistics and cross-border trade in {place} face containment disruption.", who, ["transmission", "outbreak", "spread"]),
+              _B("Travel demand to the area will likely soften. Watch airlines and hotels.", who, ["travel", "border", "international"])]
         W += _news_bullets(ev, 1, "Coverage")
         lv = e["insured_lives"]; areas = ev.get("areas") or []
-        I += [_B(f"Authority: WHO {ev['issued_severity']['value']} — A&H and Travel medical/evacuation claims direction: UP.", who, ["was assessed as very high", "assessed as", "confirmed cases", "cases"]),
-              _P(f"Insured lives: {lv['total']:,} ({lv['travel']:,} Travel + {lv['ah']:,} A&H members) in {place} (synthetic book)."),
-              _P(f"Property screen ({'~200 km of ' + ', '.join(a['name'] for a in areas) if areas else 'country-level screen'}): {e['policies']} sites / {money(e['tiv_usd'])} TIV — "
-                 "physical damage not expected; relevant only for contingent BI / supply-chain."),
-              _P(f"Accumulation action: {accum}. Reserving posture: {posture}."),
-              _B("Review contingent BI (CBI) and event-cancellation communicable-disease exclusions; marine cargo port-delay exposure.", who, ["spread", "health zones", "provinces", "transmission"])]
+        scope = f"within 200 km of {', '.join(a['name'] for a in areas)}" if areas else f"in {place}"
+        I += [_P(action),
+              _P(f"{lv['total']:,} insured lives are in {place}: {lv['travel']:,} Travel and {lv['ah']:,} A&H." if lv["total"]
+                 else f"No insured lives in {place}."),
+              _P(f"{e['policies']} property sites, {M(e['tiv_usd'])} TIV, sit {scope}. No physical damage expected; CBI only." if e["policies"]
+                 else f"No property sites {scope}."),
+              _B("Medical and evacuation claims on A&H and Travel will rise. WHO says", who, ["was assessed as very high", "assessed as", "confirmed cases", "cases"], show=True),
+              _B("Watch item: review CBI and event-cancellation disease exclusions, plus port-delay cargo exposure.", who, ["spread", "health zones", "provinces", "transmission"])]
     else:
         a = gd or eo or mem[0]
-        H += [_B("Authority alert describes the affected area and displacement.", a, ["displaced", "deaths", "affect", "started"], show=True)] + _news_bullets(ev, 1)
-        W += [_B(f"Local infrastructure and agriculture in {place} may be disrupted.", a, ["alert", "started", "affect"])] + _news_bullets(ev, 1, "Coverage")
-        I += [_B(f"Authority alert ({ev['issued_severity']['value']}) — property/BI claims direction depends on insured presence.", a, ["alert", "started", "affect"]),
-              _P(f"Synthetic book within {ev['geo']['radius_km']} km: {e['policies']} sites, {money(e['tiv_usd'])} TIV."),
-              _P(f"Accumulation action: {accum}. Reserving posture: {posture}.")]
-    hazard = {"TC": "tropical cyclone", "EQ": "earthquake", "OUTBREAK": "outbreak"}.get(t, "hazard")
+        H += [_B("The authority describes the affected area and displacement as", a, ["displaced", "deaths", "affect", "started"], show=True)] + _news_bullets(ev, 1)
+        W += [_B(f"Roads, power and farms in {place} may be disrupted.", a, ["alert", "started", "affect"])] + _news_bullets(ev, 1, "Coverage")
+        I += [_P(action),
+              _P(f"{e['policies']} sites, {M(e['tiv_usd'])} insured value, within {buf} km of the event." if has
+                 else f"No insured sites within {buf} km of the event."),
+              _P(big) if big else None,
+              _B(f"Official alert level is {ev['issued_severity']['value']}. Property and BI claims depend on insured presence.", a, ["alert", "started", "affect"])]
+    I = [b for b in I if b]
+    # insurance headline: one sentence a CUO would repeat
+    if t == "OUTBREAK":
+        lv = e["insured_lives"]
+        ih = (f"{action.rstrip('.')}: {lv['total']:,} insured lives are in {place} near {name}." if has
+              else f"No insured lives near {name}. Monitor only.")
+    elif has:
+        ih = f"{action.rstrip('.')}: {M(e['tiv_usd'])} of our book is within {buf} km of {name}."
+    else:
+        ih = f"No exposure to {name}. Monitor only."
     cav = ["Exposure figures use a SYNTHETIC demo book, not real policies.", "Severity is copied from the issuing authority; Sentinel does not forecast intensity."]
     return {
-        "health": {"headline": f"{ev['name']}: health impact watch ({tier})", "bullets": H, "caveats": cav[1:]},
-        "wealth": {"headline": f"{ev['name']}: market/sector read-through for {place}", "bullets": W, "caveats": ["Not investment advice; directional only."]},
-        "insurance": {"headline": ins_headline(ev, accum),
+        "health": {"headline": f"{name}: health impact watch ({tier})", "bullets": H, "caveats": cav[1:]},
+        "wealth": {"headline": f"{name}: what it means for markets in {place}", "bullets": W, "caveats": ["Not investment advice; directional only."]},
+        "insurance": {"headline": ih,
                       "bullets": I, "caveats": cav, "reserving_posture": posture, "accumulation_action": accum},
     }
 
 
+STYLE = ("WRITING RULES (the reader is a busy insurance executive at 6am, skimming on a phone): "
+         "Plain English, short sentences (<=18 words), one idea per bullet. Lead with what matters to THEM, then the number. "
+         "Never string facts with slashes, dashes or parentheses; never list several numbers in one sentence. "
+         "Round money ($865M, $1.5B) and counts. Spell out what a number means ('18 sites, $865M insured value'). "
+         "No jargon unless the reader uses it daily (TIV, BI, cat bond are fine; 'present-position screen', 'time element', 'fix' are not). "
+         "Say the bottom line first: what to do, what is at risk, why. Say 'we' for the insurer. No hedging filler. "
+         "The headline is one sentence a CUO would repeat in a meeting: action + amount + where. ")
 BRIEF_ROLE = {
-    "health": "Health brief writer (chief medical officer lens): exposed population, health-system strain, case trajectory.",
-    "wealth": "Wealth brief writer (CIO lens): sectors, asset classes, regional markets likely affected; caveated, not advice.",
-    "insurance": "Insurance brief writer (underwriter lens): lines of business (commercial property incl. BI time element, HNW homeowners, marine cargo, energy; A&H and travel are insured LIVES not TIV), claims-exposure direction, accumulation/binding actions, reinsurance/cat-bond/ILW notes. Never recommend strengthening reserves for a forecast (pre-landfall) hazard. Say 'screening buffer', never 'footprint'.",
+    "health": "Health brief writer. Audience: head of A&H/travel and a medical officer. Say who is exposed, how bad it is, where it is heading.",
+    "wealth": "Wealth brief writer. Audience: CIO. Say which sectors and regions move, which way, and how sure we are. Not investment advice.",
+    "insurance": "Insurance brief writer. Audience: CUO Property and the accumulation manager. Say the action, our exposure (sites and $; for outbreaks, insured lives), which lines, and what to watch. "
+                 "Never recommend strengthening reserves for a forecast hazard. Say 'screening buffer', never 'footprint'.",
 }
 
 
@@ -1033,7 +1081,7 @@ def briefs(ev, tr):
                      "sources": [{"url": s["url"], "title": s["title"], "lang": s["lang"],
                                   "text": (ev["all_items"].get(s["id"]) or {}).get("text", "")[:2500]} for s in ev["sources"][:8]],
                      "portfolio_lines": [x["quote"] for x in det[k]["bullets"] if x and x["source_url"] == "portfolio://synthetic"]}
-            j, model = llm_json(f"You are the {BRIEF_ROLE[k]} Write 3-6 bullets. EVERY bullet must cite source_url from the sources list and a "
+            j, model = llm_json(f"You are the {BRIEF_ROLE[k]} {STYLE} Write 3-5 bullets. EVERY bullet must cite source_url from the sources list and a "
                                 "'quote' copied VERBATIM (exact substring, <=250 chars) from that source's text or title; portfolio lines may be "
                                 "cited with source_url 'portfolio://synthetic' and the line itself as quote. Never invent severity numbers. "
                                 'Output {"headline":...,"bullets":[{"text":...,"source_url":...,"quote":...}],"caveats":[...]'
@@ -1079,47 +1127,59 @@ def route(ev, tr):
     t0 = time.time(); tier, t, e = ev["tier"], ev["type"], ev["exposure"]
     pr = {"RED": "P1", "AMBER": "P2", "WATCH": "P3"}[tier]
     natcat = t != "OUTBREAK"
-    ins = ev["briefs"]["insurance"]; accum = ins.get("accumulation_action", ""); lvl = accum.split(" — ")[0]
+    ins = ev["briefs"]["insurance"]; accum = ins.get("accumulation_action", ""); lvl = re.split(r"[.—-]", accum)[0].strip()
     lives = e["insured_travelers"]; tiv = e["tiv_usd"]
     cav = f"Early-warning signal ({ev['confidence']} confidence); severity per {sname(ev['issued_severity']['scale'])}; exposure from a synthetic demo book."
+    def M(x):  # rounded money for a phone screen
+        x = float(x or 0)
+        if x >= 1e9: return f"${x/1e9:.1f}B".replace(".0B", "B")
+        if x >= 1e6: return f"${x/1e6:.0f}M"
+        if x >= 1e3: return f"${x/1e3:.0f}K"
+        return f"${x:,.0f}"
     top = e["top_locations"][0]["name"] if e["top_locations"] else "none"
     sev = f"{sname(ev['issued_severity']['scale'])} {ev['issued_severity']['value']}"
-    area = f"{ev['geo']['radius_km']} km screening buffer" if t == "TC" else (ev["geo"].get("radius_kind") or "screening area")
+    rad = ev["geo"]["radius_km"]
     core = e.get("inner_core")
-    core_txt = f"; {core['policies']} sites / {money(core['tiv_usd'])} in ~{core['radius_km']} km hurricane-force core" if core else ""
-    where = ", ".join(ev["countries"][:3])
+    core_txt = (f" {core['policies']} sites and {M(core['tiv_usd'])} are inside the hurricane-force core." if core and core["policies"]
+                else " Nothing is inside the hurricane-force core yet." if core else "")
+    where = ", ".join(ev["countries"][:3]) or "the affected area"
+    action = (f"Restrict new binding in {where}." if lvl == "ELEVATED"
+              else "Run an accumulation check. No binding restriction yet.")
     R = []  # (persona, brief, channel, priority, message)
     if natcat:
         if tiv > 0:
             if tier in ("RED", "AMBER"):
                 R.append(("CUO Property", "insurance", "email", pr,
-                          f"[{tier} {pr}] {ev['name']}: {sev}. {e['policies']} sites / {money(tiv)} TIV within {area}{core_txt}. Accumulation {lvl}"
-                          + (": consider binding restrictions/moratorium on new business in the watch area" if lvl == "ELEVATED" else ": run accumulation check")
-                          + f". Reserving: {ins['reserving_posture']}. Largest: {top}."))
+                          f"[{tier} {pr}] {action} {ev['name']} is {sev}. {e['policies']} sites, {M(tiv)} insured value, within {rad} km.{core_txt}"
+                          f" Accumulation {lvl}. Reserving: {ins['reserving_posture']}. Largest site: {top}."))
             if e["policies"] > 0 and tier != "WATCH":
                 R.append(("Head of Claims", "insurance", "slack", pr,
-                          f"[{tier} {pr}] {ev['name']}: {e['policies']} insured sites in {area} ({money(tiv)} TIV){core_txt}. Pre-position adjusters; FNOL surge possible within {ev['time_horizon']}."))
+                          f"[{tier} {pr}] Get adjusters in place for {ev['name']}. {e['policies']} insured sites, {M(tiv)} TIV, within {rad} km.{core_txt}"
+                          f" Expect a claims surge within {ev['time_horizon']}."))
             R.append(("Cat Modeling/Accumulation desk", "insurance", "slack", pr,
-                      f"[{tier} {pr}] {ev['name']} ({sev}). Accumulation {lvl}: {money(tiv)} TIV within {area}{core_txt}. Run accumulation check vs zones; check XoL retention and ILW/cat-bond triggers."))
+                      f"[{tier} {pr}] Run an accumulation check for {ev['name']}. It is {sev}. {M(tiv)} TIV is within {rad} km.{core_txt}"
+                      f" Accumulation {lvl}. Check XoL retention and cat bond triggers."))
         else:
             R.append(("Cat Modeling/Accumulation desk", "insurance", "slack", "P3",
-                      f"[{tier} P3 monitor] {ev['name']} ({sev}). No insured sites in the {area} this cycle; keep monitoring the forecast for track shifts toward insured coast."))
+                      f"[{tier} P3 monitor] No insured sites near {ev['name']} this cycle. It is {sev}. Keep watching for a track shift toward insured coast."))
     if (tiv > 0 or lives > 0) and tier in ("RED", "AMBER"):
         R.append(("CIO", "wealth", "email", pr,
-                  f"[{tier} {pr}] {ev['name']} ({sev}){' in ' + where if where else ''}. Book exposure: {money(tiv)} TIV, {lives:,} insured lives. Review regional equity/credit and insurer-sector read-through. Directional only."))
+                  f"[{tier} {pr}] Review regional equity and credit exposure to {where}. {ev['name']} is {sev}. Our book has {M(tiv)} TIV and {lives:,} insured lives there. Directional only."))
     if t == "OUTBREAK" and lives > 0:
         p = "P1" if lives >= 1000 else "P2"
-        msg = (f"[{tier} {p}] {ev['name']}: {lives:,} insured lives ({e['insured_lives']['travel']:,} Travel + {e['insured_lives']['ah']:,} A&H) in affected area. "
-               f"Accumulation {lvl}: {accum.split(' — ')[-1]}. Confirm evacuation triggers and travel advisories.")
+        act = ("Restrict new Travel and A&H binding to the affected provinces." if lvl == "ELEVATED"
+               else "Track Travel and A&H bookings to the affected provinces. No binding restriction yet.")
+        msg = (f"[{tier} {p}] {act} {ev['name']}: {lives:,} insured lives in the affected area. "
+               f"{e['insured_lives']['travel']:,} are Travel and {e['insured_lives']['ah']:,} are A&H. Accumulation {lvl}. Confirm evacuation triggers and travel advisories.")
         R += [("Head of A&H/Travel", "health", "sms", p, msg), ("Head of A&H/Travel", "health", "email", p, msg)] if p == "P1" else [("Head of A&H/Travel", "health", "email", p, msg)]
     elif natcat and lives > 0:
         R.append(("Head of A&H/Travel", "health", "email", "P2",
-                  f"[{tier} P2] {ev['name']}: ~{lives:,} insured Travel/A&H lives in the {area} (pro-rated, synthetic). Check assistance capacity and evacuation readiness."))
+                  f"[{tier} P2] Check assistance and evacuation capacity for {ev['name']}. About {lives:,} insured Travel and A&H lives are within {rad} km. Synthetic estimate."))
     if tier == "RED" and ev["status"] == "alert":
-        R.append(("Public", "health", "public", pr, f"{ev['name']}: official status {sev}. Follow local authority guidance. (Automated early-warning summary; may change.)"))
+        R.append(("Public", "health", "public", pr, f"{ev['name']} is {sev}. Follow local authority guidance. Automated early warning; it may change."))
     model = "deterministic"
     if llm_on() and R:
-        j, model = llm_json("You are the Router agent. Rewrite each numbered notification to be crisp and actionable (<=400 chars). Keep all numbers "
+        j, model = llm_json("You are the Router agent. Rewrite each numbered notification as a text a busy executive reads on a phone: first sentence = the action; second = the amount at risk and where; third (optional) = why now. Plain words, <=300 chars, no slashes or parentheses. Keep all numbers "
                             "exactly; add none. Keep the accumulation level word (ELEVATED/MONITOR/NONE) if present. Never write 'footprint', "
                             "'strengthen' or 'open ocean'. " 'Output {"messages":{"<index>":"text"}}',
                             {"event": ev["name"], "tier": tier, "messages": {str(i): r[4] for i, r in enumerate(R)}}, 900)

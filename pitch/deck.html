@@ -1,397 +1,426 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sentinel Pitch Deck</title>
+<title>Sentinel — Chubb pitch</title>
+<meta name="description" content="Sentinel turns a public early-warning signal into a decision about Chubb's own book, with an audit trail. Stevens Business+AI Hackathon, Chubb challenge.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0a0e13; --panel:#121821; --panel2:#18202b; --line:#263140;
-    --ink:#e9eef4; --muted:#8b98a8; --dim:#5d6a7a;
-    --amber:#f4a62a; --red:#ef5b4c; --teal:#35c9a8; --blue:#6aa8ff;
-    --sans:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  :root {
+    --paper: #f4efe6;
+    --paper-2: #ebe4d7;
+    --ink: #1a1714;
+    --ink-2: #4a443c;
+    --muted: #7d7568;
+    --rule: #cfc6b5;
+    --signal: #b3261e;
+    --signal-soft: #f1d9d4;
+    --moss: #3f6b4a;
+    --display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
-  #viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
-  #stage{width:1920px;height:1080px;position:relative;transform-origin:center center;flex:none}
-  .slide{position:absolute;inset:0;padding:110px 140px 120px;display:none;flex-direction:column;background:
-    radial-gradient(1200px 600px at 85% -10%, rgba(244,166,42,.07), transparent 60%), var(--bg)}
-  .slide.active{display:flex}
-  .kicker{font-family:var(--mono);font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:28px}
-  h1{font-size:132px;font-weight:800;letter-spacing:-.035em;line-height:1}
-  h2{font-size:72px;font-weight:700;letter-spacing:-.025em;line-height:1.08;max-width:1600px}
-  p.lead{font-size:40px;line-height:1.35;color:var(--muted);max-width:1500px;margin-top:36px}
-  .muted{color:var(--muted)} .amber{color:var(--amber)} .teal{color:var(--teal)} .red{color:var(--red)}
-  .src{position:absolute;left:140px;right:260px;bottom:48px;font-family:var(--mono);font-size:15px;color:var(--dim);line-height:1.5}
-  .pager{position:absolute;right:140px;bottom:44px;font-family:var(--mono);font-size:20px;color:var(--dim)}
-  .brand{position:absolute;left:140px;top:52px;font-family:var(--mono);font-size:20px;color:var(--dim);letter-spacing:.12em}
-  .brand b{color:var(--amber);font-weight:600}
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#f4efe6; --ink:#1a1714; } }
+  :root[data-theme="dark"] { --paper:#f4efe6; --ink:#1a1714; }
 
-  /* title */
-  .title-wrap{margin-top:auto;margin-bottom:auto}
-  .title-wrap h1{font-size:180px}
-  .title-wrap h1 span{color:var(--amber)}
-  .title-wrap .tag{font-size:56px;font-weight:600;line-height:1.2;margin-top:44px;max-width:1500px;letter-spacing:-.015em}
-  .title-wrap .sub{font-size:30px;color:var(--muted);margin-top:36px}
-  .pulse{display:inline-block;width:26px;height:26px;border-radius:50%;background:var(--amber);margin-right:22px;vertical-align:middle;box-shadow:0 0 0 10px rgba(244,166,42,.15),0 0 0 22px rgba(244,166,42,.06)}
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #0f0d0b; color: var(--ink); font-family: var(--body); overflow: hidden; }
+  ::selection { background: var(--signal); color: var(--paper); }
 
-  /* stats */
-  .stats{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:36px;margin-top:64px}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:44px 44px 40px}
-  .stat .n{font-size:108px;font-weight:800;letter-spacing:-.04em;line-height:1}
-  .stat .l{font-size:28px;color:var(--muted);margin-top:18px;line-height:1.35}
-  .stat.hero{border-color:rgba(244,166,42,.5);background:linear-gradient(180deg,rgba(244,166,42,.10),rgba(244,166,42,.02))}
-  .stat.hero .n{color:var(--amber)}
+  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; transform: translate(-50%,-50%) scale(var(--s, 1)); background: var(--paper); box-shadow: 0 30px 80px rgba(0,0,0,.6); }
 
-  /* persona */
-  .persona{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:56px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:44px}
-  .card h3{font-family:var(--mono);font-size:22px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;font-weight:600}
-  .q{font-size:34px;line-height:1.3;padding:16px 0;border-top:1px solid var(--line);display:flex;gap:24px}
-  .q:first-of-type{border-top:0}
-  .q i{font-style:normal;font-family:var(--mono);color:var(--amber);font-size:30px;padding-top:6px}
-  .todo li{font-size:28px;line-height:1.35;color:var(--muted);list-style:none;padding:8px 0 8px 40px;position:relative}
-  .todo li:before{content:"";position:absolute;left:0;top:26px;width:18px;height:2px;background:var(--dim)}
-  .todo li b{color:var(--ink);font-weight:600}
+  .slide { position: absolute; inset: 0; padding: 96px 120px; opacity: 0; visibility: hidden; transition: opacity .38s cubic-bezier(.2,.7,.2,1); background: var(--paper); }
+  .slide.on { opacity: 1; visibility: visible; }
+  .slide.on .rise { animation: rise .7s cubic-bezier(.16,1,.3,1) both; }
+  .slide.on .rise:nth-child(2) { animation-delay: .08s } .slide.on .rise:nth-child(3) { animation-delay: .16s } .slide.on .rise:nth-child(4) { animation-delay: .24s } .slide.on .rise:nth-child(5) { animation-delay: .32s }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
-  /* arch */
-  .arch{margin-top:40px;flex:1;display:flex;align-items:center}
-  .arch svg{width:100%;height:auto}
-  .arch text{font-family:var(--sans)}
-  .foot-note{font-size:28px;color:var(--muted);margin-top:18px}
-  .foot-note b{color:var(--ink);font-weight:600}
+  /* chrome */
+  .mark { position: absolute; top: 44px; left: 120px; font-family: var(--display); font-weight: 500; font-size: 22px; letter-spacing: -.01em; color: var(--ink); }
+  .mark small { font-family: var(--body); font-weight: 500; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-left: 14px; }
+  .num { position: absolute; top: 44px; right: 120px; font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+  #bar { position: absolute; left: 0; bottom: 0; height: 5px; background: var(--signal); width: 0; transition: width .4s cubic-bezier(.2,.7,.2,1); z-index: 5; }
+  .foot { position: absolute; left: 120px; right: 120px; bottom: 42px; font-size: 13px; line-height: 1.5; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 12px; }
+  .foot b { font-weight: 500; color: var(--ink-2); }
+  .foot span + span::before { content: " · "; color: var(--rule); }
 
-  /* demo */
-  .shot{margin-top:40px;flex:1;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel);position:relative;display:flex;align-items:center;justify-content:center}
-  .shot img{width:100%;height:100%;object-fit:contain;display:block}
-  .shot .ph{display:none;text-align:center;color:var(--dim);font-size:30px;line-height:1.5;font-family:var(--mono)}
-  .shot.missing img{display:none} .shot.missing .ph{display:block}
-  .beats{display:flex;gap:18px;margin-top:28px}
-  .beat{flex:1;font-size:24px;color:var(--muted);border-top:3px solid var(--line);padding-top:14px}
-  .beat b{display:block;color:var(--ink);font-size:26px;margin-bottom:4px}
-  .beat.on{border-top-color:var(--amber)}
+  /* type */
+  .kicker { font-family: var(--body); font-weight: 600; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--signal); margin: 0 0 28px; }
+  h1 { font-family: var(--display); font-weight: 400; font-variation-settings: 'opsz' 144, 'SOFT' 30; letter-spacing: -.035em; line-height: .96; margin: 0; text-wrap: balance; }
+  h1 em { font-style: italic; color: var(--signal); }
+  .huge { font-size: 176px; }
+  .big { font-size: 118px; }
+  .mid { font-size: 76px; }
+  p.lede { font-family: var(--display); font-weight: 300; font-size: 34px; line-height: 1.32; letter-spacing: -.01em; color: var(--ink-2); margin: 0; max-width: 24ch; text-wrap: pretty; }
+  .body { font-size: 22px; line-height: 1.5; color: var(--ink-2); max-width: 60ch; }
+  .n { font-family: var(--display); font-variation-settings: 'opsz' 144; font-weight: 400; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .cap { font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .src { font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .rule { height: 1px; background: var(--rule); }
 
-  /* audit */
-  .audit{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;margin-top:56px;align-items:start}
-  .rule{font-size:40px;line-height:1.3;padding:26px 0;border-top:1px solid var(--line)}
-  .rule:first-child{border-top:0;padding-top:0}
-  .rule small{display:block;font-size:26px;color:var(--muted);margin-top:10px;line-height:1.4}
-  .ev{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:36px 40px;font-size:26px}
-  .chip{display:inline-block;font-family:var(--mono);font-size:20px;padding:6px 14px;border-radius:8px;border:1px solid var(--line);color:var(--muted);margin-right:10px}
-  .chip.sev{color:#1a1204;background:var(--amber);border-color:var(--amber);font-weight:600}
-  .chip.ok{color:var(--teal);border-color:rgba(53,201,168,.5)}
-  .chip.bad{color:var(--red);border-color:rgba(239,91,76,.5)}
-  .bul{margin-top:26px;padding:22px 24px;background:var(--panel2);border-radius:14px;line-height:1.45}
-  .bul .quote{margin-top:14px;font-family:var(--mono);font-size:19px;color:var(--muted);border-left:3px solid var(--teal);padding-left:16px}
-  .bul.drop{opacity:.55}
-  .bul.drop .quote{border-left-color:var(--red)}
+  /* slide 1: cold open */
+  .s1 .time { font-family: var(--mono); font-size: 20px; letter-spacing: .08em; color: var(--muted); }
+  .s1 .zh { font-family: var(--display); font-size: 44px; max-width: 30ch; font-weight: 300; color: var(--ink-2); letter-spacing: 0; margin-top: 44px; }
+  .s1 .grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 96px; align-items: end; height: 100%; }
+  .s1 .steps { display: flex; flex-direction: column; gap: 0; border-left: 2px solid var(--rule); }
+  .s1 .step { padding: 22px 0 22px 34px; position: relative; }
+  .s1 .step::before { content: ""; position: absolute; left: -7px; top: 34px; width: 12px; height: 12px; border-radius: 50%; background: var(--rule); }
+  .s1 .step.hot::before { background: var(--signal); }
+  .s1 .step .t { font-family: var(--mono); font-size: 15px; letter-spacing: .06em; color: var(--muted); }
+  .s1 .step .w { font-family: var(--display); font-size: 42px; line-height: 1.05; letter-spacing: -.02em; margin-top: 6px; }
+  .s1 .step .w i { color: var(--signal); font-style: italic; }
 
-  /* backtest */
-  .tl{margin-top:110px;position:relative;height:300px}
-  .tl .axis{position:absolute;left:0;right:0;top:120px;height:4px;background:var(--line)}
-  .tl .span{position:absolute;top:116px;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--amber))}
-  .mk{position:absolute;top:0;transform:translateX(-50%);text-align:center;width:420px}
-  .mk .dot{width:30px;height:30px;border-radius:50%;margin:107px auto 0;border:5px solid var(--bg)}
-  .mk .t{font-family:var(--mono);font-size:44px;font-weight:600;position:absolute;top:0;left:0;right:0}
-  .mk .d{font-size:28px;color:var(--muted);margin-top:22px;line-height:1.35}
-  .todo-tag{font-family:var(--mono);font-size:18px;color:var(--red);border:1px dashed var(--red);padding:4px 10px;border-radius:6px;vertical-align:middle;margin-left:14px}
-  .bt-note{font-size:34px;line-height:1.4;color:var(--muted);margin-top:40px;max-width:1500px}
-  .bt-note b{color:var(--ink)}
+  /* slide 2: three numbers */
+  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 64px; }
+  .trio .n { font-size: 132px; }
+  .trio .what { font-family: var(--display); font-size: 26px; line-height: 1.25; margin-top: 18px; color: var(--ink-2); }
+  .trio .co { margin-top: 10px; }
 
-  /* why now */
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:52px}
-  table.cmp{width:100%;border-collapse:collapse;font-size:26px}
-  table.cmp td{padding:15px 10px;border-top:1px solid var(--line);vertical-align:top;line-height:1.3}
-  table.cmp td:first-child{font-weight:600;white-space:nowrap;width:34%}
-  table.cmp td:last-child{color:var(--muted)}
-  table.cmp tr.us td{color:var(--amber);border-top:2px solid var(--amber)}
-  table.cmp tr.us td:last-child{color:var(--ink)}
-  .steps{counter-reset:s}
-  .steps li{list-style:none;font-size:30px;line-height:1.35;padding:16px 0 16px 64px;position:relative;border-top:1px solid var(--line)}
-  .steps li:first-child{border-top:0}
-  .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:14px;width:42px;height:42px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);font-family:var(--mono);font-size:22px;display:flex;align-items:center;justify-content:center;color:var(--amber)}
-  .steps li small{display:block;color:var(--muted);font-size:24px;margin-top:4px}
+  /* slide 3: last mile */
+  .chain { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 72px; align-items: start; position: relative; }
+  .chain .c { padding-right: 40px; position: relative; }
+  .chain .c + .c::before { content: "→"; position: absolute; left: -32px; top: 6px; font-family: var(--display); font-size: 40px; color: var(--signal); }
+  .chain .c .h { font-family: var(--display); font-size: 44px; letter-spacing: -.02em; line-height: 1.05; }
+  .chain .c .d { margin-top: 12px; font-size: 18px; color: var(--muted); line-height: 1.45; max-width: 26ch; }
+  .chain .c.solved .h { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--signal); text-decoration-thickness: 3px; }
+  .strike { position: relative; display: inline-block; }
 
-  /* close */
-  .close-wrap{margin:auto 0}
-  .close-wrap h2{font-size:80px;max-width:1640px}
-  .ask{margin-top:64px;display:inline-flex;gap:28px;align-items:center;background:var(--panel);border:1px solid rgba(244,166,42,.5);border-radius:20px;padding:34px 44px;font-size:40px;font-weight:600}
-  .ask span{font-family:var(--mono);font-size:22px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  /* slide 4: product */
+  .s4 { padding: 0; }
+  .s4 .frame { position: absolute; left: 120px; right: 120px; top: 128px; bottom: 150px; border-radius: 12px; overflow: hidden; box-shadow: 0 24px 60px -20px rgba(26,23,20,.35), 0 0 0 1px var(--rule); background: #fff; }
+  .s4 .frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .s4 .tag { position: absolute; left: 120px; top: 44px; }
+  .s4 .live { position: absolute; right: 120px; top: 40px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink-2); font-weight: 500; }
+  .s4 .live i { width: 10px; height: 10px; border-radius: 50%; background: var(--moss); box-shadow: 0 0 0 4px rgba(63,107,74,.18); }
 
-  #hint{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font:13px var(--mono);color:#3a4555;pointer-events:none}
-  @media print{#hint{display:none}}
+  /* slide 5: rules */
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; margin-top: 64px; }
+  .rules .r .i { font-family: var(--display); font-style: italic; font-size: 28px; color: var(--signal); }
+  .rules .r .h { font-family: var(--display); font-size: 50px; line-height: 1.02; letter-spacing: -.025em; margin-top: 10px; text-wrap: balance; }
+  .rules .r .d { font-size: 19px; line-height: 1.5; color: var(--ink-2); margin-top: 20px; max-width: 30ch; }
+  .rules .r .d code { font-family: var(--mono); font-size: 16px; background: var(--paper-2); padding: 2px 6px; border-radius: 4px; }
+
+  /* slide 6: pipeline */
+  .pipe { margin-top: 56px; width: 100%; height: 560px; }
+  .pipe text { font-family: var(--body); fill: var(--ink); }
+  .pipe .lab { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+  .pipe .sub { font-size: 14px; fill: var(--muted); font-weight: 400; }
+  .pipe .llm { font-size: 12px; fill: var(--signal); font-weight: 600; letter-spacing: .12em; }
+  .pipe .code { font-size: 12px; fill: var(--moss); font-weight: 600; letter-spacing: .12em; }
+  .pipe .box { fill: #fff; stroke: var(--rule); stroke-width: 1.5; }
+  .pipe .box.hot { stroke: var(--signal); }
+  .pipe .arr { stroke: var(--ink-2); stroke-width: 1.5; fill: none; }
+  .pipe .in { font-family: var(--mono); font-size: 13px; fill: var(--muted); }
+
+  /* slide 7: backtest */
+  .bt { margin-top: 24px; }
+  .bt .axis { position: relative; height: 3px; background: var(--rule); margin: 190px 40px 0; }
+  .bt .pt { position: absolute; width: 320px; text-align: center; }
+  .bt .pt.above { bottom: 26px; transform: translateX(-50%); }
+  .bt .pt.below { top: 26px; transform: translateX(-50%); }
+  .bt .pt .dot { position: absolute; left: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); transform: translateX(-50%); }
+  .bt .pt.above .dot { bottom: -33px; }
+  .bt .pt.below .dot { top: -33px; }
+  .bt .pt.sig .dot { background: var(--signal); box-shadow: 0 0 0 6px var(--signal-soft); }
+  .bt .pt.zh .dot { background: var(--muted); }
+  .bt .pt .w { font-family: var(--display); font-size: 26px; line-height: 1.1; letter-spacing: -.02em; }
+  .bt .pt.sig .w { color: var(--signal); }
+  .bt .pt .t { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 6px; letter-spacing: .03em; line-height: 1.4; }
+  .bt .lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 150px; }
+  .bt .lead .n { font-size: 96px; }
+  .bt .lead .n b { font-weight: 400; color: var(--signal); }
+  .bt .lead .cap { margin-top: 10px; }
+
+  /* slide 8: why now */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; margin-top: 56px; }
+  .two .q { font-family: var(--display); font-weight: 300; font-style: italic; font-size: 38px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); }
+  .two .q::before { content: "“"; color: var(--signal); }
+  .two .q::after { content: "”"; color: var(--signal); }
+  .two .who { margin-top: 18px; }
+  .two ul { list-style: none; padding: 0; margin: 12px 0 0; }
+  .two li { font-size: 24px; line-height: 1.4; padding: 18px 0; border-top: 1px solid var(--rule); color: var(--ink-2); }
+  .two li b { font-weight: 600; color: var(--ink); }
+
+  /* slide 9: ask */
+  .ask { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; height: 100%; padding-bottom: 60px; }
+  .ask .n { font-size: 260px; color: var(--signal); }
+  .ask dl { margin: 0; display: grid; grid-template-columns: 210px 1fr; row-gap: 22px; column-gap: 24px; font-size: 22px; line-height: 1.35; }
+  .ask dt { color: var(--muted); font-weight: 500; }
+  .ask dd { margin: 0; color: var(--ink); }
+
+  /* slide 10: close */
+  .s10 { display: flex; flex-direction: column; justify-content: center; }
+  .s10 h1 { font-size: 104px; max-width: 16ch; }
+  .s10 .sig { margin-top: 56px; display: flex; gap: 40px; align-items: baseline; }
+  .s10 .sig .m { font-family: var(--display); font-size: 40px; }
+  .s10 .sig .u { font-family: var(--mono); font-size: 16px; color: var(--muted); letter-spacing: .04em; }
+
+  #help { position: fixed; right: 16px; bottom: 16px; font: 12px var(--mono); color: #7d7568; opacity: .6; z-index: 9; letter-spacing: .04em; }
 </style>
 </head>
 <body>
-<div id="viewport"><div id="stage">
+<div id="stage">
 
-<!-- 1 TITLE -->
-<section class="slide" data-title="Title">
-  <div class="brand"><b>SENTINEL</b> · Stevens Business + AI Hackathon · Chubb challenge</div>
-  <div class="title-wrap">
-    <h1><span class="pulse"></span>Sentinel</h1>
-    <div class="tag">Every public disaster and outbreak signal, turned into <span class="amber">what it means for Chubb's book</span> and delivered to the right desk before the 8 a.m. call.</div>
-    <div class="sub">Always-on research agents · verified quotes · severity from the authority · routed briefs</div>
-  </div>
-  <div class="pager"></div>
-</section>
-
-<!-- 2 PROBLEM -->
-<section class="slide" data-title="Problem">
-  <div class="kicker">The problem</div>
-  <h2>The fire was public from hour one.<br><span class="muted">The question was: how much of our book is inside the perimeter?</span></h2>
-  <div class="stats">
-    <div class="stat hero"><div class="n">$1.47B</div><div class="l">Chubb pre-tax loss from the Jan 2025 California wildfires, in one quarter</div></div>
-    <div class="stat"><div class="n">$137B</div><div class="l">Global insured nat-cat losses in 2024. 2025 was the 6th straight year above $100B.</div></div>
-    <div class="stat"><div class="n">$699M</div><div class="l">Chubb losses from Hurricanes Helene ($390M) and Milton ($309M), 2024</div></div>
-  </div>
-  <p class="lead" style="font-size:34px;margin-top:48px">The signals are public: GDACS, NHC, USGS, WHO, local news in many languages. They arrive as noise, and <span style="color:var(--ink)">people still stitch them together by hand.</span></p>
-  <div class="src">Sources: Chubb Q1 2025 results (news.chubb.com, 2025-04-22) · Swiss Re sigma 1/2025 &amp; press release (swissre.com) · Chubb 10-K FY2024 (sec.gov)</div>
-  <div class="pager"></div>
-</section>
-
-<!-- 3 WHO -->
-<section class="slide" data-title="Who">
-  <div class="kicker">Who it's for</div>
-  <h2>The accumulation manager on Chubb's cat desk, <span class="amber">6:00 a.m.</span></h2>
-  <div class="persona">
-    <div class="card">
-      <h3>BEFORE THE 8 A.M. CALL THEY MUST ANSWER</h3>
-      <div class="q"><i>01</i><span>What happened overnight, anywhere we write?</span></div>
-      <div class="q"><i>02</i><span>What do we have in the footprint, in policies and TIV by line?</span></div>
-      <div class="q"><i>03</i><span>Who needs to know: CUO, Claims, A&amp;H, CIO?</span></div>
+<!-- 1 · COLD OPEN -->
+<section class="slide s1" data-n="1">
+  <div class="mark">Sentinel<small>Chubb · Stevens Business + AI Hackathon</small></div>
+  <div class="num">01 / 10</div>
+  <div class="grid">
+    <div>
+      <div class="time rise">TUESDAY · 15 JULY 2025 · 2:49 PM · FOSHAN, GUANGDONG</div>
+      <h1 class="huge rise" style="margin-top:32px">A notice goes up.<br><em>In Chinese.</em></h1>
+      <div class="zh rise">478 confirmed cases of chikungunya. The Shunde District Health Bureau posts it. Nobody outside China reads it.</div>
     </div>
-    <div class="card">
-      <h3>Today</h3>
-      <ul class="todo">
-        <li><b>A dozen tabs:</b> NHC, GDACS, USGS, WHO, local press</li>
-        <li><b>Translate</b> a Portuguese or Spanish bulletin by hand</li>
-        <li><b>Re-run</b> an accumulation query per event</li>
-        <li><b>Email a spreadsheet</b> with no sources attached</li>
-        <li>Repeat for <b>A&amp;H / Travel</b> when it's an outbreak</li>
+    <div class="steps rise">
+      <div class="step"><div class="t">T + 0 h</div><div class="w">District health bureau notice. <i>Chinese only.</i></div></div>
+      <div class="step"><div class="t">T + 51 h</div><div class="w">First English headline.</div></div>
+      <div class="step hot"><div class="t">T + 9 days</div><div class="w">Bloomberg. <i>This is when the insurance industry found out.</i></div></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>Sources</b> Shunde District Health Bureau notice, 15 Jul 2025 (quoted by chinanews.com.cn, 2025-07-15 08:40 UTC)</span><span>First English mainstream: SCMP, 2025-07-17 10:00 UTC</span><span>Bloomberg, 24 Jul 2025 (GDELT first-seen)</span><span>Timeline: sentinel/BACKTEST.md</span></div>
+</section>
+
+<!-- 2 · THE PATTERN -->
+<section class="slide" data-n="2">
+  <div class="mark">Sentinel</div>
+  <div class="num">02 / 10</div>
+  <p class="kicker rise">This is always how it goes</p>
+  <h1 class="big rise">The signal is public.<br>The <em>book</em> isn't connected to it.</h1>
+  <div class="trio rise">
+    <div><div class="n">$1.47B</div><div class="what">Chubb, LA wildfires, one quarter. The fire was public from hour one.</div><div class="src co">Chubb Q1 2025 results, pre-tax cat loss from California wildfires</div></div>
+    <div><div class="n">~$700M</div><div class="what">Chubb, Helene and Milton, 2024. Both were in NHC advisories for days.</div><div class="src co">Chubb 10-K FY2024: Helene $390M + Milton $309M</div></div>
+    <div><div class="n">$137B</div><div class="what">Global insured natural-catastrophe losses in 2024. Sixth straight year above $100B in 2025.</div><div class="src co">Swiss Re Institute sigma 1/2025; Swiss Re press release, 2025</div></div>
+  </div>
+  <div class="foot"><span><b>Sources</b> news.chubb.com Q1 2025 release</span><span>sec.gov Chubb 10-K FY2024</span><span>swissre.com sigma 2025-01 and press release "2025 marks sixth year…"</span></div>
+</section>
+
+<!-- 3 · THE INSIGHT -->
+<section class="slide" data-n="3">
+  <div class="mark">Sentinel</div>
+  <div class="num">03 / 10</div>
+  <p class="kicker rise">The insight</p>
+  <h1 class="big rise">Detection is solved.<br>The <em>last mile</em> isn't.</h1>
+  <div class="chain rise">
+    <div class="c solved"><div class="h">Signal</div><div class="d">Dataminr: 1M+ sources, 150+ languages. BlueDot. GDACS. WHO EIOS. Good, and already bought.</div></div>
+    <div class="c"><div class="h">Our exposure</div><div class="d">How many of <em>our</em> sites, how much TIV, how many insured lives, are inside it?</div></div>
+    <div class="c"><div class="h">A decision</div><div class="d">Restrict binding. Pre-stage adjusters. Review evacuation capacity. One line, in underwriter vocabulary.</div></div>
+    <div class="c"><div class="h">The right desk</div><div class="d">Routed to the person who owns it, with a quote behind every sentence so they can trust it.</div></div>
+  </div>
+  <p class="lede rise" style="margin-top:80px">Nobody ships that. <em style="color:var(--signal)">We did.</em></p>
+  <div class="foot"><span><b>Sources</b> dataminr.com/use-cases/insurance (1M+ sources, 150+ languages)</span><span>who.int/initiatives/eios</span><span>gdacs.org</span><span>Competitive notes: pitch/QA.md Q3</span></div>
+</section>
+
+<!-- 4 · SENTINEL, LIVE -->
+<section class="slide s4" data-n="4">
+  <div class="tag mark">Sentinel<small>Live · today · a real storm</small></div>
+  <div class="live"><i></i>sentinel-chubb.vercel.app</div>
+  <div class="frame rise"><img src="slides/product.png" alt="Sentinel desk view: $3.48B at stake, 4 decisions; Hurricane Polo, restrict new binding, Baja California Sur"></div>
+  <div class="foot"><span><b>On screen</b> Hurricane Polo, Cat 5, 180 mph, severity issued by NHC and copied, not generated</span><span>62 sites / $1.52B of a <b>synthetic</b> demo book inside the 350 km screening buffer; none in the hurricane-force core</span><span>Action: restrict new binding · Baja California Sur</span></div>
+</section>
+
+<!-- 5 · TRUST -->
+<section class="slide" data-n="5">
+  <div class="mark">Sentinel</div>
+  <div class="num">05 / 10</div>
+  <p class="kicker rise">Why an underwriter can trust it</p>
+  <h1 class="big rise">Three rules.<br>The model <em>never</em> gets to break them.</h1>
+  <div class="rules rise">
+    <div class="r"><div class="i">1.</div><div class="h">Severity is copied, never generated.</div><div class="d">Cat 5 comes from NHC. Risk "very high" comes from WHO. PAGER from USGS. The language model reads it; it is not allowed to write it.</div></div>
+    <div class="r"><div class="i">2.</div><div class="h">No quote, no claim.</div><div class="d">Every sentence in a brief carries a verbatim quote. A <code>Verifier</code> written in plain code string-matches it against the fetched source. Not found, dropped.</div></div>
+    <div class="r"><div class="i">3.</div><div class="h">The score shows its math.</div><div class="d">A transparent formula with the breakdown on screen, and a required field called <em>What we don't know yet</em>.</div></div>
+  </div>
+  <div class="foot"><span><b>Sources</b> README.md design rules 1–2</span><span>sentinel/src/agents.py (Verifier stage)</span><span>pitch/QA.md Q1</span></div>
+</section>
+
+<!-- 6 · PIPELINE -->
+<section class="slide" data-n="6">
+  <div class="mark">Sentinel</div>
+  <div class="num">06 / 10</div>
+  <p class="kicker rise">Nine agents, one cycle every ten minutes</p>
+  <h1 class="mid rise">Stages that don't trust each other.</h1>
+  <svg class="pipe rise" viewBox="0 0 1680 520" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a443c"/></marker></defs>
+    <!-- inputs -->
+    <g>
+      <text class="in" x="0" y="52">NHC · GDACS · USGS</text>
+      <text class="in" x="0" y="76">WHO DON · ECDC · EONET</text>
+      <text class="in" x="0" y="100">Google News en/es/fr/pt/hi/zh</text>
+      <path class="arr" d="M262 72 L 300 72" marker-end="url(#a)"/>
+    </g>
+    <!-- row 1 boxes -->
+    <g id="row1">
+      <rect class="box" x="300" y="20" width="190" height="104" rx="8"/>
+      <text class="lab" x="320" y="58">Fetch</text><text class="sub" x="320" y="82">cache-first, offline</text><text class="code" x="320" y="108">CODE</text>
+      <path class="arr" d="M490 72 L 530 72" marker-end="url(#a)"/>
+
+      <rect class="box hot" x="530" y="20" width="190" height="104" rx="8"/>
+      <text class="lab" x="550" y="58">Scout</text><text class="sub" x="550" y="82">cluster signals → events</text><text class="llm" x="550" y="108">CLAUDE</text>
+      <path class="arr" d="M720 72 L 760 72" marker-end="url(#a)"/>
+
+      <rect class="box" x="760" y="20" width="230" height="104" rx="8"/>
+      <text class="lab" x="780" y="58">Corroborator</text><text class="sub" x="780" y="82">≥2 independent · any language</text><text class="code" x="780" y="108">CODE</text>
+      <path class="arr" d="M990 72 L 1030 72" marker-end="url(#a)"/>
+
+      <rect class="box" x="1030" y="20" width="190" height="104" rx="8"/>
+      <text class="lab" x="1050" y="58">Verifier</text><text class="sub" x="1050" y="82">quote found verbatim</text><text class="code" x="1050" y="108">CODE</text>
+      <path class="arr" d="M1220 72 L 1260 72" marker-end="url(#a)"/>
+
+      <rect class="box hot" x="1260" y="20" width="200" height="104" rx="8"/>
+      <text class="lab" x="1280" y="58">Assessor</text><text class="sub" x="1280" y="82">severity COPIED · score</text><text class="llm" x="1280" y="108">CLAUDE</text>
+    </g>
+    <!-- turn -->
+    <path class="arr" d="M1360 124 L 1360 200 L 1360 230" marker-end="url(#a)"/>
+    <!-- row 2 boxes, right to left -->
+    <g id="row2">
+      <rect class="box" x="1260" y="230" width="200" height="104" rx="8"/>
+      <text class="lab" x="1280" y="268">Exposure</text><text class="sub" x="1280" y="292">footprint × our book</text><text class="code" x="1280" y="318">CODE · spatial join</text>
+      <path class="arr" d="M1260 282 L 1220 282" marker-end="url(#a)"/>
+
+      <rect class="box hot" x="990" y="230" width="230" height="104" rx="8"/>
+      <text class="lab" x="1010" y="268">Brief × 3</text><text class="sub" x="1010" y="292">Health · Wealth · Insurance</text><text class="llm" x="1010" y="318">CLAUDE · quotes only</text>
+      <path class="arr" d="M990 282 L 950 282" marker-end="url(#a)"/>
+
+      <rect class="box" x="760" y="230" width="190" height="104" rx="8"/>
+      <text class="lab" x="780" y="268">Router</text><text class="sub" x="780" y="292">touches book / threshold</text><text class="code" x="780" y="318">CODE · dedup</text>
+      <path class="arr" d="M760 282 L 720 282" marker-end="url(#a)"/>
+
+      <rect class="box" x="530" y="230" width="190" height="104" rx="8"/>
+      <text class="lab" x="550" y="268">Notifier</text><text class="sub" x="550" y="292">Slack / email + caveat</text><text class="code" x="550" y="318">CODE</text>
+      <path class="arr" d="M530 282 L 500 282" marker-end="url(#a)"/>
+    </g>
+    <!-- outputs -->
+    <g>
+      <text class="in" x="480" y="262" text-anchor="end">CUO Property · Cat desk</text>
+      <text class="in" x="480" y="286" text-anchor="end">Claims · A&amp;H · Travel · CIO</text>
+      <text class="in" x="480" y="310" text-anchor="end">+ run log, every cycle</text>
+    </g>
+    <!-- legend -->
+    <g transform="translate(0,420)">
+      <rect x="0" y="-10" width="14" height="14" rx="3" fill="#fff" stroke="#b3261e" stroke-width="1.5"/><text class="sub" x="24" y="2">Language model: reads, clusters, writes prose from verified quotes</text>
+      <rect x="560" y="-10" width="14" height="14" rx="3" fill="#fff" stroke="#cfc6b5" stroke-width="1.5"/><text class="sub" x="584" y="2">Plain code: gates, verification, geometry, routing. Every stage has a deterministic fallback.</text>
+    </g>
+    <text class="sub" x="0" y="470">One Python orchestrator. Claude calls are cached by evidence hash; a full cycle is under $1. If the API is down, the alert still ships.</text>
+  </svg>
+  <div class="foot"><span><b>Sources</b> README.md pipeline and design rule 3</span><span>pitch/QA.md Q5 (cost), Q9 (always-on)</span><span>sentinel/src/run.py, agents.py</span></div>
+</section>
+
+<!-- 7 · PROOF -->
+<section class="slide" data-n="7">
+  <div class="mark">Sentinel</div>
+  <div class="num">07 / 10</div>
+  <p class="kicker rise">Proof · replay of Foshan, July 2025, original timestamps</p>
+  <h1 class="mid rise">Back to that Tuesday. <em>Sentinel fires on Wednesday.</em></h1>
+  <div class="bt rise">
+    <div class="axis">
+      <div class="pt zh above" style="left:9%"><div class="w">Health bureau notice + Sina</div><div class="t">TUE 15 JUL · T−51 h · zh</div><div class="dot"></div></div>
+      <div class="pt zh below" style="left:22%"><div class="dot"></div><div class="w">China News, Nandu, Beijing News</div><div class="t">TUE 15 JUL · zh · on the watch list</div></div>
+      <div class="pt sig above" style="left:38%"><div class="w">Sentinel alert (strict rule)</div><div class="t">WED 16 JUL · T−18 h<br>HK CHP letter + 2 outlets, 2 languages</div><div class="dot"></div></div>
+      <div class="pt below" style="left:54%"><div class="dot"></div><div class="w">First English headline</div><div class="t">THU 17 JUL 10:00 UTC · SCMP · T</div></div>
+      <div class="pt above" style="left:90%"><div class="w">Bloomberg</div><div class="t">THU 24 JUL · T+165 h</div><div class="dot"></div></div>
+    </div>
+    <div class="lead">
+      <div><div class="n"><b>18 h</b></div><div class="cap">before the first English headline</div><div class="src" style="margin-top:8px">Strict rule: 2 outlets + an authority or a second language</div></div>
+      <div><div class="n"><b>~8 days</b></div><div class="cap">before Bloomberg</div><div class="src" style="margin-top:8px">183 h before the first global newswire</div></div>
+      <div><div class="n">51 h</div><div class="cap">first Chinese signal on the watch list</div><div class="src" style="margin-top:8px">Upper bound, not headlined. One replay, n = 1, fully sourced. Every URL is in the repo.</div></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>Sources</b> sentinel/BACKTEST.md (reproduce: <b>python3 src/backtest.py --strict</b>)</span><span>chp.gov.hk letter to doctors 2025-07-16</span><span>scmp.com 2025-07-17</span><span>bloomberg.com 2025-07-24</span><span>4,824 cases by 26 Jul: China CDC Weekly / PMC12361914</span></div>
+</section>
+
+<!-- 8 · WHY NOW / WHY CHUBB -->
+<section class="slide" data-n="8">
+  <div class="mark">Sentinel</div>
+  <div class="num">08 / 10</div>
+  <p class="kicker rise">Why now, why Chubb</p>
+  <h1 class="mid rise">It sits on top of feeds Chubb already buys.</h1>
+  <div class="two rise">
+    <div>
+      <div class="q">Investing in data and AI to be faster in underwriting and claims.</div>
+      <div class="cap who">Chubb, 2025 Letter to Shareholders (paraphrased)</div>
+      <p class="body" style="margin-top:36px">A language model can now read a Chinese health-bureau bulletin and an NHC advisory in the same pass, for cents. Two years ago that was a research project. Today it is a ten-minute cron job.</p>
+    </div>
+    <div>
+      <ul>
+        <li><b>Complements, doesn't replace.</b> Dataminr and Moody's RMS detect and model. Their feeds plug in as extra Fetch agents under Chubb's existing contracts.</li>
+        <li><b>Exposure never leaves.</b> Runs in Chubb's own cloud. The model sees event text and aggregates ("62 sites, $1.52B"), never a policyholder.</li>
+        <li><b>Built for the 6 a.m. desk.</b> The accumulation manager, the head of A&amp;H, Claims and the CIO each get their own lens on the same event.</li>
+        <li><b>Honest about what's synthetic.</b> Feeds, events, quotes, severity: real. The book: synthetic, until the pilot.</li>
       </ul>
     </div>
   </div>
-  <div class="pager"></div>
+  <div class="foot"><span><b>Sources</b> about.chubb.com 2025 Letter to Shareholders</span><span>dataminr.com/use-cases/insurance</span><span>moodys.com Event Response (HWind every 6 h)</span><span>pitch/QA.md Q3, Q7, Q10</span></div>
 </section>
 
-<!-- 4 ARCHITECTURE -->
-<section class="slide" data-title="Architecture">
-  <div class="kicker">What it does</div>
-  <h2>Agents that run every 10 minutes.</h2>
-  <div class="arch">
-  <svg viewBox="0 0 1660 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sentinel agent pipeline: feeds to Scout, Corroborator, Verifier, Assessor, Exposure, three brief writers, Router, and audience desks">
-    <defs>
-      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5d6a7a"/></marker>
-    </defs>
-    <!-- feeds -->
-    <text x="0" y="36" fill="#8b98a8" font-size="17" font-family="JetBrains Mono" letter-spacing="2">PUBLIC FEEDS</text>
-    <g font-size="19" fill="#e9eef4" font-weight="500">
-      <rect x="0" y="56"  width="176" height="50" rx="10" fill="#121821" stroke="#263140"/><text x="18" y="88">GDACS</text>
-      <rect x="0" y="116" width="176" height="50" rx="10" fill="#121821" stroke="#263140"/><text x="18" y="148">NOAA NHC</text>
-      <rect x="0" y="176" width="176" height="50" rx="10" fill="#121821" stroke="#263140"/><text x="18" y="208">USGS quakes</text>
-      <rect x="0" y="236" width="176" height="50" rx="10" fill="#121821" stroke="#263140"/><text x="18" y="268">WHO DON</text>
-      <rect x="0" y="296" width="176" height="50" rx="10" fill="#121821" stroke="#263140"/><text x="18" y="328">ECDC</text>
-      <rect x="0" y="356" width="176" height="50" rx="10" fill="#121821" stroke="#263140"/><text x="18" y="388">NASA EONET</text>
-      <rect x="0" y="416" width="176" height="50" rx="10" fill="#121821" stroke="#263140"/><text x="18" y="448">News es·fr·pt·en</text>
-    </g>
-    <path d="M186,261 L226,261" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-
-    <!-- main chain -->
-    <g>
-      <rect x="236" y="196" width="170" height="130" rx="14" fill="#121821" stroke="#263140" stroke-width="1.5"/>
-      <text x="254" y="240" fill="#e9eef4" font-size="25" font-weight="700">Scout</text>
-      <text x="254" y="272" fill="#8b98a8" font-size="17">clusters signals</text>
-      <text x="254" y="295" fill="#8b98a8" font-size="17">into events</text>
-    </g>
-    <path d="M410,261 L436,261" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-    <g>
-      <rect x="446" y="196" width="190" height="130" rx="14" fill="#121821" stroke="#263140" stroke-width="1.5"/>
-      <text x="464" y="240" fill="#e9eef4" font-size="25" font-weight="700">Corroborator</text>
-      <text x="464" y="272" fill="#8b98a8" font-size="16">≥2 independent</text>
-      <text x="464" y="295" fill="#8b98a8" font-size="16">any language</text>
-    </g>
-    <path d="M640,261 L666,261" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-    <g>
-      <rect x="676" y="196" width="170" height="130" rx="14" fill="rgba(53,201,168,.08)" stroke="#35c9a8" stroke-width="2"/>
-      <text x="694" y="240" fill="#35c9a8" font-size="25" font-weight="700">Verifier</text>
-      <text x="694" y="272" fill="#b9e9dc" font-size="16">quote in source?</text>
-      <text x="694" y="295" fill="#b9e9dc" font-size="16">checked by code</text>
-    </g>
-    <path d="M850,261 L876,261" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-    <g>
-      <rect x="886" y="196" width="180" height="130" rx="14" fill="#121821" stroke="#263140" stroke-width="1.5"/>
-      <text x="904" y="240" fill="#e9eef4" font-size="25" font-weight="700">Assessor</text>
-      <text x="904" y="272" fill="#8b98a8" font-size="16">authority severity</text>
-      <text x="904" y="295" fill="#8b98a8" font-size="16">score + unknowns</text>
-    </g>
-    <path d="M1070,261 L1096,261" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-    <g>
-      <rect x="1106" y="196" width="170" height="130" rx="14" fill="rgba(244,166,42,.09)" stroke="#f4a62a" stroke-width="2"/>
-      <text x="1124" y="240" fill="#f4a62a" font-size="25" font-weight="700">Exposure</text>
-      <text x="1124" y="272" fill="#f3d6a4" font-size="16">footprint × book</text>
-      <text x="1124" y="295" fill="#f3d6a4" font-size="16">TIV by line</text>
-    </g>
-
-    <!-- fan out to briefs -->
-    <path d="M1280,261 C1300,261 1300,131 1318,131" fill="none" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-    <path d="M1280,261 L1318,261" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-    <path d="M1280,261 C1300,261 1300,391 1318,391" fill="none" stroke="#5d6a7a" stroke-width="2.5" marker-end="url(#ah)"/>
-    <text x="1328" y="72" fill="#8b98a8" font-size="17" font-family="JetBrains Mono" letter-spacing="2">BRIEFS</text>
-    <g font-size="22" font-weight="600">
-      <rect x="1328" y="96"  width="150" height="70" rx="12" fill="#121821" stroke="#263140"/><text x="1348" y="139" fill="#e9eef4">Health</text>
-      <rect x="1328" y="226" width="150" height="70" rx="12" fill="#121821" stroke="#263140"/><text x="1348" y="269" fill="#e9eef4">Wealth</text>
-      <rect x="1328" y="356" width="150" height="70" rx="12" fill="#121821" stroke="#f4a62a" stroke-width="1.5"/><text x="1348" y="399" fill="#f4a62a">Insurance</text>
-    </g>
-    <!-- router / notifier -->
-    <path d="M1482,131 C1500,131 1500,261 1514,261" fill="none" stroke="#5d6a7a" stroke-width="2"/>
-    <path d="M1482,261 L1514,261" stroke="#5d6a7a" stroke-width="2"/>
-    <path d="M1482,391 C1500,391 1500,261 1514,261" fill="none" stroke="#5d6a7a" stroke-width="2"/>
-    <rect x="1514" y="186" width="144" height="150" rx="14" fill="#121821" stroke="#263140" stroke-width="1.5"/>
-    <text x="1530" y="228" fill="#e9eef4" font-size="21" font-weight="700">Router +</text>
-    <text x="1530" y="254" fill="#e9eef4" font-size="21" font-weight="700">Notifier</text>
-    <text x="1530" y="286" fill="#8b98a8" font-size="14">caveats</text>
-    <text x="1530" y="308" fill="#8b98a8" font-size="14">dedup · escalate</text>
-
-    <!-- desks -->
-    <g font-size="18" fill="#8b98a8" font-family="JetBrains Mono">
-      <text x="236" y="470" fill="#5d6a7a" letter-spacing="2">DELIVERED TO →</text>
-      <text x="470" y="470" fill="#e9eef4">CUO Property</text>
-      <text x="660" y="470" fill="#e9eef4">Head of Claims</text>
-      <text x="870" y="470" fill="#e9eef4">Cat / Accumulation</text>
-      <text x="1110" y="470" fill="#e9eef4">CIO</text>
-      <text x="1180" y="470" fill="#e9eef4">Head of A&amp;H / Travel</text>
-      <text x="1450" y="470" fill="#e9eef4">Public</text>
-    </g>
-    <line x1="236" y1="500" x2="1640" y2="500" stroke="#263140"/>
-    <text x="236" y="536" fill="#8b98a8" font-size="19">↻ every 5–10 min · run log · runs offline from cache · Claude with a deterministic fallback</text>
-  </svg>
-  </div>
-  <div class="pager"></div>
-</section>
-
-<!-- 5 DEMO -->
-<section class="slide" data-title="Demo">
-  <div class="kicker">Live demo</div>
-  <h2 style="font-size:60px">One event → exposure → a verified brief → the right desk.</h2>
-  <div class="shot" id="shot">
-    <img src="../sentinel/ui/screenshots/main.png" alt="Sentinel UI: agent trace on the left, alert card with authority severity, exposure in TIV, Health/Wealth/Insurance brief tabs with citation chips, and the run-log strip" onerror="document.getElementById('shot').classList.add('missing')">
-    <div class="ph">[ screenshot: sentinel/ui/screenshots/main.png ]<br>switch to the live UI at localhost:8000/ui/</div>
-  </div>
-  <div class="beats">
-    <div class="beat on"><b>1 · Alert card</b>NHC + GDACS + local press</div>
-    <div class="beat on"><b>2 · Exposure</b>policies · TIV by line</div>
-    <div class="beat on"><b>3 · Insurance brief</b>click a citation</div>
-    <div class="beat on"><b>4 · Route</b>CUO gets it, with a caveat</div>
-    <div class="beat on"><b>5 · Run log</b>on all afternoon</div>
-  </div>
-  <div class="pager"></div>
-</section>
-
-<!-- 6 AUDIT -->
-<section class="slide" data-title="Auditability">
-  <div class="kicker">Why an underwriter can trust it</div>
-  <h2>No quote, no claim.</h2>
-  <div class="audit">
+<!-- 9 · THE ASK -->
+<section class="slide" data-n="9">
+  <div class="mark">Sentinel</div>
+  <div class="num">09 / 10</div>
+  <div class="ask">
     <div>
-      <div class="rule"><span class="amber">Severity comes from the authority.</span><small>NHC category · USGS PAGER · GDACS level · WHO risk assessment. The model never generates it.</small></div>
-      <div class="rule"><span class="teal">Every claim is quote-checked by code.</span><small>The Verifier string-matches each quote against the fetched source. Anything that fails is dropped.</small></div>
-      <div class="rule">A transparent score.<small>A 0–100 risk score with its breakdown, a confidence level, and a required "what we don't know yet" section.</small></div>
+      <p class="kicker rise">The ask</p>
+      <div class="n rise">90</div>
+      <p class="lede rise">days with the cat desk. One peril. Chubb's real exposure file.</p>
     </div>
-    <div class="ev">
-      <div><span class="chip sev">NHC · Cat 5 (180 mph)</span><span class="chip">confidence: high</span><span class="chip">9 sources · en/es</span></div>
-      <div class="bul"><span class="chip ok">✓ verified</span> Hurricane Polo: 62 sites / $1.52B in the 350 km screening buffer, none yet in the hurricane-force core. Accumulation <b>ELEVATED</b>: restrict new binding in the watch area.
-        <div class="quote">"POLO IS AN EXTREMELY POWERFUL CATEGORY 5 HURRICANE" nhc.noaa.gov · live today</div></div>
-      <div class="bul drop"><span class="chip bad">✗ dropped</span> <s>Storm surge expected to exceed 5 m in the bay.</s>
-        <div class="quote">quote not found in source text → claim removed</div></div>
-    </div>
+    <dl class="rise">
+      <dt>Peril</dt><dd>Atlantic hurricane, one region</dd>
+      <dt>First deliverable</dt><dd>Swap the synthetic book for Chubb's exposure schema, inside Chubb's VPC</dd>
+      <dt>Measured in</dt><dd>Hours of lead time before the binding decision · analyst hours saved on the morning report · precision of alerts that touch the book</dd>
+      <dt>Then</dt><dd>A&amp;H / Travel (outbreaks, insured travellers) and Claims (pre-staging adjusters)</dd>
+      <dt>Second deliverable</dt><dd>Backtest across a season of Chubb's own historical events, so lead time is a distribution, not an anecdote</dd>
+    </dl>
   </div>
-  <div class="src">The verified bullet is from today's live run. The dropped bullet is an illustration of what the Verifier removes.</div>
-  <div class="pager"></div>
+  <div class="foot"><span><b>Sources</b> pitch/QA.md Q11–12</span><span>Binding moratoriums typically 24–48 h before impact: policygenius.com/homeowners-insurance/insurance-moratorium</span></div>
 </section>
 
-<!-- 7 BACKTEST -->
-<section class="slide" data-title="Backtest">
-  <div class="kicker">Backtest · replayed with original timestamps · Foshan chikungunya, July 2025</div>
-  <h2>China's largest chikungunya outbreak was reported <span class="amber">only in Chinese</span> for two days.</h2>
-  <div class="tl">
-    <div class="axis"></div>
-    <div class="span" style="left:8%;right:8%"></div>
-    <div class="mk" style="left:8%"><div class="t teal">T−51 h</div><div class="dot" style="background:var(--teal)"></div><div class="d">Shunde health bureau<br><span style="font-size:22px">+ Sina, chinanews · zh</span></div></div>
-    <div class="mk" style="left:36%"><div class="t amber">T−18 h</div><div class="dot" style="background:var(--amber)"></div><div class="d">Sentinel alert (strict rule)<br><span style="font-size:22px">+ HK CHP letter · 2 languages</span></div></div>
-    <div class="mk" style="left:60%"><div class="t">T</div><div class="dot" style="background:var(--ink)"></div><div class="d">First English headline<br><span style="font-size:22px">SCMP · 17 Jul</span></div></div>
-    <div class="mk" style="left:92%"><div class="t">T+7 d</div><div class="dot" style="background:var(--dim)"></div><div class="d">Bloomberg<br><span style="font-size:22px">24 Jul</span></div></div>
+<!-- 10 · CLOSE -->
+<section class="slide s10" data-n="10">
+  <div class="mark">Sentinel</div>
+  <div class="num">10 / 10</div>
+  <p class="kicker rise">Next time</p>
+  <h1 class="rise">A health bureau posts a notice at 2:49 on a Tuesday.<br><em>Chubb knows by 3.</em></h1>
+  <div class="sig rise">
+    <div class="m">Sentinel</div>
+    <div class="u">sentinel-chubb.vercel.app · every claim traces to a quote · severity from the authority · synthetic book, real everything else</div>
   </div>
-  <p class="bt-note">Sentinel alerts <b>18 h</b> before the first English headline and <b>about a week before Bloomberg</b>. That is a week of A&amp;H/travel advisories, CBI watch on a manufacturing hub, and event-cancellation checks before the market sees it.</p>
-  <div class="src">Every timestamp is sourced in sentinel/BACKTEST.md (page metadata; the † items are day-level). Reproduce with <code>python src/backtest.py --strict</code>.</div>
-  <div class="pager"></div>
+  <div class="foot"><span><b>Every number in this deck is sourced on its slide.</b></span><span>Full source table: pitch/PITCH.md</span><span>Stevens Business + AI Hackathon · Chubb challenge · 25 Sep 2026</span></div>
 </section>
 
-<!-- 8 WHY NOW / MODEL -->
-<section class="slide" data-title="Why now">
-  <div class="kicker">Why now · how Chubb adopts it</div>
-  <h2>They detect. <span class="amber">We translate detection into Chubb's book.</span></h2>
-  <div class="cols">
-    <div>
-      <table class="cmp">
-        <tr><td>Dataminr</td><td>Event detection, 1M+ sources, 150+ languages</td></tr>
-        <tr><td>BlueDot · WHO EIOS</td><td>Outbreak intelligence for public health</td></tr>
-        <tr><td>Moody's RMS · Verisk</td><td>Hazard footprints &amp; industry loss estimates</td></tr>
-        <tr><td>Everstream</td><td>Supply-chain disruption alerts</td></tr>
-        <tr class="us"><td>Sentinel</td><td>Event → <b>your</b> exposure → verified brief → the right desk. Sits on top of all of the above.</td></tr>
-      </table>
-    </div>
-    <div>
-      <ol class="steps">
-        <li>Runs inside Chubb's cloud<small>Exposure data never leaves. The LLM sees only aggregates.</small></li>
-        <li>90-day pilot with the cat desk<small>One peril (Atlantic hurricane), Chubb's real exposure file</small></li>
-        <li>Measured on outcomes<small>Hours of lead time · analyst hours saved · alert precision</small></li>
-        <li>Expand to A&amp;H/Travel and Claims<small>Annual platform license, next to the cat-model line item</small></li>
-      </ol>
-    </div>
-  </div>
-  <div class="src">Chubb 2025 shareholder letter on investing in data &amp; AI for speed in underwriting and claims (about.chubb.com) · dataminr.com/use-cases/insurance · moodys.com event-response-services · who.int/initiatives/eios</div>
-  <div class="pager"></div>
-</section>
+<div id="bar"></div>
+</div>
+<div id="help">← → space · F fullscreen · 1–9 jump</div>
 
-<!-- 9 CLOSE -->
-<section class="slide" data-title="Close">
-  <div class="brand"><b>SENTINEL</b></div>
-  <div class="close-wrap">
-    <h2>Every morning someone at Chubb builds this by hand.<br><span class="amber">Sentinel has it ready before they sit down</span>, and every claim traces to a quote.</h2>
-    <div class="ask"><span>The ask</span>A 90-day pilot with Chubb's cat / accumulation desk</div>
-  </div>
-  <div class="pager"></div>
-</section>
-
-</div></div>
-<div id="hint">← → / space to navigate · F for fullscreen</div>
 <script>
-(function(){
-  var slides=[].slice.call(document.querySelectorAll('.slide'));
-  var stage=document.getElementById('stage');
-  var i=0;
-  function fit(){var s=Math.min(window.innerWidth/1920,window.innerHeight/1080);stage.style.transform='scale('+s+')';}
-  function show(n){
-    i=Math.max(0,Math.min(slides.length-1,n));
-    slides.forEach(function(el,k){el.classList.toggle('active',k===i);var p=el.querySelector('.pager');if(p)p.textContent=(k+1)+' / '+slides.length;});
-    if(location.hash!=='#'+(i+1))history.replaceState(null,'','#'+(i+1));
+(function () {
+  const slides = [...document.querySelectorAll('.slide')];
+  const bar = document.getElementById('bar');
+  let i = 0;
+  const fromHash = parseInt(location.hash.slice(1), 10);
+  if (fromHash >= 1 && fromHash <= slides.length) i = fromHash - 1;
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('on', k === i));
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (i + 1));
   }
-  document.addEventListener('keydown',function(e){
-    if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>-1){e.preventDefault();show(i+1);}
-    else if(['ArrowLeft','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();show(i-1);}
-    else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
-    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    document.getElementById('stage').style.setProperty('--s', s);
+  }
+  addEventListener('resize', fit); fit(); show(i);
+  addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key.toLowerCase() === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+    else if (/^[1-9]$/.test(e.key)) show(parseInt(e.key, 10) - 1);
+    else if (e.key === '0') show(9);
   });
-  document.addEventListener('click',function(e){ if(e.target.closest('a'))return; show(e.clientX>window.innerWidth/3?i+1:i-1); });
-  window.addEventListener('resize',fit);
-  window.addEventListener('hashchange',function(){var n=parseInt(location.hash.slice(1),10);if(n)show(n-1);});
-  fit(); show((parseInt(location.hash.slice(1),10)||1)-1);
+  addEventListener('click', e => { if (e.clientX > innerWidth * 0.66) show(i + 1); else if (e.clientX < innerWidth * 0.2) show(i - 1); });
+  window.deckGo = show;
 })();
 </script>
 </body>

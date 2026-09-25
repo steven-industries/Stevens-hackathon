@@ -160,7 +160,7 @@ const place = a => {
 };
 function action(a){
   const s = String(obj(obj(a.briefs).insurance).accumulation_action || "");
-  const lvl = s.split(/\s+[—-]\s+/)[0].trim().toUpperCase();
+  const lvl = s.split(/[.—-]/)[0].trim().toUpperCase();
   let v = "Monitor";
   if(lvl === "ELEVATED" || lvl === "HIGH" || lvl === "SEVERE") v = /travel|a&h/i.test(s) ? "Restrict new Travel/A&H" : "Restrict new binding";
   else if(lvl === "MONITOR") v = "Run accumulation check";
