@@ -1,17 +1,8 @@
 {
   "event": "Chikungunya outbreak - Foshan (Shunde), Guangdong, China - July 2025",
-  "summary": "First weak signal T−51.2 h · Sentinel alert T−51.2 h · Mainstream headline T (2025-07-17T10:00:00Z). Sentinel would have alerted 51.2 h before the first English mainstream headline and 216.2 h (~9 days) before the first global newswire.",
-  "lead_time_hours": 51.2,
+  "summary": "First weak signal T−51.2 h · Sentinel alert T−18.0 h · Mainstream headline T (2025-07-17T10:00:00Z). Sentinel would have alerted 18.0 h before the first English mainstream headline and 183.0 h (~8 days) before the first global newswire.",
+  "lead_time_hours": 18.0,
   "timeline": [
-    {
-      "ts": "2025-07-15T06:49:17Z",
-      "kind": "authority",
-      "source": "Shunde District Health Bureau (WeChat '健康顺德'), reposted by Guangdong CDC",
-      "lang": "zh",
-      "title": "佛山市顺德区卫生健康局2025年7月15日发布《情况通报》",
-      "url": "https://cdcp.gd.gov.cn/ywdt/zdzt/yfjkkyr/yqxx/content/post_4747600.html",
-      "note": "Official notice: local outbreak detected 8 Jul, 478 confirmed cases by 15 Jul (Lecong, Beijiao, Chencun). Day precision; ts = upper bound (first verified report quoting it). Repost URL 404 as of 2026-09-25."
-    },
     {
       "ts": "2025-07-15T06:49:17Z",
       "kind": "weak_signal",
@@ -20,15 +11,6 @@
       "title": "佛山顺德卫健局通报一起境外输入引起的基孔肯雅热本地疫情：截至7月15日全区累计报告确诊病例478例，均为轻症病例",
       "url": "https://finance.sina.cn/2025-07-15/detail-inffpsmp5615123.d.html",
       "note": "og:published_time 2025-07-15 14:49:17 (UTC+8). Earliest page-verified public report found. Second-precision."
-    },
-    {
-      "ts": "2025-07-15T06:49:17Z",
-      "kind": "sentinel_alert",
-      "source": "Sentinel corroborator (backtest replay)",
-      "lang": "zh",
-      "title": "ALERT: Chikungunya outbreak - Foshan (Shunde), Guangdong, China - July 2025",
-      "url": "https://finance.sina.cn/2025-07-15/detail-inffpsmp5615123.d.html",
-      "note": "Rule fired on 'Sina Finance (finance.sina.cn)': 2 distinct outlets (shunde-health-bureau, sina.cn), languages ['zh'], authority=yes"
     },
     {
       "ts": "2025-07-15T08:40:58Z",
@@ -74,6 +56,15 @@
       "title": "An Outbreak of Chikungunya Fever Reported in Guangdong",
       "url": "https://www.chp.gov.hk/files/pdf/letters_to_doctors_20250716.pdf",
       "note": "Alert to HK clinicians. Day precision (file dated 2025-07-16); ts = 23:59:59 HKT upper bound. First English-language authority item found."
+    },
+    {
+      "ts": "2025-07-16T15:59:59Z",
+      "kind": "sentinel_alert",
+      "source": "Sentinel corroborator (backtest replay)",
+      "lang": "multi",
+      "title": "ALERT: Chikungunya outbreak - Foshan (Shunde), Guangdong, China - July 2025",
+      "url": "https://www.chp.gov.hk/files/pdf/letters_to_doctors_20250716.pdf",
+      "note": "Rule fired on 'Hong Kong Centre for Health Protection - letter to doctors': 6 distinct outlets (sina.cn, chinanews.com.cn, hkcna.hk, oeeee.com, bjnews.com.cn, chp.gov.hk), languages ['en', 'zh'], authority=yes [strict mode]"
     },
     {
       "ts": "2025-07-17T10:00:00Z",

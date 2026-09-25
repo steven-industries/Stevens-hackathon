@@ -485,6 +485,10 @@ function renderCentre(){
   const ins = obj(br.insurance);
   const headline = ins.headline || obj(br.health).headline || obj(br.wealth).headline || "";
   const fs = pdate(a.first_signal_ts), at = pdate(a.alert_ts);
+  // corroboration time = when a 2nd independent source (distinct feed/outlet) had published
+  const seenF = new Set(); let corrTs = null;
+  arr(a.sources).map(s => ({f: s.feed || s.url, t: pdate(s.published)})).filter(x => x.t).sort((x, y) => x.t - y.t)
+    .forEach(x => { if (!corrTs && !seenF.has(x.f)) { seenF.add(x.f); if (seenF.size >= 2) corrTs = x.t; } });
   const lines = arr(ex.by_line); const maxL = Math.max(1, ...lines.map(l => num(l.tiv_usd)));
   const sb = arr(a.score_breakdown); const maxP = Math.max(1, ...sb.map(s => num(s.points)));
   const where = [...new Set([...arr(g.regions), ...arr(g.countries)].filter(Boolean))];
@@ -508,8 +512,8 @@ function renderCentre(){
     </div>
     ${a.confidence_rationale ? `<div class="rationale"><b>Why this confidence</b>${esc(a.confidence_rationale)}</div>` : ""}
     <div class="timeline-mini"><span>First signal <span class="ts">${esc(et(a.first_signal_ts,true))}</span></span><span class="arrow"></span>
-      <span>Sentinel alert <span class="ts">${esc(et(a.alert_ts,true))}</span></span>
-      ${fs && at ? `<span class="dim">(${dur(at - fs)} to corroborate)</span>` : ""}<span class="dim" style="margin-left:auto">${esc(ago(a.alert_ts))}</span></div>
+      ${corrTs ? `<span>2nd independent source <span class="ts">${esc(et(corrTs.toISOString(),true))}</span></span><span class="arrow"></span>` : ""}
+      <span>Alert issued (this cycle) <span class="ts">${esc(et(a.alert_ts,true))}</span></span><span class="dim" style="margin-left:auto">${esc(ago(a.alert_ts))}</span></div>
   </div>
 
   <div class="grid2">

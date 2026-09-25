@@ -114,6 +114,13 @@ def load_book():
     return locs, trav
 
 
+SCALE_NAME = {"NHC_SSHWS": "NHC Saffir-Simpson", "USGS_PAGER": "USGS PAGER", "WHO_DON": "WHO DON", "GDACS": "GDACS"}
+
+
+def sname(sc):
+    return SCALE_NAME.get(sc, sc)
+
+
 def money(x):
     return f"${x/1e9:.2f}B" if x >= 1e9 else f"${x/1e6:.0f}M" if x >= 1e6 else f"${x:,.0f}"
 
@@ -599,7 +606,7 @@ def assess(ev, tr):
     src_ok = sum(s["verified"] for s in ev["sources"])
     conf = "high" if n >= 4 and L >= 2 and src_ok >= 3 else "med" if n >= 2 else "low"
     ev["confidence"] = conf
-    ev["confidence_rationale"] = (f"{n} independent sources ({src_ok} verified quotes) across {L} language(s); severity from {sev['scale']}"
+    ev["confidence_rationale"] = (f"{n} independent sources ({src_ok} verified quotes) across {L} language(s); severity from {sname(sev['scale'])}"
                                   + ("; single-source, awaiting corroboration" if n < 2 else ""))
     model = "deterministic"
     if llm_on():
@@ -638,7 +645,7 @@ def finish_assess(ev, tr, model, t0):
     tr.log("assessor", ev["event_id"], [s["id"] for s in ev["sources"]],
            {"issued_severity": ev["issued_severity"], "risk_score": score, "tier": tier, "score_breakdown": ev["breakdown"],
             "confidence": ev["confidence"], "geo": ev["geo"], "time_horizon": ev["time_horizon"], "unknowns": ev["unknowns"]},
-           f"Assessor: {ev['issued_severity']['scale']} {ev['issued_severity']['value']} (copied) → risk {score}/100 {tier}, "
+           f"Assessor: {sname(ev['issued_severity']['scale'])} {ev['issued_severity']['value']} (copied) → risk {score}/100 {tier}, "
            f"confidence {ev['confidence']}; radius {ev['geo']['radius_km']} km",
            model, (time.time() - t0) * 1000)
 
@@ -684,8 +691,12 @@ def exposure(ev, book, tr):
 
 
 # ======================================================================= 6. BRIEFS
-def _B(text, item, kws):
+def _B(text, item, kws, show=False):
+    """show=True puts the verified fact itself into the bullet text (trimmed), so the reader sees the number, not a label."""
     q = span(item, kws) if item else None
+    if q and show:
+        qq = q if len(q) <= 170 else q[:167].rsplit(" ", 1)[0] + "…"
+        text = f"{text.rstrip('.')}: “{qq}”"
     return {"text": text, "source_url": item["url"], "quote": q} if q else None
 
 
@@ -697,7 +708,7 @@ def _news_bullets(ev, k=2, prefix="Local-language press"):
     out = []
     ns = [s for s in ev["sources"] if s["feed"].startswith("news:") and s["verified"]]
     for s in (sorted(ns, key=lambda s: s["lang"] == "en"))[:k]:
-        out.append({"text": f"{prefix} ({s['lang']}, {s['feed'][5:]}) is reporting on the event.", "source_url": s["url"], "quote": s["quote"]})
+        out.append({"text": f"{prefix} ({s['lang']}, {s['feed'][5:]}): “{s['quote'][:170]}”", "source_url": s["url"], "quote": s["quote"]})
     return out
 
 
@@ -717,23 +728,23 @@ def det_briefs(ev):
     posture = "strengthen" if tier == "RED" and e["tiv_usd"] > 0 else "watch" if (tier != "WATCH" or e["tiv_usd"] > 0 or e["insured_travelers"]) else "no action"
     if t == "TC":
         a = nhc or gd or eo
-        H += [_B("Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core.", a, ["maximum sustained winds", "wind speed", "kts"]),
-              _B("Heavy rain / flash-flood hazard raises waterborne-disease and access-to-care risk.", nhc, ["rainfall", "flash flooding", "flooding"]),
-              _B("Storm surge / coastal hazard messaging from NHC.", nhc, ["storm surge", "surf", "swells"]),
-              _B("GDACS population exposure estimate for the wind field.", gd, ["Population affected", "population"])]
+        H += [_B("Authority wind intensity defines the life-safety zone; expect trauma and displacement near the core.", a, ["maximum sustained winds", "wind speed", "kts"], show=True),
+              _B("Heavy rain / flash-flood hazard raises waterborne-disease and access-to-care risk.", nhc, ["rainfall", "flash flooding", "flooding"], show=True),
+              _B("Storm surge / coastal hazard messaging from NHC.", nhc, ["storm surge", "surf", "swells"], show=True),
+              _B("GDACS population exposure estimate for the wind field.", gd, ["Population affected", "population"], show=True)]
         H += _news_bullets(ev, 2, "Local-language press flags community impact")
         W += [_B(f"Regional market read-through for {place}: tourism, ports and infrastructure in the path; watch local equities/FX and sub-sovereign credit.", a, ["CATEGORY", "affects these countries", "Hurricane", "Tropical"]),
               _B("Track and forward speed set the window for supply-chain disruption (ports, shipping lanes).", nhc, ["movement", "moving"])]
         W += _news_bullets(ev, 2, "Market-moving coverage")
-        I += [_B(f"Authority severity {ev['issued_severity']['value']} ({ev['issued_severity']['scale']}) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.", a, ["CATEGORY", "maximum sustained winds", "wind speed"]),
+        I += [_B(f"Authority severity {ev['issued_severity']['value']} ({sname(ev['issued_severity']['scale'])}) — Property/HNW Homeowners claims direction: UP if the core nears insured coast.", a, ["CATEGORY", "maximum sustained winds", "wind speed"]),
               _P(f"Synthetic book in footprint ({ev['geo']['radius_km']} km of {'NHC forecast track' if len(ev['track']) > 1 else 'current position'}): {e['policies']} locations, {money(e['tiv_usd'])} TIV."),
               _P(f"By line — Commercial Property {L('Commercial Property')}; HNW Homeowners {L('High-Net-Worth Homeowners')}; Marine Cargo {L('Marine Cargo')}; BI {L('Business Interruption')}."),
               _B("Watches/warnings define claims-notification timing; pre-position adjusters and CAT team.", nhc, ["Warning is in effect", "Watch is in effect", "should monitor", "SHOULD MONITOR", "warning"]),
               _B(f"Reserving posture: {posture}. Check cat XoL retention erosion, ILW/parametric cat-bond trigger boxes against the forecast track.", nhc or gd, ["located near", "center of", "Tropical Storm"])]
     elif t == "EQ":
         a = us or gd
-        H += [_B("Shaking intensity/population exposure drives casualty and hospital-surge risk.", gd, ["MMI", "potentially affecting"]),
-              _B("USGS PAGER alert level indicates the expected fatality/loss band.", us, ["PAGER alert"]),
+        H += [_B("Shaking intensity/population exposure drives casualty and hospital-surge risk.", gd, ["MMI", "potentially affecting"], show=True),
+              _B("USGS PAGER alert level indicates the expected fatality/loss band.", us, ["PAGER alert"], show=True),
               _B("USGS tsunami flag for coastal health planning.", us, ["tsunami="]),
               _B("Felt reports indicate population experiencing shaking.", us, ["felt reports"])] + _news_bullets(ev, 2, "Local-language press")
         W += [_B(f"Infrastructure, ports, mining and manufacturing in {place} may see short-term disruption.", a, ["mag=", "Magnitude", "earthquake"])] + _news_bullets(ev, 2, "Coverage")
@@ -742,9 +753,9 @@ def det_briefs(ev):
               _P(f"By line — Commercial Property {L('Commercial Property')}; BI {L('Business Interruption')}; Energy {L('Energy')}."),
               _B(f"Reserving posture: {posture}. EQ sub-limits/deductibles typically absorb moderate events; confirm aftershock hours clause.", us or gd, ["depth_km", "Depth"])]
     elif t == "OUTBREAK":
-        H += [_B("Case and death counts reported by WHO.", who, ["confirmed cases", "deaths", "cases"]),
-              _B("Geographic spread across health zones/provinces signals health-system strain.", who, ["health zones", "provinces", "spread"]),
-              _B("WHO assessment of onward-spread risk.", who, ["assesses the risk", "risk is", "risk of further spread", "risk"]),
+        H += [_B("WHO case/death count", who, ["confirmed cases", "deaths", "cases"], show=True),
+              _B("Spread across health zones signals health-system strain", who, ["health zones", "provinces", "spread"], show=True),
+              _B("WHO on onward-spread risk", who, ["assesses the risk", "risk is", "risk of further spread", "risk"], show=True),
               _B("ECDC situational reporting relevant to EU travellers.", ecdc, ["Ebola", ev.get("disease_kw", "")] if ecdc else [])]
         H += _news_bullets(ev, 2, "Multilingual press")
         W += [_B(f"Regional economies ({place}): mining, logistics and cross-border trade face disruption risk from containment measures.", who, ["transmission", "outbreak", "spread"]),
@@ -756,7 +767,7 @@ def det_briefs(ev):
               _B(f"Reserving posture: {posture}. Review contingent BI (CBI) and event-cancellation communicable-disease exclusions; marine cargo port-delay exposure.", who, ["spread", "health zones", "provinces", "transmission"])]
     else:
         a = gd or eo or mem[0]
-        H += [_B("Authority alert describes the affected area and displacement.", a, ["displaced", "deaths", "affect", "started"])] + _news_bullets(ev, 1)
+        H += [_B("Authority alert describes the affected area and displacement.", a, ["displaced", "deaths", "affect", "started"], show=True)] + _news_bullets(ev, 1)
         W += [_B(f"Local infrastructure and agriculture in {place} may be disrupted.", a, ["alert", "started", "affect"])] + _news_bullets(ev, 1, "Coverage")
         I += [_B(f"Authority alert ({ev['issued_severity']['value']}) — property/BI claims direction depends on insured presence.", a, ["alert", "started", "affect"]),
               _P(f"Synthetic book within {ev['geo']['radius_km']} km: {e['policies']} locations, {money(e['tiv_usd'])} TIV."),
@@ -825,7 +836,7 @@ def route(ev, tr):
     t0 = time.time(); tier, t, e = ev["tier"], ev["type"], ev["exposure"]
     pr = {"RED": "P1", "AMBER": "P2", "WATCH": "P3"}[tier]
     natcat = t != "OUTBREAK"
-    cav = f"Early-warning signal ({ev['confidence']} confidence); severity per {ev['issued_severity']['scale']}; exposure from a synthetic demo book."
+    cav = f"Early-warning signal ({ev['confidence']} confidence); severity per {sname(ev['issued_severity']['scale'])}; exposure from a synthetic demo book."
     top = e["top_locations"][0]["name"] if e["top_locations"] else "none in footprint"
     rules = {
         "CUO Property": natcat and (e["tiv_usd"] > 0 or tier == "RED"),
@@ -835,7 +846,7 @@ def route(ev, tr):
         "Head of A&H/Travel": t == "OUTBREAK" or (e["insured_travelers"] > 0 and tier != "WATCH"),
         "Public": ev["status"] == "alert" and tier in ("RED", "AMBER"),
     }
-    sev = f"{ev['issued_severity']['scale']} {ev['issued_severity']['value']}"
+    sev = f"{sname(ev['issued_severity']['scale'])} {ev['issued_severity']['value']}"
     msgs = {
         "CUO Property": f"[{tier} {pr}] {ev['name']}: {sev}. {e['policies']} insured locations / {money(e['tiv_usd'])} TIV in footprint. Posture: {ev['briefs']['insurance']['reserving_posture']}. Largest: {top}.",
         "Head of Claims": f"[{tier} {pr}] {ev['name']}: {e['policies']} locations in footprint ({money(e['tiv_usd'])} TIV). Pre-position adjusters; FNOL surge likely within {ev['time_horizon']}.",

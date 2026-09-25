@@ -6,3 +6,7 @@
 {"ts": "2026-09-25T17:03:47Z", "run_id": "c067e4e5", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 15.6}
 {"ts": "2026-09-25T17:04:11Z", "run_id": "129bb2c7", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 20.9}
 {"ts": "2026-09-25T17:05:05Z", "run_id": "b6c0e0bd", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 21.6}
+{"ts": "2026-09-25T17:07:14Z", "run_id": "0ac9cc93", "items_fetched": 436, "feeds_ok": 0, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 0.5}
+{"ts": "2026-09-25T17:07:35Z", "run_id": "a4bf369a", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 30.0}
+{"ts": "2026-09-25T17:08:45Z", "run_id": "8c142b8a", "items_fetched": 436, "feeds_ok": 0, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 0.5}
+{"ts": "2026-09-25T17:08:52Z", "run_id": "ffe5b9ca", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 39.7}

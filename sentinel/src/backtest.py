@@ -106,4 +106,4 @@ if __name__ == "__main__":
     ap.add_argument("--strict", action="store_true", help="drop authority items whose timestamp is derived from another item")
     ap.add_argument("--no-write", action="store_true")
     a = ap.parse_args()
-    run(a.input, strict=a.strict, write=not (a.no_write or a.strict))
+    run(a.input, strict=a.strict, write=not a.no_write)
