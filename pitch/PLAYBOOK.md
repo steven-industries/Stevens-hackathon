@@ -28,12 +28,13 @@ Pocket numbers: 478 cases (the notice), 51 h (first Chinese signal), 3,728 insur
 | 2:22 | 7 · Pipeline | Competence. Hold 4 seconds, say one line, move on. | "Here's what's under it." |
 | 2:25 | 8 · How we built it | Credibility for the technical judge, clarity for the rest: real feeds, real names, real code. Point, don't read. | "Does it beat the headlines?" |
 | 2:35 | 9 · Proof, Foshan | Conviction. Real timestamps, strict rule, honest caveat. | "Why now?" |
-| 2:50 | 10 · Proof, Otis | The gut punch for the property people: the forecast said tropical storm, the desk went home, Sentinel had 18 hours. Build it beat by beat. | "Why now?" |
-| 3:05 | 11 · Why now | Fit. It slots into what Chubb already buys and already said it wants. | "The ask." |
-| 3:15 | 12 · Ask | Clarity. Small, measurable, low-risk. | Advance. Pause. |
-| 3:20 | 13 · Close | The callback lands. Smile. Stop talking. | "Thank you." |
+| 2:50 | 10 · Acapulco photo | The room goes quiet. Two lines, advance. | (silence) |
+| 2:55 | 11 · Proof, Otis | The gut punch for the property people: the forecast said tropical storm, the desk went home, Sentinel had 18 hours. Build it beat by beat. | "Why now?" |
+| 3:10 | 12 · Why now | Fit. It slots into what Chubb already buys and already said it wants. | "The ask." |
+| 3:20 | 13 · Ask | Clarity. Small, measurable, low-risk. | Advance. Pause. |
+| 3:25 | 14 · Close | The callback lands. Smile. Stop talking. | "Thank you." |
 
-Timing marks to check on the clock: **1:05 leaving slide 3**, **2:00 back on the deck**, **2:50 starting Otis**, **3:15 on the ask**. Total is ~3:25; if the slot is a hard 3:00, cut slide 5 to one sentence and do Otis as one beat (the three numbers only). If you're 15 seconds late at 2:00, drop the Run log click, the slide 6 hold, and cut slide 7 to one sentence.
+Timing marks to check on the clock: **1:05 leaving slide 3**, **2:00 back on the deck**, **2:50 on the Acapulco photo**, **3:20 on the ask**. Total is ~3:30; if the slot is a hard 3:00, cut slide 5 to one sentence and do Otis as one beat (the three numbers only). If you're 15 seconds late at 2:00, drop the Run log click, the slide 6 hold, and cut slide 7 to one sentence.
 
 ## Demo click path (rehearse until it's muscle memory)
 
@@ -46,10 +47,10 @@ Pre-state: UI tab open on **Property**, nothing selected, page freshly loaded, z
 5. Press **P** (Replay). Nine agents light up in sequence with their real one-line output and real timings, Claude vs code labelled. Say: "This is the last cycle, replayed. Claude reads and writes; code holds every gate." It takes 8 seconds; let it run, then Esc.
 6. Click **•••** → **Route**. Say "already notified, caveat banner." Close.
 7. Point at the header: green pulse, "next scan in 2:41", signal and event counts. Say "every ten minutes, all afternoon." The activity strip at the bottom (L toggles it) is the live agent log.
-8. Optional: press **B** for the backtest sheet (both replays) instead of slides 9–10.
+8. Optional: press **B** for the backtest sheet (both replays) instead of slides 9–11.
 9. Switch back to the deck tab, slide 5 (One screen, on purpose).
 
-Keyboard in the deck: → / space next (reveals the next build on slides 1 and 8 before advancing), ← back, F fullscreen, 1–9 jump to slide, 0 jumps to slide 13. Slides 1, 9 and 10 have builds: → reveals the next beat before advancing. The deck also accepts a click on the right third of the screen to advance.
+Keyboard in the deck: → / space next (reveals the next build on slides 1 and 8 before advancing), ← back, F fullscreen, 1–9 jump to slide, 0 jumps to slide 14. Slides 1, 9 and 11 have builds: → reveals the next beat before advancing. The deck also accepts a click on the right third of the screen to advance.
 
 ## Say it so a non-insurance judge follows (use these the first time each word comes up)
 
