@@ -1,55 +1,55 @@
 {
- "generated_at": "2026-09-25T17:09:32Z",
- "run_id": "ffe5b9ca",
+ "generated_at": "2026-09-25T17:14:39Z",
+ "run_id": "ff3773f8",
  "mode": "deterministic",
  "feeds": [
   {
    "name": "gdacs",
    "items": 314,
-   "status": "live",
-   "retrieved": "2026-09-25T17:08:55Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:09:43Z"
   },
   {
    "name": "nhc_at",
    "items": 2,
-   "status": "live",
-   "retrieved": "2026-09-25T17:08:53Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:09:41Z"
   },
   {
    "name": "nhc_ep",
    "items": 2,
-   "status": "live",
-   "retrieved": "2026-09-25T17:08:53Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:09:41Z"
   },
   {
    "name": "nhc_cp",
    "items": 1,
-   "status": "live",
-   "retrieved": "2026-09-25T17:08:53Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:09:41Z"
   },
   {
    "name": "usgs",
    "items": 12,
-   "status": "live",
-   "retrieved": "2026-09-25T17:08:54Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:09:41Z"
   },
   {
    "name": "who_don",
    "items": 15,
-   "status": "live",
-   "retrieved": "2026-09-25T17:08:54Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:09:41Z"
   },
   {
    "name": "ecdc",
    "items": 10,
-   "status": "live",
-   "retrieved": "2026-09-25T17:08:53Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:09:41Z"
   },
   {
    "name": "eonet",
    "items": 80,
-   "status": "live",
-   "retrieved": "2026-09-25T17:09:27Z"
+   "status": "cache",
+   "retrieved": "2026-09-25T17:10:07Z"
   }
  ],
  "alerts": [
@@ -126,7 +126,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T06:39:52Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en",
     "es"
@@ -196,7 +196,7 @@
      "id": "gnews:6ad005f264b0",
      "feed": "news:dw.com",
      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOU2JUZ3o0QXpoSHZ3S21IaGpLX1NhSTlCQlJsSVpGbkdPQjZaRTNRYkRKeUpaTDhvMzI0d3RZOWFyQ1VTTHVyelU3ODRYWnpMMjE4R3pVaHdXMWpHV1ZHTkZlbHpfcXZVem9GTjE0eVZ1ZG9OSDVvdGYzdWFQNDdMYmxvUk1VeUNHaHYxWlNoRFJpSllTanRra01HU29zSmMzWktLV0o5alJJemw2TWfSAa4BQVVfeXFMUERTTzBPZXVWb3VUS3E2RndYU3BzdFpZQUFrZnNUdnVhZVpoYzFXLXJyM2E1R3JmVkFwM1dMMVVKZnFPemdjTGRYbTlHRE9pMlJ2UGVsZEliN0o5b3NkbS0tamxPQjhTcFFZaXJNaWhrbW5NRHpFR1E1SHZMeVhFcGVVb1ZKUnM1WERveWNTYVkxN1VyNzA3MUNRdkdKd1FHNDhkUFpWY3Npb1RtYmVR?oc=5",
-     "title": "Huracán Polo retoma fuerza y pone en alerta al occidente de México - dw.com",
+     "title": "Huracán Polo retoma fuerza y pone en alerta al occidente de México - DW.com",
      "lang": "es",
      "published": "2026-09-24T17:21:16Z",
      "quote": "Huracán Polo retoma fuerza y pone en alerta al occidente de México",
@@ -216,7 +216,7 @@
      "id": "gnews:2447f6f4364a",
      "feed": "news:elpais.com",
      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOSnRjRHNmVlBsYTdwSi1US21SODNDUFp1Qjd1WWNwLTdTRFBtSWtQSDgxdDdDWmNNc0hWenRZc1p6YmwyNTB1R1dySFZUdE5OejZLQl8teFA0c0NuQnJCUVdPLXRGalU1UGoxeS1NeG1tXzE3WnRrdFNJWjlUS1FRMF9oeEhIVVpFWHBjMVRaYWdmT2cwdmlYejZ0MVBSZW05Ri05cmc2b3BRVTZDXzRya1ZFSjY4cW9OTnVOLXZaemNzV3V2ZkEzZGJTRG53eDNva19UcWt1SVRZRUpfbC03S1R4aUlUVEhnV29oV015QzY0Nk44N1pV0gGLAkFVX3lxTFAyT0VZSF9kUnFNQjNlYmNoNmt4aE41MU5LamVGTHpZMjlNcHl1bUZJRW1XNVlIbkM1VW9FTHBKeTlsS2lHbmJKaFRBYVFHTHJwXzgzZ0xTcmpXZnpEWmVMTmxxQkpfcV9oTkJrZnBVdDUydkZnOE9BMGdYVDFxejBwbVNnOEV4MlFQY0Y2UlJGX19ubFZySUR3YUFQaXRqLXhQblFjQVgtQjdBN2VEVkdrX0N0NjJrbWFPd0x3N2Y3azBnOG9Pc0xLbUJNMVRCVjJzSl9JNXFqOEhVOEk3WnZuUVU5endkZ3NsUkFMZmhEVTJ1Ylp0VlpDYk9VMmZSdy1sMFN1NkEzVVZ5RQ?oc=5",
-     "title": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo” - EL PAÍS",
+     "title": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo” - elpais.com",
      "lang": "es",
      "published": "2026-09-25T09:30:00Z",
      "quote": "El huracán se aleja de las costas del sur sin daños graves y se enfila hacia el norte: “Gracias a Dios ya se fue el tal ‘Polo”",
@@ -545,7 +545,7 @@
    },
    "time_horizon": "2-6 weeks",
    "first_signal_ts": "2026-09-02T07:00:00Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en",
     "fr",
@@ -616,7 +616,7 @@
      "id": "gnews:5d890d9916dd",
      "feed": "news:msf.fr",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNYUV5bjU5eG9COWp1V3Z2R190aGRCay1SbWRZT1JCbEZjU3FkUXJ2MmlwMVZNMXZhTGktcXFrcDJaaGdSM2RtNFdZM3BpS3I2ck1JbG5oeFFsdXN0enQ0alNLSzYwSVp2YnMzMC1ObHJQV21WdDUwZEplMDJCbDZxWXk4ZXpyaVFHZWlWYndWOHQxTmRxM1A5Sm8yRQ?oc=5",
-     "title": "RDC : MSF conduit une étude sur la vaccination contre Ebola - Médecins sans frontières",
+     "title": "RDC : MSF conduit une étude sur la vaccination contre Ebola - msf.fr",
      "lang": "fr",
      "published": "2026-09-19T07:20:46Z",
      "quote": "RDC : MSF conduit une étude sur la vaccination contre Ebola",
@@ -636,7 +636,7 @@
      "id": "gnews:f951890b74c4",
      "feed": "news:lepoint.fr",
      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPV2czYkxBQWJPOTlvbDliS0xBRjJnWlNTdElrbVk3ZDFFV1V6N09KTnhyZU53ZlFzRXlrMGROUXlkQUR6RTl0ZktYLWlFN0RCeU5mQTlpek12SDVMQ1BUdUtPd0d6WE1MRXVxLXNTVlJGWHFaUmV2N09RdjVoUEhlOE1oSmd4RjVZZjNOX0piTXFUdk9scHBhZy1XemFWb2tGSF9JeldRUWs4QlhwZHpMVTQ1eW84OGt6bEtydg?oc=5",
-     "title": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola - lepoint.fr",
+     "title": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola - Le Point",
      "lang": "fr",
      "published": "2026-09-20T12:01:48Z",
      "quote": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola",
@@ -923,7 +923,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T01:12:56Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en",
     "hi"
@@ -993,7 +993,7 @@
      "id": "gnews:3d3b40bff734",
      "feed": "news:timesofindia.indiatimes.com",
      "url": "https://news.google.com/rss/articles/CBMiswJBVV95cUxNN3RIdk9rd211OVFJbkhRcW1fdVd6QVRtSHkwS0xNYUNJLUJkUXRpc0Jvc2NwbkJNV05uSDZwNmZkMThEUDZlY0M2Y1hHTzg2QVhNeFU3clZDenExd21CMHduUl9YdzQ3S1JMTnBraW8ya3lwMzg1a0JlTHRVWVlPY25ZNzVFMWdvS0t2LVI0YW15MU1EelJ0dkNnZWlkMXRqZFdsS09MakZjM1JWc01wYXV2X09wMTZFdk41WGZzck55eGI5ZERueV95NUQtNlhCdE5fVzNSZ01LSlAxc19rUkZGaEM3b2RmOTg2MzFRTXdCalI4a0JhWXFmOEV2NEMwZVVTbzhHRG1oaEJ3Wmttem56WmVzOVJpMW5mUmppc21mOUNtSTJRVVlacWJiblJEdEtF0gG4AkFVX3lxTE1qMEI5NWFmVmtMbjd2VGNHTkp6TVVaSU1STXIyeXRicnlHQ3ZDRlZGQzRna2RjLXM0SkpvcFh3dktYNkM4dC1OWUhqa2hvRXdBU3BfcUZtYlJZeWk2eGIxam9xRDVzNGFnc3BSYmlzTU5BMGNnOURVeVR5WFJaOElPc1I4TGhYWW1aNjJFX1N0aVdmUmNjY0VXcjZYTncydU42N25KemVBV3VGSXZBX0NnbFdxcDVTd0hoVXhkSGhtRE9pWUEtVk03bWpxa1FrbjdPQmp4Xy12SzJBR1c5ZlA4TklqZVlKcUxpSVNRQ2NvbmNTLW9LVDlibFlGOWc1alZkNTVrSEpZcWZjZW9XSTdJbzVNS3VmV2dYTkpiWUMwYWFjd2ZDTnlVbEZmWUV6UTVMOS1EQkNaSA?oc=5",
-     "title": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11 - timesofindia.indiatimes.com",
+     "title": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11 - The Times of India",
      "lang": "en",
      "published": "2026-09-22T12:27:00Z",
      "quote": "Cyclone Arnab on the way? Deep depression lashes Odisha, forces school closures and evacuation prep in 11",
@@ -1248,7 +1248,7 @@
     {
      "factor": "velocity/recency",
      "points": 10,
-     "reason": "latest authority update 2h ago; 23 matching news items",
+     "reason": "latest authority update 3h ago; 23 matching news items",
      "source_url": ""
     },
     {
@@ -1284,7 +1284,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-25T03:13:23Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en",
     "fr",
@@ -1724,7 +1724,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-20T09:08:06Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en",
     "es"
@@ -2033,7 +2033,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-13T20:58:31Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en",
     "es"
@@ -2100,6 +2100,16 @@
      "verified": true
     },
     {
+     "id": "gnews:69eb5a85bb21",
+     "feed": "news:kcra.com",
+     "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBRVmFPWVY4dWU3WlJCYUJBcm1aQ3Zrc016NDhISEk2bTRyVDZTS3VRSG1RbTk0RTNleXNDM1NOeUlzZ0ZKQlBWQ1hsLVh0TkpPQUtQN0FDMGZpQmM3ZmpiLXdfa0JUbEN5bjdla3IyR1R6MWVqdjJ1cnE4dW8?oc=5",
+     "title": "Tracking Nolo: Storm becomes a hurricane in the Pacific, Hawaii prepares for heavy flooding - KCRA",
+     "lang": "en",
+     "published": "2026-09-25T05:26:00Z",
+     "quote": "Tracking Nolo: Storm becomes a hurricane in the Pacific, Hawaii prepares for heavy flooding",
+     "verified": true
+    },
+    {
      "id": "gnews:658c8585e740",
      "feed": "news:aljazeera.com",
      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPU3dVNFdtbWJlUGRDTl96RmdKSjlMMWZLa2UyamctMi14WUtaU1dPWXA1QVFFMWdBTG91TDFyT3I1RWpVUWg0WmVFWmpzaUdiRk42dWZtYU9kR3hIZ3FfbllVem9GVWZtWl9Ycjk4cWhZdUY0MVZJdC03WDNiN3FETDU4TENHUVE2RVJwV2xWRl93dEdLWXRBTU4zNkFUV0NaYVc40gGoAUFVX3lxTFB1M1FRY3RMZTJvWlNNdGxmWkZ2ejJ3cjBTZWRKd096X3Z2STNZbXJEWVVPNTB6SjkzZkZLcmNMcFVuYk5FWWZMZFp1SWNWdFd5ejBLZ2VXS0Q2ZlZSaVFKa3dSS3cwYTh2TUc2bEdwRkdwVDlyMHVkSE45aHM1YUl4cG1MMVk5X0ZQYnhndmNpMEFQc2I4SFo4VkUxMFNZRmV3dzlSRHB5ag?oc=5",
@@ -2117,16 +2127,6 @@
      "lang": "en",
      "published": "2026-09-25T08:42:00Z",
      "quote": "September 24, 2026 NOLO UPDATE: Will strengthen into a major hurricane; Jen Robbins",
-     "verified": true
-    },
-    {
-     "id": "gnews:5de77ca04442",
-     "feed": "news:abcnews.com",
-     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOZGs1Y0pkVEI3TzRvWVp0SFlOVVpReVhWakxzV1huX3R1R0U0Y3kxRHVtSkswb1QzQUtTeGdhVVBXU0Z2MHNQdko2T2pka0d6ZGdTOUpoUGNDRm1haTBpVFhoRFRyeVZXaHJOejZuYllSTEhBSnU1clY2UWpMUkk1emh5dkdpdmtsWVBlY255RlBUUdIBlwFBVV95cUxNaHA5OERrZ0V4bFdNa1Ficm9oOEdFZGc3WWtfb0J0Q0E2bDVYTVFNRUV2NE4wc3FWLVJ5VDJnTUhtMXdIWk84VUF1N0dSWGZHZ0M0QnJBYUpybUJOLWY3SU0ycndfZHpTZEduVWluT05WLUFBaDNKNWVBSjRDRmg3eG5XdkFIRjZkYm9CSFFmWUd5R2RmS1Nn?oc=5",
-     "title": "Hurricane Nolo nears hard-hit Hawaii: Latest forecast - ABC News - Breaking News, Latest News and Videos",
-     "lang": "en",
-     "published": "2026-09-25T10:41:10Z",
-     "quote": "Hurricane Nolo nears hard-hit Hawaii: Latest forecast",
      "verified": true
     }
    ],
@@ -2351,7 +2351,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-19T15:06:02Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en"
    ],
@@ -2397,16 +2397,6 @@
      "verified": true
     },
     {
-     "id": "gnews:03fb64cf6a5c",
-     "feed": "news:houstonchronicle.com",
-     "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
-     "title": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic - Houston Chronicle",
-     "lang": "en",
-     "published": "2026-09-24T14:03:40Z",
-     "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
-     "verified": true
-    },
-    {
      "id": "gnews:271a4dcf9978",
      "feed": "news:accuweather.com",
      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPejk3d0dLMFhNLUVpcWY3NmwxcGRtRU9kWEdhQ2hvaC1vWldYR3lrV05Rb0ZNaHBIcjA4QWlRZTZPaG13ZjhEMEdNcHNkYklpdXhGLXRuYkNZS0xRV0VyTDRpRWd6SnVabUdTZ05IRVhVNHdSamNVLTRlSEhkY0F2N1AwUm5Odm41bzRkaQ?oc=5",
@@ -2414,6 +2404,16 @@
      "lang": "en",
      "published": "2026-09-24T16:17:28Z",
      "quote": "Zombie Storm Fay comes back to life",
+     "verified": true
+    },
+    {
+     "id": "gnews:1a3fc79366ff",
+     "feed": "news:nytimes.com",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNU0ZDcE1EdHpHTUJpNmFxbnJENWhINDh1NVJNa2FLRUN0TTNRTUh6T0JLOEREMm5NeG1VVXY5Wms0eDg4cU5tM3VYbVotWUdlem93OTR4MUVPTXlySC1UTmhabktwbkVVOEhieEVLZ3Q5ZWRMWk15TFZPNHo3NlNfUmd3UkYwNWM?oc=5",
+     "title": "Maps: Tracking Tropical Storm Fay - The New York Times",
+     "lang": "en",
+     "published": "2026-09-24T20:43:41Z",
+     "quote": "Maps: Tracking Tropical Storm Fay",
      "verified": true
     }
    ],
@@ -2448,9 +2448,9 @@
        "verified": true
       },
       {
-       "text": "Local-language press flags community impact (en, houstonchronicle.com): “Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic”",
-       "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
-       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
+       "text": "Local-language press flags community impact (en, accuweather.com): “Zombie Storm Fay comes back to life”",
+       "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPejk3d0dLMFhNLUVpcWY3NmwxcGRtRU9kWEdhQ2hvaC1vWldYR3lrV05Rb0ZNaHBIcjA4QWlRZTZPaG13ZjhEMEdNcHNkYklpdXhGLXRuYkNZS0xRV0VyTDRpRWd6SnVabUdTZ05IRVhVNHdSamNVLTRlSEhkY0F2N1AwUm5Odm41bzRkaQ?oc=5",
+       "quote": "Zombie Storm Fay comes back to life",
        "verified": true
       }
      ],
@@ -2480,9 +2480,9 @@
        "verified": true
       },
       {
-       "text": "Market-moving coverage (en, houstonchronicle.com): “Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic”",
-       "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNDhmOEJsUWlyMzRLcG1KVUZiSjRzVXoxQjZESlA5Vm9IU21jQk1VVmlpbDhvVngtY2NhMEVBYWtCSVRvU1pldi1iUGtZVUxEVjhqOE1MY1JwSnMtTGpNcDZzNENhcDFHcExnSlFPZDhBdzhrbVZWcUVxa3FNOG9LMERYZHRvTlNpcy1haGJIUTM4R05IcmF3bjZUT0N1bXN6X2ZuR0FQVFQxV05vVW5uOFJpT3dMdHl4ZFp0N2JZQXRzZ0c4UlY5enpB?oc=5",
-       "quote": "Fay makes a rare comeback as a ‘zombie storm’ in the mid-Atlantic",
+       "text": "Market-moving coverage (en, accuweather.com): “Zombie Storm Fay comes back to life”",
+       "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPejk3d0dLMFhNLUVpcWY3NmwxcGRtRU9kWEdhQ2hvaC1vWldYR3lrV05Rb0ZNaHBIcjA4QWlRZTZPaG13ZjhEMEdNcHNkYklpdXhGLXRuYkNZS0xRV0VyTDRpRWd6SnVabUdTZ05IRVhVNHdSamNVLTRlSEhkY0F2N1AwUm5Odm41bzRkaQ?oc=5",
+       "quote": "Zombie Storm Fay comes back to life",
        "verified": true
       }
      ],
@@ -2604,7 +2604,7 @@
    },
    "time_horizon": "0-72h (aftershocks, damage reports)",
    "first_signal_ts": "2026-09-20T09:17:35Z",
-   "alert_ts": "2026-09-25T17:08:52Z",
+   "alert_ts": "2026-09-25T17:14:37Z",
    "languages_seen": [
     "en"
    ],

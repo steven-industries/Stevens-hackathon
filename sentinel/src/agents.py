@@ -34,10 +34,23 @@ def llm_on():
     return bool(os.environ.get("ANTHROPIC_API_KEY")) and _FAILS["n"] < 3  # circuit breaker per process/cycle
 
 
+_CACHE_P = os.path.join("log", "llm_cache.json")
+_CACHE_LOCK = threading.Lock()
+try:
+    _CACHE = json.load(open(_CACHE_P))
+except Exception:
+    _CACHE = {}
+
+
 def llm_json(system, payload, max_tokens=1800):
-    """Returns (obj|None, model_label). Never raises."""
+    """Returns (obj|None, model_label). Never raises.
+    Cost control: responses are cached by a hash of (model, prompt, evidence) - an unchanged event is not re-briefed."""
     if not llm_on():
         return None, "deterministic"
+    import hashlib
+    key = hashlib.sha1((MODEL + system + json.dumps(payload, sort_keys=True, ensure_ascii=False, default=str)).encode()).hexdigest()
+    if key in _CACHE:
+        return _CACHE[key], MODEL + " (cached)"
     try:
         import anthropic
         c = anthropic.Anthropic(timeout=60)
@@ -46,6 +59,12 @@ def llm_json(system, payload, max_tokens=1800):
         txt = "".join(b.text for b in m.content if getattr(b, "type", "") == "text")
         j = json.loads(txt[txt.index("{"): txt.rindex("}") + 1])
         _FAILS["n"] = 0; USED.add(MODEL)
+        with _CACHE_LOCK:
+            _CACHE[key] = j
+            try:
+                os.makedirs("log", exist_ok=True); json.dump(_CACHE, open(_CACHE_P, "w"))
+            except Exception:
+                pass
         return j, MODEL
     except Exception as ex:
         _FAILS["n"] += 1
