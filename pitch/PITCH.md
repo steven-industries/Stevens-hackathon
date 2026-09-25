@@ -1,6 +1,6 @@
 # Sentinel: the 3-minute pitch
 
-Spoken script, matched to `pitch/deck.html` slide by slide. About 560 words at a calm pace, about 3:15 with the demo beats. If the slot is a hard 3:00, cut the Otis slide to its last beat (the three numbers) and drop the Run-log click. [Brackets] are stage directions. Every number is sourced in the table at the bottom and in the footer of the slide it appears on. Before you say a storm name, check it on nhc.noaa.gov.
+Spoken script, matched to `pitch/deck.html` slide by slide. About 560 words at a calm pace, about 3:25 with the demo beats. If the slot is a hard 3:00: cut slide 5 to one sentence, do Otis as one beat (the three numbers), and drop the Run-log click. [Brackets] are stage directions. Every number is sourced in the table at the bottom and in the footer of the slide it appears on. Before you say a storm name, check it on nhc.noaa.gov.
 
 Open the deck at slide 1 in fullscreen (press F). Have the live UI open in a second tab at https://sentinel-chubb.vercel.app on the Property lens with nothing selected.
 
@@ -61,19 +61,23 @@ So we built that."
 
 [Switch back to the deck, slide 5.]
 
-## 2:00 – 2:15 · Slide 5 · Trust
+## 2:00 – 2:15 · Slide 5 · One screen, on purpose
+
+"You noticed it's one screen. That's on purpose. Every risk tool wants to be a Bloomberg terminal: forty panels, three fonts, a feed that never stops. At 6 a.m. that's noise. Sentinel shows a number, four decisions and a map. Everything else is one keypress away. The restraint is the product."
+
+## 2:15 – 2:22 · Slide 6 · Trust
 
 "Three rules the model never gets to break. Severity is copied from the authority. No quote, no claim. And the score shows its math."
 
-[Advance to slide 6, hold for four seconds, don't narrate the boxes.]
+[Advance to slide 7, hold for four seconds, don't narrate the boxes.]
 "Nine agents. The language model reads and writes prose. Plain code holds every gate."
 
-## 2:15 – 2:25 · Slide 7 · How we built it
+## 2:25 – 2:35 · Slide 8 · How we built it
 
 [Point, don't read.]
 "Seven public feeds, all free, the ones the professionals watch: the National Hurricane Center, the UN's disaster alert system, the US Geological Survey, the World Health Organization, plus local news in six languages. One Python program runs nine agents every ten minutes. It works offline, and everything on screen today is real data."
 
-## 2:25 – 2:40 · Slide 8 · Proof (the dramatic beat)
+## 2:35 – 2:50 · Slide 9 · Proof (the dramatic beat)
 
 [The slide opens with only the headline. Each → adds one point on the timeline. Slow down. Let each one land.]
 
@@ -87,7 +91,7 @@ So we built that."
 [→] "And the following Thursday: Bloomberg. That is when the industry found out."
 [→ → → the three numbers] "Eighteen hours before the first English word. Eight days before Bloomberg. Fifty-one hours on the watch list before anyone in English knew. Every URL is in the repo. One command reproduces it."
 
-## 2:40 – 2:55 · Slide 9 · Proof, second replay (the property beat)
+## 2:50 – 3:05 · Slide 10 · Proof, second replay (the property beat)
 
 [Same rhythm. Opens empty. One → per beat.]
 
@@ -99,15 +103,15 @@ So we built that."
 [→] "1:25 AM: landfall. 165 miles an hour. The strongest Pacific landfall Mexico has ever recorded. Two and a half to four and a half billion dollars insured."
 [→ → →] "Fifteen hours before the first English headline. Eighteen before landfall. Twenty-six before the first damage story. That is a full working day to stop writing new policies in Acapulco and get adjusters on a plane."
 
-## 2:55 – 3:05 · Slide 10 · Why now, why Chubb
+## 3:05 – 3:15 · Slide 11 · Why now, why Chubb
 
 "Why now? Chubb's own shareholder letter says it's investing in data and AI to get faster in underwriting and claims. And a language model can now read a Chinese bulletin and an NHC advisory in one pass, for cents. Sentinel sits on top of the feeds Chubb already buys, inside Chubb's own cloud. Exposure data never leaves."
 
-## 3:05 – 3:15 · Slides 11 → 12 · The ask, the close
+## 3:15 – 3:25 · Slides 12 → 13 · The ask, the close
 
 "The ask: a 90-day pilot with Chubb's catastrophe desk. One peril, real exposure data, measured in hours of lead time."
 
-[Advance to slide 12. Pause.]
+[Advance to slide 13. Pause.]
 
 "Next time a health bureau posts a notice at 2:49 on a Tuesday, Chubb will know by 3. Thank you."
 
@@ -117,7 +121,7 @@ So we built that."
 
 Slides 1 → 3 → 4 → 7 → 10.
 
-"July 15th, 2025, 2:49 p.m. A health bureau in Foshan posts a notice in Chinese: 478 cases of chikungunya. The first English headline came 51 hours later. Bloomberg, nine days later. That's when insurers found out. [slide 3] Detection is solved; Dataminr and GDACS do it. The unsolved part is the last mile: signal, to our exposure, to a decision, to the right desk, with an audit trail. [slide 4] Sentinel is that last mile, live today: $3.48 billion at stake, four decisions. Top one, Hurricane Polo, Category 5 issued by NHC, 62 sites and $1.52 billion of our book in the screening buffer, action: restrict new binding in Baja California Sur. Severity is copied from the authority, every sentence carries a quote that code verifies, the score shows its math. [slide 8] Replayed on Foshan, it fires 18 hours before the first English headline and about eight days before Bloomberg. [slide 9] Replayed on Hurricane Otis, 18 hours before landfall while the forecast still said tropical storm. [slide 12] We're asking for a 90-day pilot with the cat desk on one peril. Next time a health bureau posts at 2:49 on a Tuesday, Chubb knows by 3."
+"July 15th, 2025, 2:49 p.m. A health bureau in Foshan posts a notice in Chinese: 478 cases of chikungunya. The first English headline came 51 hours later. Bloomberg, nine days later. That's when insurers found out. [slide 3] Detection is solved; Dataminr and GDACS do it. The unsolved part is the last mile: signal, to our exposure, to a decision, to the right desk, with an audit trail. [slide 4] Sentinel is that last mile, live today: $3.48 billion at stake, four decisions. Top one, Hurricane Polo, Category 5 issued by NHC, 62 sites and $1.52 billion of our book in the screening buffer, action: restrict new binding in Baja California Sur. Severity is copied from the authority, every sentence carries a quote that code verifies, the score shows its math. [slide 9] Replayed on Foshan, it fires 18 hours before the first English headline and about eight days before Bloomberg. [slide 10] Replayed on Hurricane Otis, 18 hours before landfall while the forecast still said tropical storm. [slide 13] We're asking for a 90-day pilot with the cat desk on one peril. Next time a health bureau posts at 2:49 on a Tuesday, Chubb knows by 3."
 
 ---
 
