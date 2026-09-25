@@ -85,11 +85,11 @@ So we built that."
 
 [→] "Tuesday, 2:49. The notice goes up. Chinese only. Sentinel puts it on the watch list. No alert yet: one source is never enough."
 [→] "Tuesday evening. Three Chinese outlets pick it up. Still one language. Still watching."
-[→] "Wednesday afternoon. Hong Kong's health authority writes to its doctors. In English. Second language, and an authority." [Beat.] "The rule fires. Sentinel alerts."
+[→] "Wednesday afternoon. Hong Kong's health authority sends an official letter to its doctors. Not news, an authority document, and the first thing in English. Two languages, plus an authority." [Beat.] "The rule fires. Sentinel alerts."
 [→ the red line draws] "That red line is the head start."
-[→] "Thursday: the first English headline."
+[→] "Thursday: the first English news headline. The South China Morning Post. Until then, nothing in English had been published for the public."
 [→] "And the following Thursday: Bloomberg. That is when the industry found out."
-[→ → → the three numbers] "Eighteen hours before the first English word. Eight days before Bloomberg. Fifty-one hours on the watch list before anyone in English knew. Every URL is in the repo. One command reproduces it."
+[→ → → the three numbers] "Eighteen hours before the first English news headline. Eight days before Bloomberg. Fifty-one hours on the watch list before anyone in English knew. Every URL is in the repo. One command reproduces it."
 
 ## 2:50 – 2:55 · Slide 10 · Acapulco, the morning after
 

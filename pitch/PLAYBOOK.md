@@ -8,7 +8,7 @@ Detection is solved; Sentinel is the unsolved last mile: a public signal, in any
 
 ## Three numbers to memorize
 
-1. **18 h / ~8 days (Foshan) · 18 h before landfall (Otis).** Foshan replay: Sentinel fires 18 hours before the first English headline, about eight days (183 h) before Bloomberg. Strict rule. Reproducible.
+1. **18 h / ~8 days (Foshan) · 18 h before landfall (Otis).** Foshan replay: Sentinel fires 18 hours before the first English news headline (the trigger was an English-language health-authority letter, not a news story), about eight days (183 h) before Bloomberg. Strict rule. Reproducible.
 2. **$1.47B.** Chubb's pre-tax loss from the LA wildfires in one quarter (Q1 2025). The fire was public from hour one.
 3. **$3.48B · 4 decisions.** What's on the live screen today. Polo: 62 sites, $1.52B, Cat 5 issued by NHC, none in the core, action "restrict new binding, Baja California Sur."
 
@@ -51,6 +51,9 @@ Pre-state: UI tab open on **Property**, nothing selected, page freshly loaded, z
 9. Switch back to the deck tab, slide 5 (One screen, on purpose).
 
 Keyboard in the deck: → / space next (reveals the next build on slides 1 and 8 before advancing), ← back, F fullscreen, 1–9 jump to slide, 0 jumps to slide 14. Slides 1, 9 and 11 have builds: → reveals the next beat before advancing. The deck also accepts a click on the right third of the screen to advance.
+
+## If a judge asks "wasn't the Hong Kong letter already English?"
+Yes. It was an official letter from Hong Kong's Centre for Health Protection to doctors, an authority document, not a news story. That is exactly what our rule waits for: a second language or an authority. It fired on that letter. The first English *news* headline came 18 hours later, and the first global newswire 8 days later. Sentinel had the Chinese items on the watch list 51 hours before the letter.
 
 ## Say it so a non-insurance judge follows (use these the first time each word comes up)
 
