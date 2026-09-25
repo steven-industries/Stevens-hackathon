@@ -3,3 +3,6 @@
 {"ts": "2026-09-25T17:00:18Z", "run_id": "3e679682", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 8, "mode": "deterministic", "duration_s": 16.2}
 {"ts": "2026-09-25T17:00:59Z", "run_id": "a9b32347", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 20.0}
 {"ts": "2026-09-25T17:02:31Z", "run_id": "d5ab9d42", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 15.6}
+{"ts": "2026-09-25T17:03:47Z", "run_id": "c067e4e5", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 15.6}
+{"ts": "2026-09-25T17:04:11Z", "run_id": "129bb2c7", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 20.9}
+{"ts": "2026-09-25T17:05:05Z", "run_id": "b6c0e0bd", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 21.6}

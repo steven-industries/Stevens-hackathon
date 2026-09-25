@@ -1,55 +1,55 @@
 {
- "generated_at": "2026-09-25T17:02:47Z",
- "run_id": "d5ab9d42",
+ "generated_at": "2026-09-25T17:05:26Z",
+ "run_id": "b6c0e0bd",
  "mode": "deterministic",
  "feeds": [
   {
    "name": "gdacs",
    "items": 314,
    "status": "live",
-   "retrieved": "2026-09-25T17:02:33Z"
+   "retrieved": "2026-09-25T17:05:08Z"
   },
   {
    "name": "nhc_at",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:02:32Z"
+   "retrieved": "2026-09-25T17:05:06Z"
   },
   {
    "name": "nhc_ep",
    "items": 2,
    "status": "live",
-   "retrieved": "2026-09-25T17:02:32Z"
+   "retrieved": "2026-09-25T17:05:06Z"
   },
   {
    "name": "nhc_cp",
    "items": 1,
    "status": "live",
-   "retrieved": "2026-09-25T17:02:32Z"
+   "retrieved": "2026-09-25T17:05:06Z"
   },
   {
    "name": "usgs",
    "items": 12,
    "status": "live",
-   "retrieved": "2026-09-25T17:02:32Z"
+   "retrieved": "2026-09-25T17:05:06Z"
   },
   {
    "name": "who_don",
    "items": 15,
    "status": "live",
-   "retrieved": "2026-09-25T17:02:32Z"
+   "retrieved": "2026-09-25T17:05:06Z"
   },
   {
    "name": "ecdc",
    "items": 10,
    "status": "live",
-   "retrieved": "2026-09-25T17:02:32Z"
+   "retrieved": "2026-09-25T17:05:06Z"
   },
   {
    "name": "eonet",
    "items": 80,
-   "status": "cache",
-   "retrieved": "2026-09-25T16:59:50Z"
+   "status": "live",
+   "retrieved": "2026-09-25T17:05:23Z"
   }
  ],
  "alerts": [
@@ -126,7 +126,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T06:39:52Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en",
     "es"
@@ -196,7 +196,7 @@
      "id": "gnews:6ad005f264b0",
      "feed": "news:dw.com",
      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOU2JUZ3o0QXpoSHZ3S21IaGpLX1NhSTlCQlJsSVpGbkdPQjZaRTNRYkRKeUpaTDhvMzI0d3RZOWFyQ1VTTHVyelU3ODRYWnpMMjE4R3pVaHdXMWpHV1ZHTkZlbHpfcXZVem9GTjE0eVZ1ZG9OSDVvdGYzdWFQNDdMYmxvUk1VeUNHaHYxWlNoRFJpSllTanRra01HU29zSmMzWktLV0o5alJJemw2TWfSAa4BQVVfeXFMUERTTzBPZXVWb3VUS3E2RndYU3BzdFpZQUFrZnNUdnVhZVpoYzFXLXJyM2E1R3JmVkFwM1dMMVVKZnFPemdjTGRYbTlHRE9pMlJ2UGVsZEliN0o5b3NkbS0tamxPQjhTcFFZaXJNaWhrbW5NRHpFR1E1SHZMeVhFcGVVb1ZKUnM1WERveWNTYVkxN1VyNzA3MUNRdkdKd1FHNDhkUFpWY3Npb1RtYmVR?oc=5",
-     "title": "Huracán Polo retoma fuerza y pone en alerta al occidente de México - dw.com",
+     "title": "Huracán Polo retoma fuerza y pone en alerta al occidente de México - DW.com",
      "lang": "es",
      "published": "2026-09-24T17:21:16Z",
      "quote": "Huracán Polo retoma fuerza y pone en alerta al occidente de México",
@@ -545,7 +545,7 @@
    },
    "time_horizon": "2-6 weeks",
    "first_signal_ts": "2026-09-02T07:00:00Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en",
     "fr",
@@ -616,7 +616,7 @@
      "id": "gnews:5d890d9916dd",
      "feed": "news:msf.fr",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNYUV5bjU5eG9COWp1V3Z2R190aGRCay1SbWRZT1JCbEZjU3FkUXJ2MmlwMVZNMXZhTGktcXFrcDJaaGdSM2RtNFdZM3BpS3I2ck1JbG5oeFFsdXN0enQ0alNLSzYwSVp2YnMzMC1ObHJQV21WdDUwZEplMDJCbDZxWXk4ZXpyaVFHZWlWYndWOHQxTmRxM1A5Sm8yRQ?oc=5",
-     "title": "RDC : MSF conduit une étude sur la vaccination contre Ebola - msf.fr",
+     "title": "RDC : MSF conduit une étude sur la vaccination contre Ebola - Médecins sans frontières",
      "lang": "fr",
      "published": "2026-09-19T07:20:46Z",
      "quote": "RDC : MSF conduit une étude sur la vaccination contre Ebola",
@@ -636,7 +636,7 @@
      "id": "gnews:f951890b74c4",
      "feed": "news:lepoint.fr",
      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPV2czYkxBQWJPOTlvbDliS0xBRjJnWlNTdElrbVk3ZDFFV1V6N09KTnhyZU53ZlFzRXlrMGROUXlkQUR6RTl0ZktYLWlFN0RCeU5mQTlpek12SDVMQ1BUdUtPd0d6WE1MRXVxLXNTVlJGWHFaUmV2N09RdjVoUEhlOE1oSmd4RjVZZjNOX0piTXFUdk9scHBhZy1XemFWb2tGSF9JeldRUWs4QlhwZHpMVTQ1eW84OGt6bEtydg?oc=5",
-     "title": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola - Le Point",
+     "title": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola - lepoint.fr",
      "lang": "fr",
      "published": "2026-09-20T12:01:48Z",
      "quote": "En RDC, les groupes armés s’invitent dans la lutte contre Ebola",
@@ -923,7 +923,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-21T01:12:56Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en",
     "hi"
@@ -983,7 +983,7 @@
      "id": "gnews:99df8a7f6f8d",
      "feed": "news:amarujala.com",
      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNbkhZOGcyNkFEVl9PdVNMVmZGMlU4OV9KZzc3MGRtMkRaWHV0SWd6WDRRSUlnOWkyUG4ta2hvNF92U1YzSDgwWml2Vnh6UF9qbGZxdFZVa2stZVFONDJKcGwtSWlpTzZOWEFFSURWYUxIX2pKREMwZDduRGc1Zm5KbjdLaFBMMFBZWW0wNTU2Vnd0RFBET210YzJHWm5SaXVFRlHSAacBQVVfeXFMUE5xbEZwZkVKcGtJTHdSdktpOHpySTkwa1otSzFjTkJDOVM4M0kycUM1MXVuT3FHY25WODZfT204R2tuMzdNaFdVREhkdzctZDkyTlRkR2R3YVBIM3d2eTZxRFpfeG0zUFJDNVAtSTVZWDlqbkxxdlg3dVlzY1Z1dFJyMmFZSk0xOGNsSHYtQWI1WHVPeUtJbm5IRnRKQ2lodGR2bFpqcEk?oc=5",
-     "title": "Cyclone Alert: बंगाल की खाड़ी में हलचल शुरु, चक्रवात का अलर्ट, इन राज्यों को वॉर्निंग - amarujala.com",
+     "title": "Cyclone Alert: बंगाल की खाड़ी में हलचल शुरु, चक्रवात का अलर्ट, इन राज्यों को वॉर्निंग - Amar Ujala",
      "lang": "hi",
      "published": "2026-09-22T11:36:14Z",
      "quote": "Cyclone Alert: बंगाल की खाड़ी में हलचल शुरु, चक्रवात का अलर्ट, इन राज्यों को वॉर्निंग",
@@ -1284,7 +1284,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-25T03:13:23Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en",
     "fr",
@@ -1385,7 +1385,7 @@
      "id": "gnews:538d39400f49",
      "feed": "news:balai.cv",
      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNNm9xUTJpTWJnMk1JYU1GY1czZ1VRMDNMdGVjREtPdlRjc3VyNklwVjVzTFNLYmFFMEZyeGRvdW9xcnJYWTNiWUVweElQQVhVTElJYjhMRXpqTzQ1LVREVXR0UUhuN2h3Ui1lcTVxN0x2M2x4VnhBSjZhd2tkNFRQY3Yxek8yX1RWakN1OE40LU9ZM2xNY092RzdSQlVkOWg3WXFySA?oc=5",
-     "title": "Tempestade Gonzalo aproxima-se de Cabo Verde com chuvas e ventos fortes - balai.cv",
+     "title": "Tempestade Gonzalo aproxima-se de Cabo Verde com chuvas e ventos fortes - Balai Cabo Verde",
      "lang": "pt",
      "published": "2026-09-25T12:17:06Z",
      "quote": "Tempestade Gonzalo aproxima-se de Cabo Verde com chuvas e ventos fortes",
@@ -1690,7 +1690,7 @@
     {
      "factor": "velocity/recency",
      "points": 10,
-     "reason": "latest authority update 2h ago; 23 matching news items",
+     "reason": "latest authority update 2h ago; 24 matching news items",
      "source_url": ""
     },
     {
@@ -1724,7 +1724,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-20T09:08:06Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en",
     "es"
@@ -1761,6 +1761,16 @@
      "verified": true
     },
     {
+     "id": "gnews:0626db9d65eb",
+     "feed": "news:apnews.com",
+     "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTmhIcWRYajJUZG81Z3RranAtOHF3ZUFkSHVJbzFXa3JPMVZYTEdHbEpLWGhQMm9WTXJXZEtUWGlrbmc1QkNhakRFcDZ3SUlCQ2xzYm5rZ0dhX2Z3M0FNdmoxbGRBczNNU3B1OWVrelExTjdaM1hONmh1cEJZTjQ3Zm80TWtHYndDNWdDd0Nn?oc=5",
+     "title": "Tropical Storm Fay forms far out in the Atlantic as Odalys strengthens in the Pacific - AP News",
+     "lang": "en",
+     "published": "2026-09-20T21:05:00Z",
+     "quote": "Tropical Storm Fay forms far out in the Atlantic as Odalys strengthens in the Pacific",
+     "verified": true
+    },
+    {
      "id": "gnews:3bb2c3abc37d",
      "feed": "news:bigislandnow.com",
      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNjc5TWdrZHJxOGhVTGxmTlk4MkhYWWViQjd0TERlSDdYQjlQSzhCTl9kQTd4Y3BENU1na05rUHZjQTRGMjVGeVBNOHBQb3hNbURRTFJ5bDNmZUo4Ny1rQTVjcmFQc0lCQ1ppb0kzQjFPTTNhTHFsUElhVXA4UldPcmdXTU1vbkxaZWZ4MnZXT1E0WWs4dHBLOFg1T3liV0JvLUhETFZn?oc=5",
@@ -1778,16 +1788,6 @@
      "lang": "en",
      "published": "2026-09-21T18:38:58Z",
      "quote": "Hawaii’s hurricane season continues: Odalys, Polo in Pacific",
-     "verified": true
-    },
-    {
-     "id": "gnews:4b38925c1679",
-     "feed": "news:ctvnews.ca",
-     "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOZE1XN290MHo1cDBJbTVfR2hKSWFZZHdOWWVIeUhidHhxeHcydUJ0QXRRaGQ1SFNtQWpuLWlIcTlyRXd0dzFLdWhPZHNFUERVVVk4SS1id21CUmh4ZHJLMHRnQlJLd2FiLWgza2FyU1RqTU9sejNxZUZnRy00VWlSb181cWtSSDl0OFdzTlVsQWR6TDF1TC0tTmlYOTBLbk53R0xBNTNHeWFnTi1UUFlCX001eXRjRU9uME1jU3R1eERsVm5HWmFtZU1SSm92SWV0MnRidFRKZXFlWEpNck9KRnNn?oc=5",
-     "title": "Polo off Mexican coast is among ‘the strongest storms ever’ as Odalys becomes a hurricane - CTV News",
-     "lang": "en",
-     "published": "2026-09-23T11:05:49Z",
-     "quote": "Polo off Mexican coast is among ‘the strongest storms ever’ as Odalys becomes a hurricane",
      "verified": true
     },
     {
@@ -2033,7 +2033,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-13T20:58:31Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en",
     "es"
@@ -2083,7 +2083,7 @@
      "id": "gnews:f0921691e54c",
      "feed": "news:cnnespanol.cnn.com",
      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMWJLNVo0bS1NQU5NV3VfcGhnbzNTZnFNQWpzdEx3TENxQWZDWlNUdVdXandxWGZieVRFTWhCdG14SmJOVTBEMnZNVGF0eHRkdzRSUHZnTGRpbmdHcG90QkpTeFZQZlQ2bXhYVUZTUHB4d2JEZm1QQWxKR0drX1RXNk9laWtiUnlzQk5uVzdn?oc=5",
-     "title": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes - CNN en Español",
+     "title": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes - cnnespanol.cnn.com",
      "lang": "es",
      "published": "2026-09-24T16:47:00Z",
      "quote": "Nolo amenaza a Hawai con inundaciones potencialmente mortales mientras El Niño intensifica la temporada de huracanes",
@@ -2351,7 +2351,7 @@
    },
    "time_horizon": "24-72h (NHC 5-day track)",
    "first_signal_ts": "2026-09-19T15:06:02Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en"
    ],
@@ -2604,7 +2604,7 @@
    },
    "time_horizon": "0-72h (aftershocks, damage reports)",
    "first_signal_ts": "2026-09-20T09:17:35Z",
-   "alert_ts": "2026-09-25T17:02:31Z",
+   "alert_ts": "2026-09-25T17:05:05Z",
    "languages_seen": [
     "en"
    ],

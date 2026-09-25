@@ -176,7 +176,7 @@ def p_ecdc():
 
 
 def p_eonet():
-    j = _get("https://eonet.gsfc.nasa.gov/api/v3/events", params={"status": "open", "limit": 80}).json()
+    j = _get("https://eonet.gsfc.nasa.gov/api/v3/events", params={"status": "open", "limit": 80}, timeout=20).json()
     cmap = {"severeStorms": "TC", "wildfires": "WF", "volcanoes": "VO", "floods": "FL", "earthquakes": "EQ", "drought": "DR"}
     out = []
     for e in j["events"]:

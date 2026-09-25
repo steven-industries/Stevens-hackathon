@@ -271,7 +271,7 @@ body.notrace .trace{display:none}
 .lead small{font-size:1.6rem;margin-left:.2rem}
 .leadlbl{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.4rem}
 .btsum{font-size:1.1rem;line-height:1.5;color:#d8e0ea;flex:1}
-.tl{position:relative;height:17rem;margin:0 5rem 1rem}
+.tl{position:relative;height:19rem;margin:0 5rem 1.5rem}
 .tl .axis{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--line2)}
 .tl .span{position:absolute;top:calc(50% - 3px);height:8px;border-radius:4px;background:linear-gradient(90deg,rgba(53,208,181,.9),rgba(53,208,181,.25))}
 .tl .gap{position:absolute;top:calc(50% - 1.35rem);transform:translateX(-50%);font-family:var(--mono);font-size:.72rem;color:var(--dim);background:var(--panel);padding:0 .3rem}
@@ -281,8 +281,8 @@ body.notrace .trace{display:none}
 .ml{position:absolute;transform:translateX(-50%);width:12rem;text-align:center;font-size:.76rem;line-height:1.35}
 .ml.up{bottom:calc(50% + 1.1rem)} .ml.down{top:calc(50% + 2.2rem)}
 .ml .kd{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--kc)}
-.ml .tt{color:#dbe2ec;margin:.15rem 0}
-.ml .tm{font-family:var(--mono);color:var(--dim);font-size:.68rem}
+.ml .tt{color:#dbe2ec;margin:.15rem 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ml .tm{font-family:var(--mono);color:var(--dim);font-size:.68rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .ml .stem{position:absolute;left:50%;width:1px;background:var(--line2)}
 .btlist{display:flex;flex-direction:column;gap:.3rem;margin:.5rem 0 1rem}
 .btrow{display:grid;grid-template-columns:5.5rem 9.5rem minmax(0,1fr) auto;gap:.8rem;align-items:baseline;padding:.4rem .7rem;border-radius:7px;background:var(--panel2);border:1px solid var(--line);font-size:.8rem}
@@ -291,7 +291,7 @@ body.notrace .trace{display:none}
 .btrow .kd{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;font-weight:800;color:var(--kc);display:flex;align-items:center;gap:.35rem}
 .btrow .kd i{width:.55rem;height:.55rem;border-radius:50%;background:var(--kc)}
 .btrow .tt a{color:var(--text);text-decoration:none}.btrow .tt a:hover{text-decoration:underline}
-.btrow .src{font-size:.72rem;white-space:nowrap}
+.btrow .bsrc{font-size:.72rem;max-width:22rem;text-align:right}
 .btleg{display:flex;gap:1.2rem;justify-content:center;font-size:.76rem;color:var(--muted);margin-bottom:1rem}
 .btleg i{display:inline-block;width:.65rem;height:.65rem;border-radius:50%;margin-right:.35rem;vertical-align:-1px}
 
@@ -458,7 +458,7 @@ function renderQueue(){
       <div class="qrow"><span class="hz" title="${esc(TYPE_NAME[a.type]||a.type)}">${icon(a.type)}</span>
         <span class="qname">${esc(a.name || a.event_id)}</span><span class="score">${num(a.risk_score)}</span></div>
       <div class="qmeta"><span class="tier">${tierOf(a)}</span>${sevChip(a.issued_severity)}</div>
-      <div class="qmeta"><span class="tiv"><b>${money(ex.tiv_usd)}</b> <span class="muted">exposed</span></span>
+      <div class="qmeta">${num(ex.tiv_usd) > 0 ? `<span class="tiv"><b>${money(ex.tiv_usd)}</b> <span class="muted">exposed</span></span>` : `<span class="dim small">no book exposure</span>`}
         <span class="dim small">· ${arr(srcs).length} src</span>
         <span style="margin-left:auto;display:flex;gap:.2rem">${langs.map(l => `<span class="lang">${esc(l)}</span>`).join("")}</span></div>
       <div class="bar"><i style="width:${Math.min(100,num(a.risk_score))}%"></i></div></div>`; }).join("")
@@ -699,7 +699,7 @@ function openBacktest(){ const b = S.bt;
       <div class="btlist">${tl.map(x => { const [l,c] = KIND[x.kind] || [x.kind,"#8b98ab"]; return `<div class="btrow ${keys.includes(x)?"key":""}" style="--kc:${c}">
         <span class="mono rel">${esc(rel(x))}</span><span class="kd"><i></i>${esc(l)}</span>
         <span class="tt">${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>` : esc(x.title)}${x.note ? `<span class="dim"> — ${esc(x.note)}</span>` : ""}</span>
-        <span class="src dim">${esc(x.source||"")} · <span class="lang">${esc(x.lang||"?")}</span> · ${esc(et(x.ts,true))}</span></div>`; }).join("")}</div>
+        <span class="bsrc dim">${esc(x.source||"")} · <span class="lang">${esc(x.lang||"?")}</span> · ${esc(et(x.ts,true))}</span></div>`; }).join("")}</div>
       <div class="grid2" style="grid-template-columns:1fr 1fr;margin-top:1rem">
         <div class="card"><div class="panel-h">Method</div><div class="panel-b small muted" style="line-height:1.55">${esc(b.method || "—")}</div></div>
         <div class="card"><div class="panel-h">Caveats</div><div class="panel-b">${arr(b.caveats).length ? `<ul class="unk">${b.caveats.map(c => `<li class="small">${esc(c)}</li>`).join("")}</ul>` : '<div class="empty">—</div>'}</div></div>
