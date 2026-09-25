@@ -1,0 +1,183 @@
+{
+  "event": "Hurricane Otis - Category 5 landfall at Acapulco, Guerrero, Mexico - 25 Oct 2023 (landfall 06:25Z)",
+  "event_id": "natcat-otis-acapulco-2023",
+  "mainstream_definition": "first English-language article by a major international news organisation whose headline states Otis is a Category 5 / catastrophic hurricane (CNN, published 2023-10-25T03:10:19Z per article:published_time). Separately: first major English headline on the damage (AP via PBS NewsHour, 2023-10-25T14:45:20Z) and first English trade headline on the insured loss (Insurance Journal, 2023-11-15T15:08:29Z).",
+  "method": "All timestamps in UTC. NHC items: the issue time printed in the archived product header at nhc.noaa.gov/archive/2023/ep18 (e.g. '400 PM CDT Tue Oct 24 2023'; CDT = UTC-5), second-precision by convention (products are issued on the hour). Press items: article:published_time / datePublished from each page's own metadata (mvsnoticias.com -06:00; telemundo.com Z; cnn.com Z; pbs.org -04:00; expansion.mx Z; insurancejournal.com +00:00; proceso.com.mx -06:00). Guerrero state government (Protección Civil) notice has day precision only; its content (185 km SSE of Acapulco, 205 km/h) matches NHC Advisory 10 (21:00Z) and predates Special Advisory 11 (00:00Z), so it is placed at its latest possible time, 2023-10-25T00:00:00Z. Live-blog pages (MVS, Telemundo) carry the publication time of the page but their current headlines reflect later updates; the note on each item records what the page originally covered (from the URL slug). Replay: src/backtest.py sorts items by ts and fires the Sentinel alert at the first non-mainstream item after which >=2 distinct outlets are present AND (an authority item is present OR >=2 languages are present) - the same >=2-independent-source rule as the live Corroborator. All pages fetched and metadata read on 2026-09-25.",
+  "caveats": [
+    "This is not a 'nobody knew' case like Foshan: NHC was publicly forecasting a hurricane 24 h before landfall. The gap Sentinel exploits is between the forecast intensity (tropical storm / Cat 1 on the morning of 24 Oct) and the realised intensity (Cat 5, 165 mph at landfall 06:25Z 25 Oct). The 'rapid intensification' language in Discussions 8 and 9 (09:00Z and 15:00Z on 24 Oct) is the weak signal; the corroborator fires at 12:26Z when a second outlet (Spanish press) reports Otis as a hurricane.",
+    "Lead time against the first English 'Category 5' headline (CNN 03:10Z 25 Oct) is 14.7 h; against landfall (06:25Z) it is 18.0 h. NHC itself declared Cat 5 at 00:00Z (Special Advisory 11) and 'nightmare scenario' at 03:00Z, i.e. only ~3 h before CNN. The value for an insurer is the 12:26Z-to-21:00Z window in which NHC was still saying 'hurricane' or 'major hurricane', not 'catastrophic'.",
+    "Earlier English wire copy existed: an AP story (syndicated by NPR, datePublished 2023-10-24T22:48:40Z; original slug 'tropical storm otis forecast to strengthen to hurricane before landfall near mexicos acapulco') was updated in place through 25 Oct. Its original headline did not say Category 5, so it is not counted as 'mainstream' under our definition; if it were, the lead would be 10.4 h.",
+    "The MVS Noticias 12:26Z item reports Otis as a Category 1 hurricane while NHC's 09:00Z advisory still had a 65-mph tropical storm; Mexican SMN/Conagua and NHC intensities are not always in step. Conagua/SMN press-release PDFs (Aviso087-23, Aviso090-23, Comunicado0784-23 on smn.conagua.gob.mx) returned an HTML error page on 2026-09-25, so no Conagua item is included.",
+    "The Guerrero state Protección Civil notice timestamp is derived (day precision; bounded above by NHC Special Advisory 11). Strict replay (python3 src/backtest.py --strict) drops it; the alert time is unchanged.",
+    "Live-blog headlines drift: the Telemundo page (published 20:54Z) now reads 'categoría 5' but was modified 03:21Z; the MVS 21:27Z page now reads 'ya es categoría 5'. Timestamps are publication times; headline text at publication time is not recoverable from the page.",
+    "Insured loss: Moody's RMS US$2.5-4.5 bn (13 Nov 2023, private-market, wind-driven); Verisk MXN 50-110 bn (~US$3-6 bn); AM Best US$1.8-6.5 bn; CoreLogic US$10-15 bn insurable wind loss (all upper-range modeller figures); AMIS (Mexican insurers' association) reported MXN 11,424 m paid/committed by 16 Nov 2023 rising to MXN 37,384 m in later updates. Economic loss ~US$12-16 bn (Wikipedia/NHC TCR range; Aon 2024 report US$15.3 bn). Numbers are as reported; we did not reconcile them.",
+    "Sentinel's replay uses only public, timestamped items; it does not model what an insurer's own cat team would have seen on Bloomberg terminals or from brokers."
+  ],
+  "items": [
+    {
+      "ts": "2023-10-24T03:00:00Z",
+      "ts_quality": "exact",
+      "kind": "authority",
+      "outlet": "nhc.noaa.gov",
+      "source": "NWS National Hurricane Center - Tropical Storm Otis Discussion Number 7",
+      "lang": "en",
+      "title": "Tropical Storm Otis Discussion Number 7 - 1000 PM CDT Mon Oct 23 2023",
+      "url": "https://www.nhc.noaa.gov/archive/2023/ep18/ep182023.discus.007.shtml",
+      "note": "Baseline forecast ~27 h before landfall: 'Otis near hurricane strength at landfall between 36-48 hours'; 'While this can be associated with rapid intensification, none of the models show that intensity change occurring'. Header time 1000 PM CDT = 03:00Z."
+    },
+    {
+      "ts": "2023-10-24T09:00:00Z",
+      "ts_quality": "exact",
+      "kind": "authority",
+      "outlet": "nhc.noaa.gov",
+      "source": "NWS National Hurricane Center - Tropical Storm Otis Discussion Number 8",
+      "lang": "en",
+      "title": "Tropical Storm Otis Discussion Number 8 - 400 AM CDT Tue Oct 24 2023",
+      "url": "https://www.nhc.noaa.gov/archive/2023/ep18/ep182023.discus.008.shtml",
+      "note": "First rapid-intensification flag: 'The SHIPS Rapid Intensification Index now shows about a 1 in 4 chance of rapid strengthening during the next 24 hours'. Still a 65-mph tropical storm; first NHC forecast of a hurricane at landfall. Header time 400 AM CDT = 09:00Z."
+    },
+    {
+      "ts": "2023-10-24T12:26:00Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "mvsnoticias.com",
+      "source": "MVS Noticias (Mexico City)",
+      "lang": "es",
+      "title": "'Otis' se intensifica a huracán categoría 1. Sigue aquí su trayectoria",
+      "url": "https://mvsnoticias.com/nacional/2023/10/24/otis-se-intensifica-huracan-categoria-1-sigue-aqui-su-trayectoria-607103.html",
+      "note": "article:published_time 2023-10-24T06:26:00-06:00. Spanish press reporting Otis as a Category 1 hurricane off Guerrero while NHC's 09:00Z product still carried a 65-mph tropical storm. Minute precision. Corroborator fires here (2nd outlet + NHC authority)."
+    },
+    {
+      "ts": "2023-10-24T15:00:00Z",
+      "ts_quality": "exact",
+      "kind": "authority",
+      "outlet": "nhc.noaa.gov",
+      "source": "NWS National Hurricane Center - Tropical Storm Otis Discussion Number 9",
+      "lang": "en",
+      "title": "Tropical Storm Otis Discussion Number 9 - 1000 AM CDT Tue Oct 24 2023",
+      "url": "https://www.nhc.noaa.gov/archive/2023/ep18/ep182023.discus.009.shtml",
+      "note": "'The SHIPS Rapid Intensification (RI) indices show a greater than normal probability of RI, so some further upward adjustments to the intensity forecast are possible later today.' Public advisory 9 headline: '...OTIS NEARING HURRICANE STRENGTH...' (70 mph). 15.4 h before landfall."
+    },
+    {
+      "ts": "2023-10-24T20:54:37Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "telemundo.com",
+      "source": "Noticias Telemundo",
+      "lang": "es",
+      "title": "Otis se convierte en huracán en el Pacífico y avanza hacia Acapulco (page later updated to: Otis se fortalece a categoría 5 y enfila hacia la zona del balneario Acapulco. AMLO pide a la población refugiarse)",
+      "url": "https://www.telemundo.com/noticias/noticias-telemundo/clima/otis-se-convierte-en-huracan-en-el-pacifico-y-avanza-hacia-acapulco-rcna122001",
+      "note": "datePublished 2023-10-24T20:54:37Z; article:modified_time 2023-10-25T03:21:57Z. Original headline inferred from URL slug (rcna122001). US Spanish-language network; second Spanish outlet."
+    },
+    {
+      "ts": "2023-10-24T21:00:00Z",
+      "ts_quality": "exact",
+      "kind": "authority",
+      "outlet": "nhc.noaa.gov",
+      "source": "NWS National Hurricane Center - Hurricane Otis Advisory Number 10 / Discussion 10",
+      "lang": "en",
+      "title": "...OTIS RAPIDLY STRENGTHENS INTO A MAJOR HURRICANE... ...NOW EXPECTED TO BE AT CATEGORY 4 INTENSITY AT LANDFALL...",
+      "url": "https://www.nhc.noaa.gov/archive/2023/ep18/ep182023.public.010.shtml",
+      "note": "400 PM CDT Tue Oct 24 2023. 125 mph, 115 mi SSE of Acapulco. Discussion 10: 'Otis has undergone very rapid intensification today... now forecast to be at extremely dangerous Category 4'. First NHC forecast of a major hurricane at landfall, 9.4 h before landfall."
+    },
+    {
+      "ts": "2023-10-24T21:27:00Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "mvsnoticias.com",
+      "source": "MVS Noticias (Mexico City) - live blog",
+      "lang": "es",
+      "title": "Huracán 'Otis' ya es categoría 5; sigue su trayectoria en vivo",
+      "url": "https://mvsnoticias.com/nacional/2023/10/24/huracan-otis-ya-es-categoria-5-sigue-su-trayectoria-en-vivo-607200.html",
+      "note": "article:published_time 2023-10-24T15:27:00-06:00 (page created when Otis was Cat 3; headline updated live to Cat 5 during the evening). Minute precision on creation time only."
+    },
+    {
+      "ts": "2023-10-25T00:00:00Z",
+      "ts_quality": "derived_upper_bound",
+      "kind": "authority",
+      "outlet": "guerrero.gob.mx",
+      "source": "Gobierno del Estado de Guerrero - Secretaría de Gestión Integral de Riesgos y Protección Civil",
+      "lang": "es",
+      "title": "Huracán \"Otis\" alcanzó la categoría tres frente a las costas de Guerrero",
+      "url": "https://www.guerrero.gob.mx/2023/10/huracan-otis-alcanzo-la-categoria-tres-frente-a-las-costas-de-guerrero/",
+      "note": "Day precision ('24 octubre, 2023'; 'La tarde de este martes'). Content (185 km SSE of Acapulco, 205 km/h) matches NHC Advisory 10 (21:00Z) and predates Special Advisory 11 (00:00Z), so ts = 00:00Z upper bound. First Mexican civil-protection authority item found."
+    },
+    {
+      "ts": "2023-10-25T00:00:00Z",
+      "ts_quality": "exact",
+      "kind": "authority",
+      "outlet": "nhc.noaa.gov",
+      "source": "NWS National Hurricane Center - Hurricane Otis Special Advisory Number 11 / Special Discussion 11",
+      "lang": "en",
+      "title": "...OTIS RAPIDLY STRENGTHENS INTO AN EXTREMELY DANGEROUS CATEGORY 4 HURRICANE... ...NOW EXPECTED TO BE NEAR CATEGORY 5 INTENSITY AT LANDFALL...",
+      "url": "https://www.nhc.noaa.gov/archive/2023/ep18/ep182023.discus.011.shtml",
+      "note": "700 PM CDT Tue Oct 24 2023, 145 mph. Discussion: 'the very rapid intensification observed earlier today has continued... forecast peak is updated to 140 kt, category 5 strength'; 'Otis is forecast to be a potentially catastrophic Category 5 hurricane'. First NHC use of 'catastrophic', 6.4 h before landfall."
+    },
+    {
+      "ts": "2023-10-25T03:00:00Z",
+      "ts_quality": "exact",
+      "kind": "authority",
+      "outlet": "nhc.noaa.gov",
+      "source": "NWS National Hurricane Center - Hurricane Otis Advisory Number 12 / Discussion 12",
+      "lang": "en",
+      "title": "...OTIS RAPIDLY INTENSIFIES TO A CATEGORY 5 HURRICANE... ...CATASTROPHIC DAMAGE LIKELY WHERE THE CORE OF THE HURRICANE MOVES ONSHORE...",
+      "url": "https://www.nhc.noaa.gov/archive/2023/ep18/ep182023.discus.012.shtml",
+      "note": "1000 PM CDT Tue Oct 24 2023, 160 mph. Discussion 12: 'A nightmare scenario is unfolding for southern Mexico this evening with rapidly intensifying Otis approaching the coastline.' 3.4 h before landfall."
+    },
+    {
+      "ts": "2023-10-25T03:10:19Z",
+      "ts_quality": "exact",
+      "kind": "mainstream",
+      "outlet": "cnn.com",
+      "source": "CNN",
+      "lang": "en",
+      "title": "Hurricane Otis strikes Acapulco, Mexico as Category 5 'nightmare scenario'",
+      "url": "https://edition.cnn.com/2023/10/24/weather/hurricane-otis-acapulco-mexico/",
+      "note": "article:published_time 2023-10-25T03:10:19Z (10 minutes after NHC Advisory 12); updated through 2023-10-25T23:03:31Z. First major English headline stating Category 5. Article: 'Otis was not forecast to become a hurricane until early Tuesday morning, a little more than 24 hours before it would make its unprecedented Category 5 landfall.'"
+    },
+    {
+      "ts": "2023-10-25T14:45:20Z",
+      "ts_quality": "exact",
+      "kind": "mainstream",
+      "outlet": "apnews",
+      "source": "Associated Press (syndicated via PBS NewsHour)",
+      "lang": "en",
+      "title": "Hurricane Otis weakens over southern Mexico after battering Acapulco as a Category 5 storm",
+      "url": "https://www.pbs.org/newshour/world/hurricane-otis-weakens-over-southern-mexico-after-battering-acapulco-as-a-category-5-storm",
+      "note": "article:published_time 2023-10-25T10:45:20-04:00. First AP damage story found with an exact publication time; 8.3 h after landfall. (AP's earlier running story, datePublished 2023-10-24T22:48:40Z on npr.org, was updated in place.)"
+    },
+    {
+      "ts": "2023-10-31T20:17:04Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "expansion.mx",
+      "source": "Expansión (Mexico)",
+      "lang": "es",
+      "title": "Aseguradoras ponen en marcha valuación de daños por Otis",
+      "url": "https://expansion.mx/economia/2023/10/31/amis-plan-atencion-acapulco-otis",
+      "note": "datePublished 2023-10-31T20:17:04Z. AMIS (Mexican insurers' association) starts loss adjustment in Acapulco, 6 days after landfall; ~16,000 insured properties and ~20,000 insured vehicles in Acapulco per AMIS."
+    },
+    {
+      "ts": "2023-11-15T15:08:29Z",
+      "ts_quality": "exact",
+      "kind": "mainstream",
+      "outlet": "insurancejournal.com",
+      "source": "Insurance Journal",
+      "lang": "en",
+      "title": "Hurricane Otis' Insured Losses Estimated at $2.5B-$6B: Moody's RMS, Verisk",
+      "url": "https://www.insurancejournal.com/news/international/2023/11/15/748359.htm",
+      "note": "article:published_time 2023-11-15T15:08:29+00:00. Moody's RMS (13 Nov 2023): 'private market insured losses from Hurricane Otis to be between US$2.5 billion and US$4.5 billion... driven by wind damage' (https://www.moodys.com/web/en/us/insights/announcements/moodys-rms-estimates-us25-billion-to-us45-billion-in-insured-losses-from-hurricane-otis.html). 21 days after landfall."
+    },
+    {
+      "ts": "2023-11-16T15:12:00Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "proceso.com.mx",
+      "source": "Proceso (Mexico)",
+      "lang": "es",
+      "title": "Aseguradoras desembolsarán unos 11 mil 424 mdp por los daños que dejó Otis en Guerrero: AMIS",
+      "url": "https://www.proceso.com.mx/economia/2023/11/16/aseguradoras-desembolsaran-unos-11-mil-424-mdp-por-los-danos-que-dejo-otis-en-guerrero-amis-317582.html",
+      "note": "article:published_time 2023-11-16T09:12:00-06:00. AMIS: MXN 11,424 m to be paid; 12,035 claims registered three weeks after landfall (49% property, 51% auto)."
+    }
+  ]
+}

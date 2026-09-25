@@ -4,6 +4,8 @@ Usage (from sentinel/):
     python3 src/backtest.py                       # default event, writes log/ + ui/data/backtest.json
     python3 src/backtest.py --strict              # ignore authority items whose ts is derived from another item
     python3 src/backtest.py --input data/backtest_<event>.json [--no-write]
+                                              # non-default input writes log/backtest_<event_id>.json + ui/data/backtest_<event_id>.json
+Every write also refreshes ui/data/backtests.json, an index of all replayed cases.
 
 Rule (same as the live Corroborator): the alert fires at the first non-mainstream item after which
   >= 2 distinct outlets have reported  AND  (an authority item is present  OR  >= 2 languages are present).
@@ -18,6 +20,7 @@ from datetime import datetime, timezone
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_INPUT = os.path.join(ROOT, "data", "backtest_foshan_chikungunya_2025.json")
 OUTPUTS = [os.path.join(ROOT, "log", "backtest.json"), os.path.join(ROOT, "ui", "data", "backtest.json")]
+INDEX = os.path.join(ROOT, "ui", "data", "backtests.json")
 CONTRACT_KEYS = ("ts", "kind", "source", "lang", "title", "url", "note")
 
 
@@ -88,16 +91,43 @@ def run(path, strict=False, write=True):
     summary = (f"{line}. Sentinel would have alerted {lead} h before the first English mainstream headline"
                + (f" and {hours(alert_dt, wire[0])} h (~{round(hours(alert_dt, wire[0]) / 24)} days) before the first global newswire"
                   if wire else "") + ".")
-    out = {"event": spec["event"], "summary": summary, "lead_time_hours": lead, "timeline": timeline,
-           "method": spec["method"], "caveats": spec["caveats"]}
+    event_id = spec.get("event_id", os.path.splitext(os.path.basename(path))[0])
+    out = {"event": spec["event"], "event_id": event_id, "summary": summary, "lead_time_hours": lead,
+           "timeline": timeline, "method": spec["method"], "caveats": spec["caveats"]}
     print(line)
     if write:
-        for p in OUTPUTS:
+        outputs = outputs_for(path, event_id)
+        for p in outputs:
             os.makedirs(os.path.dirname(p), exist_ok=True)
             with open(p, "w", encoding="utf-8") as f:
                 json.dump(out, f, ensure_ascii=False, indent=2)
             print("wrote", os.path.relpath(p, ROOT))
+        update_index(out, os.path.basename(outputs[-1]))
     return out
+
+
+def outputs_for(path, event_id):
+    """Default input keeps the historical file names; any other input gets per-event files."""
+    if os.path.abspath(path) == os.path.abspath(DEFAULT_INPUT):
+        return OUTPUTS
+    name = f"backtest_{event_id}.json"
+    return [os.path.join(ROOT, "log", name), os.path.join(ROOT, "ui", "data", name)]
+
+
+def update_index(out, filename):
+    """Maintain ui/data/backtests.json: one {event_id, event, lead_time_hours, summary, file} row per case."""
+    rows = []
+    if os.path.exists(INDEX):
+        try:
+            rows = json.load(open(INDEX, encoding="utf-8"))
+        except (ValueError, OSError):
+            rows = []
+    row = {k: out[k] for k in ("event_id", "event", "lead_time_hours", "summary")}
+    row["file"] = filename
+    rows = [r for r in rows if r.get("event_id") != out["event_id"]] + [row]
+    with open(INDEX, "w", encoding="utf-8") as f:
+        json.dump(rows, f, ensure_ascii=False, indent=2)
+    print("wrote", os.path.relpath(INDEX, ROOT))
 
 
 if __name__ == "__main__":

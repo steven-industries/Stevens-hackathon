@@ -1,0 +1,16 @@
+[
+  {
+    "event_id": "outbreak-chikv-foshan-2025",
+    "event": "Chikungunya outbreak - Foshan (Shunde), Guangdong, China - July 2025",
+    "lead_time_hours": 51.2,
+    "summary": "First weak signal T−51.2 h · Sentinel alert T−51.2 h · Mainstream headline T (2025-07-17T10:00:00Z). Sentinel would have alerted 51.2 h before the first English mainstream headline and 216.2 h (~9 days) before the first global newswire.",
+    "file": "backtest.json"
+  },
+  {
+    "event_id": "natcat-otis-acapulco-2023",
+    "event": "Hurricane Otis - Category 5 landfall at Acapulco, Guerrero, Mexico - 25 Oct 2023 (landfall 06:25Z)",
+    "lead_time_hours": 14.7,
+    "summary": "First weak signal T−24.2 h · Sentinel alert T−14.7 h · Mainstream headline T (2023-10-25T03:10:19Z). Sentinel would have alerted 14.7 h before the first English mainstream headline and 26.3 h (~1 days) before the first global newswire.",
+    "file": "backtest_natcat-otis-acapulco-2023.json"
+  }
+]
