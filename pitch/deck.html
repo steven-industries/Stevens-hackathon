@@ -97,31 +97,35 @@
   .rules code { font-family: "SF Mono", ui-monospace, Menlo, monospace; font-size: 19px; background: #f2f2f3; padding: 1px 6px; border-radius: 5px; color: var(--ink); }
 
   /* 6 */
-  .pipe { width: 1640px; height: 520px; margin-top: 56px; display: block; }
-  .pipe .box { fill: #fff; stroke: var(--line); stroke-width: 1.5; }
+  .pipe { width: 1542px; height: 520px; margin-top: 40px; display: block; overflow: visible; }
+  .pipe .box { fill: #fff; stroke: #d6d6da; stroke-width: 1.5; }
   .pipe .lab { font-size: 26px; font-weight: 600; fill: var(--ink); letter-spacing: -0.01em; }
-  .pipe .sub { font-size: 17px; fill: var(--ink-2); }
+  .pipe .sub { font-size: 18px; fill: var(--ink-2); }
   .pipe .code, .pipe .llm { font-size: 13px; font-weight: 600; letter-spacing: .08em; fill: var(--ink-3); }
   .pipe .llm { fill: var(--accent); }
-  .pipe .in { font-size: 17px; fill: var(--ink-2); }
-  .pipe .arr { stroke: var(--ink-3); stroke-width: 1.5; fill: none; }
+  .pipe .in { font-size: 18px; fill: var(--ink-2); }
+  .pipe .arr { stroke: #6e6e73; stroke-width: 2.5; fill: none; stroke-linecap: round; }
   .pipe .note { font-size: 19px; fill: var(--ink-2); }
 
   /* 7 */
-  .bt { margin-top: 64px; }
-  .axis { position: relative; height: 240px; }
-  .axis::before { content: ""; position: absolute; left: 0; right: 0; top: 120px; height: 1px; background: var(--line); }
-  .pt { position: absolute; width: 300px; font-size: 18px; line-height: 1.4; color: var(--ink-2); transform: translateX(-50%); }
-  .pt .dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--ink-3); margin: 0 auto; }
-  .pt .w { font-weight: 600; color: var(--ink); font-size: 21px; text-align: center; letter-spacing: -0.01em; }
-  .pt .t { color: var(--ink-3); text-align: center; font-size: 16px; font-variant-numeric: tabular-nums; }
-  .pt.above { top: 0; display: flex; flex-direction: column; justify-content: flex-end; height: 126px; gap: 4px; }
-  .pt.above .dot { margin-top: 10px; }
-  .pt.below { top: 114px; display: flex; flex-direction: column; gap: 4px; }
-  .pt.below .dot { margin-bottom: 10px; }
-  .pt.sig .dot { background: var(--accent); border-color: var(--accent); }
-  .pt.sig .w { color: var(--accent); }
-  .lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 32px; }
+  .bt { margin-top: 48px; }
+  .axis { position: relative; height: 300px; }
+  .axis::before { content: ""; position: absolute; left: 0; right: 0; top: 150px; height: 6px; border-radius: 3px; background: #d6d6da; }
+  .axis .span { position: absolute; top: 150px; height: 6px; border-radius: 3px; background: var(--accent); opacity: .85; }
+  .pt { position: absolute; width: 330px; line-height: 1.35; color: var(--ink-2); transform: translateX(-50%); text-align: center; }
+  .pt .dot { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 5px solid var(--ink); margin: 0 auto; box-sizing: border-box; }
+  .pt .w { font-weight: 600; color: var(--ink); font-size: 24px; letter-spacing: -0.01em; }
+  .pt .t { color: var(--ink-2); font-size: 18px; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .pt.above { top: 0; height: 163px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .pt.above .dot { margin-top: 14px; }
+  .pt.below { top: 137px; display: flex; flex-direction: column; }
+  .pt.below .dot { margin-bottom: 14px; }
+  .pt.sig .dot { background: var(--accent); border-color: var(--accent); width: 32px; height: 32px; }
+  .pt.sig.above { height: 160px; }
+  .pt.sig.below { top: 134px; }
+  .pt.sig .w { color: var(--accent); font-size: 26px; }
+  .pt.faint .dot { border-color: var(--ink-3); }
+  .lead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 24px; }
   .lead .n { font-size: 120px; }
 
   /* 8 */
@@ -254,68 +258,14 @@ Nine agents. The language model reads and writes prose. Plain code holds every g
   <div class="num">06 / 10</div>
   <p class="kicker">Nine agents, one cycle every ten minutes</p>
   <h1 class="mid">Stages that don't trust each other.</h1>
-  <svg class="pipe" viewBox="0 0 1640 520" xmlns="http://www.w3.org/2000/svg">
-    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a1a1a6"/></marker></defs>
-    <!-- inputs -->
-    <g>
-      <text class="in" x="0" y="52">NHC · GDACS · USGS</text>
-      <text class="in" x="0" y="76">WHO DON · ECDC · EONET</text>
-      <text class="in" x="0" y="100">Google News en/es/fr/pt/hi/zh</text>
-      <path class="arr" d="M250 72 L 290 72" marker-end="url(#a)"/>
-    </g>
-    <!-- row 1 -->
-    <g>
-      <rect class="box" x="290" y="20" width="190" height="104" rx="14"/>
-      <text class="lab" x="312" y="58">Fetch</text><text class="sub" x="312" y="82">cache-first, offline</text><text class="code" x="312" y="108">CODE</text>
-      <path class="arr" d="M480 72 L 520 72" marker-end="url(#a)"/>
-
-      <rect class="box" x="520" y="20" width="190" height="104" rx="14"/>
-      <text class="lab" x="542" y="58">Scout</text><text class="sub" x="542" y="82">cluster signals → events</text><text class="llm" x="542" y="108">CLAUDE</text>
-      <path class="arr" d="M710 72 L 750 72" marker-end="url(#a)"/>
-
-      <rect class="box" x="750" y="20" width="240" height="104" rx="14"/>
-      <text class="lab" x="772" y="58">Corroborator</text><text class="sub" x="772" y="82">≥2 independent · any language</text><text class="code" x="772" y="108">CODE</text>
-      <path class="arr" d="M990 72 L 1030 72" marker-end="url(#a)"/>
-
-      <rect class="box" x="1030" y="20" width="190" height="104" rx="14"/>
-      <text class="lab" x="1052" y="58">Verifier</text><text class="sub" x="1052" y="82">quote found verbatim</text><text class="code" x="1052" y="108">CODE</text>
-      <path class="arr" d="M1220 72 L 1260 72" marker-end="url(#a)"/>
-
-      <rect class="box" x="1260" y="20" width="210" height="104" rx="14"/>
-      <text class="lab" x="1282" y="58">Assessor</text><text class="sub" x="1282" y="82">severity COPIED · score</text><text class="llm" x="1282" y="108">CLAUDE</text>
-    </g>
-    <!-- turn -->
-    <path class="arr" d="M1365 124 L 1365 230" marker-end="url(#a)"/>
-    <!-- row 2, right to left -->
-    <g>
-      <rect class="box" x="1260" y="230" width="210" height="104" rx="14"/>
-      <text class="lab" x="1282" y="268">Exposure</text><text class="sub" x="1282" y="292">footprint × our book</text><text class="code" x="1282" y="318">CODE · SPATIAL JOIN</text>
-      <path class="arr" d="M1260 282 L 1220 282" marker-end="url(#a)"/>
-
-      <rect class="box" x="980" y="230" width="240" height="104" rx="14"/>
-      <text class="lab" x="1002" y="268">Brief × 3</text><text class="sub" x="1002" y="292">Health · Wealth · Insurance</text><text class="llm" x="1002" y="318">CLAUDE · QUOTES ONLY</text>
-      <path class="arr" d="M980 282 L 940 282" marker-end="url(#a)"/>
-
-      <rect class="box" x="750" y="230" width="190" height="104" rx="14"/>
-      <text class="lab" x="772" y="268">Router</text><text class="sub" x="772" y="292">touches book / threshold</text><text class="code" x="772" y="318">CODE · DEDUP</text>
-      <path class="arr" d="M750 282 L 710 282" marker-end="url(#a)"/>
-
-      <rect class="box" x="520" y="230" width="190" height="104" rx="14"/>
-      <text class="lab" x="542" y="268">Notifier</text><text class="sub" x="542" y="292">Slack / email + caveat</text><text class="code" x="542" y="318">CODE</text>
-      <path class="arr" d="M520 282 L 480 282" marker-end="url(#a)"/>
-    </g>
-    <!-- outputs -->
-    <g>
-      <text class="in" x="460" y="262" text-anchor="end">CUO Property · Cat desk</text>
-      <text class="in" x="460" y="286" text-anchor="end">Claims · A&amp;H · Travel · CIO</text>
-      <text class="in" x="460" y="310" text-anchor="end">+ run log, every cycle</text>
-    </g>
-    <!-- legend -->
-    <g transform="translate(0,420)">
-      <text class="llm" x="0" y="0">CLAUDE</text><text class="sub" x="70" y="0">Language model: reads, clusters, writes prose from verified quotes</text>
-      <text class="code" x="600" y="0">CODE</text><text class="sub" x="650" y="0">Plain code: gates, verification, geometry, routing. Every stage has a deterministic fallback.</text>
-    </g>
-    <text class="note" x="0" y="470">One Python orchestrator. Claude calls are cached by evidence hash; a full cycle is under $1. If the API is down, the alert still ships.</text>
+  <svg class="pipe" viewBox="0 -8 1542 520" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6e6e73"/></marker></defs>
+    <rect class="box" x="0" y="20" width="286" height="120" rx="16"/><text class="lab" x="24" y="64">Fetch</text><text class="sub" x="24" y="94">cache-first, offline</text><text class="code" x="24" y="122">CODE</text><path class="arr" d="M290 80.0 L310 80.0" marker-end="url(#a)"/><rect class="box" x="314" y="20" width="286" height="120" rx="16"/><text class="lab" x="338" y="64">Scout</text><text class="sub" x="338" y="94">cluster signals into events</text><text class="llm" x="338" y="122">CLAUDE</text><path class="arr" d="M604 80.0 L624 80.0" marker-end="url(#a)"/><rect class="box" x="628" y="20" width="286" height="120" rx="16"/><text class="lab" x="652" y="64">Corroborator</text><text class="sub" x="652" y="94">2+ independent, any language</text><text class="code" x="652" y="122">CODE</text><path class="arr" d="M918 80.0 L938 80.0" marker-end="url(#a)"/><rect class="box" x="942" y="20" width="286" height="120" rx="16"/><text class="lab" x="966" y="64">Verifier</text><text class="sub" x="966" y="94">quote found verbatim</text><text class="code" x="966" y="122">CODE</text><path class="arr" d="M1232 80.0 L1252 80.0" marker-end="url(#a)"/><rect class="box" x="1256" y="20" width="286" height="120" rx="16"/><text class="lab" x="1280" y="64">Assessor</text><text class="sub" x="1280" y="94">severity copied, score</text><text class="llm" x="1280" y="122">CLAUDE</text><path class="arr" d="M1399.0 144 L1399.0 246" marker-end="url(#a)"/><rect class="box" x="1256" y="250" width="286" height="120" rx="16"/><text class="lab" x="1280" y="294">Exposure</text><text class="sub" x="1280" y="324">event × our book</text><text class="code" x="1280" y="352">CODE</text><path class="arr" d="M1252 310.0 L1232 310.0" marker-end="url(#a)"/><rect class="box" x="942" y="250" width="286" height="120" rx="16"/><text class="lab" x="966" y="294">Brief × 3</text><text class="sub" x="966" y="324">Health · Wealth · Insurance</text><text class="llm" x="966" y="352">CLAUDE</text><path class="arr" d="M938 310.0 L918 310.0" marker-end="url(#a)"/><rect class="box" x="628" y="250" width="286" height="120" rx="16"/><text class="lab" x="652" y="294">Router</text><text class="sub" x="652" y="324">who owns the decision</text><text class="code" x="652" y="352">CODE</text><path class="arr" d="M624 310.0 L604 310.0" marker-end="url(#a)"/><rect class="box" x="314" y="250" width="286" height="120" rx="16"/><text class="lab" x="338" y="294">Notifier</text><text class="sub" x="338" y="324">Slack, email, caveat</text><text class="code" x="338" y="352">CODE</text><path class="arr" d="M310 310.0 L274 310.0" marker-end="url(#a)"/><text class="in" x="262" y="296.0" text-anchor="end">CUO · Cat desk · Claims</text><text class="in" x="262" y="324.0" text-anchor="end">A&amp;H · Travel · CIO</text><text class="in" x="0" y="18" style="font-size:16px">Inputs: NHC · GDACS · USGS · WHO · ECDC · EONET · news in en/es/fr/pt/hi/zh</text>
+    <g transform="translate(0,440)">
+  <text class="llm" x="0" y="0">CLAUDE</text><text class="sub" x="90" y="0">reads, clusters and writes prose from verified quotes</text>
+  <text class="code" x="640" y="0">CODE</text><text class="sub" x="710" y="0">gates, verification, geometry, routing. Every stage has a fallback.</text>
+</g>
+<text class="note" x="0" y="488">One Python orchestrator. A full cycle costs under $1. If the model is down, the alert still ships.</text>
   </svg>
   <div class="foot"><span><b>Sources</b> README.md pipeline and design rule 3</span><span>pitch/QA.md Q5 (cost), Q9 (always-on)</span><span>sentinel/src/run.py, agents.py</span></div>
 </section>
@@ -328,11 +278,12 @@ Nine agents. The language model reads and writes prose. Plain code holds every g
   <h1 class="mid">Back to that Tuesday. Sentinel fires on Wednesday.</h1>
   <div class="bt">
     <div class="axis">
-      <div class="pt above" style="left:9%"><div class="w">Health bureau notice + Sina</div><div class="t">TUE 15 JUL · T−51 h · zh</div><div class="dot"></div></div>
-      <div class="pt below" style="left:24%"><div class="dot"></div><div class="w">China News, Nandu, Beijing News</div><div class="t">TUE 15 JUL · zh · on the watch list</div></div>
-      <div class="pt sig above" style="left:40%"><div class="w">Sentinel alert (strict rule)</div><div class="t">WED 16 JUL · T−18 h<br>HK CHP letter + 2 outlets, 2 languages</div><div class="dot"></div></div>
-      <div class="pt below" style="left:56%"><div class="dot"></div><div class="w">First English headline</div><div class="t">THU 17 JUL 10:00 UTC · SCMP · T</div></div>
-      <div class="pt above" style="left:90%"><div class="w">Bloomberg</div><div class="t">THU 24 JUL · T+165 h</div><div class="dot"></div></div>
+      <div class="span" style="left:13%;width:34%"></div>
+      <div class="pt above" style="left:13%"><div class="w">Health bureau notice</div><div class="t">Tue 15 Jul · Chinese only · T−51 h</div><div class="dot"></div></div>
+      <div class="pt below" style="left:26%"><div class="dot"></div><div class="w">Chinese press picks it up</div><div class="t">Tue 15 Jul · on the watch list</div></div>
+      <div class="pt sig above" style="left:47%"><div class="w">Sentinel alert</div><div class="t">Wed 16 Jul · T−18 h · strict rule</div><div class="dot"></div></div>
+      <div class="pt below" style="left:62%"><div class="dot"></div><div class="w">First English headline</div><div class="t">Thu 17 Jul · SCMP · T</div></div>
+      <div class="pt above faint" style="left:90%"><div class="w">Bloomberg</div><div class="t">Thu 24 Jul · T+7 days</div><div class="dot"></div></div>
     </div>
     <div class="lead">
       <div><div class="n">18 h</div><div class="cap">before the first English headline</div><div class="src">Strict rule: 2 outlets + an authority or a second language</div></div>
