@@ -317,17 +317,18 @@
 
 <!-- 7 BACKTEST -->
 <section class="slide" data-title="Backtest">
-  <div class="kicker">Backtest · replayed with original timestamps <span class="todo-tag">TODO: fill from sentinel/BACKTEST.md</span></div>
-  <h2>[Event name]: Sentinel alerted <span class="amber">[X] hours</span> before the headline.</h2>
+  <div class="kicker">Backtest · replayed with original timestamps · Foshan chikungunya, July 2025</div>
+  <h2>China's largest chikungunya outbreak was reported <span class="amber">only in Chinese</span> for two days.</h2>
   <div class="tl">
     <div class="axis"></div>
-    <div class="span" style="left:12%;right:12%"></div>
-    <div class="mk" style="left:12%"><div class="t teal">T−[X] h</div><div class="dot" style="background:var(--teal)"></div><div class="d">First weak signal<br><span style="font-size:22px">[source · language]</span></div></div>
-    <div class="mk" style="left:50%"><div class="t amber">T−[Y] h</div><div class="dot" style="background:var(--amber)"></div><div class="d">Sentinel corroborated alert<br><span style="font-size:22px">≥2 independent sources</span></div></div>
-    <div class="mk" style="left:88%"><div class="t">T</div><div class="dot" style="background:var(--ink)"></div><div class="d">First mainstream headline</div></div>
+    <div class="span" style="left:8%;right:8%"></div>
+    <div class="mk" style="left:8%"><div class="t teal">T−51 h</div><div class="dot" style="background:var(--teal)"></div><div class="d">Shunde health bureau<br><span style="font-size:22px">+ Sina, chinanews · zh</span></div></div>
+    <div class="mk" style="left:36%"><div class="t amber">T−18 h</div><div class="dot" style="background:var(--amber)"></div><div class="d">Sentinel alert (strict rule)<br><span style="font-size:22px">+ HK CHP letter · 2 languages</span></div></div>
+    <div class="mk" style="left:60%"><div class="t">T</div><div class="dot" style="background:var(--ink)"></div><div class="d">First English headline<br><span style="font-size:22px">SCMP · 17 Jul</span></div></div>
+    <div class="mk" style="left:92%"><div class="t">T+7 d</div><div class="dot" style="background:var(--dim)"></div><div class="d">Bloomberg<br><span style="font-size:22px">24 Jul</span></div></div>
   </div>
-  <p class="bt-note">Carriers typically freeze new binding <b>24–48 hours</b> before a hurricane hits. The hours before the headline are when an accumulation check, a binding decision, or adjuster pre-staging still changes the loss.</p>
-  <div class="src">Moratorium timing: policygenius.com/homeowners-insurance/insurance-moratorium · Backtest: sentinel/BACKTEST.md</div>
+  <p class="bt-note">Sentinel alerts <b>18–51 h</b> before the first English headline and <b>about a week before Bloomberg</b>. That is a week of A&amp;H/travel advisories, CBI watch on a manufacturing hub, and event-cancellation checks before the market sees it.</p>
+  <div class="src">Every timestamp is sourced in sentinel/BACKTEST.md (page metadata; the † items are day-level). Reproduce with <code>python src/backtest.py --strict</code>.</div>
   <div class="pager"></div>
 </section>
 

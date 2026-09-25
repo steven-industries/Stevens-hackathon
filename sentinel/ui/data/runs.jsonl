@@ -1,0 +1,5 @@
+{"ts": "2026-09-25T16:59:14Z", "run_id": "d918eb0c", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 8, "mode": "deterministic", "duration_s": 11.3}
+{"ts": "2026-09-25T16:59:45Z", "run_id": "6d7163aa", "items_fetched": 436, "feeds_ok": 8, "events": 8, "alerts": 8, "mode": "deterministic", "duration_s": 9.0}
+{"ts": "2026-09-25T17:00:18Z", "run_id": "3e679682", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 8, "mode": "deterministic", "duration_s": 16.2}
+{"ts": "2026-09-25T17:00:59Z", "run_id": "a9b32347", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 20.0}
+{"ts": "2026-09-25T17:02:31Z", "run_id": "d5ab9d42", "items_fetched": 436, "feeds_ok": 7, "events": 8, "alerts": 7, "mode": "deterministic", "duration_s": 15.6}

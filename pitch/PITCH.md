@@ -31,7 +31,7 @@ The signals are all public: GDACS, the Hurricane Center, USGS, WHO outbreak noti
 
 ## 2:10–2:30 · Backtest (slide 7)
 
-"Does it help? We replayed **[TODO event from sentinel/BACKTEST.md]** with the original timestamps. The first weak signal came at **T−[TODO] h**, and Sentinel raised a corroborated alert at **T−[TODO] h**, **[TODO] hours before the first mainstream headline**. Carriers usually suspend new binding 24 to 48 hours before landfall. Those hours are the whole decision window."
+"Does it work before the headlines? We replayed **the July 2025 Foshan chikungunya outbreak**, China's largest ever, using the original timestamps. For two days it existed **only in Chinese**: a district health-bureau notice, then Sina and China News. Under our strict rule (two independent sources, including an authority, in two languages) Sentinel fires **18 hours before the first English headline** and **about a week before Bloomberg**. The first Chinese signal came 51 hours before the English headline. For a travel or A&H desk, or anyone watching CBI on a manufacturing hub, that's the whole decision window."
 
 ## 2:30–2:50 · Why now + adoption (slide 8)
 
@@ -48,7 +48,7 @@ We don't replace Dataminr or Moody's RMS. **They detect. We turn a detection int
 
 "In January 2025 the LA wildfires cost Chubb **$1.47 billion pre-tax** in one quarter. The signals were public from the first hour. What was missing was a fast answer to *how much of our book is exposed, and who needs to know?*
 Sentinel is an always-on team of agents. It reads GDACS, the Hurricane Center, USGS, WHO and multilingual local news every ten minutes, and it only raises an alert once independent sources agree. It copies severity from the issuing authority and never invents it. Then it overlays the event on the insurer's book, as policies and TIV by line, and writes three briefs: Health, Wealth, and Insurance. Every bullet quotes its source, and code checks each quote word-for-word. Each brief goes to the right desk (the CUO, Claims, the CIO, A&H) with a caveat banner.
-In our backtest on [TODO event], Sentinel alerted [TODO] hours before the headlines. Binding moratoriums usually start 24 to 48 hours out, so that lead time is what matters.
+When we replayed the 2025 Foshan chikungunya outbreak, Sentinel alerted 18 hours before the first English headline and about a week before Bloomberg, because the early signals were only in Chinese.
 Dataminr detects. Sentinel translates detection into Chubb's exposure, with an audit trail. It runs in Chubb's cloud. We're asking for a 90-day pilot on one peril with the cat desk."
 
 ---
@@ -58,7 +58,6 @@ Dataminr detects. Sentinel translates detection into Chubb's exposure, with an a
 - [ ] UI open at `http://localhost:8000/ui/`, top alert pre-selected
 - [ ] Storm name and category checked on nhc.noaa.gov
 - [ ] Offline cache warm (`--offline`) in case the Wi-Fi drops
-- [ ] Backtest numbers copied from `sentinel/BACKTEST.md` into the script and deck
 - [ ] Say "synthetic book" out loud. Judges will respect it.
 
 ## Sources for every number in the script

@@ -108,10 +108,10 @@ def p_nhc(basin):
             storms.setdefault(e.nhc_atcf, {})["sum"] = e
         else:
             m = re.search(r"(Hurricane|Tropical Storm|Tropical Depression|Post-Tropical Cyclone|Potential Tropical Cyclone|Remnants of) (\w+) (Public Advisory|Forecast Advisory)", t)
-            if m:
+            if m and "Update" not in t:
                 for k, s in storms.items():
                     if s["sum"].nhc_name.lower() == m.group(2).lower():
-                        s["pub" if "Public" in m.group(3) else "fcst"] = e
+                        s.setdefault("pub" if "Public" in m.group(3) else "fcst", e)
     for atcf, s in storms.items():
         e = s["sum"]; lat, lon = [float(x) for x in e.nhc_center.split(",")]
         pub = s.get("pub"); fc = s.get("fcst")
@@ -143,7 +143,8 @@ def p_usgs():
             seen[f["id"]] = f
     for fid, f in seen.items():
         p = f["properties"]; lon, lat, depth = f["geometry"]["coordinates"][:3]
-        txt = f"{p['title']}. Magnitude {p['mag']} earthquake at depth {depth} km. PAGER alert: {p.get('alert') or 'none'}. Tsunami flag: {p.get('tsunami')}."
+        txt = (f"{p['title']} | mag={p['mag']} {p.get('magType') or ''} | depth_km={depth} | PAGER alert={p.get('alert') or 'none'} | "
+               f"tsunami={p.get('tsunami')} | felt reports={p.get('felt') or 0} | significance={p.get('sig')} | place={p.get('place')}")
         out.append(norm("usgs", fid, "EQ", p["title"], p["url"], iso(p["time"]), txt, "USGS_PAGER",
                         f"M{p['mag']} / PAGER {p.get('alert') or 'n/a'}", lat, lon, (p.get("place") or "").split(", ")[-1],
                         extra={"mag": p["mag"], "alert": p.get("alert"), "sig": p.get("sig"), "felt": p.get("felt"),

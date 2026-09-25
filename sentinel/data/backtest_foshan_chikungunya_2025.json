@@ -1,0 +1,127 @@
+{
+  "event": "Chikungunya outbreak - Foshan (Shunde), Guangdong, China - July 2025",
+  "event_id": "outbreak-chikv-foshan-2025",
+  "mainstream_definition": "first English-language article by a major international news organisation (found via GDELT DOC 2.0 English-language search + page check)",
+  "method": "Timestamps converted to UTC from each page's own publication metadata where retrievable: sina.cn og:published_time; chinanews.com.cn #pubtime_baidu; hkcna.hk on-page time (HKT); oeeee.com article:published_time (+08:00) and JS epoch; bjnews.com.cn on-page time; scmp.com on-page time (HKT). Pages without retrievable metadata (Bloomberg, AP syndication) use GDELT DOC 2.0 'seendate' (first-crawled, 15-min resolution, an upper bound on publication). The Shunde District Health Bureau notice (posted on its WeChat account '健康顺德') has day precision only; it is placed at its latest possible time, i.e. the first page-verified report that quotes it (Sina, 14:49:17 CST). The Hong Kong CHP letter to doctors has day precision (file dated 20250716); placed at 23:59:59 HKT. GDELT queries: 'chikungunya Foshan sourcelang:eng' and 'chikungunya sourcelang:chinese', 2025-07-01..2025-07-28, sort=dateasc, run 2026-09-25. Replay: src/backtest.py sorts items by ts and fires the Sentinel alert at the first item after which >=2 distinct outlets are present AND (an authority item is present OR >=2 languages are present) - the same >=2-independent-source rule as the live Corroborator.",
+  "caveats": [
+    "Lead time is measured from PUBLIC disclosure (Shunde notice, 15 Jul), not from detection: local health authorities detected the cluster on 8 Jul 2025 (China CDC Weekly) and we found no public, timestamped signal before 15 Jul.",
+    "The Shunde notice timestamp is derived (day precision; bounded above by the Sina report that quotes it). Strict replay that ignores derived timestamps fires only when the HK CHP letter (English, day precision, placed at 23:59:59 HKT) adds an authority and a second language: 2025-07-16T15:59:59Z -> lead 18.0 h vs SCMP (python3 src/backtest.py --strict).",
+    "Chinese-language items largely relay the same official notice; they are distinct outlets, not independent investigations.",
+    "'Mainstream' = first English article by a major international outlet that GDELT indexes (SCMP, 17 Jul, a Hong Kong-angle story). Earlier English items outside GDELT's index may exist; we did not find any. Against global wires (Bloomberg 24 Jul, AP 25 Jul) the lead is ~9 days.",
+    "Bloomberg and AP timestamps are GDELT first-seen times (15-min resolution, upper bound), not publisher metadata.",
+    "The Guangdong CDC repost URL of the Shunde notice returned HTTP 404 on 2026-09-25; the notice text is quoted verbatim in the chinanews.com.cn and cbgc.scol.com.cn reports.",
+    "Insured-loss relevance is frequency/A&H/travel/CBI, not a severity cat: all cases mild, no deaths reported; no public insured-loss estimate exists."
+  ],
+  "items": [
+    {
+      "ts": "2025-07-15T06:49:17Z",
+      "ts_quality": "derived_upper_bound",
+      "kind": "authority",
+      "outlet": "shunde-health-bureau",
+      "source": "Shunde District Health Bureau (WeChat '健康顺德'), reposted by Guangdong CDC",
+      "lang": "zh",
+      "title": "佛山市顺德区卫生健康局2025年7月15日发布《情况通报》",
+      "url": "https://cdcp.gd.gov.cn/ywdt/zdzt/yfjkkyr/yqxx/content/post_4747600.html",
+      "note": "Official notice: local outbreak detected 8 Jul, 478 confirmed cases by 15 Jul (Lecong, Beijiao, Chencun). Day precision; ts = upper bound (first verified report quoting it). Repost URL 404 as of 2026-09-25."
+    },
+    {
+      "ts": "2025-07-15T06:49:17Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "sina.cn",
+      "source": "Sina Finance (finance.sina.cn)",
+      "lang": "zh",
+      "title": "佛山顺德卫健局通报一起境外输入引起的基孔肯雅热本地疫情：截至7月15日全区累计报告确诊病例478例，均为轻症病例",
+      "url": "https://finance.sina.cn/2025-07-15/detail-inffpsmp5615123.d.html",
+      "note": "og:published_time 2025-07-15 14:49:17 (UTC+8). Earliest page-verified public report found. Second-precision."
+    },
+    {
+      "ts": "2025-07-15T08:40:58Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "chinanews.com.cn",
+      "source": "China News Service (chinanews.com.cn)",
+      "lang": "zh",
+      "title": "广东佛山顺德累计报告确诊基孔肯雅热病例478例",
+      "url": "https://www.chinanews.com.cn/dwq/2025/07-15/10448173.shtml",
+      "note": "pubtime 2025-07-15 16:40:58 (UTC+8). Quotes: '顺德区卫生健康局15日通报称，2025年7月8日，该区监测发现一起境外输入引起的基孔肯雅热本地疫情'. Second-precision."
+    },
+    {
+      "ts": "2025-07-15T09:58:00Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "hkcna.hk",
+      "source": "Hong Kong China News Agency (hkcna.hk)",
+      "lang": "zh",
+      "title": "廣東順德報告確診基孔肯雅熱478例",
+      "url": "https://www.hkcna.hk/docDetail.jsp?id=101054687&channel=2813",
+      "note": "On-page time 2025-07-15 17:58 (HKT, UTC+8). Traditional Chinese; first Hong Kong outlet. Minute precision. GDELT first-seen 10:30Z."
+    },
+    {
+      "ts": "2025-07-15T10:52:54Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "oeeee.com",
+      "source": "Southern Metropolis Daily - Nandu Foshan desk (oeeee.com)",
+      "lang": "zh",
+      "title": "顺德卫健局通报基孔肯雅热疫情，出现这些症状需警惕",
+      "url": "https://m.mp.oeeee.com/a/BAAFRD0000202507151103164.html",
+      "note": "article:published_time 2025-07-15T18:52:54+08:00 (matches JS epoch 1752576774). Local Foshan desk. Second-precision."
+    },
+    {
+      "ts": "2025-07-15T14:06:00Z",
+      "ts_quality": "exact",
+      "kind": "weak_signal",
+      "outlet": "bjnews.com.cn",
+      "source": "Beijing News (bjnews.com.cn)",
+      "lang": "zh",
+      "title": "新闻多一度丨7问基孔肯雅热，主要在哪些地区流行？怎样预防？",
+      "url": "https://www.bjnews.com.cn/detail/1752586217129154.html",
+      "note": "On-page time 2025-07-15 22:06 (UTC+8). States the '478 cases' topic was trending on Weibo hot search (冲上热搜) on 15 Jul. Minute precision."
+    },
+    {
+      "ts": "2025-07-16T15:59:59Z",
+      "ts_quality": "day_upper_bound",
+      "kind": "authority",
+      "outlet": "chp.gov.hk",
+      "source": "Hong Kong Centre for Health Protection - letter to doctors",
+      "lang": "en",
+      "title": "An Outbreak of Chikungunya Fever Reported in Guangdong",
+      "url": "https://www.chp.gov.hk/files/pdf/letters_to_doctors_20250716.pdf",
+      "note": "Alert to HK clinicians. Day precision (file dated 2025-07-16); ts = 23:59:59 HKT upper bound. First English-language authority item found."
+    },
+    {
+      "ts": "2025-07-17T10:00:00Z",
+      "ts_quality": "exact",
+      "kind": "mainstream",
+      "outlet": "scmp.com",
+      "source": "South China Morning Post",
+      "lang": "en",
+      "title": "Hong Kong at risk of imported cases of mosquito-borne Chikungunya fever: experts",
+      "url": "https://www.scmp.com/news/hong-kong/health-environment/article/3318608/hong-kong-risk-imported-cases-mosquito-borne-chikungunya-fever-experts",
+      "note": "On-page 2025-07-17 6:00pm HKT. First English article by a major outlet in GDELT (first-seen 11:45Z). Mentions Shunde's 478 cases. Minute precision."
+    },
+    {
+      "ts": "2025-07-24T07:00:00Z",
+      "ts_quality": "crawl_upper_bound",
+      "kind": "mainstream",
+      "outlet": "bloomberg.com",
+      "source": "Bloomberg",
+      "lang": "en",
+      "title": "China Reports Record Wave of Painful Mosquito-Borne Virus",
+      "url": "https://www.bloomberg.com/news/articles/2025-07-24/china-industrial-hub-sees-record-chikungunya-virus-outbreak",
+      "note": "First global newswire headline in GDELT. ts = GDELT first-seen (15-min resolution, upper bound)."
+    },
+    {
+      "ts": "2025-07-25T17:30:00Z",
+      "ts_quality": "crawl_upper_bound",
+      "kind": "mainstream",
+      "outlet": "apnews",
+      "source": "Associated Press (syndicated via therecord.com)",
+      "lang": "en",
+      "title": "Southern China hit by outbreak of mosquito-borne infection chikungunya",
+      "url": "https://www.therecord.com/life/health-wellness/southern-china-hit-by-outbreak-of-mosquito-borne-infection-chikungunya/article_3485efd9-5c4d-5b54-b5e0-c0c00d121cf4.html",
+      "note": "First AP story in GDELT. ts = GDELT first-seen of earliest syndication (upper bound)."
+    }
+  ]
+}
