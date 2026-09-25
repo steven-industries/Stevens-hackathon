@@ -412,8 +412,8 @@ function startReplay(){
 function renderAll(){ renderLens(); renderHero(); renderList(); renderDetail(); renderLive(); renderTicker(false); }
 
 async function loadAll(){
-  const [a, e, r, b] = await Promise.all([load("alerts.json", pJSON), load("events.jsonl", pJSONL), load("runs.jsonl", pJSONL), load("backtest.json", pJSON)]);
-  S.events = arr(e); S.runs = arr(r); S.bt = b ? obj(b) : null;
+  const [a, e, r, b, bl] = await Promise.all([load("alerts.json", pJSON), load("events.jsonl", pJSONL), load("runs.jsonl", pJSONL), load("backtest.json", pJSON), load("backtests.json", pJSON)]);
+  S.events = arr(e); S.runs = arr(r); S.bt = b ? obj(b) : null; S.bts = arr(bl);
   if(a){ S.data = Array.isArray(a) ? {alerts:a} : obj(a);
     const h = JSON.stringify(S.data.alerts);
     const want = params.get("event");
@@ -440,9 +440,16 @@ function openSheet(kind){
   } else if(kind === "runs"){ title = "Run log";
     body = `<ul class="rows">${S.runs.slice(-15).reverse().map(x => `<li>${esc(ago(x.ts))}<div class="t">${fmtN(x.items_fetched)} items · ${fmtN(x.alerts)} alerts · ${num(x.duration_s)} s</div></li>`).join("") || "<li>No runs.</li>"}</ul>`;
   } else if(kind === "backtest"){ title = "Backtest";
-    const b = obj(S.bt);
-    body = b.event ? `<div style="font-size:48px;font-weight:600;letter-spacing:-.03em">${num(b.lead_time_hours)} h</div><div style="color:var(--ink-2);margin-bottom:24px">earlier than the first headline · ${esc(String(b.event).split(" - ")[0])}</div>
-      <ul class="rows">${arr(b.timeline).map(t => `<li>${esc(String(t.kind || "").replace(/_/g," "))}<div class="t">${esc(t.source || "")} · ${esc(String(t.ts || "").slice(0,16).replace("T"," "))}</div></li>`).join("")}</ul>` : "No backtest.";
+    const cases = S.bts.length ? S.bts : (S.bt && S.bt.event ? [{event: S.bt.event, lead_time_hours: S.bt.lead_time_hours, summary: S.bt.summary}] : []);
+    const card = c => {
+      const name = esc(String(c.event || "").split(/ - |, /)[0]);
+      const m = String(c.summary || "").match(/(\d+(?:\.\d+)?) h \(~(\d+) days?\) before the first global newswire/);
+      const wire = m ? `${Math.round(+m[1])} h (~${m[2]} days) before the first newswire` : "";
+      return `<div style="padding:18px 0;border-top:1px solid var(--line)"><div style="font-size:48px;font-weight:600;letter-spacing:-.03em;line-height:1">${Math.round(num(c.lead_time_hours))} h</div>
+        <div style="color:var(--ink-2);margin-top:6px">before the first English headline · <b style="color:var(--ink)">${name}</b></div>${wire ? `<div style="color:var(--ink-3);font-size:13px;margin-top:4px">${esc(wire)}</div>` : ""}</div>`; };
+    body = cases.length ? `<div style="color:var(--ink-2);margin-bottom:8px">Replayed with original timestamps through the live corroboration rule. Every timestamp has a URL in BACKTEST.md.</div>${cases.map(card).join("")}
+      ${S.bt && S.bt.timeline ? `<div style="margin-top:22px;color:var(--ink-3);font-size:12px;letter-spacing:.06em;text-transform:uppercase">${esc(String(S.bt.event).split(/ - |, /)[0])} · timeline</div>
+      <ul class="rows">${arr(S.bt.timeline).map(t => `<li>${esc(String(t.kind || "").replace(/_/g," "))}<div class="t">${esc(t.source || "")} · ${esc(String(t.ts || "").slice(0,16).replace("T"," "))}</div></li>`).join("")}</ul>` : ""}` : "No backtest.";
   }
   $("#panel").innerHTML = `<h3>${title}<button id="close" aria-label="Close">Done</button></h3>${body}`;
   $("#sheet").classList.add("on"); $("#menu").classList.remove("open");

@@ -27,3 +27,4 @@
 {"ts": "2026-09-25T18:42:49Z", "run_id": "5de1a55a", "items_fetched": 436, "feeds_ok": 0, "events": 8, "alerts": 7, "mode": "claude", "duration_s": 182.8}
 {"ts": "2026-09-25T18:46:25Z", "run_id": "5f2ab565", "items_fetched": 436, "feeds_ok": 0, "events": 8, "alerts": 7, "mode": "claude", "duration_s": 167.2}
 {"ts": "2026-09-25T18:49:34Z", "run_id": "310e7707", "items_fetched": 436, "feeds_ok": 0, "events": 8, "alerts": 7, "mode": "claude", "duration_s": 156.9}
+{"ts": "2026-09-25T19:21:55Z", "run_id": "9ae8ca5c", "items_fetched": 442, "feeds_ok": 8, "events": 8, "alerts": 7, "mode": "claude", "duration_s": 176.4}
