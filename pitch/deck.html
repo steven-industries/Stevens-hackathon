@@ -107,6 +107,15 @@
   .pipe .arr { stroke: #6e6e73; stroke-width: 2.5; fill: none; stroke-linecap: round; }
   .pipe .note { font-size: 19px; fill: var(--ink-2); }
 
+  /* stack slide */
+  .stack { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; margin-top: 44px; }
+  .stack .sh { font-size: 17px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px; }
+  .feeds dl { margin: 0; display: grid; grid-template-columns: 150px 1fr; column-gap: 20px; }
+  .feeds dt { font-size: 21px; font-weight: 600; color: var(--ink); padding: 11px 0; border-top: 1px solid var(--line); }
+  .feeds dd { margin: 0; font-size: 19px; line-height: 1.35; color: var(--ink-2); padding: 11px 0; border-top: 1px solid var(--line); }
+  .impl ul { list-style: none; margin: 0; padding: 0; }
+  .impl li { font-size: 21px; line-height: 1.4; color: var(--ink-2); padding: 13px 0; border-top: 1px solid var(--line); }
+  .impl li b { color: var(--ink); font-weight: 600; }
   /* 7 */
   .bt { margin-top: 48px; }
   .axis { position: relative; height: 300px; }
@@ -165,12 +174,12 @@ Fifty-one hours later, the first English headline. Nine days later, Bloomberg.
 
 And every insurer with travel, A&amp;H or supply-chain exposure in Guangdong found out from Bloomberg.">
   <div class="mark">Sentinel<small>Chubb · Stevens Business + AI Hackathon</small></div>
-  <div class="num">01 / 10</div>
+  <div class="num">01 / 11</div>
   <div class="grid">
     <div>
       <div class="time">Tuesday · 15 July 2025 · 2:49 PM · Foshan, Guangdong</div>
       <h1 class="huge" style="margin-top:28px">A notice goes up.<br><span class="hot">In Chinese.</span></h1>
-      <div class="zh">478 confirmed cases of chikungunya. The Shunde District Health Bureau posts it. Nobody outside China reads it.</div>
+      <div class="zh">478 confirmed cases of chikungunya, a mosquito-borne virus. The Shunde District Health Bureau posts it. Nobody outside China reads it.</div>
     </div>
     <div class="steps">
       <div class="step"><div class="t">T + 0 h</div><div class="w">District health bureau notice. <i>Chinese only.</i></div></div>
@@ -186,8 +195,8 @@ And every insurer with travel, A&amp;H or supply-chain exposure in Guangdong fou
 
 The signal is always public. The problem is that nobody connects it to OUR book in time.">
   <div class="mark">Sentinel</div>
-  <div class="num">02 / 10</div>
-  <p class="kicker">This is always how it goes</p>
+  <div class="num">02 / 11</div>
+  <p class="kicker">This is always how it goes. Chubb is the world's largest publicly traded property &amp; casualty insurer.</p>
   <h1 class="big">The signal is public.<br>The book isn't connected to it.</h1>
   <div class="trio">
     <div><div class="n">$1.47B</div><div class="what">Chubb, LA wildfires, one quarter. The fire was public from hour one.</div><div class="src">Chubb Q1 2025 results, pre-tax cat loss from California wildfires</div></div>
@@ -204,14 +213,14 @@ What nobody ships is the last mile. Signal, to OUR exposure, to a DECISION, to t
 
 So we built that.">
   <div class="mark">Sentinel</div>
-  <div class="num">03 / 10</div>
+  <div class="num">03 / 11</div>
   <p class="kicker">The insight</p>
   <h1 class="big">Detection is solved.<br>The last mile isn't.</h1>
   <div class="chain">
-    <div class="c card solved"><span class="tag">Solved</span><div class="h">Signal</div><div class="d">Dataminr: 1M+ sources, 150+ languages. BlueDot. GDACS. WHO EIOS. Good, and already bought.</div></div>
+    <div class="c card solved"><span class="tag">Solved</span><div class="h">Signal</div><div class="d">Alert services like Dataminr and BlueDot already scan a million sources in 150 languages and tell you something happened. Good, and already bought.</div></div>
     <div class="c card"><span class="tag">Missing</span><div class="h">Our exposure</div><div class="d">How many of our sites, how much TIV, how many insured lives, are inside it?</div></div>
     <div class="c card"><span class="tag">Missing</span><div class="h">A decision</div><div class="d">Restrict binding. Pre-stage adjusters. Review evacuation capacity. One line, in underwriter vocabulary.</div></div>
-    <div class="c card"><span class="tag">Missing</span><div class="h">The right desk</div><div class="d">Routed to the person who owns it, with a quote behind every sentence so they can trust it.</div></div>
+    <div class="c card"><span class="tag">Missing</span><div class="h">The right desk</div><div class="d">Sent to the person who owns that decision, with a quote behind every sentence so they can trust it.</div></div>
   </div>
   <p class="lede" style="margin-top:64px">Nobody ships that. <b>We did.</b></p>
   <div class="foot"><span><b>Sources</b> dataminr.com/use-cases/insurance (1M+ sources, 150+ languages)</span><span>who.int/initiatives/eios</span><span>gdacs.org</span><span>Competitive notes: pitch/QA.md Q3</span></div>
@@ -239,7 +248,7 @@ So we built that.">
 <!-- 5 · TRUST -->
 <section class="slide" data-n="5" data-notes="Three rules the model never gets to break. Severity is copied from the authority. No quote, no claim. And the score shows its math.">
   <div class="mark">Sentinel</div>
-  <div class="num">05 / 10</div>
+  <div class="num">05 / 11</div>
   <p class="kicker">Why an underwriter can trust it</p>
   <h1 class="big">Three rules.<br>The model never gets to break them.</h1>
   <div class="rules">
@@ -255,7 +264,7 @@ So we built that.">
 
 Nine agents. The language model reads and writes prose. Plain code holds every gate.">
   <div class="mark">Sentinel</div>
-  <div class="num">06 / 10</div>
+  <div class="num">06 / 11</div>
   <p class="kicker">Nine agents, one cycle every ten minutes</p>
   <h1 class="mid">Stages that don't trust each other.</h1>
   <svg class="pipe" viewBox="0 -8 1542 520" xmlns="http://www.w3.org/2000/svg">
@@ -271,9 +280,43 @@ Nine agents. The language model reads and writes prose. Plain code holds every g
 </section>
 
 <!-- 7 · PROOF -->
-<section class="slide" data-n="7" data-notes="Does it beat the headlines? We replayed Foshan with the original timestamps. Under our strict rule (two independent outlets plus an authority or a second language) Sentinel fires 18 hours before the first English headline and about eight days before Bloomberg. The first Chinese signal was on the watch list 51 hours out. One replay, fully sourced, reproducible from the repo.">
+<section class="slide" data-n="7" data-notes="[Ten seconds. Point, don&#x27;t read.]
+
+Seven public feeds, all free, the ones the professionals actually watch: the Hurricane Center, the UN disaster system, the US Geological Survey, the WHO, plus local news in six languages. One Python program orchestrates nine agents. Claude reads and writes; plain code guards every gate. Runs every ten minutes, works offline from cache, and everything on screen today is real data.">
   <div class="mark">Sentinel</div>
-  <div class="num">07 / 10</div>
+  <div class="num">07 / 11</div>
+  <p class="kicker">How we built it</p>
+  <h1 class="mid">Seven public feeds. One orchestrator. Nine agents.</h1>
+  <div class="stack">
+    <div class="feeds">
+      <div class="sh">What we watch, every ten minutes</div>
+      <dl>
+        <dt>NHC</dt><dd>US National Hurricane Center. Official storm category, wind speed and forecast track.</dd>
+        <dt>GDACS</dt><dd>UN and EU disaster alert system. Colour-coded alerts for storms, floods, quakes and fires worldwide.</dd>
+        <dt>USGS</dt><dd>US Geological Survey. Earthquake magnitude and a PAGER estimate of people affected.</dd>
+        <dt>WHO DON</dt><dd>World Health Organization outbreak news. Case counts and the WHO's own risk rating.</dd>
+        <dt>ECDC</dt><dd>Europe's disease control agency. Weekly threat reports.</dd>
+        <dt>NASA EONET</dt><dd>Satellite-tracked natural events: wildfires, volcanoes, severe storms.</dd>
+        <dt>Local news</dt><dd>Google News in English, Spanish, French, Portuguese, Hindi and Chinese. Weak signals before the wires.</dd>
+      </dl>
+    </div>
+    <div class="impl">
+      <div class="sh">How it runs</div>
+      <ul>
+        <li><b>One Python orchestrator</b> runs a cycle every ten minutes and logs every agent step, so any alert can be replayed.</li>
+        <li><b>Claude</b> clusters signals, writes the briefs and the notifications. <b>Plain code</b> fetches, verifies every quote, computes exposure on a map, scores and routes.</li>
+        <li><b>Exposure</b> is a spatial join: the storm track and its buffer against the insurer's sites and insured lives. Today's book is synthetic; the pilot uses Chubb's.</li>
+        <li><b>Resilient by design.</b> Feeds cache to disk, the demo runs offline, and if the model is down every stage has a rule-based fallback.</li>
+        <li><b>Dashboard</b> is a single static page. No build, no database, deploys anywhere.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span><b>Sources</b> sentinel/src/feeds.py (feed list)</span><span>sentinel/README.md (stack)</span><span>sentinel/CONTRACT.md (data contract)</span></div>
+</section>
+
+<section class="slide" data-n="8" data-notes="Does it beat the headlines? We replayed Foshan with the original timestamps. Under our strict rule (two independent outlets plus an authority or a second language) Sentinel fires 18 hours before the first English headline and about eight days before Bloomberg. The first Chinese signal was on the watch list 51 hours out. One replay, fully sourced, reproducible from the repo.">
+  <div class="mark">Sentinel</div>
+  <div class="num">08 / 11</div>
   <p class="kicker">Proof · replay of Foshan, July 2025, original timestamps</p>
   <h1 class="mid">Back to that Tuesday. Sentinel fires on Wednesday.</h1>
   <div class="bt">
@@ -295,9 +338,9 @@ Nine agents. The language model reads and writes prose. Plain code holds every g
 </section>
 
 <!-- 8 · WHY NOW / WHY CHUBB -->
-<section class="slide" data-n="8" data-notes="Why now? Chubb&#x27;s own shareholder letter says it&#x27;s investing in data and AI to get faster in underwriting and claims. And a language model can now read a Chinese bulletin and an NHC advisory in one pass, for cents. Sentinel sits on top of the feeds Chubb already buys, inside Chubb&#x27;s own cloud. Exposure data never leaves.">
+<section class="slide" data-n="9" data-notes="Why now? Chubb&#x27;s own shareholder letter says it&#x27;s investing in data and AI to get faster in underwriting and claims. And a language model can now read a Chinese bulletin and an NHC advisory in one pass, for cents. Sentinel sits on top of the feeds Chubb already buys, inside Chubb&#x27;s own cloud. Exposure data never leaves.">
   <div class="mark">Sentinel</div>
-  <div class="num">08 / 10</div>
+  <div class="num">09 / 11</div>
   <p class="kicker">Why now, why Chubb</p>
   <h1 class="mid">It sits on top of feeds Chubb already buys.</h1>
   <div class="two">
@@ -308,9 +351,9 @@ Nine agents. The language model reads and writes prose. Plain code holds every g
     </div>
     <div>
       <ul>
-        <li><b>Complements, doesn't replace.</b> Dataminr and Moody's RMS detect and model. Their feeds plug in as extra Fetch agents under Chubb's existing contracts.</li>
+        <li><b>Complements, doesn't replace.</b> Alert services (Dataminr) and catastrophe models (Moody's RMS) detect and estimate. Their feeds plug straight in under Chubb's existing contracts.</li>
         <li><b>Exposure never leaves.</b> Runs in Chubb's own cloud. The model sees event text and aggregates ("62 sites, $1.52B"), never a policyholder.</li>
-        <li><b>Built for the 6 a.m. desk.</b> The accumulation manager, the head of A&amp;H, Claims and the CIO each get their own lens on the same event.</li>
+        <li><b>Built for the 6 a.m. desk.</b> The accumulation manager (the person who tracks how much of the company's risk is piled up in one place), the head of accident &amp; health, Claims and the investment chief each get their own view of the same event.</li>
         <li><b>Honest about what's synthetic.</b> Feeds, events, quotes, severity: real. The book: synthetic, until the pilot.</li>
       </ul>
     </div>
@@ -319,16 +362,16 @@ Nine agents. The language model reads and writes prose. Plain code holds every g
 </section>
 
 <!-- 9 · THE ASK -->
-<section class="slide" data-n="9" data-notes="The ask: a 90-day pilot with the cat desk. One peril, Chubb&#x27;s real exposure file, measured in hours of lead time.
+<section class="slide" data-n="10" data-notes="The ask: a 90-day pilot with the cat desk. One peril, Chubb&#x27;s real exposure file, measured in hours of lead time.
 
 [Advance. Pause.]">
   <div class="mark">Sentinel</div>
-  <div class="num">09 / 10</div>
+  <div class="num">10 / 11</div>
   <div class="ask">
     <div>
       <p class="kicker">The ask</p>
       <div class="n">90</div>
-      <p class="lede">days with the cat desk. One peril. Chubb's real exposure file.</p>
+      <p class="lede">days with Chubb's catastrophe desk, the team that watches hurricanes and quakes against the company's policies. One peril. Real exposure data.</p>
     </div>
     <dl>
       <dt>Peril</dt><dd>Atlantic hurricane, one region</dd>
@@ -342,13 +385,13 @@ Nine agents. The language model reads and writes prose. Plain code holds every g
 </section>
 
 <!-- 10 · CLOSE -->
-<section class="slide s10" data-n="10" data-notes="Next time a health bureau posts a notice at 2:49 on a Tuesday, Chubb will know by 3.
+<section class="slide s10" data-n="11" data-notes="Next time a health bureau posts a notice at 2:49 on a Tuesday, Chubb will know by 3.
 
 Thank you.
 
 [Stop talking. Smile.]">
   <div class="mark">Sentinel</div>
-  <div class="num">10 / 10</div>
+  <div class="num">11 / 11</div>
   <h1><span>A health bureau posts a notice at 2:49 on a Tuesday.</span><span>Chubb knows by 3.</span></h1>
   <div class="foot"><span><b>Every number in this deck is sourced on its slide.</b></span><span>Full source table: pitch/PITCH.md</span><span>sentinel-chubb.vercel.app · every claim traces to a quote · severity from the authority · synthetic book, real everything else</span><span>Stevens Business + AI Hackathon · Chubb challenge · 25 Sep 2026</span></div>
 </section>
@@ -381,12 +424,12 @@ Thank you.
   function notesHTML() {
     const el = slides[i]; const t = (el.getAttribute('data-notes') || '').replace(/&/g,'&amp;').replace(/</g,'&lt;');
     const nx = slides[i+1] ? (slides[i+1].querySelector('h1,h2') || {}).textContent || '' : 'END';
-    return `<!doctype html><meta charset=utf-8><title>Presenter · ${i+1}/10</title>
+    return `<!doctype html><meta charset=utf-8><title>Presenter · ${i+1}/11</title>
 <style>body{margin:0;background:#111;color:#f5f5f7;font:26px/1.45 -apple-system,Inter,Helvetica Neue,sans-serif;padding:40px 56px}
 .h{display:flex;justify-content:space-between;color:#8e8e93;font-size:18px;margin-bottom:24px}.h b{color:#fff;font-size:64px;font-variant-numeric:tabular-nums}
 pre{white-space:pre-wrap;font:inherit;margin:0}.nx{margin-top:36px;padding-top:18px;border-top:1px solid #333;color:#8e8e93;font-size:20px}
 .k{position:fixed;bottom:16px;left:56px;color:#555;font-size:14px}</style>
-<div class=h><div>Slide <b>${i+1}</b> / 10</div><div id=c style="font-size:64px;color:#fff;font-variant-numeric:tabular-nums">0:00</div></div>
+<div class=h><div>Slide <b>${i+1}</b> / 11</div><div id=c style="font-size:64px;color:#fff;font-variant-numeric:tabular-nums">0:00</div></div>
 <pre>${t}</pre><div class=nx>Next: ${nx.replace(/</g,'&lt;')}</div>
 <div class=k>Timer starts when this window opens · marks: 1:05 leave slide 3 · 2:00 back on deck · 2:50 the ask</div>`;
   }
@@ -401,7 +444,7 @@ pre{white-space:pre-wrap;font:inherit;margin:0}.nx{margin-top:36px;padding-top:1
     else if (e.key === 'End') show(slides.length - 1);
     else if (e.key.toLowerCase() === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
     else if (/^[1-9]$/.test(e.key)) show(parseInt(e.key, 10) - 1);
-    else if (e.key === '0') show(9);
+    else if (e.key === '0') show(10);
     else if (e.key.toLowerCase() === 'n') openNotes();
   });
   addEventListener('click', e => { if (e.clientX > innerWidth * 0.66) show(i + 1); else if (e.clientX < innerWidth * 0.2) show(i - 1); });

@@ -24,13 +24,14 @@ Pocket numbers: 478 cases (the notice), 51 h (first Chinese signal), 3,728 insur
 | 1:05 | 4 · Sentinel | Relief. It's calm, it's real, it's live. Not a command centre. | "Let me show you." (switch tabs) |
 | 1:15 | Live UI | Trust, click by click. Severity from NHC. A quote behind a sentence. A different desk. A run log. | "Three rules." (switch back) |
 | 2:00 | 5 · Trust | Safety. The model is fenced in by code. This answers the hallucination question before it's asked. | "Nine agents." |
-| 2:10 | 6 · Pipeline | Competence. Hold 4 seconds, say one line, move on. | "Does it beat the headlines?" |
-| 2:15 | 7 · Proof | Conviction. Real timestamps, strict rule, honest caveat. | "Why now?" |
-| 2:35 | 8 · Why now | Fit. It slots into what Chubb already buys and already said it wants. | "The ask." |
-| 2:50 | 9 · Ask | Clarity. Small, measurable, low-risk. | Advance. Pause. |
-| 2:55 | 10 · Close | The callback lands. Smile. Stop talking. | "Thank you." |
+| 2:10 | 6 · Pipeline | Competence. Hold 4 seconds, say one line, move on. | "Here's what's under it." |
+| 2:15 | 7 · How we built it | Credibility for the technical judge, clarity for the rest: real feeds, real names, real code. Point, don't read. | "Does it beat the headlines?" |
+| 2:25 | 8 · Proof | Conviction. Real timestamps, strict rule, honest caveat. | "Why now?" |
+| 2:40 | 9 · Why now | Fit. It slots into what Chubb already buys and already said it wants. | "The ask." |
+| 2:50 | 10 · Ask | Clarity. Small, measurable, low-risk. | Advance. Pause. |
+| 2:55 | 11 · Close | The callback lands. Smile. Stop talking. | "Thank you." |
 
-Timing marks to check on the clock: **1:05 leaving slide 3**, **2:00 back on the deck**, **2:50 on the ask**. If you're 15 seconds late at 2:00, drop the Run log click and the slide 6 hold.
+Timing marks to check on the clock: **1:05 leaving slide 3**, **2:00 back on the deck**, **2:50 on the ask**. If you're 15 seconds late at 2:00, drop the Run log click, the slide 6 hold, and cut slide 7 to one sentence.
 
 ## Demo click path (rehearse until it's muscle memory)
 
@@ -42,10 +43,21 @@ Pre-state: UI tab open on **Property**, nothing selected, page freshly loaded, z
 4. Click **A&H** in the lens bar. Point at insured lives (3,728, Ebola, WHO very high).
 5. Click **•••** (top right) → **Route**. Say "already notified, caveat banner." Close.
 6. Click **•••** → **Run log**. Say "every ten minutes all afternoon." Close.
-7. Optional: press **B** for the backtest modal instead of slide 7.
+7. Optional: press **B** for the backtest modal instead of slide 8.
 8. Switch back to the deck tab, slide 5.
 
-Keyboard in the deck: → / space next, ← back, F fullscreen, 1–9 jump to slide, 0 jumps to slide 10. The deck also accepts a click on the right third of the screen to advance.
+Keyboard in the deck: → / space next, ← back, F fullscreen, 1–9 jump to slide, 0 jumps to slide 11. The deck also accepts a click on the right third of the screen to advance.
+
+## Say it so a non-insurance judge follows (use these the first time each word comes up)
+
+- **Chubb**: the largest publicly traded property & casualty insurer in the world. They insure buildings, cargo, travellers, executives.
+- **Dataminr / BlueDot**: alert services that scan news and social media and tell you something happened. They detect; they don't say what it means for you.
+- **Accumulation manager / cat desk**: the team that tracks how much of the company's risk is piled up in one place, and watches storms and quakes against it.
+- **Book**: the insurer's portfolio of policies. "Our book" = everything we've insured.
+- **TIV**: total insured value, the dollar amount at risk.
+- **Binding**: agreeing to insure something. "Restrict new binding" = stop writing new policies in the danger zone until the storm passes.
+- **A&H**: accident & health insurance, counted in insured lives, not dollars.
+- **Reserves**: money set aside for claims. We never tell them to change reserves before a storm hits.
 
 ## Failure modes and recovery lines
 

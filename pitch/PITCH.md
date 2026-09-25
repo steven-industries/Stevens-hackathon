@@ -18,13 +18,13 @@ And every insurer with travel, A&H or supply-chain exposure in Guangdong found o
 
 ## 0:25 – 0:45 · Slide 2 · The pattern
 
-"That is always how it goes. The LA wildfires were public from the first hour; Chubb took $1.47 billion in one quarter. Helene and Milton sat in Hurricane Center advisories for days; about $700 million. $137 billion of insured cat losses worldwide in 2024.
+"That is always how it goes. The LA wildfires were public from the first hour; Chubb, the largest publicly traded property insurer in the world, took $1.47 billion in one quarter. Helene and Milton sat in Hurricane Center advisories for days; about $700 million. $137 billion of insured cat losses worldwide in 2024.
 
 The signal is always public. The problem is that nobody connects it to *our book* in time."
 
 ## 0:45 – 1:05 · Slide 3 · The insight
 
-"Here's the thing we figured out. Detection is a solved problem. Dataminr, BlueDot, GDACS. Chubb already pays for it.
+"Here's the thing we figured out. Detection is a solved problem. Alert services like Dataminr and BlueDot scan a million sources and tell you something happened. Chubb already pays for them.
 
 What nobody ships is the last mile. Signal, to *our* exposure, to a *decision*, to the *right desk*, with an audit trail an underwriter will actually trust.
 
@@ -42,7 +42,7 @@ So we built that."
 "Not a news feed. A number and a list of decisions."
 
 [Click **Hurricane Polo**.]
-"Top decision: Hurricane Polo. Category 5, 180 miles an hour, and that's *issued by the Hurricane Center*. We copy severity; the model never invents it. 62 of our sites and $1.52 billion sit inside the 350-kilometre screening buffer. Nothing in the hurricane-force core yet. So the action is: restrict new binding in Baja California Sur. Not touch reserves. That's the sentence the cat desk needs at 6 a.m."
+"Top decision: Hurricane Polo. Category 5, 180 miles an hour, and that's *issued by the Hurricane Center*. We copy severity; the model never invents it. 62 of our sites and $1.52 billion sit inside the 350-kilometre screening buffer. Nothing in the hurricane-force core yet. So the action is: restrict new binding in Baja California Sur. Not touch reserves. That's the sentence the catastrophe desk, the team that watches storms against the company's policies, needs at 6 a.m."
 
 [Click any sentence in the brief to reveal its quote.]
 "Every sentence carries a verbatim quote, and code, not a model, checks it against the source. No quote, no claim."
@@ -65,21 +65,26 @@ So we built that."
 [Advance to slide 6, hold for four seconds, don't narrate the boxes.]
 "Nine agents. The language model reads and writes prose. Plain code holds every gate."
 
-## 2:15 – 2:35 · Slide 7 · Proof
+## 2:15 – 2:25 · Slide 7 · How we built it
+
+[Point, don't read.]
+"Seven public feeds, all free, the ones the professionals watch: the National Hurricane Center, the UN's disaster alert system, the US Geological Survey, the World Health Organization, plus local news in six languages. One Python program runs nine agents every ten minutes. It works offline, and everything on screen today is real data."
+
+## 2:25 – 2:40 · Slide 8 · Proof
 
 "Does it beat the headlines? We replayed Foshan with the original timestamps. Under our strict rule, two independent outlets plus an authority or a second language, Sentinel fires 18 hours before the first English headline and about eight days before Bloomberg. The first Chinese signal was on the watch list 51 hours out. One replay, fully sourced, reproducible from the repo."
 
 [If time is short, press **B** in the UI instead of narrating this slide: the backtest modal shows the same timeline.]
 
-## 2:35 – 2:50 · Slide 8 · Why now, why Chubb
+## 2:40 – 2:50 · Slide 9 · Why now, why Chubb
 
 "Why now? Chubb's own shareholder letter says it's investing in data and AI to get faster in underwriting and claims. And a language model can now read a Chinese bulletin and an NHC advisory in one pass, for cents. Sentinel sits on top of the feeds Chubb already buys, inside Chubb's own cloud. Exposure data never leaves."
 
-## 2:50 – 3:00 · Slides 9 → 10 · The ask, the close
+## 2:50 – 3:00 · Slides 10 → 11 · The ask, the close
 
-"The ask: a 90-day pilot with the cat desk. One peril, Chubb's real exposure file, measured in hours of lead time."
+"The ask: a 90-day pilot with Chubb's catastrophe desk. One peril, real exposure data, measured in hours of lead time."
 
-[Advance to slide 10. Pause.]
+[Advance to slide 11. Pause.]
 
 "Next time a health bureau posts a notice at 2:49 on a Tuesday, Chubb will know by 3. Thank you."
 
@@ -89,7 +94,7 @@ So we built that."
 
 Slides 1 → 3 → 4 → 7 → 10.
 
-"July 15th, 2025, 2:49 p.m. A health bureau in Foshan posts a notice in Chinese: 478 cases of chikungunya. The first English headline came 51 hours later. Bloomberg, nine days later. That's when insurers found out. [slide 3] Detection is solved; Dataminr and GDACS do it. The unsolved part is the last mile: signal, to our exposure, to a decision, to the right desk, with an audit trail. [slide 4] Sentinel is that last mile, live today: $3.48 billion at stake, four decisions. Top one, Hurricane Polo, Category 5 issued by NHC, 62 sites and $1.52 billion of our book in the screening buffer, action: restrict new binding in Baja California Sur. Severity is copied from the authority, every sentence carries a quote that code verifies, the score shows its math. [slide 7] Replayed on Foshan, it fires 18 hours before the first English headline and about eight days before Bloomberg. [slide 10] We're asking for a 90-day pilot with the cat desk on one peril. Next time a health bureau posts at 2:49 on a Tuesday, Chubb knows by 3."
+"July 15th, 2025, 2:49 p.m. A health bureau in Foshan posts a notice in Chinese: 478 cases of chikungunya. The first English headline came 51 hours later. Bloomberg, nine days later. That's when insurers found out. [slide 3] Detection is solved; Dataminr and GDACS do it. The unsolved part is the last mile: signal, to our exposure, to a decision, to the right desk, with an audit trail. [slide 4] Sentinel is that last mile, live today: $3.48 billion at stake, four decisions. Top one, Hurricane Polo, Category 5 issued by NHC, 62 sites and $1.52 billion of our book in the screening buffer, action: restrict new binding in Baja California Sur. Severity is copied from the authority, every sentence carries a quote that code verifies, the score shows its math. [slide 8] Replayed on Foshan, it fires 18 hours before the first English headline and about eight days before Bloomberg. [slide 11] We're asking for a 90-day pilot with the cat desk on one peril. Next time a health bureau posts at 2:49 on a Tuesday, Chubb knows by 3."
 
 ---
 
